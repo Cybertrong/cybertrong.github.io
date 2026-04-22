@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>index</title>
+  <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="background_buger">  
+            <a>
+                <div class="burger"></div>
+            </a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><img src="images/apple_logo.png" alt="applelogo"/></li>
+                <li><a href="http://facebook.com/" onclick="window.open(this.href); return false;"><img src="images/facebook.png"/></a></li>
+                <li><a href="http://twitter.com/"onclick="window.open(this.href); return false;"><img src="images/twitter.png"/></a></li>
+                <li><a href="http://instagram.com/"onclick="window.open(this.href); return false;"><img src="images/instagram"/></a></li>
+                <li><a href="fonctionnement.html"><p id="details">FONCTIONNEMENT</p></a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+    <div class="text_intro">
+        <h2>Promotions urbaines interactives</h2>
+        <p>dans les bars, cafés, événements culturels, divertissements, services, touristiques, etc.</p>
+    </div>
+    <div class="container_logo">
+        <img id="logo" src="images/fly_logo.png" alt=""/>
+    </div>
+    <div class="parallax"></div>
+    <div class="container_logo2">
+        <img id="logo" src="images/fly_logo.png" alt=""/>
+    </div>
+    <div id="fond2">
+        <h1>MISSION</h1>
+        <p>FLY est une <b>plateforme visuelle interactive</b> permettant la diffusion de promotions urbaines variées* aidant les utilisateurs à trouver rapidement l’offre qu’ils cherchent sans perdre de temps sur Internet, FLY est une <b>évolution technologique</b> du traditionnel Flyer.</p><br/>
+        <p id="nota">* Ici Grande région de Montréal.</p>
+    </div>
+    <section>
+    <div class="iphone_apps">
+        <div class="iphone">
+            <img class="ip" id="hover" src="images/phone1_on.png" alt="fond"/>
+        </div>
+        <div class="iphone">
+            <img class="ip" src="images/phone2.png" alt="fond"/>
+        </div>
+        <div class="iphone">
+            <img class="ip" src="images/phone3.png" alt="fond"/>
+        </div>
+    </div>
+    </section>
+    <div id="fond4"> 
+        <div class="container_logo2">
+            <img id="logo" src="images/fly_logo.png" alt=""/>
+        </div>
+        <h1>COMBIEN</h1>
+         <p><b>Gratuit pour les utilisateurs</b>, l’application se veut payante au moment de la création de badges. Le coût est de <b>5$</b> par badge et l’achat se fait directement avec le compte itunes de l’utilisateur.</p><br/>
+    </div>
+    <div class="form">
+        <h1>Je m'inscris</h1>
+    <form action="mail.php" method="post">
+        <div id="emailfield">
+            <input type="email" name="field2" class="field-style field-split align-right" required placeholder="Courriel" />
+        </div>
+        <div id="box">
+            <input type="checkbox" id="conditions" name="conditions" value="oui" required >
+            <label for="termesconditions">J'accepte les termes et conditions</label>
+        </div>
+        <div class="button">
+            <input type="submit" value="Envoyer" />
+        </div>
+    </form>
+    </div>
+
+    </main>
+    <footer>
+    <div>
+        <p>©FLY - Tous droits réservés</p>
+        
+    </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" class="back-to-top">
+        <span class="arrow">↑</span>
+    </button>
+
+    <script type="text/javascript" src="js/fichier.js"></script>
+    <script type="text/javascript" src="js/burger.js"></script>
+</body>
+</html>

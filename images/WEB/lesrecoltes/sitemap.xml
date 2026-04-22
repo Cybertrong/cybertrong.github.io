@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.lesrecoltes.com/</loc>
+  <lastmod>2021-12-31T16:23:18+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/epicerie.html</loc>
+  <lastmod>2021-12-31T16:58:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/cours.html</loc>
+  <lastmod>2021-12-31T17:06:23+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/cantine.html</loc>
+  <lastmod>2021-12-31T17:05:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/promesses.html</loc>
+  <lastmod>2022-01-05T01:19:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/contact.html</loc>
+  <lastmod>2021-12-31T17:09:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.lesrecoltes.com/index.html</loc>
+  <lastmod>2021-12-31T16:23:18+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

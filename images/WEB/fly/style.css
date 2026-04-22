@@ -1,0 +1,482 @@
+@font-face {
+  font-family: 'Bubbleboy';
+    src:  url('Bubbleboy.ttf.woff') format('woff'),
+    url('Bubbleboy.ttf.svg#Bubbleboy') format('svg'),
+    url('Bubbleboy.ttf.eot'),
+    url('Bubbleboy.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body{
+    margin: 0;  
+}
+
+/* MENU */
+
+.burger {
+  position: fixed;
+  top: 3.5%;
+  right: 7%;
+  width: 40px;
+  height: 4px;
+  background: #fff;
+  cursor: pointer;
+  z-index: 9999;
+  transition: background 0.5s ease;
+}
+.burger::before, .burger::after {
+  content: "";
+  display: block;
+  position: fixed;
+  width: 40px;
+  height: 4px;
+  background: #fff;
+  right: 7%;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+.burger::before {
+  top: calc(3.5% - 8px);
+}
+.burger::after {
+  top: calc(3.5% + 8px);
+}
+.burger:hover {
+  background: transparent;
+}
+.burger:hover::before {
+  transform: translateY(8px) rotate(-45deg);
+}
+.burger:hover::after {
+  transform: translateY(-8px) rotate(45deg);
+}
+
+/* BURGER ACTIVE STATE */
+.burger.active {
+  background: transparent;
+}
+.burger.active::before {
+  transform: translateY(8px) rotate(-45deg);
+}
+.burger.active::after {
+  transform: translateY(-8px) rotate(45deg);
+}
+
+
+/* SOUS MENU */
+.menu li img{
+    cursor: pointer;
+}
+ul{
+    margin-top: 0px;
+    padding:0;
+    width:100%;
+    height:100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:999;
+    background: #ed1c24;
+}
+ul li{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background:#ed1c24;
+    text-align: center;
+}
+ul li:hover{
+    background: grey;
+    transition: all 0.6s ease 0s;
+}
+
+/* BACK TO TOP BUTTON */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ed1c24;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+.back-to-top:hover {
+    background: #ff0000;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px);
+}
+
+.back-to-top .arrow {
+    font-weight: bold;
+}
+
+li a #details{
+    font-family: 'Roboto', sans-serif;
+    font-size: 420%;
+    color:white;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: auto;
+    text-decoration: none;
+}
+
+/* PAGES */
+.container_logo{
+    width:100%;
+    height:100%;
+    position: absolute;
+    padding-top: 150px;
+    z-index:1;
+}
+.container_logo2{
+    width:100%;
+    height:100%;
+    position: absolute;
+    padding-top: 150px;
+    z-index:3;
+}
+
+.container_logo3{
+    width:100%;
+    height:100%;
+    position: absolute;
+    padding-top: 150px;
+    z-index:3;
+}
+ #logo{
+    width: 80px;
+    height:80px;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+
+}
+
+.parallax{
+    background-image: url("images/fond.jpg");
+    min-height: 900px;
+    background-position: center 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index:1;
+    overflow: hidden;
+}
+#fond2{
+    font-family: 'Roboto', sans-serif;
+    width:100%;
+    height:900px;
+    background-color:#ed1c24;
+    color: white;
+}
+#fond2 h1{
+    font-family: 'Bubbleboy'; 
+    margin-top:0;
+    padding-top: 380px;
+    text-align: center;
+    font-size: 800%;
+    color:#fff;
+}
+#fond2 p{
+    margin: 0 100px 0 100px;
+    text-align: center;
+    font-size: 180%;
+}
+
+.text_intro{
+    width:100%;
+    height: auto;
+    text-align: center;
+    margin:0;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    color:white;
+    position: absolute;
+}
+.text_intro h2{
+    margin-left: auto;
+    margin-right: auto;
+    width:280px;
+    padding-top: 17%;/* hauteur texte page 1*/
+    align-content: center;
+    font-family: 'Bubbleboy'; 
+    font-size: 320%;
+    line-height: 1.1em;
+}
+.text_intro p{
+    margin-left: auto;
+    margin-right: auto;
+    width:280px;
+    text-align: center;
+}
+
+#fond2 #nota{
+    text-align: right;
+    font-size: 99%;
+}
+
+    /* IPHONE */
+.iphone_apps{
+    background: #c6c6c6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 1000px;
+}
+.iphone img{
+    padding-right: 40px;
+    opacity: 0.6;
+}
+
+.iphone img:hover{
+    opacity: 1;
+    transition: all 0.6s ease 0s;
+}
+
+#fond4 {
+    width:100%;
+    height:100%;
+    font-family: 'Roboto', sans-serif;
+    width:100%;
+    height:900px;
+    background-color:grey;
+    color: white;
+}
+#fond4 h1{
+    font-family: 'Bubbleboy'; 
+    margin-top:0;
+    padding-top: 380px;
+    text-align: center;
+    font-size: 800%;
+    color:#fff;
+}
+#fond4 p{
+    margin: 0 100px 0 100px;
+    text-align: center;
+    font-size: 180%;
+}
+
+.form div{
+    width:100%;
+    height:100px;
+}
+
+form {
+    width:100%;
+    height:auto;
+}
+.form h1{
+    font-family: 'Bubbleboy'; 
+    margin-top:0;
+    margin-bottom:0;
+    padding-top: 350px;
+    text-align: center;
+    font-size: 800%;
+    color:#000;
+}
+
+input[type="email"] {
+    margin-top: 80px;
+    width: 400px;
+    height: 42px;
+    font: 30px Roboto, sans-serif;
+    color: #000;
+    padding: 15px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input[type="checkbox"] {
+    margin-top: 25px;
+    width:25px;
+    height:25px;
+}
+#box{
+    text-align: center; 
+}
+label{
+    font: 25px Roboto, sans-serif;
+}
+
+input[type="submit"] {
+    background-color: #ed1c24;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 10px 18px;
+    text-decoration: none;
+    font: 60px Bubbleboy, sans-serif;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom:200px;
+}
+input[type="button"]:hover, 
+input[type="submit"]:hover {
+    background: grey;
+    transition: all 0.6s ease 0s;
+}
+
+footer{
+    width:100%;
+    height:40px;
+    background-color: #b3b3b3;
+    margin-top: 150px;
+}
+footer p{
+    text-align: center;
+    font: 30px Roboto, sans-serif, white;
+    font-size:90%;
+    color:white;
+    padding:10px;
+}
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 480px) and (min-width: 320px){
+
+    .burger {
+    display: none;
+}
+    
+    .form h1{
+    padding-top: 80px;
+    font-size: 400%;   
+    }
+    #fond2, #fond4{
+    height: 700px;
+    }
+    #fond2 h1, #fond4 h1{
+    padding-top: 200px;
+    font-size: 500%;
+}
+    #fond2 p, #fond4 p{
+    font-size: 105%;
+    margin: 0 40px 0 40px;
+    line-height: 1.5em;
+}
+    #fond2 #nota{
+    font-size: 90%;
+    text-align: center;
+    padding-bottom: 200px;
+}
+    .container_logo2{
+    padding-top: 75px;
+}
+    .text_intro h2{
+    padding-top: 65%;
+    font-size: 250%;
+    line-height: 1.0em;
+}
+    #left img{
+    margin-top: 20px;
+    margin-left: 35px;
+}
+    .iphone_apps{
+    padding-top:25px;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+    }
+    .ip{
+    display: block;
+    margin-left: auto;
+    margin-right: auto     
+    }
+
+    .iphone{
+    padding-bottom: 25px;
+    }
+    .iphone img{
+    padding-right: 0;   
+    }
+    form{
+    flex-direction: column;
+    height: 300px;
+}
+    
+    input[type="submit"] {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+    input[type="email"] {
+    margin-top: 40px;
+    width: 250px;
+    height: 42px;
+    font: 20px Roboto, sans-serif;
+    color: #000;
+    padding: 5px;
+}
+
+    label{
+        font: 20px Roboto, sans-serif;  
+    }
+}
+   
+@media screen and (max-width: 1024px) and (min-width: 768px){
+.container_logo{
+    width:100%;
+    height: auto;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    padding-top: 100px;
+    z-index:1;
+}
+ #logo{
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    width: 60px;
+    height:60px;
+
+} 
+.text_intro h2{
+    padding-top: 16%;
+    font-size: 250%;
+    line-height: 1.0em;
+}
+.text_intro p{
+    width:200px;
+}
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1601px){
+
+.parallax{
+    min-height: 1080px; 
+}
+#fond2{
+    min-height: 1080px ;
+}
+
+
+
+}
+
+

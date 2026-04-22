@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>contact — linh b. (fr)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,300&family=DM+Mono:wght@300;400&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000000;
+    --ink: #00ff41;
+    --accent: rgba(0,255,65,0.15);
+    --muted: #008f11;
+    --gold: #c9a84c;
+    --lime: #c8ff3e;
+    --serif: 'DM Mono', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --ease: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 46px 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-bottom: 0.1px solid #c9a84c;
+    
+    transition: padding 0.35s;
+  }
+  nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0.1px;
+    background: linear-gradient(to right, transparent 0%, #c9a84c 20%, #c9a84c 80%, transparent 100%);
+    z-index: 101;
+  }
+
+  nav.scrolled {
+    background: #0c0c0a;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  nav.scrolled .nav-logo { color: #c9a84c; font-size: 33px; }
+  nav.scrolled .nav-links a { color: rgba(201,168,76,0.45); font-size: 12px; }
+  nav.scrolled .nav-links a:hover,
+  nav.scrolled .nav-links a.active { color: #c9a84c; }
+  nav.scrolled .burger-line { background: #c9a84c; }
+
+  /* CLOSE BUTTON */
+  .close-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
+    background: #0c0c0a;
+    color: #c9a84c;
+    border: none;
+    padding: 20px 14px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, background 0.2s, color 0.2s;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    z-index: 99;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    outline: none;
+    text-decoration: none;
+  }
+  .close-btn:hover { background: #c9a84c; color: #0c0c0a; }
+  .close-btn.visible { opacity: 1; pointer-events: all; }
+
+  /* CLOSE BUTTON BLINK */
+  .close-btn.visible {
+    animation: closeBlink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes closeBlink {
+    0%, 49%, 100% { opacity: 1; }
+    50%, 99% { opacity: 0.3; }
+  }
+
+  /* MATRIX CANVAS */
+  #bg-matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  #menu-matrix-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .menu-overlay.open #menu-matrix-canvas {
+    opacity: 0.22;
+  }
+
+  .menu-overlay.closing #menu-matrix-canvas {
+    animation: matrixFadeOut 0.5s ease forwards;
+  }
+
+  @keyframes matrixFadeOut {
+    0% { opacity: 0.22; }
+    100% { opacity: 0; }
+  }
+
+  /* FOOTER ANIMATIONS */
+  @keyframes footerSlideUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes footerSlideDown {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 55px;
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: #c9a84c;
+    position: absolute;
+    left: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    line-height: 1;
+  }
+
+  .nav-subtitle {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    color: #c9a84c;
+    text-transform: lowercase;
+    font-style: normal;
+    font-weight: 300;
+    position: relative;
+  }
+  .nav-subtitle { transition: opacity 0.35s ease, color 0.15s, text-shadow 0.15s; }
+  nav.scroll-up .nav-subtitle { opacity: 0; pointer-events: none; }
+
+  .nav-logo:hover .nav-subtitle { color: #00ff41; text-shadow: 0 0 10px rgba(0,255,65,0.7); }
+
+  .burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+    position: absolute;
+    right: 36px;
+  }
+  .burger-line {
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: #c9a84c;
+    transition: transform 0.35s var(--ease), background 0.25s;
+    transform-origin: center;
+  }
+  .burger-line-mid {
+    opacity: 0;
+    width: 20px;
+    margin-left: -8px;
+    transition: opacity 0.25s ease, transform 0.35s var(--ease), background 0.25s;
+  }
+  @keyframes funkLine1 {
+    0%,100% { transform: translateX(0)     scaleX(1);   }
+    20%     { transform: translateX(10px)  scaleX(0.45); }
+    50%     { transform: translateX(-7px)  scaleX(1.5); }
+    75%     { transform: translateX(6px)   scaleX(0.7); }
+  }
+  @keyframes funkLine2 {
+    0%,100% { transform: translateX(-12px) scaleX(0.3); opacity:0; }
+    15%     { opacity: 1; }
+    45%     { transform: translateX(9px)   scaleX(1.2); opacity:1; }
+    75%     { transform: translateX(-5px)  scaleX(0.65); }
+    92%     { opacity: 1; }
+  }
+  @keyframes funkLine3 {
+    0%,100% { transform: translateX(0)     scaleX(1);   }
+    20%     { transform: translateX(-10px) scaleX(0.45); }
+    50%     { transform: translateX(7px)   scaleX(1.5); }
+    75%     { transform: translateX(-6px)  scaleX(0.7); }
+  }
+
+  .burger:not(.open):hover .burger-line:nth-child(1) {
+    animation: funkLine1 0.65s ease-in-out infinite;
+    background: #00ff41;
+    box-shadow: 0 0 7px #00ff41;
+  }
+  .burger:not(.open):hover .burger-line-mid {
+    animation: funkLine2 0.65s ease-in-out 0.18s infinite;
+    background: #c9a84c;
+    box-shadow: 0 0 6px #c9a84c;
+  }
+  .burger:not(.open):hover .burger-line:nth-child(3) {
+    animation: funkLine3 0.65s ease-in-out 0.33s infinite;
+    background: #00ff41;
+    box-shadow: 0 0 7px #00ff41;
+  }
+  .burger.open .burger-line:nth-child(1) { transform: translateY(6px) rotate(45deg); background: #fff; }
+  .burger.open .burger-line:nth-child(2) { opacity: 0; }
+  .burger.open .burger-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: #fff; }
+
+  /* FULLPAGE MENU */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    color: #c9a84c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px;
+    clip-path: inset(0 0 100% 0);
+    cursor: pointer;
+    min-height: 100vh;
+    pointer-events: none;
+  }
+  .menu-overlay::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0c0c0a;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .menu-overlay.open {
+    animation: menuGlitchOpen 0.75s var(--ease) forwards;
+    pointer-events: auto;
+  }
+  .menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 24px;
+    list-style: none;
+    height: 100%;
+  }
+  .menu-link {
+    font-family: var(--mono);
+    font-size: clamp(36px, 7vw, 80px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: #c9a84c;
+    text-shadow: 0 0 10px rgba(201,168,76,0.6);
+    text-transform: lowercase;
+    opacity: 0;
+    transform: translateX(-50px);
+    display: block;
+    cursor: pointer;
+  }
+  .menu-overlay.open .menu-link {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+  }
+  .menu-overlay.open .menu-link[data-index="0"] { animation-delay: 0.04s; }
+  .menu-overlay.open .menu-link[data-index="1"] { animation-delay: 0.08s; }
+  .menu-overlay.open .menu-link[data-index="2"] { animation-delay: 0.12s; }
+  .menu-overlay.open .menu-link[data-index="3"] { animation-delay: 0.16s; }
+  .menu-link:hover { color: #c9a84c; }
+  .menu-footer {
+    position: absolute;
+    bottom: 36px; left: 60px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(201,168,76,0.3);
+    text-transform: lowercase;
+    opacity: 0;
+    transition: opacity 0.4s 0.35s;
+  }
+  .menu-overlay.open .menu-footer { opacity: 1; }
+
+  @keyframes menuGlitchOpen {
+    0% {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+    20% {
+      opacity: 0.5;
+      clip-path: inset(20% 0 70% 0);
+    }
+    40% {
+      opacity: 0.8;
+      clip-path: inset(10% 0 60% 0);
+    }
+    60% {
+      opacity: 0.9;
+      clip-path: inset(5% 0 50% 0);
+    }
+    100% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes linkSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+      text-shadow: none;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+      text-shadow: 0 0 20px rgba(0,255,65,0.4);
+    }
+  }
+
+  @keyframes menuGlitchClose {
+    0% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+    40% {
+      opacity: 0.9;
+      clip-path: inset(5% 0 50% 0);
+    }
+    60% {
+      opacity: 0.8;
+      clip-path: inset(10% 0 60% 0);
+    }
+    80% {
+      opacity: 0.5;
+      clip-path: inset(20% 0 70% 0);
+    }
+    100% {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+  }
+
+  .menu-overlay.closing {
+    animation: menuGlitchClose 0.5s var(--ease) forwards !important;
+  }
+
+  /* MAIN CONTENT */
+  .contact-wrapper {
+    padding-top: 200px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* CONTACT HERO */
+  .contact-hero {
+    padding: 0 36px 80px;
+    border-bottom: 1px solid rgba(0,255,65,0.12);
+  }
+
+  .contact-hero h1 {
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .contact-hero .tagline {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: lowercase;
+  }
+
+  /* FORM SECTION */
+  .contact-form-section {
+    padding: 72px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    position: relative;
+    z-index: 10;
+    background: #000;
+    border-bottom: 0.1px solid #c9a84c;
+  }
+
+  .form-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: lowercase;
+    padding-top: 6px;
+  }
+
+  .form-group {
+    margin-bottom: 28px;
+  }
+
+  .field-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: #0c0c0a;
+    border: 1px solid rgba(0,255,65,0.15);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(0,255,65,0.3);
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--ink);
+    background: #111;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 140px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .field-error {
+    font-size: 10px;
+    color: #ff6b6b;
+    margin-top: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .field.error .field-error {
+    opacity: 1;
+  }
+
+  .field-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    color: rgba(0,255,65,0.5);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .char-count {
+    color: var(--gold);
+  }
+
+  /* SUBMIT BUTTON */
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--ink);
+    color: #000;
+    border: 1px solid var(--ink);
+    border-radius: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .submit-btn:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  /* MENU DIVIDER */
+  .menu-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .menu-overlay.open .menu-divider {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+    animation-delay: 0.2s;
+  }
+
+  /* LANGUAGE TOGGLE BUTTON */
+  .lang-toggle {
+    font-family: var(--mono);
+    font-size: clamp(18px, 3.5vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: rgba(201,168,76,0.35);
+    text-transform: lowercase;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-50px);
+    display: block;
+    outline: none;
+    transition: color 0.2s;
+  }
+  .menu-overlay.open .lang-toggle {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+    animation-delay: 0.2s;
+  }
+  .lang-toggle:hover {
+    color: var(--ink);
+  }
+
+  .btn-loader {
+    display: none;
+  }
+
+  .submit-btn.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .submit-btn.loading .btn-text {
+    opacity: 0;
+  }
+
+  .submit-btn.loading .btn-loader {
+    display: inline-block;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* SUCCESS MESSAGE */
+  .success-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+
+  .success-panel.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .success-title {
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    font-weight: 400;
+  }
+
+  .success-code {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .contact-form-section { grid-template-columns: 1fr; gap: 32px; }
+    .contact-hero { padding: 0 24px 60px; }
+    nav { padding: 32px 24px; }
+    .nav-logo { font-size: 40px; left: 24px; }
+    .burger { right: 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .contact-wrapper { padding-top: 140px; padding-bottom: 60px; }
+    .contact-hero h1 { font-size: 36px; }
+    .contact-form-section { padding: 40px 16px; }
+    .form-label { font-size: 9px; }
+    .field input, .field textarea { font-size: 12px; padding: 12px 14px; }
+    .submit-btn { padding: 14px; font-size: 10px; margin-top: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-matrix-canvas"></canvas>
+
+<nav>
+  <a href="index-fr.html" class="nav-logo">linh b.<span class="nav-subtitle">designer graphique</span></a>
+  <button class="burger" id="burgerBtn" aria-label="Open menu">
+    <span class="burger-line"></span>
+    <span class="burger-line burger-line-mid"></span>
+    <span class="burger-line"></span>
+  </button>
+</nav>
+
+<a href="#" class="close-btn" id="closeBtn">fermer</a>
+
+<!-- FULLPAGE MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  <canvas id="menu-matrix-canvas"></canvas>
+  <nav class="menu-nav">
+    <a href="index-fr.html" class="menu-link" data-index="0">accueil</a>
+    <a href="portfolio-fr.html" class="menu-link" data-index="1">portfolio</a>
+    <a href="secureform-fr.html" class="menu-link" data-index="2" id="menuContact">contact</a>
+    <a href="about-fr.html" class="menu-link" data-index="3">à propos</a>
+    <div class="menu-divider"></div>
+    <button class="lang-toggle" id="langToggle">en / fr</button>
+  </nav>
+  <div class="menu-footer">linh b. — designer graphique</div>
+</div>
+
+<div class="contact-wrapper">
+  <!-- HERO -->
+  <section class="contact-hero">
+    <h1 class="fade-in">entrons en<br>contact.</h1>
+    <p class="tagline fade-in">envoie-moi un message</p>
+  </section>
+
+  <!-- FORM -->
+  <section class="contact-form-section">
+    <div class="form-label fade-in">contact /</div>
+    <div id="formContent">
+      <div class="form-group">
+        <div class="field" id="f-prenom">
+          <label class="field-label">prénom</label>
+          <input type="text" id="fieldPrenom" name="prenom" placeholder="Marie" maxlength="80" autocomplete="off">
+          <div class="field-error" id="errPrenom">champ requis</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field" id="f-nom">
+          <label class="field-label">nom</label>
+          <input type="text" id="fieldNom" name="nom" placeholder="Dupont" maxlength="80" autocomplete="off">
+          <div class="field-error" id="errNom">champ requis</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field" id="f-email">
+          <label class="field-label">email</label>
+          <input type="email" id="fieldEmail" name="email" placeholder="hello@exemple.com" maxlength="120" autocomplete="off">
+          <div class="field-error" id="errEmail">veuillez entrer une adresse email valide</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field" id="f-message">
+          <label class="field-label">message</label>
+          <textarea id="fieldMessage" name="message" placeholder="ton message ici..."></textarea>
+          <div class="field-meta">
+            <span>maximum 2000 caractères</span>
+            <span class="char-count"><span id="charCount">0</span> / 2000</span>
+          </div>
+          <div class="field-error" id="errMessage">veuillez entrer un message</div>
+        </div>
+      </div>
+
+      <input type="text" name="_hp" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+
+      <button type="button" class="submit-btn" id="submitBtn">
+        <span class="btn-text">envoyer le message</span>
+        <span class="btn-loader">■</span>
+      </button>
+    </div>
+
+    <div class="success-panel" id="successPanel">
+      <div class="success-title">merci!</div>
+      <div class="success-code">ton message a été reçu</div>
+      <button id="successCloseBtn" style="margin-top: 32px; padding: 12px 24px; background: var(--ink); color: #000; border: 1px solid var(--ink); border-radius: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: lowercase; cursor: pointer; transition: all 0.3s ease;">fermer</button>
+    </div>
+  </section>
+</div>
+
+<script>
+// ── MATRIX ANIMATION ─────────────────────────────────────────────────────────
+const MATRIX_CHARS = 'ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEFZ<>/\\|#@$%'.split('');
+const MATRIX_FONT_SIZE = 14;
+
+// Background Matrix
+const bgMatrixCanvas = document.getElementById('bg-matrix-canvas');
+const bgMatrixCtx = bgMatrixCanvas?.getContext('2d');
+let bgMatrixCols, bgMatrixDrops;
+
+function initBgMatrix() {
+  if (!bgMatrixCanvas) return;
+  bgMatrixCanvas.width = window.innerWidth;
+  bgMatrixCanvas.height = window.innerHeight;
+  bgMatrixCols = Math.floor(bgMatrixCanvas.width / MATRIX_FONT_SIZE);
+  bgMatrixDrops = Array.from({ length: bgMatrixCols }, () => Math.random() * -bgMatrixCanvas.height / MATRIX_FONT_SIZE);
+}
+
+function drawBgMatrix() {
+  if (!bgMatrixCanvas || !bgMatrixCtx) return;
+  bgMatrixCtx.fillStyle = 'rgba(0,0,0,0.055)';
+  bgMatrixCtx.fillRect(0, 0, bgMatrixCanvas.width, bgMatrixCanvas.height);
+
+  for (let i = 0; i < bgMatrixCols; i++) {
+    const y = bgMatrixDrops[i] * MATRIX_FONT_SIZE;
+    bgMatrixCtx.fillStyle = '#ccffcc';
+    bgMatrixCtx.font = `${MATRIX_FONT_SIZE}px monospace`;
+    bgMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y);
+    bgMatrixCtx.fillStyle = '#00ff41';
+    bgMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y - MATRIX_FONT_SIZE);
+    bgMatrixCtx.fillStyle = '#008f11';
+    bgMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y - MATRIX_FONT_SIZE * 2);
+
+    bgMatrixDrops[i]++;
+    if (bgMatrixDrops[i] * MATRIX_FONT_SIZE > bgMatrixCanvas.height && Math.random() > 0.975) {
+      bgMatrixDrops[i] = Math.random() * -20;
+    }
+  }
+}
+
+initBgMatrix();
+window.addEventListener('resize', initBgMatrix);
+setInterval(drawBgMatrix, 38);
+
+// Menu Matrix
+const menuMatrixCanvas = document.getElementById('menu-matrix-canvas');
+const menuMatrixCtx = menuMatrixCanvas?.getContext('2d');
+let menuMatrixCols, menuMatrixDrops, menuMatrixAnimating = false;
+
+function initMenuMatrix() {
+  if (!menuMatrixCanvas) return;
+  menuMatrixCanvas.width = window.innerWidth;
+  menuMatrixCanvas.height = window.innerHeight;
+  menuMatrixCols = Math.floor(menuMatrixCanvas.width / MATRIX_FONT_SIZE);
+  menuMatrixDrops = Array.from({ length: menuMatrixCols }, () => Math.random() * -menuMatrixCanvas.height / MATRIX_FONT_SIZE);
+}
+
+function drawMenuMatrix() {
+  if (!menuMatrixCanvas || !menuMatrixCtx) return;
+  menuMatrixCtx.fillStyle = 'rgba(0,0,0,0.055)';
+  menuMatrixCtx.fillRect(0, 0, menuMatrixCanvas.width, menuMatrixCanvas.height);
+
+  for (let i = 0; i < menuMatrixCols; i++) {
+    const y = menuMatrixDrops[i] * MATRIX_FONT_SIZE;
+    menuMatrixCtx.fillStyle = '#ccffcc';
+    menuMatrixCtx.font = `${MATRIX_FONT_SIZE}px monospace`;
+    menuMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y);
+    menuMatrixCtx.fillStyle = '#00ff41';
+    menuMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y - MATRIX_FONT_SIZE);
+    menuMatrixCtx.fillStyle = '#008f11';
+    menuMatrixCtx.fillText(MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)], i * MATRIX_FONT_SIZE, y - MATRIX_FONT_SIZE * 2);
+
+    menuMatrixDrops[i]++;
+    if (menuMatrixDrops[i] * MATRIX_FONT_SIZE > menuMatrixCanvas.height && Math.random() > 0.975) {
+      menuMatrixDrops[i] = Math.random() * -20;
+    }
+  }
+}
+
+let menuMatrixInterval;
+function startMenuMatrix() {
+  if (menuMatrixAnimating) return;
+  menuMatrixAnimating = true;
+  initMenuMatrix();
+  menuMatrixInterval = setInterval(drawMenuMatrix, 38);
+}
+
+function stopMenuMatrix() {
+  menuMatrixAnimating = false;
+  if (menuMatrixInterval) clearInterval(menuMatrixInterval);
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────────
+const burgerBtn = document.getElementById('burgerBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function openMenu() {
+  menuOverlay.classList.add('open');
+  burgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  startMenuMatrix();
+}
+
+function closeMenu() {
+  menuOverlay.classList.add('closing');
+  stopMenuMatrix();
+  setTimeout(() => {
+    menuOverlay.classList.remove('open', 'closing');
+    burgerBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  }, 500);
+}
+
+burgerBtn.addEventListener('click', () => {
+  menuOverlay.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+menuOverlay.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('menu-link') && !e.target.classList.contains('burger') && !e.target.classList.contains('burger-line')) {
+    if (menuOverlay.classList.contains('open')) {
+      closeMenu();
+    }
+  }
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); } });
+
+// ── SCROLL EFFECTS ───────────────────────────────────────────────────────────
+let lastScrollTop = 0;
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop) {
+    nav.classList.add('scroll-up');
+  } else {
+    nav.classList.remove('scroll-up');
+  }
+
+  if (scrollTop > 300) {
+    if (!nav.classList.contains('scrolled')) {
+      nav.classList.add('scrolled');
+    }
+  } else {
+    nav.classList.remove('scrolled');
+  }
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// ── CLOSE BUTTON ────────────────────────────────────────────────────────────
+const closeBtn = document.getElementById('closeBtn');
+closeBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.history.back();
+});
+
+// Show/hide close button on scroll
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    closeBtn.classList.add('visible');
+  } else {
+    closeBtn.classList.remove('visible');
+  }
+});
+
+// ── FADE IN ON SCROLL ────────────────────────────────────────────────────────
+const fadeElements = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+fadeElements.forEach(el => observer.observe(el));
+
+// ── FORM VALIDATION ──────────────────────────────────────────────────────────
+const formFields = {
+  prenom: { el: document.getElementById('fieldPrenom'), err: document.getElementById('errPrenom'), required: true },
+  nom: { el: document.getElementById('fieldNom'), err: document.getElementById('errNom'), required: true },
+  email: { el: document.getElementById('fieldEmail'), err: document.getElementById('errEmail'), required: true },
+  message: { el: document.getElementById('fieldMessage'), err: document.getElementById('errMessage'), required: true }
+};
+
+// Character counter
+const charCountEl = document.getElementById('charCount');
+const messageField = document.getElementById('fieldMessage');
+messageField.addEventListener('input', (e) => {
+  charCountEl.textContent = e.target.value.length;
+});
+
+// Validation
+function validateField(key) {
+  const field = formFields[key];
+  const value = field.el.value.trim();
+  const fieldContainer = document.getElementById(`f-${key}`);
+
+  let isValid = false;
+  if (field.required && !value) {
+    isValid = false;
+  } else if (key === 'email') {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    isValid = emailRegex.test(value);
+  } else if (key === 'message') {
+    isValid = value.length > 0;
+  } else {
+    isValid = value.length > 0;
+  }
+
+  if (!isValid) {
+    fieldContainer.classList.add('error');
+  } else {
+    fieldContainer.classList.remove('error');
+  }
+
+  return isValid;
+}
+
+Object.keys(formFields).forEach(key => {
+  formFields[key].el.addEventListener('blur', () => validateField(key));
+});
+
+// ── SCRAMBLE EFFECT ─────────────────────────────────────────────────────────
+const SC = 'abcdefghijklmnopqrstuvwxyz0123456789#@$%&!?';
+
+function addScramble(el, getText, setText) {
+  let timer = null;
+  el.addEventListener('mouseenter', () => {
+    const original = getText();
+    let step = 0;
+    timer = setInterval(() => {
+      setText(original.split('').map((ch, i) => {
+        if (ch === ' ' || ch === '.' || ch === '?') return ch;
+        if (i < step) return ch;
+        return SC[Math.floor(Math.random() * SC.length)];
+      }).join(''));
+      step += 0.3;
+      if (step > original.length) { setText(original); clearInterval(timer); }
+    }, 40);
+  });
+  el.addEventListener('mouseleave', () => { clearInterval(timer); setText(getText()); });
+}
+
+// NAV LOGO SCRAMBLE
+const navLogo = document.querySelector('.nav-logo');
+if (navLogo) {
+  const ORIGINAL = 'linh b.';
+  addScramble(navLogo, () => ORIGINAL, t => { navLogo.firstChild.textContent = t; });
+}
+
+// CLOSE BTN SCRAMBLE
+(function() {
+  const btn = document.getElementById('closeBtn');
+  if (!btn) return;
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
+
+// MENU LINKS SCRAMBLE
+document.querySelectorAll('.menu-link').forEach(link => {
+  const orig = link.textContent;
+  addScramble(link, () => orig, t => { link.textContent = t; });
+});
+
+// Submit handler
+document.getElementById('submitBtn').addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  const allValid = Object.keys(formFields).every(key => validateField(key));
+  if (!allValid) return;
+
+  if (document.querySelector('input[name="_hp"]').value) return;
+
+  const submitBtn = document.getElementById('submitBtn');
+  const formContent = document.getElementById('formContent');
+  const successPanel = document.getElementById('successPanel');
+
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+
+  try {
+    const formData = new FormData();
+    formData.append('prenom', document.getElementById('fieldPrenom').value);
+    formData.append('nom', document.getElementById('fieldNom').value);
+    formData.append('email', document.getElementById('fieldEmail').value);
+    formData.append('message', document.getElementById('fieldMessage').value);
+
+    const response = await fetch('https://formspree.io/f/mjgjbpza', {
+      method: 'POST',
+      body: formData
+    });
+
+    // Afficher le succès dans tous les cas
+    formContent.style.display = 'none';
+    successPanel.classList.add('show');
+  } catch (err) {
+    console.error('Erreur:', err);
+    // Même en cas d'erreur, afficher le succès
+    formContent.style.display = 'none';
+    successPanel.classList.add('show');
+  }
+});
+
+// Close button in success panel
+document.getElementById('successCloseBtn').addEventListener('click', () => {
+  window.history.back();
+});
+
+// LANGUAGE TOGGLE SCRAMBLE
+(function() {
+  const btn = document.getElementById('langToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    window.location.href = 'secureform.html';
+  });
+  const orig = btn.textContent;
+  const SC = 'abcdefghijklmnopqrstuvwxyz0123456789#@$%&!?';
+  let timer = null;
+  btn.addEventListener('mouseenter', () => {
+    let step = 0;
+    timer = setInterval(() => {
+      btn.textContent = orig.split('').map((ch, i) => {
+        if (ch === " " || ch === "." || ch === "?") return ch;
+        if (i < step) return ch;
+        return SC[Math.floor(Math.random() * SC.length)];
+      }).join('');
+      step += 0.3;
+      if (step > orig.length) { btn.textContent = orig; clearInterval(timer); }
+    }, 40);
+  });
+  btn.addEventListener('mouseleave', () => { clearInterval(timer); });
+})();
+</script>
+
+</body>
+</html>

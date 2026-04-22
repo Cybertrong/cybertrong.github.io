@@ -1,0 +1,215 @@
+@font-face {
+  font-family: 'Bubbleboy';
+    src:  url('Bubbleboy.ttf.woff') format('woff'),
+    url('Bubbleboy.ttf.svg#Bubbleboy') format('svg'),
+    url('Bubbleboy.ttf.eot'),
+    url('Bubbleboy.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body{
+    margin: 0;  
+}
+
+/* MENU */
+
+.burger {
+  position: absolute;
+  width: 40px;
+  height: 5px;
+  background: #fff;
+  margin: 3.5% 0 0 93%;
+  cursor: pointer;
+  z-index: 6;
+}
+.burger::before, .burger::after {
+  content: "";
+  display: block;
+}
+.burger, .burger::before, .burger::after {
+  position: fixed;
+  width: 40px;
+  height: 4px;
+  background: #fff;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.burger::before {
+  margin-top: -8px;
+}
+.burger::after {
+  margin-top: 8px;
+}
+.burger:hover {
+    transition: all 0.5s;
+  background: transparent;
+}
+.burger:hover::before {
+  margin-top: 0px;
+  -moz-transform: rotate(-225deg);
+  -ms-transform: rotate(-225deg);
+  -webkit-transform: rotate(-225deg);
+  transform: rotate(-225deg);
+}
+.burger:hover::after {
+  margin-top: 0px;
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
+
+
+/* SOUS MENU */
+.menu li img{
+    cursor: pointer;
+}
+ul{
+    margin-top: 0px;
+    padding:0;
+    width:100%;
+    height:100%;
+    position: fixed;
+    z-index:5;
+}
+ul li{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted white;
+    background:#ed1c24;
+    text-align: center;
+}
+ul li:hover{
+    background: grey;
+    transition: all 0.6s ease 0s;
+}
+li a #details{
+    font-family: 'Roboto', sans-serif;
+    font-size: 140%;
+    color:white;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: auto;
+    text-decoration: none;
+}
+/* PAGES */
+.container_logo{
+    width:100%;
+    height:100%;
+    position: absolute;
+    padding-top: 150px;
+    z-index:1;
+}
+ #logo{
+    width: 80px;
+    height:80px;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+
+}
+#fond2{
+    font-family: 'Roboto', sans-serif;
+    width:100%;
+    height:100%;
+    background-color:#d3d3d3;
+    color: white;
+}
+#fond2 h1{
+    font-family: 'Bubbleboy'; 
+    margin-top:0;
+    padding-top: 380px;
+    text-align: center;
+    font-size: 800%;
+    color:#ed1c24;
+}
+#fond2 p{
+    text-align: justify;
+    font-size: 180%;
+    color:black;
+    padding: 50px;
+}
+footer{
+    width:100%;
+    height:40px;
+    background-color: #b3b3b3;
+}
+footer p{
+    text-align: center;
+    font: 30px Roboto, sans-serif, white;
+    font-size:90%;
+    color:white;
+    padding:10px;
+    margin-top:0;
+}
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 767px) and (min-width: 320px){
+    
+    .burger {
+    margin: 9% 0 0 85%;
+}
+    .container_logo{
+    padding-top: 50px;
+}
+    #fond2{
+    height: 100%;
+    }
+    #fond2 h1{
+    padding-top: 175px;
+    font-size: 250%;
+}
+    #fond2 p{
+    font-size: 120%;
+    padding: 0 15px 0 15px;
+    line-height: 1.6em;
+}
+
+    .container_logo2{
+    padding-top: 75px;
+}
+    .text_intro h2{
+    padding-top: 55%;
+    font-size: 250%;
+    line-height: 1.0em;
+}
+
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px){
+    .burger {
+    margin: 9% 0 0 85%;
+}
+    .container_logo{
+    padding-top: 50px;
+}
+    #fond2 h1{
+    padding-top: 175px;
+    font-size: 400%;
+}
+    #fond2 p{
+    font-size: 150%;
+    padding: 0 40px 0 40px;
+    line-height: 1.6em;
+}
+
+    .container_logo2{
+    padding-top: 75px;
+}
+    .text_intro h2{
+    padding-top: 55%;
+    font-size: 250%;
+    line-height: 1.0em;
+}
+
+}
+
+
+

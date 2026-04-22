@@ -1,0 +1,2943 @@
+html{
+    top:0;
+    width:100%;
+    height: auto;
+    margin:0;
+    padding:0;
+}
+
+body{
+    margin:0;
+    padding:0;
+    width: 100%;
+    height:auto;
+}
+html,body{
+    font-family: 'Abel', sans-serif;
+    font-size:15px;
+    line-height:1.5
+}
+html{
+    overflow-x:hidden
+}
+
+/*NEW BURGER*/
+.newburger{
+    margin: 3.5% 0 0 93%;
+    cursor: pointer;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+}
+.newbar1, .newbar3{
+    width: 40px;
+    height: 4px;
+    background-color: #AF7817;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+.newbar2 {
+    width: 20px;
+    height: 4px;
+    background-color: #AF7817;
+    margin: 5px 0;
+}
+.change .newbar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-5px, 5px);
+}
+.change .newbar2 {
+    opacity: 0;
+}
+.change .newbar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* NEW MENU */
+
+.newmenu a{
+    cursor: pointer;
+}
+.newmenu ul{
+    margin-top: 0px;
+    padding:0;
+    position: fixed;
+    background: linear-gradient(132deg, #013f42, #014f53, #008080);
+    animation: Gradient 20s ease infinite;
+    background-size: 400% 400%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    padding:0;
+    margin:0px;
+    z-index:11;
+}
+.newmenu ul a b{color:#fff;font-size: 0.8em}
+
+/* Animate Background*/
+/*
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+*/
+
+#epiptop{
+    padding-top: 175px;
+}
+.newmenu ul li{
+    padding-top: 11px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+.newmenu li a {
+    font-family: 'Abel', sans-serif;
+    font-size: 45px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color:#AF7817;
+    text-decoration:none;
+    z-index:12;
+    transition: all 0.3s ease-out 0s;
+}
+.newmenu li a:hover{
+    color:#fff;transition: all 0.2s ease-in 0s;margin-left : 45px;filter: blur(2px);
+        -webkit-filter: blur(2px)}
+.newmenu li a b:hover{color:#AF7817}
+
+/*MENU CLASSIC*/
+
+.menu{
+    top: 75px;
+    right: 75px;
+    display: inline-block;
+    position: fixed;
+    z-index:100;
+}
+.menu a{
+    color:#fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    padding : 0 25px;
+    font-size: 1.1em;
+}
+
+/* HOVER MENU */ 
+
+.menu a:hover{
+    color:#AF7817;
+}
+
+.menu i{
+    color: #fff;
+}
+.menu i:hover{
+    color:#AF7817;
+    transition: 0.3s;
+}
+
+.menu li{
+    position: absolute; 
+    display: inline-block;
+    z-index: 10;
+    width: 130px;
+    height: 25px;
+    top:100%;
+    left:0;
+    background: red;
+}
+
+/*BURGER_MOBILE*/
+
+.burger{
+    cursor: pointer;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+}
+.bar1, .bar3{
+    border-radius: 15%;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+.bar2 {
+    border-radius: 15%;
+    width: 20px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-5px, 5px) ;
+}
+.change .bar2 {
+    opacity: 0;
+}
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-6px, -6px) ;
+}
+
+.newburger_responsive{
+    display:none;
+}
+
+
+/* HOVER MENU */ 
+
+.w3-white,.w3-hover-white:hover{
+    color:#AF7817!important;
+    transition: 0.4s ease-in-out;
+    padding-left: 40px;
+}
+
+.titre{
+    top:0;
+}
+.titre h1{
+    font-family: 'Abel', sans-serif;
+    color: #fff;
+    width: 100%;
+    font-size: 350%;
+    position: absolute;
+    text-align: center;
+    margin-top: 20%;
+    line-height: 1.2em;
+    font-weight: bold;
+    z-index: 10;
+}
+.titre h2{
+    font-family: 'Abel', sans-serif;
+    font-weight: 750;
+    color: #fff;
+    width: 100%;
+    font-size: 120%;
+    position: absolute;
+    text-align: center;
+    margin-top: 34%;
+    z-index: 10;
+}
+.titre i{
+    color: #fff;
+    font-size: 120%;
+    z-index: 10;
+}
+.titre a{
+    text-decoration: none;
+    color:#AF7817;
+    font-size: 175%;
+}
+.titre a:hover{
+    text-decoration: none;
+    color: #000;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: 0.3s;
+    -webkit-transition-timing-function: ease-in;
+}
+/*
+.titre_mobile h1{
+    display:none
+}
+*/
+
+#barre{
+    display: block;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    border-bottom: 1px solid #d3d3d3;
+    position: fixed;
+    z-index:9;
+}
+
+/* CAROUSSEL */ 
+
+/* Slideshow container */
+.slideshow-container {
+  background-color: #fff;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position:fixed;
+ }
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/*general ww3 files*/
+
+/*ARROW*/
+#fleche{
+    height 40px;
+}
+.center_arrow{
+  margin-left:auto;
+  margin-right: auto;
+  padding-left:20px;
+  width: 50px;
+  height: 50px;   
+}
+.arrow { 
+    position: absolute;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 1.5vw;
+    width: 1.5vw;
+    border-style: solid;
+    border-color: #AF7817;
+    border-width: 0px 2px 2px 0px;
+    transform: rotate(45deg);
+    transition: border-width 150ms ease-in-out;
+    z-index: 1;
+}
+.arrow:hover {
+  border-bottom-width: 6px;
+  border-right-width: 6px;
+}
+
+h1{
+    font-size:36px
+}
+h2{
+    font-size:30px
+}
+h3{
+font-size:24px
+}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}.w3-serif{font-family:serif}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Abel', sans-serif;
+    font-weight:400;
+    margin:10px 0
+}
+.w3-wide{
+    letter-spacing:4px
+}
+#banniere{
+    display:none;
+}
+
+/* BTN */
+.w3-btn,.w3-button{border:none;display:inline-block;outline:0;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+
+.w3-center .w3-bar{display:inline-block;width:auto}
+
+/**/
+
+    .w3-hide-large{
+        display:none!important
+    }
+    .w3-sidebar.w3-collapse{
+        display:block!important
+    }
+
+/*
+.fullscreen-bg {
+    
+    background: #FFF;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+*/
+
+/*
+.fullscreen-bg__video {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+
+}
+*/
+
+
+.logo_hosp{
+    z-index:10 ;
+    position:fixed;
+    top:0;
+    margin: 35px 0 50px 60px;
+}
+.logo_hosp img:hover{
+    opacity: 0.5;
+    transition: 0.3s;
+    -webkit-transition-timing-function: ease-in;
+}
+.logo_mobile,.logo_mobile2 {display:none}
+.logo_white{
+    display:none;
+}
+#titre_web h2{
+    text-transform: uppercase;
+    top:0;
+    z-index: 10;
+    position:fixed;
+    padding-top: 30px;
+    right: 40%;
+    color:#fff;
+    font-weight: lighter;
+}
+#web_top{
+    margin:0 0 0 0;
+    height: 130px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background: #1a1a1a;
+    border-bottom: 2px solid #333;
+}
+
+/*MENU ET MENU MOBILE*/
+.w3-bar {
+    top: 60px;
+    width:100%;
+    height: 277px;
+    position:fixed;
+    z-index:1500;
+}
+.w3-top{
+    position:fixed;
+    width:100%;
+    z-index:1
+}
+
+.w3-top a{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+.w3-top a:hover{
+    transition: 0.4s ease-in-out;
+    opacity: 0.6;
+}
+.icon_mobile{
+    display: flex;
+}
+
+#icon_s_g{
+    width: 50%;
+    padding: 4px 0 4px 20px;
+    background: #1a1a1a;
+    z-index: 10;
+}
+#icon_s_d{
+    width: 50%;
+    padding: 4px 0 4px 20px;
+    background: #282727;
+    z-index: 10;
+}
+#icon_s_g a img,#icon_s_d a img,#icon_facebook img,#icon_insta img{  
+    padding: 10px;
+    width: 65%;
+    height: auto;   
+}
+#icon_facebook{
+    width: 50%;
+    text-align: center;
+    background: #282727;
+    z-index: 10; 
+}
+#icon_insta{
+    width: 50%;
+    text-align: center;
+    background: #1a1a1a;
+    z-index: 10; 
+}
+.fa{   
+    padding-right: 20px;
+}
+
+/*
+#icon_facebook i{
+    padding: 35px 55px;
+    color: #AF7817;
+    width:50%; 
+    cursor:pointer;
+    margin-bottom: 5px;
+    transition: 0.3s ease-in-out;
+}
+#icon_insta i{
+    padding: 35px 44px;
+    color: #AF7817;
+    width:50%; 
+    cursor:pointer;
+    margin-bottom: 5px;
+    transition: 0.3s ease-in-out;
+}
+#icon_facebook i:hover{
+    color: #6e6e6e;
+}
+.fa{   
+    text-decoration: none;
+}
+*/
+
+        /* ONGLETS */ 
+.ongletad{
+    bottom:195px;
+    right:-175px;
+    padding: 0;
+    width: 175px;
+    height: 178px;
+    opacity:0.95;
+    background-color: #1a1a1a;
+    border-top: 1px solid #AF7817;
+    position: fixed;
+    z-index: 10;
+}
+.ongletad h5{
+    margin-top:0px;
+    font-size:105%;
+    text-align: left;
+    color: #fff;
+}
+.ongletad p{
+    text-align: center;
+    color: #fff;
+    line-height: 1.6em;
+}
+.tagad {
+    bottom: 331px;
+    right:0px;
+    position: fixed;
+    z-index: 10;   
+}
+.tagad i{
+    font-size:150%;
+    padding:10px 13px 10px 13px;
+    background-color: #AF7817;
+    color: #fff;
+}
+.tagho i{
+    font-size:150%;
+    padding:10px;
+    background-color: #AF7817;
+    color: #fff;
+}
+.tagho i:hover{
+    color:#1a1a1a;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.tagad i:hover{
+    color:red;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+
+        /* HEURES OUVERTURE */ 
+.tagho {
+    bottom: 375px;
+    right:0px;
+    position: fixed;
+    z-index: 10;   
+}  
+.tagho text_hover_btn{
+    opacity: 0;
+}
+.ongletho{
+    bottom:375px;
+    right:0px;
+    margin-right: -215px;
+    padding: 20px 20px 30px;
+    width: 175px;
+    height: 160px;
+    opacity:0.95;
+    background-color: #1a1a1a;
+    position: fixed;
+    z-index: 11;
+}
+.ongletho th,td{
+    font-size:90%;
+    width:175px;
+    text-align: left;
+    color: #fff;
+}
+
+.ongletho caption{
+    font-size:115%;
+    font-weight: bold;
+    text-align: center;
+    color: #AF7817;
+}
+.ongletho table{
+    padding-top: 5px;
+    line-height: 1.15em;
+}
+
+        /* LIEN PANIER */ 
+
+.tagbask{bottom: 416px;right:0px;position: fixed;z-index: 10}
+.tagbask i{font-size:150%;padding:9px;background-color: #AF7817;color: #fff}
+.tagbask i:hover{color:#1a1a1a;cursor: pointer;transition: 0.3s ease-in-out}
+
+
+
+        /* EPICERIE */ 
+.section_epicerie{
+    background-color:#fff;
+}
+
+.section_epicerie h3{font-weight: bold}
+#epi{
+    width:100%;
+    height: 880px;
+}
+#epi img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position:static;
+    padding-top: 200px;
+    opacity: 0.6;
+
+}
+#epi .text{
+    padding: 250px 15% 250px 15%;
+    position: absolute;
+    z-index: 1;
+}
+#epi h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#AF7817;
+}
+#epi p{
+    font-size: 1.1em;
+    color:#1a1a1a;
+}
+#epi h3{
+    font-size: 1.3em;
+    color:#AF7817;
+}
+#epi h3 a{
+    font-size: 1.3em;
+    font-weight: bold;
+    color:#AF7817;
+    text-decoration: none;
+    text-align: center;  
+}
+#epi h3 a:hover{
+    font-weight: bolder;
+    color:#000;
+    transition: .5s ease;
+}
+
+        /* FACT */ 
+.section_fact{background: linear-gradient(132deg, #013f42, #014f53, #008080);
+    animation: Gradient 15s ease infinite;
+    background-size: 400% 400%;
+    overflow: hidden;}
+.section_fact .text{
+    padding-top: 100px;
+    width:100%;
+    height:auto;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+.section_fact h1{font-weight: lighter;font-size: 3.5em;color:#AF7817}
+
+#epi_fact1{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px
+}
+#epi_fact1 p{
+    font-weight:lighter;
+    font-size:2.5em;text-align:center;padding:150px 150px 80px 150px;color: #fff;text-align:center;line-height: 1em}
+
+
+        /* PORTFOLIO */ 
+.portfolio{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+
+}
+.portfolio img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+
+}
+.portfolio img:nth-child(1),img:nth-child(3){
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-left: 10px solid #fff;
+
+}
+
+.portfolio3{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+}
+.portfolio3 img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 49.1%;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+
+}
+.portfolio3 img:nth-child(1){
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 49.4%;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-left: 10px solid #fff;
+
+}
+
+#image_epicerie_responsive{
+    display:none;
+}
+
+.carre_texte p{
+    text-align: center;
+    font-size: 3em;
+    margin-block-start: 27%;
+    margin-bottom: 20px;
+}
+.credit a{
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+        /* EPICERIE_GENEVIEVE */ 
+#epiciere{
+    height: 650px;
+    display: flex;
+    background-color: #eaeaea;
+    margin: 0;
+    padding:0;
+    border-spacing: 0;
+}
+#epiciere .credit h6{
+    padding-left: 80px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #1a1a1a;
+}
+#text_gene{
+    padding-top: 50px;
+}
+#text_gene h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#1a1a1a;
+}
+#text_gene p{
+    padding: 10px 80px;
+    font-size: 1.1em;
+    color:#1a1a1a;
+}
+#genevieve img {
+    height: 645px;
+}
+
+        /* PRESSE */ 
+.presse{
+    background-color: #fff;
+    width:100%;
+    height: 350px;
+    margin-top: -15px;
+}
+.presse h1{
+    padding-top: 40px;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#AF7817;
+}
+#logos_journaux{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#logos_journaux img{
+    margin:auto;
+    display: block;
+    margin-right:150px;
+
+}
+
+#logos_journaux a img{
+    padding-right: 40px;
+    padding-left: 40px;
+    display: block;
+    margin: 0px auto;
+}
+#logos_journaux a img:hover{opacity: 0.7;transition: 0.6s;filter: blur(2px);-webkit-filter: blur(2px)}
+
+/*
+.presse ul {
+    margin:0;
+    padding:0;
+    text-align: center;
+    list-style:none; 
+            }
+
+.presse ul li  {
+    text-align: center;
+    display:inline;
+    padding: 0px 25px; 
+    font-size: 1.5em;
+
+            }
+
+.presse li a{
+    text-decoration: none;
+    color :#1a1a1a;
+}
+*/
+
+
+       /* COURS */ 
+#cours{
+    width:100%;
+    height: 500px;
+    background-image: linear-gradient(0deg, #F1F1F1 0%, #fff 100%);
+}
+#cours .text{
+    padding: 100px 15% 0px 15%;
+}
+#cours h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#AF7817;
+}
+#cours p{
+    text-align: left;
+    font-size: 1.1em;
+    color:#1A1A1A;
+}
+#cours .credit h6{
+    font-size: 0.9em;
+    text-decoration: none;
+    color:#1A1A1A;
+}
+#cours .text h3 a{
+    text-align: center;
+    font-size: 1.1em;
+    color:#1A1A1A;
+    text-decoration: none;
+}
+#cours .text h3{
+    text-align: center;
+    font-size: 1.1em;
+    color:#1A1A1A;
+    text-decoration: none;
+}
+
+#container_cours, #container_cours2{
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    overflow: hidden;
+}
+#container_cours img:nth-child(1),img:nth-child(3){
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-left: 10px solid #fff;
+    width: 32.6%;
+    transition: transform 0.8s ease;
+/*    overflow: hidden;*/
+}
+#container_cours img:nth-child(2){
+    border-top: 10px solid #fff;
+    width: 32.5%;
+    transition: transform 0.8s ease;
+/*    overflow: hidden;*/
+}
+#container_cours2 img:nth-child(1),img:nth-child(3){
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-left: 10px solid #fff;
+    width: 32.6%;
+    transition: transform 0.8s ease;
+/*    overflow: hidden;*/
+}
+#container_cours2 img:nth-child(2){
+    border-top: 10px solid #fff;
+    width: 32.5%;
+    transition: transform 0.8s ease;
+/*    overflow: hidden;*/
+}
+#container_cours img:hover, #container_cours2 img:hover{
+/*    transform: scale(1.02);*/
+}
+
+        /* CANTINE */ 
+.bistro{
+      background-image: linear-gradient(0deg, #A4A4A4 0%, #fff 100%);
+/*    background: linear-gradient(110deg, #acb5b9  60%, #d5d9db 60%);*/
+        }
+#bistro{
+    width:100%;
+    height: 450px;
+
+}
+.bistro img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#bistro .text{
+    padding: 140px 15% 0px 15%;
+    position: absolute;
+}
+#bistro h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#AF7817;
+}
+#bistro p{
+    font-size: 1.1em;
+    color:#1a1a1a;
+}
+#bistro h3{
+    font-size: 1.3em;
+    color:#AF7817;
+    margin-bottom: 50px;
+}
+#bol img{
+    margin-top: 10%;
+    }
+#bol_responsive img{
+    display:none;
+}
+
+        /* CUISINE */ 
+.qec_epicerie{
+    background-color:#fff;
+    margin:0;
+}
+#qec{
+    width:100%;
+    height: 640px;
+    z-index: 2;
+}
+#qec .text{
+    padding: 135px 15% 100px 15%;
+    position: absolute;
+}
+#qec .text h4{
+    color: #AF7817;
+}
+#qec .text p{
+    font-size: 1.1em;
+    color:#1a1a1a;
+}
+#qec .text a{
+    text-decoration: underline;
+    font-size:1em;
+    color:#1a1a1a;
+}
+#qec h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#AF7817;
+}
+
+        /* CUISINE-RACHEL */ 
+
+#cuisine_chef{
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(180deg, #1a1a1a 0%, #303030 100%);
+}
+#text_rachel{
+    padding: 135px 15% 100px 15%;
+}
+
+#text_rachel h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.5em;
+    color:#fff;
+}
+#text_rachel p{
+    font-size: 1.1em;
+    color:#fff;
+}
+#image_r img{
+    display:none;
+}
+
+        /* ENGAGEMENT */ 
+
+.fourn_epicerie{
+    background: linear-gradient(132deg, #013f42, #014f53, #008080);
+    animation: Gradient 15s ease infinite;
+    background-size: 400% 400%;
+    overflow: hidden;}
+    width:100%;
+    height: 100%;
+    position:fixed;
+    z-index: 2;
+}
+#fourn .text{
+    color: #fff;
+    padding: 100px 15%;
+    position: absolute;
+}
+#fourn h1{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 3.2em;
+}
+
+/* NOTRE ENGAGEMENT */
+.containerdonnee{
+    width: 100%;
+    height:400px;
+    padding-top:125px;
+}
+.containerdonnee h1{
+    color: #fff;
+    font-size: 3.5em;
+}
+.containerdonnee #ucol {
+    float:left;
+    width:28%;
+    margin-left: 5%;
+    margin-right: 2%;
+    text-align: left;
+}
+.containerdonnee #ucol h4{
+    text-align: center;
+}
+.containerdonnee #dcol {
+    float:left;
+    width:26%;
+    margin-left: 1%;
+    margin-right: 3%;
+    text-align: left;
+}
+.containerdonnee #dcol h4{
+    text-align: center;
+}
+.containerdonnee #tcol{
+    float:left;
+    width:23%;
+    margin-left: 1%;
+    margin-right: 3%;
+    text-align: left;
+}
+.containerdonnee #tcol h4{
+    text-align: center;
+}
+
+.containerdonnee .nombre{
+    color:#fff;
+    font-size: 6em;
+}
+.containerdonnee .texte_data{
+    font-size: 200%;
+    line-height: 100%;
+    text-transform: uppercase;
+    color:#fff;
+    text-align: center;
+}
+.containerdonnee .texte_expliq p{
+    font-family: 'Abel', sans-serif;
+    font-size: 1.1em;
+    color:#fff;
+    line-height: 25px;
+}
+
+        /* CONTACT */ 
+#contact{
+    width:100%;
+    display: flex;
+    height: 880px;
+    background-color:#fff;
+    z-index: 2;        
+}
+#contact p{
+    color:#1a1a1a;
+    padding: 0 125px 0 125px;
+    font-size: 1.1em;
+}
+#formulaire{
+    width:100%;
+    height: 890px;
+    border-right: 1px dotted #1a1a1a;
+    z-index: 1;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 5px,
+        #f9f9f9 5px,
+        #f9f9f9 10px
+    );
+}
+#adresse{
+    width:100%;
+}
+#adresse h1{
+    padding-top: 60px;
+    font-size: 3.5em;
+    color: #1a1a1a;    
+}
+#coordonnees{
+    width:100%;
+    text-align: center;
+}
+#coordonnees p,#tel p{
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin: 0;
+}
+#tel h1,#email h1{
+   font-size: 3.5em;
+   padding-top: 10px; 
+    color: #1a1a1a;
+}
+#tel a{
+    text-decoration: none;
+    color:#1a1a1a;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+tel a:hover{
+    background: #1a1a1a;
+    color: #fff;
+    transition: 0.6s;
+}
+
+#form_contact{
+/*
+    margin-left: auto;
+    margin-right: auto;
+*/
+    text-align: center;
+}
+#form_contact h1{
+    padding-top: 60px;
+    font-size: 3.5em;
+}
+
+.champs{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.contact_form{
+    font-size: 1em;
+    color: #603f02;
+}
+label {
+    display: block;
+    padding-bottom: 10px;
+}
+.champs label,span{
+    color: #1a1a1a;
+}
+.champs input,textarea{
+    border: 0;
+    border-bottom:1px solid #adadad;
+    outline: none;
+    background: transparent;
+    color:#1a1a1a;
+}
+.champs textarea{
+    border-top: none;
+    border-right:none;
+    border-left:none;
+    border-bottom:1px solid #adadad;
+    outline: none;
+    background: transparent;
+}
+.champs input:hover{
+    transition:0.6s;
+    border-bottom:1px solid #1a1a1a;
+    outline: none;
+}
+.champs textarea:hover{
+    transition:0.6s;
+    border-bottom:1px solid #1a1a1a;
+    outline: none;
+}
+input{
+    width: 300px;
+    height: 30px;
+    font-family: 'Abel', sans-serif;
+    font-size:1.2em;
+    color: #1a1a1a;
+}
+textarea{
+    background: #ededed;
+    font-family: 'Abel', sans-serif;
+    font-size:1.2em;
+    color: #1a1a1a;
+}
+.envoi_btn{
+    padding-top: 25px;
+}
+#envoi{
+    width: 160px;
+    background: #1a1a1a;
+    border: none;
+    height: 50px;
+    font-family: 'Abel', sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 25px;
+    color:#fff;
+}
+#envoi:hover{
+    background: #603f02;
+    transition: 0.4s;
+    cursor: pointer;
+}
+#email a{
+    text-decoration: none;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    padding:5px;
+    font-weight: bold;
+}
+#email a:hover{background: #1a1a1a;color: #fff;transition: 0.6s;filter: blur(1px);-webkit-filter: blur(1px)}
+
+        /* FAQ */ 
+#titre h1{
+    font-size: 3.5em;
+    padding-top: 110px;
+    padding-left: 50px; 
+}
+#plus,#plus1,#plus2,#plus3,#plus4 {
+    display: flex;
+    padding-left: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#plus h1,#plus1 h1,#plus2 h1,#plus3 h1,#plus4 h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+#plus h4,#plus1 h4,#plus2 h4,#plus3 h4,#plus4 h4{
+    padding-left: 20px;
+}
+#bouton h1:hover,#bouton2 h1:hover,#bouton3 h1:hover,#bouton4 h1:hover,#bouton5 h1:hover{
+    transform: rotate(90deg);
+    transition: 300ms ease all;
+    opacity: 0.7;
+}
+#reponse1 p,#reponse2 p,#reponse3 p,#reponse4 p,#reponse5 p{
+    padding: 0 50px 0 50px;
+    margin-top: 0;
+
+}
+#reponse4 a{
+    text-decoration: none;
+    color:#1a1a1a;
+    font-weight: bold;
+}
+#reponse4 a:hover{
+    color:#AF7817;
+    transition: 0.6s;
+}
+
+#reponse5 a{
+    text-decoration: none;
+    color:#1a1a1a;
+    font-weight: bold;
+}
+#reponse5 a:hover{
+    color:#AF7817;
+    transition: 0.6s;
+}
+
+        /* MAP */ 
+
+.map-responsive {
+    border-top: 1px dotted #1a1a1a;
+    border-bottom: 1px dotted #1a1a1a;
+    overflow:hidden;
+    margin: 20px 0 0 0;
+    padding-bottom:250px;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+        /* HORAIRES */ 
+#horaire{
+    width: 100%;
+    height: 400px;
+    background-color: #014f53;
+}
+#titre_horaire h1{
+    color:#AF7817;
+    font-size: 3.5em;
+    padding-top: 80px;
+    padding-bottom:20px;
+    text-align: center;
+}
+#texte_heures h2{
+    font-size: 1.8em;
+    text-align: center;
+    color:#fff;
+}
+
+
+        /* INFOLETTRE_FORM */ 
+.button_infolettre{
+    margin-left: 97%;
+    cursor: pointer;
+    background: none;
+    border:none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2em;
+    }
+.button_infolettre:hover{
+    opacity: 0.4;
+    transition: 0.6s;
+    }
+#infolettre{
+    position:absolute;
+    top:0;
+    background:#1a1a1a;
+    opacity: 0.98;
+    width:100%;
+    height: 100%;
+    z-index: 2000;
+}
+#infolettre h2{
+    color:#fff;
+    padding-bottom: 50px;
+}
+#infolettre p{
+    color:#1a1a1a;
+}
+#mc_embed_signup{
+    padding-top:120px;
+    align-content: center;
+}
+#mc_embed_signup_scroll{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 500px;
+}
+.mc-field-group{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#mc_embed_signup .indicates-required span{
+    font-size: 0.8em;
+    color: #fff;
+}
+label{
+    display: block;
+    color:#fff;
+}
+input{
+    width: 300px;
+    height: 30px;
+    background: #1a1a1a;
+    border: 0;
+    border-bottom:1px solid #fff;
+    outline:none;
+    color: #fff;
+}
+input:hover{
+    transition:0.6s;
+    border-bottom:1px solid #3c3c3c;
+    outline: none;
+}
+.clear{
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+}
+#mc_embed_signup .button{
+    color: #fff;
+    width: 150px;
+    background: #1a1a1a;
+    border: 1px solid #fff;
+    height: 50px;
+    font-family: 'Abel', sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+#mc_embed_signup .button:hover{
+    background: #603f02;
+    transition: 0.4s;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* The Modal (background) */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+/* The Close Button */
+.close {
+    color: #fff;
+    float: right;
+    font-size: 3em;
+    padding-right:25px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    opacity: 0.3;
+    transition: 0.6s;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*POP UP NEWSLETTER*/
+
+.transparent-dark-back {
+    color: #fff;
+    background-color: #1a1a1a;
+    opacity: 0.95;
+}
+.z-index-1000 {
+    z-index: 1500;
+}
+.fixed-bottom {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+h3{
+    font-size: 2rem;
+    line-height: 2.45rem;
+    text-align: center;
+}
+.newsletter_field{
+    display: flex;
+    flex-direction: row;
+}
+.left{
+   width: 350px;
+   padding: 35px 150px 25px 55px;
+}
+.middle{
+   font-weight: bold; 
+   width: 700px;
+   padding: 35px 150px 0 125px;
+   text-align: center;
+   font-size: 1em;
+}
+.right {
+    padding: 40px 100px 0 75px;
+    width: 250px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.right button{
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 7px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    text-decoration:none;
+    text-align: center;
+}
+.right button:hover{
+    opacity: 0.4;
+    transition: 0.6s;
+}
+.button{
+    cursor: pointer;
+    background: none;
+    border:none;
+    color: #fff;
+    font-weight: lighter;
+    font-size: 2em;
+    margin-right: 20px;
+    }
+.button:hover{
+    opacity: 0.4;
+    transition: 0.6s;
+}
+    
+/*FOOTER*/
+
+footer{
+    margin-top: 0px; 
+    border-top: 1px solid #AF7817;
+    height: 50px;
+    background-color:#fff; 
+    position:fixed;
+    width: 100%;
+    bottom:0;
+    z-index:1000;
+    
+}
+.info_footer{
+    padding-top: 10px;
+    text-align:center;
+}
+.info_footer #text_f p{
+    padding-top:0px;
+    color: #1a1a1a;
+    line-height: 0.8em;
+    font-weight: 900;
+    font-size:80%;
+}
+
+
+/*---------------------------------------------------------------------------------------------------*/
+/* RESPONSIVE - DISABLED FOR EMBEDDED DESKTOP VIEW */
+/* All media queries have been commented out to force desktop display */
+
+/* @media screen and (min-width: 1921px) and (max-width: 3560px){
+
+} */
+@media screen and (min-width: 1440px) and (max-width: 1920px){
+     .newburger{
+    margin: 3.5% 0 0 93%;
+    cursor: pointer;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+}
+    #epiptop {padding-top: 105px}
+    #titre_web h2{
+        right: 30%;
+}
+    .titre h2{
+    margin-top: 38%;
+}
+    .iconesmobile h2{
+        display: none;
+}
+    .fullscreen-bg__video {
+    margin-top:0;
+    height: auto;
+}
+    .w3-bar{
+        display: none;
+    }
+    .ongletho,.tagho{
+        bottom: 500px;
+    }
+    .tagad{
+        bottom: 457px;
+    }
+    .ongletad{
+        bottom: 321px;
+    }
+    #container_cours img:nth-child(1),#container_cours img:nth-child(2),img:nth-child(3),#container_cours2 img:nth-child(1),#container_cours2 img:nth-child(2){width: 32%;}
+    .fourn_epicerie {position: relative}
+       
+    /*POP UP NEWSLETTER*/
+
+.middle{
+   font-weight: bold; 
+   width: 700px;
+   padding: 35px 150px 0 125px;
+   text-align: center;
+   font-size: 1em;
+}
+
+    #text_gene {
+        padding-top: 30px;
+}
+    #qec .text {
+        padding-top: 70px;    
+    }
+    #text_rachel {
+     padding-top: 60px;
+}
+
+    #contact{
+        width:100%; 
+        top: 0px;
+    }
+    #contact_mobile{
+        display:none;
+    }
+        #fourn{
+    height: 980px;
+}
+    .containerdonnee{
+    padding-top:80px;
+}
+    .containerdonnee h1{
+    padding-bottom: 0;
+}
+    .containerdonnee #ucol {
+    width:24%; 
+    margin-left: 8%;
+    margin-right: 3%;
+}
+    .containerdonnee #dcol {
+    width:24%; 
+    margin-left: 3%;
+    margin-right: 3%;
+}
+    .containerdonnee #tcol{
+    width:24%; 
+    margin-left: 3%;
+    margin-right: 3%;
+}
+    .info_footer{
+    padding-top: 8px;
+    text-align:center;
+}
+    
+         /*MODAL*/
+    #mc_embed_signup_scroll {
+         height: 600px;
+    }
+    #mc_embed_signup{
+    padding-top:50px;
+}
+}
+@media screen and (min-width: 1281px) and (max-width: 1439px){
+    .newburger{
+    margin: 3.5% 0 0 93%;
+    cursor: pointer;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    z-index: 100;
+}
+    #epiptop {
+    padding-top: 125px;
+}
+    .newmenu li a{
+        font-size: 30px;
+    }
+    .titre h2{
+    margin-top: 38%;
+}
+    .w3-bar{
+        display: none;
+    }
+    .ongletho,.tagho{
+        bottom: 379px;
+    }
+    .tagad{
+        bottom: 336px;
+    }
+    .ongletad{
+        bottom: 200px;
+    }
+    #container_cours img:nth-child(1),img:nth-child(3){
+        width: 31.92%;
+}
+    #container_cours2 img:nth-child(1), img:nth-child(3) {
+        width: 31.92%;
+    }
+    .containerdonnee #ucol{
+
+
+    }
+        /* FAITS */ 
+    
+    #epi_fact1 p{
+    padding: 100px 50px;font-size: 2.2em; margin-top: 100px;
+}
+        /*POP UP NEWSLETTER*/
+
+.middle{
+   font-weight: bold; 
+   width: 700px;
+   padding: 45px 150px 0 125px;
+   text-align: center;
+   font-size: 1em;
+}
+
+    #text_gene {
+        padding-top: 30px;
+}
+    #qec .text {
+        padding-top: 70px;    
+    }
+    #text_rachel {
+     padding-top: 60px;
+}
+
+    #contact{
+        width:100%; 
+        top: 0px;
+    }
+    #contact_mobile{
+        display:none;
+    }
+     #fourn{
+    height: 1080px;
+}
+    .containerdonnee{
+    padding-top:80px;
+}
+    .containerdonnee h1{
+    padding-bottom: 0;
+}
+    .containerdonnee #ucol, .containerdonnee #dcol, .containerdonnee #tcol {
+    float: none;    
+    width:100%; 
+    margin: 0 50px 0 50px;
+   }
+
+    .info_footer{
+    padding-top: 8px;
+    text-align:center;
+}
+    
+         /*MODAL*/
+    #mc_embed_signup_scroll {
+         height: 600px;
+    }
+    #mc_embed_signup{
+    padding-top:50px;
+}
+}
+@media screen and (min-width: 1025px) and (max-width: 1280px){
+        /*MENU ET MENU MOBILE*/
+
+    .logo_hosp img{width: 80%;height:auto}
+    .tagbask{bottom: 289px}
+    .middle{padding: 35px 75px 0 75px}
+    .right {padding: 50px 100px 0 75px}
+    #epiptop {padding-top: 75px}
+    #epi .text {padding: 85px 15% 250px 15%}
+    #epi {height: 580px}
+    #epi img {padding-top: 50px}
+    #epi_fact1 p{padding: 70px 50px 80px 50px;font-size: 2.2em; margin-top: 100px;}
+    .newmenu li a {font-size: 30px}
+    #epiciere {height: 745px}
+    #genevieve img {height: 739px}
+    #cours {height: 575px}
+    #container_cours img:nth-child(1),#container_cours img:nth-child(2),img:nth-child(3), #container_cours2 img:nth-child(1),#container_cours2 img:nth-child(2) {width: 31.8%}
+    .fourn_epicerie {height: 950px;position: absolute}
+    #cuisine_chef {height: 701px}
+    #formulaire {height: 890px}
+    #horaire {height: 400px}
+    #mc_embed_signup {padding-top: 30px}
+}
+@media screen and (min-width: 769px) and (max-width: 1024px){
+    
+        /*MENU ET MENU MOBILE*/
+
+    #epiptop {
+        padding-top: 250px;
+}
+    #barre{
+        height: 70px;
+    }
+    
+        /* FOND ECRAN ACCUEIL */   
+    #fond{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height:100%;
+        background: #014f53;
+        z-index:1;
+    }
+    #fond:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+
+    .logo_mobile{
+        display:block;
+        position: fixed;
+        padding-top:50px;
+        margin-left:50px;
+        z-index: 2;
+}
+    .logo_mobile2 {
+        display: unset;
+        position: fixed;
+        z-index:10;
+    }
+    .logo_mobile2 img {
+        padding-top: 70px;
+        padding-left:100px;
+    }
+    .menu, #epi img{
+        visibility: hidden;
+    }
+    .newburger_responsive,.logo_hosp,.logo_mobile2,.portfolio,#formulaire,#faq,.tagho,.tagad,.tagbask{display:none}
+    .newmenu li a{
+        font-size: 40px;
+    }
+
+        /* EPICERIE */  
+    
+    .section_epicerie {
+        background: #F0F0F0;
+}
+    .newmenu ul:before{
+          content: "";
+          position: fixed;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+    
+        /* Taille hauteur epicerie */ 
+    #epi{
+        height: 580px;
+}
+    
+    #epi p,#cours p{
+        text-align: left;
+        color: #000;
+    }
+    #epi .text,#cours .text,#bistro .text, #qec .text,#text_rachel{
+        padding: 50px 10% 50px 10%;
+        position: absolute;
+        z-index: 1;
+}
+    
+     #image_epicerie_responsive{
+        display: unset;
+         z-index:2;
+                
+    }
+     #image_epicerie_responsive img{
+        width:100%;
+        height: auto;
+    }
+    
+    #container_cours2 img:nth-child(1), img:nth-child(3) {
+    border-top: 0px solid #fff;
+    border-right: 0px solid #fff;
+    border-left: 0px solid #fff;
+    }
+    
+    #epiciere {height: 950px}
+    .presse {height: 280px}
+    
+            /* FACT */ 
+.section_fact{background-color:#014f53}
+.section_fact .text{
+    padding-top: 100px;
+    width:100%;
+    height:auto;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+.section_fact h1{font-weight: lighter;font-size: 3.5em;color:#AF7817}
+
+#epi_fact1{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px
+}
+#epi_fact1 p{
+    font-weight:lighter;
+    font-size:2.5em;text-align:center;padding:150px 50px 80px 50px;color: #fff;text-align:center;line-height: 1em}
+     
+    /* COURS */ 
+    
+    /* Taille hauteur cours */ 
+    
+    #cours{
+        height: 530px;
+        background: #fff;
+}
+ 
+    .cours .credit{
+        visibility: hidden;
+    }
+    
+         /* Taille hauteur bistro */    
+    #bistro {
+        height: 350px;
+}
+    #qec {
+        height: 550px;
+}
+    #qec h1,#text_rachel h1{
+        line-height : 1;
+    }
+    .portfolio3 img:nth-child(1) {
+        width:100%;
+        height: 100%;
+        border-top: 0px; 
+        border-right: 0px;
+        border-left: 0px;
+    }
+    #cuisine_chef {
+        width: 100%;
+        height: 500px;
+        background-image: linear-gradient(
+        180deg, #1a1a1a 0%, #303030 100%);
+    }
+    
+        /* PROMESSES */ 
+    
+    .fourn_epicerie {
+        height: 1460px;
+        position:relative;
+    }
+    .containerdonnee .texte_data{
+        font-size: 160%;
+    }
+    .containerdonnee {
+        width: 100%;
+        padding-top: 50px;
+}
+    .containerdonnee .nombre{
+        font-size: 8em;
+    }
+    .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+    .containerdonnee #dcol .nombre,.containerdonnee #ucol .nombre,.containerdonnee #tcol .nombre{
+        font-weight: bold;
+    }
+    .containerdonnee .texte_expliq p{
+        padding-left: 10%;
+        padding-right: 10%
+        
+    }
+    
+
+           /* CONTACT */  
+    
+    #contact p {
+        padding: 25px 0 25px;
+        font-size: 1.1em;
+}
+    #titre_horaire h1 {
+        padding: 50px;
+        line-height : 1;
+    }
+    #texte_heures h2{
+        padding: 25px;
+        font-size:1.1em;
+        
+    }
+    #horaire{
+        height: 500px;
+    }
+        
+       /* COURS DE CUISINE */  
+      
+     .carre_texte{
+        width: 100%;
+         height: auto;
+}
+    .carre_texte p{
+        margin-top: 50px;
+        width: 100%;
+        text-align: center;
+        line-height: 1em;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px){
+
+    .logo_mobile2 {
+        display: unset;
+        position: fixed;
+        z-index:10;
+    }
+    .logo_mobile2 img {
+        padding-top: 25px;
+        padding-left:30px;
+    }
+     #banniere{
+        width:100%;
+        height: auto;
+        top:250px;
+        display: block;
+        position: absolute;
+        z-index:2;
+
+}
+    #banniere h1{
+        color: #fff;
+        font-size: 60px;
+        text-align: center;
+        z-index:2;
+    }
+    
+          /*DISPLAY NONE*/  
+    
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,.newsletter_field{display: none}
+
+        /*MENU ET MENU MOBILE*/
+
+    #epiptop {
+        padding-top: 150px;
+}
+    #barre{
+        height: 150px;
+    }
+    
+        /* FOND ECRAN ACCUEIL */   
+    #fond{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height:100%;
+        background: #014f53;
+        z-index:1;
+    }
+    #fond:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+
+    .logo_mobile{
+        display:block;
+        position: fixed;
+        padding-top:50px;
+        margin-left:50px;
+        z-index: 2;
+}
+    .logo_mobile2 {
+        display: unset;
+        position: fixed;
+        z-index:10;
+    }
+    .logo_mobile2 img {
+        padding-top: 60px;
+        padding-left:70px;
+    }
+    .menu, #epi img{
+        visibility: hidden;
+    }
+    .newburger_responsive{
+        margin: 8% 0 0 88%;
+        cursor: pointer;
+        display: inline-block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 100;
+    }
+    .newmenu li a{
+        font-size: 40px;
+    }
+
+        /* EPICERIE */  
+    
+    .section_epicerie {
+        background: #F0F0F0;
+        height:825px;
+}
+    .newmenu ul:before{
+          content: "";
+          position: fixed;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+    
+        /* Taille hauteur epicerie */ 
+    #epi{
+        height: 1180px;
+}
+    
+    #epi p,#cours p{
+        text-align: left;
+        color: #000;
+    }
+    #epi .text,#cours .text,#bistro .text, #qec .text,#text_rachel{
+        padding: 130px 10% 50px 10%;
+        position: absolute;
+        z-index: 1;
+}
+    
+     #image_epicerie_responsive{
+        display: unset;
+         z-index:2;
+                
+    }
+     #image_epicerie_responsive img{
+        width:100%;
+        height: auto;
+    }
+    
+    #container_cours2 img:nth-child(1), img:nth-child(3) {
+    border-top: 0px solid #fff;
+    border-right: 0px solid #fff;
+    border-left: 0px solid #fff;
+    }
+    
+    #logos_journaux a {
+    padding-right: 10px;
+}
+    #logos_journaux img {
+         width: 75%;
+         margin: auto;
+        display: block;
+}
+    .presse{
+        height: 250px;
+    }
+         
+    /* FAITS */ 
+    
+            /* FACT */ 
+    
+    
+
+.section_fact .text {padding-top: 80px}
+#epi_fact1{padding-top: 270px
+}
+#epi_fact1 #haut_faits{font-size: 2em;padding:50px 30px 50px 30px}
+#epi_fact1 p{font-size: 2em;padding:50px 30px 50px 30px}
+#epi_fact1 #bas_faits{font-size: 2em;padding:50px 30px 50px 30px}  
+
+
+     
+    /* COURS */ 
+    
+    /* Taille hauteur cours */ 
+    
+    #cours{
+        height: 780px;
+        background: #fff;
+}
+ 
+    .cours .credit{
+        visibility: hidden;
+    }
+    
+         /* Taille hauteur bistro */    
+    #bistro {
+        height: 550px;
+}
+    #qec {
+        height: 750px;
+}
+    #qec h1,#text_rachel h1{
+        line-height : 1;
+    }
+    .portfolio3 img:nth-child(1) {
+        width:100%;
+        height: 100%;
+        border-top: 0px; 
+        border-right: 0px;
+        border-left: 0px;
+    }
+    #cuisine_chef {
+        width: 100%;
+        height: 900px;
+        background-image: linear-gradient(
+        180deg, #1a1a1a 0%, #303030 100%);
+    }
+    
+        /* PROMESSES */ 
+    
+    .fourn_epicerie {
+        height: 1560px;
+        position:relative;
+    }
+    .containerdonnee .texte_data{
+        font-size: 160%;
+    }
+    .containerdonnee {
+        width: 100%;
+        padding-top: 50px;
+}
+    .containerdonnee .nombre{
+        font-size: 8em;
+    }
+    .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+    }
+    .containerdonnee #dcol .nombre,.containerdonnee #ucol .nombre,.containerdonnee #tcol .nombre{
+        font-weight: bold;
+    }
+    .containerdonnee .texte_expliq p{
+        padding-left: 10%;
+        padding-right: 10%
+        
+    }
+    
+           /* FAQ */  
+    #formulaire,#faq{
+        display:none;
+    }
+    
+           /* CONTACT */  
+    
+    #contact p {
+        padding: 25px 0 25px;
+        font-size: 1.1em;
+}
+    #titre_horaire h1 {
+        padding: 50px;
+        line-height : 1;
+    }
+    #texte_heures h2{
+        padding: 25px;
+        font-size:1.1em;
+        
+    }
+    #horaire{
+        height: 500px;
+    }
+        
+       /* COURS DE CUISINE */  
+      
+     .carre_texte{
+        width: 100%;
+         height: auto;
+}
+    .carre_texte p{
+        margin-top: 50px;
+        width: 100%;
+        text-align: center;
+        line-height: 1em;
+    }
+}
+@media screen and (min-width: 375px) and (max-width: 480px){
+     #banniere{
+        width:100%;
+        height: auto;
+        top:250px;
+        display: block;
+        position: absolute;
+        z-index:2;
+
+}
+    #banniere h1{
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        z-index:2;
+    }
+    
+          /*DISPLAY NONE*/  
+    
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle,.newsletter_field {
+        display: none;
+}
+
+        /*MENU ET MENU MOBILE*/
+
+    #epiptop {
+        padding-top: 55px;
+}
+    #barre{height: 80px}
+    
+        /* FOND ECRAN ACCUEIL */   
+    #fond{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height:100%;
+        background: #014f53;
+        z-index:1;
+    }
+    #fond:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 5%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+
+    .logo_mobile{
+        display:block;
+        position: fixed;
+        padding-top:150px;
+        left: 33%;
+        margin-right: auto;
+        margin-left:auto;
+        z-index: 2;
+}
+    .logo_mobile2 {
+        display: unset;
+        position: fixed;
+        z-index:10;
+    }
+    .logo_mobile2 img {padding-top: 23px;padding-left:25px}
+    .menu, #epi img{
+        visibility: hidden;
+    }
+    .newburger_responsive{
+        margin: 7% 0 0 81%;
+        cursor: pointer;
+        display: inline-block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 100;
+    }
+    .newmenu li a{
+        font-size: 25px;
+    }
+
+        /* EPICERIE */  
+    
+    .section_epicerie {
+        background: #F0F0F0;
+}
+    .newmenu ul:before{
+          content: "";
+          position: fixed;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+    
+        /* Taille hauteur epicerie */ 
+    #epi{
+        height: 1080px;
+}
+    
+    #epi p,#cours p{
+        text-align: left;
+        color: #000;
+    }
+    #epi .text,#cours .text,#bistro .text, #qec .text,#text_rachel{
+        padding: 75px 10% 50px 10%;
+        position: absolute;
+        z-index: 1;
+}
+    
+     #image_epicerie_responsive{
+        display: unset;
+         z-index:2;
+                
+    }
+     #image_epicerie_responsive img{
+        width:100%;
+        height: auto;
+    }
+    
+        /* FACT */ 
+.section_fact{background-color:#014f53}
+.section_fact .text{
+    padding-top: 100px;
+    width:100%;
+    height:auto;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+.section_fact h1{font-weight: lighter;font-size: 3.2em;color:#AF7817}
+#epi_fact1{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px
+}
+#epi_fact1 #haut_faits{
+    font-weight:lighter;
+    font-size:2.5em;text-align:center;padding:150px 80px 0px 80px;color: #fff;text-align:center;line-height: 1em}
+#epi_fact1 p{
+    font-weight:lighter;
+    font-size:2.5em;text-align:center;padding:0 80px 30px 80px;color: #fff;text-align:center;line-height: 1em}
+#epi_fact1 #bas_faits{
+    font-weight:lighter;
+    font-size:2.5em;text-align:center;padding:0 80px 60px 80px;color: #fff;text-align:center;line-height: 1em}    
+    
+    
+    #container_cours2 img:nth-child(1), img:nth-child(3) {
+        border-top: 0px solid #fff;
+        border-right: 0px solid #fff;
+        border-left: 0px solid #fff;
+    }
+     
+    /* COURS */ 
+    
+    /* Taille hauteur cours */ 
+    
+    #cours{height: 890px;background: #fff}
+ 
+    .cours .credit{
+        visibility: hidden;
+    }
+    
+         /* Taille hauteur bistro */    
+    #bistro {
+        height: 650px;
+}
+    #qec {
+        height: 1100px;
+}
+    #qec h1,#text_rachel h1{
+        line-height : 1;
+    }
+    .portfolio3 img:nth-child(1) {
+        width:100%;
+        height: 100%;
+        border-top: 0px; 
+        border-right: 0px;
+        border-left: 0px;
+    }
+    #cuisine_chef {
+        width: 100%;
+        height: 1050px;
+        background-image: linear-gradient(
+        180deg, #1a1a1a 0%, #303030 100%);
+    }
+    
+        /* PROMESSES */ 
+    
+    .fourn_epicerie {height: 2080px;position:relative}
+    .containerdonnee .texte_data{
+        font-size: 160%;
+        margin: 0 22px;
+    }
+    .containerdonnee {
+        width: 100%;
+        padding-top: 75px;
+}
+    .containerdonnee .nombre{
+        font-size: 6em;
+    }
+    .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+    }
+    .containerdonnee #dcol .nombre,.containerdonnee #ucol .nombre,.containerdonnee #tcol .nombre{
+        font-weight: bold;
+    }
+    .containerdonnee .texte_expliq p{
+        padding-left: 10%;
+        padding-right: 10%
+        
+    }
+    
+           /* FAQ */  
+    #formulaire,#faq{
+        display:none;
+    }
+    
+           /* CONTACT */  
+    
+    #contact p {
+        padding: 25px 0 25px;
+        font-size: 1.1em;
+}
+    #titre_horaire h1 {
+        padding: 50px;
+        line-height : 1;
+    }
+    #texte_heures h2{
+        padding: 25px;
+        font-size:1.6em;
+        
+    }
+    #horaire{
+        height: 500px;
+    }
+        
+       /* COURS DE CUISINE */  
+      
+     .carre_texte{
+        width: 100%;
+         height: auto;
+}
+    .carre_texte p{
+        margin-top: 50px;
+        width: 100%;
+        text-align: center;
+        line-height: 1em;
+    }
+    
+       /* NEWSLETTER FIELD */ 
+    
+    .newsletter_field{height: 90px}
+    #infolettre h2 {padding-bottom: 0}
+    .right {
+    padding: 15px 30px 0 70px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+    .right button{
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 7px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    text-decoration:none;
+    text-align: center;
+    width: 175px;
+}
+    .button {font-size:1.7em}
+    
+    #mc_embed_signup {padding-top: 50px}
+
+    #mc_embed_signup_scroll{
+    width: 320px;
+}
+    
+    .close{font-size: 2em;}
+    input {width: 250px;}
+    .clear {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+}
+@media screen and (min-width: 320px) and (max-width: 374px){
+    
+    #banniere{
+        width:100%;
+        height: auto;
+        top:250px;
+        display: block;
+        position: absolute;
+        z-index:2;
+
+}
+    #banniere h1{
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        z-index:2;
+    }
+    
+          /*DISPLAY NONE*/  
+    
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle,.newsletter_field{
+        display: none;
+}
+
+        /*MENU ET MENU MOBILE*/
+    
+    .logo_mobile2 {
+        display: unset;
+        position: fixed;
+        z-index:10;
+    }
+    .logo_mobile2 img {
+        padding-top: 10px;
+        padding-left:30px;
+    }
+    
+    
+    #epiptop {
+        padding-top: 55px;
+}
+    #barre{height: 60px}
+    
+        /* FOND ECRAN ACCUEIL */   
+    #fond{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height:100%;
+        background: #014f53;
+        z-index:1;
+    }
+    #fond:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 6%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+
+    .logo_mobile{
+        display:block;
+        position: fixed;
+        padding-top:150px;
+        left: 32%;
+        margin-right: auto;
+        z-index: 2;
+}
+    .menu, #epi img{
+        visibility: hidden;
+    }
+    .newburger_responsive{
+        margin: 3.5% 0 0 82%;
+        cursor: pointer;
+        display: inline-block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 100;
+    }
+    .newmenu li a{
+        font-size: 25px;
+    }
+
+        /* EPICERIE */  
+    
+    .section_epicerie {
+        background: #F0F0F0;
+}
+    .newmenu ul:before{
+          content: "";
+          position: fixed;
+          top: 0;
+          bottom: 0%;
+          left: 0;
+          width: 100%;
+          background: #AF7817;
+          transform: skew(-70deg);
+          transform-origin:bottom;
+    }
+    
+        /* Taille hauteur epicerie */ 
+    #epi{
+        height: 1180px;
+}
+    
+    #epi p,#cours p{
+        text-align: left;
+        color: #000;
+    }
+    #epi .text,#cours .text,#bistro .text, #qec .text,#text_rachel{
+        padding: 50px 10% 50px 10%;
+        position: absolute;
+        z-index: 1;
+}
+    
+     #image_epicerie_responsive{
+        display: unset;
+         z-index:2;
+                
+    }
+     #image_epicerie_responsive img{
+        width:100%;
+        height: auto;
+    }
+    
+    #container_cours2 img:nth-child(1), img:nth-child(3) {
+    border-top: 0px solid #fff;
+    border-right: 0px solid #fff;
+    border-left: 0px solid #fff;
+    }
+    
+            /* FACT */ 
+#epi_fact1{
+    flex-direction: column;
+    align-items: center;
+    padding-top: 150px
+}
+#epi_fact1 #haut_faits{padding:150px 60px 0px 60px}
+#epi_fact1 p{padding:0 60px 30px 60px}
+#epi_fact1 #bas_faits{padding:0 60px 60px 60px}   
+     
+    /* COURS */ 
+    
+    /* Taille hauteur cours */ 
+    
+    #cours{
+        height: 900px;
+        background: #fff;
+}
+ 
+    .cours .credit{
+        visibility: hidden;
+    }
+    
+         /* Taille hauteur bistro */    
+    #bistro {
+        height: 650px;
+}
+    #qec {
+        height: 1170px;
+}
+    #qec h1,#text_rachel h1{
+        line-height : 1;
+    }
+    .portfolio3 img:nth-child(1) {
+        width:100%;
+        height: 100%;
+        border-top: 0px; 
+        border-right: 0px;
+        border-left: 0px;
+    }
+    #cuisine_chef {
+        width: 100%;
+        height: 1150px;
+        background-image: linear-gradient(
+        180deg, #1a1a1a 0%, #303030 100%);
+    }
+    
+        /* PROMESSES */ 
+    
+    .fourn_epicerie {
+        height: 2210px;
+        position:relative;
+    }
+    .containerdonnee .texte_data{
+        font-size: 160%;
+        margin: 0 25px;
+    }
+    .containerdonnee {
+        width: 100%;
+        padding-top: 50px;
+}
+    .containerdonnee .nombre{
+        font-size: 6em;
+    }
+    .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+    }
+    .containerdonnee #dcol .nombre,.containerdonnee #ucol .nombre,.containerdonnee #tcol .nombre{
+        font-weight: bold;
+    }
+    .containerdonnee .texte_expliq p{
+        padding-left: 10%;
+        padding-right: 10%
+        
+    }
+    #fourn h1 {
+    font-size: 2.8em;
+}
+    
+           /* FAQ */  
+    #formulaire,#faq{
+        display:none;
+    }
+    
+           /* CONTACT */  
+    
+    #contact p {
+        padding: 25px 0 25px;
+        font-size: 1.1em;
+}
+    #titre_horaire h1 {
+        padding: 50px;
+        line-height : 1;
+    }
+    #texte_heures h2{
+        padding: 25px;
+        font-size:1.1em;
+        
+    }
+    #horaire{
+        height: 500px;
+    }
+        
+       /* COURS DE CUISINE */  
+      
+     .carre_texte{
+        width: 100%;
+         height: auto;
+}
+    .carre_texte p{
+        margin-top: 50px;
+        width: 100%;
+        text-align: center;
+        line-height: 1em;
+    }
+    
+           /* NEWSLETTER FIELD */  
+
+.newsletter_field{height: 80px}
+ #infolettre h2 {padding-bottom: 0}
+.right {
+    padding: 25px 30px 0 70px;
+    width: 250px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.right button{
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 7px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    text-decoration:none;
+    text-align: center;
+}
+.button 
+{font-size:1.7em}
+    
+#mc_embed_signup {
+    padding-top: 50px;
+}
+
+#mc_embed_signup_scroll{
+    width: 320px;
+}
+    
+.close{font-size: 2em;}
+input {width: 250px;}
+.clear {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+}
+
+
+
+    
+    /* FOOTER */  
+.info_footer #text_f p {
+    font-size: 70%;
+}
+
+    
+
+
+ 
+
+
+   

@@ -1,0 +1,100 @@
+html{
+    top:0;
+    width:100%;
+    height: auto;
+    margin:0;
+    padding:0;
+    font-family: 'Abel', sans-serif;
+}
+body{
+    margin:0;
+    padding:0;
+    width: 100%;
+    height:auto;
+    background-color: #1a1a1a;
+}
+h1{font-size:45px}h2{font-size:37px; font-weight: bold}h3{font-size:27px; font-weight: bold}p{font-size:17px}
+h1,h3,h4,h5,h6,p{
+    font-family: 'Abel', sans-serif;
+    font-weight:400;
+    margin:10px 0;
+    color:#fff;
+}
+h2{    font-family: 'Abel', sans-serif;
+    font-weight:400;
+    margin:10px 0;
+    ; color:#AF7817}
+.logo_hosp{
+    z-index:12 ;
+    top:0;
+    margin: 50px 12% 0% ;
+}
+#texte{
+    margin: 25px 12% 11%;
+}
+
+#email a {
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px;
+    font-weight: bold;
+}
+
+    
+/*FOOTER*/
+
+footer{
+    margin-top: 0px; 
+    border-top: 1px solid #AF7817;
+    height: 50px;
+    background-color:#fff; 
+    position:fixed;
+    width: 100%;
+    bottom:0;
+    z-index:1000;
+    
+}
+.info_footer{
+    padding-top: 10px;
+    text-align:center;
+}
+.info_footer #text_f p{
+    padding-top:0px;
+    color: #1a1a1a;
+    line-height: 0.8em;
+    font-weight: 900;
+    font-size:80%;
+}
+
+
+/*---------------------------------------------------------------------------------------------------*/
+/* RESPONSIVE*/
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+    
+    .logo_hosp img{
+        height: 150px;
+        width: auto;
+    }}
+
+@media screen and (min-width: 375px) and (max-width: 480px){
+        .logo_hosp img{
+        height: 135px;
+        width: auto;
+    }}
+   
+@media screen and (min-width: 320px) and (max-width: 374px){
+        .logo_hosp img{
+        height: 125px;
+        width: auto;
+    }
+}
+
+    
+
+
+ 
+
+
+   

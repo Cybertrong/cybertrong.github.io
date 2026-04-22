@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linh b.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,300&family=DM+Mono:wght@300;400&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000000;
+    --ink: #0c0c0a;
+    --gold: #c9a84c;
+    --green: #00ff41;
+    --green-dim: #008f11;
+    --green-dark: #003b00;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --serif: 'DM Mono', Georgia, serif;
+    --ease: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  html, body {
+    background: #000;
+    border-bottom: 0.1px solid #c9a84c;
+    color: var(--green);
+    font-family: var(--mono);
+    font-weight: 300;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+
+  /* MATRIX CANVAS */
+  #matrix-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.55;
+  }
+
+  /* MENU MATRIX CANVAS */
+  #menu-matrix-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .menu-overlay.open #menu-matrix-canvas {
+    opacity: 0.22;
+  }
+
+  .menu-overlay.closing #menu-matrix-canvas {
+    animation: matrixFadeOut 0.5s ease forwards;
+  }
+
+  @keyframes matrixFadeOut {
+    0% { opacity: 0.22; }
+    100% { opacity: 0; }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 46px 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-bottom: 0.1px solid #c9a84c;
+    transition: padding 0.35s var(--ease);
+    position: relative;
+  }
+  nav.scrolled {
+    background: #0c0c0a;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  nav.scrolled .nav-logo { color: #c9a84c; font-size: 33px; }
+  nav.scrolled .nav-subtitle { opacity: 0; pointer-events: none; }
+  nav.scroll-up .nav-subtitle { opacity: 0; pointer-events: none; }
+  nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0.1px;
+    background: linear-gradient(to right, transparent 0%, #c9a84c 20%, #c9a84c 80%, transparent 100%);
+    z-index: 101;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 55px;
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: #c9a84c;
+    transition: font-size 0.35s var(--ease);
+    position: absolute;
+    left: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    line-height: 1;
+  }
+
+  .nav-subtitle {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    color: #c9a84c;
+    text-transform: lowercase;
+    font-style: normal;
+    font-weight: 300;
+    position: relative;
+  }
+  .nav-subtitle { transition: opacity 0.35s ease, color 0.15s, text-shadow 0.15s; }
+  nav.scroll-up .nav-subtitle { opacity: 0; pointer-events: none; }
+
+  .nav-logo:hover .nav-subtitle { color: #00ff41; text-shadow: 0 0 10px rgba(0,255,65,0.7); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: rgba(201,168,76,0.4);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* BURGER */
+  .burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+    z-index: 201;
+    position: absolute;
+    right: 36px;
+  }
+  .burger-line {
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--gold);
+    transition: transform 0.35s var(--ease), background 0.25s, opacity 0.25s;
+    transform-origin: center;
+  }
+  .burger-line-mid {
+    opacity: 0;
+    width: 20px;
+    margin-left: -8px;
+    transition: opacity 0.25s ease, transform 0.35s var(--ease), background 0.25s;
+  }
+  @keyframes funkLine1 {
+    0%,100% { transform: translateX(0)     scaleX(1);   }
+    20%     { transform: translateX(10px)  scaleX(0.45); }
+    50%     { transform: translateX(-7px)  scaleX(1.5); }
+    75%     { transform: translateX(6px)   scaleX(0.7); }
+  }
+  @keyframes funkLine2 {
+    0%,100% { transform: translateX(-12px) scaleX(0.3); opacity:0; }
+    15%     { opacity: 1; }
+    45%     { transform: translateX(9px)   scaleX(1.2); opacity:1; }
+    75%     { transform: translateX(-5px)  scaleX(0.65); }
+    92%     { opacity: 1; }
+  }
+  @keyframes funkLine3 {
+    0%,100% { transform: translateX(0)     scaleX(1);   }
+    20%     { transform: translateX(-10px) scaleX(0.45); }
+    50%     { transform: translateX(7px)   scaleX(1.5); }
+    75%     { transform: translateX(-6px)  scaleX(0.7); }
+  }
+  @keyframes funkText {
+    0%,100% { transform: translate(0); }
+    20%     { transform: translate(2px, -1px); }
+    40%     { transform: translate(-2px, 1px); }
+    60%     { transform: translate(1px, 2px); }
+    80%     { transform: translate(-1px, -2px); }
+  }
+  .burger:not(.open):hover .burger-line:nth-child(1) {
+    animation: funkLine1 0.65s ease-in-out infinite;
+    background: #00ff41;
+    box-shadow: 0 0 7px #00ff41;
+  }
+  .burger:not(.open):hover .burger-line-mid {
+    animation: funkLine2 0.65s ease-in-out 0.18s infinite;
+    background: #c9a84c;
+    box-shadow: 0 0 6px #c9a84c;
+  }
+  .burger:not(.open):hover .burger-line:nth-child(3) {
+    animation: funkLine3 0.65s ease-in-out 0.33s infinite;
+    background: #00ff41;
+    box-shadow: 0 0 7px #00ff41;
+  }
+  .burger.open .burger-line:nth-child(1) { transform: translateY(6px) rotate(45deg); background: #fff; }
+  .burger.open .burger-line:nth-child(2) { opacity: 0; }
+  .burger.open .burger-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: #fff; }
+
+  /* QUESTION BUTTON */
+  .question-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    background: #0c0c0a;
+    color: var(--gold);
+    border: none;
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    z-index: 99;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    outline: none;
+    text-decoration: none;
+  }
+  .question-btn:hover { background: var(--gold); color: #0c0c0a; }
+
+  /* FOOTER BUTTON */
+  .footer-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
+    background: #0c0c0a;
+    color: var(--green);
+    border-top: 1px solid var(--green);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    outline: none;
+    width: auto;
+    transition: background 0.2s, color 0.2s;
+  }
+  .footer-btn:hover {
+    background: var(--green);
+    color: #0c0c0a;
+  }
+
+  /* BACK TO TOP BUTTON */
+  .back-to-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
+    background: #0c0c0a;
+    color: var(--green);
+    border-top: 1px solid var(--green);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+    outline: none;
+    width: auto;
+    transition: background 0.2s, color 0.2s;
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .back-to-top.active {
+    animation: footerSlideUp 0.5s var(--ease) forwards;
+    pointer-events: all;
+  }
+  .back-to-top.closing {
+    animation: footerSlideDown 0.5s var(--ease) forwards;
+  }
+  .back-to-top:hover {
+    background: var(--green);
+    color: #0c0c0a;
+  }
+
+  /* MENU DIVIDER */
+  .menu-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .menu-overlay.open .menu-divider {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+    animation-delay: 0.2s;
+  }
+
+  /* LANGUAGE TOGGLE BUTTON */
+  .lang-toggle {
+    font-family: var(--mono);
+    font-size: clamp(18px, 3.5vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: rgba(201,168,76,0.35);
+    text-transform: lowercase;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-50px);
+    display: block;
+    outline: none;
+    transition: color 0.2s;
+  }
+  .menu-overlay.open .lang-toggle {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+    animation-delay: 0.2s;
+  }
+  .lang-toggle:hover {
+    color: var(--gold);
+  }
+
+  /* FOOTER ANIMATIONS */
+  @keyframes footerSlideUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes footerSlideDown {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  /* FULLPAGE MENU */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px;
+    clip-path: inset(0 0 100% 0);
+    min-height: 100vh;
+  }
+  .menu-overlay::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0c0c0a;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .menu-overlay.open {
+    animation: menuGlitchOpen 0.75s var(--ease) forwards;
+  }
+  .menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 24px;
+    list-style: none;
+    height: 100%;
+  }
+  .menu-link {
+    font-family: var(--mono);
+    font-size: clamp(36px, 7vw, 80px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: #c9a84c;
+    text-shadow: 0 0 10px rgba(201,168,76,0.6);
+    text-transform: lowercase;
+    opacity: 0;
+    transform: translateX(-50px);
+    display: block;
+  }
+  .menu-overlay.open .menu-link {
+    animation: linkSlideIn 0.2s var(--ease) forwards;
+  }
+  .menu-overlay.open .menu-link[data-index="0"] { animation-delay: 0.04s; }
+  .menu-overlay.open .menu-link[data-index="1"] { animation-delay: 0.08s; }
+  .menu-overlay.open .menu-link[data-index="2"] { animation-delay: 0.12s; }
+  .menu-overlay.open .menu-link[data-index="3"] { animation-delay: 0.16s; }
+  .menu-link { cursor: pointer; }
+  .menu-link:hover { color: #c9a84c; }
+  .menu-footer {
+    position: absolute;
+    bottom: 36px; left: 60px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(201,168,76,0.3);
+    text-transform: lowercase;
+    opacity: 0;
+    transition: opacity 0.4s 0.35s;
+  }
+  .menu-overlay.open .menu-footer { opacity: 1; }
+
+  /* TERMINAL SECTION */
+  .terminal-wrap {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 140px 10vw 100px;
+  }
+
+  .terminal-prompt {
+    font-family: var(--mono);
+    font-size: clamp(11px, 1.1vw, 14px);
+    color: var(--green-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeIn 0.6s 0.5s forwards;
+  }
+
+  .terminal-body {
+    font-family: var(--mono);
+    font-size: clamp(14px, 1.6vw, 20px);
+    color: var(--green);
+    line-height: 1.95;
+    letter-spacing: 0.04em;
+    max-width: 720px;
+    text-shadow: 0 0 12px rgba(0,255,65,0.45);
+  }
+
+  .terminal-body .line {
+    display: block;
+    min-height: 1.95em;
+  }
+
+  .terminal-body .line.blank { min-height: 0.85em; }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    box-shadow: 0 0 8px rgba(0,255,65,0.8);
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* glitch on hover */
+  .terminal-body:hover {
+    animation: glitch 0.15s steps(2) 1;
+  }
+  @keyframes glitch {
+    0%   { text-shadow: -2px 0 #ff0060, 2px 0 #00ff41; }
+    50%  { text-shadow: 2px 0 #ff0060, -2px 0 #00ff41; }
+    100% { text-shadow: 0 0 12px rgba(0,255,65,0.45); }
+  }
+
+  @keyframes menuGlitchOpen {
+    0% {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+    20% {
+      opacity: 0.5;
+      clip-path: inset(20% 0 70% 0);
+    }
+    40% {
+      opacity: 0.8;
+      clip-path: inset(10% 0 60% 0);
+    }
+    60% {
+      opacity: 0.9;
+      clip-path: inset(5% 0 50% 0);
+    }
+    100% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes linkSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+      text-shadow: none;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+      text-shadow: 0 0 20px rgba(0,255,65,0.4);
+    }
+  }
+
+  @keyframes menuGlitchClose {
+    0% {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+    40% {
+      opacity: 0.9;
+      clip-path: inset(5% 0 50% 0);
+    }
+    60% {
+      opacity: 0.8;
+      clip-path: inset(10% 0 60% 0);
+    }
+    80% {
+      opacity: 0.5;
+      clip-path: inset(20% 0 70% 0);
+    }
+    100% {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+  }
+
+  .menu-overlay.closing {
+    animation: menuGlitchClose 0.5s var(--ease) forwards !important;
+  }
+
+  /* FOOTER */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: #000;
+    border-bottom: 0.1px solid #c9a84c;
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  footer.active {
+    animation: footerSlideUp 0.5s var(--ease) forwards;
+    pointer-events: all;
+  }
+  footer.closing {
+    animation: footerSlideDown 0.5s var(--ease) forwards;
+  }
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    line-height: 1.9;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    color: rgba(201,168,76,0.4);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* layout */
+  /* form — +50% */
+  /* close button — ×2 */
+  /* responsive */
+  @media (max-width: 900px) {
+  }
+  @media (max-width: 640px) {
+  }
+
+</style>
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<nav>
+  <a href="index-fr.html" class="nav-logo">linh b.<span class="nav-subtitle">designer graphique</span></a>
+  <button class="burger" id="burgerBtn" aria-label="Open menu">
+    <span class="burger-line"></span>
+    <span class="burger-line burger-line-mid"></span>
+    <span class="burger-line"></span>
+  </button>
+</nav>
+<a href="secureform-fr.html" class="question-btn" id="navQuestion">question?</a>
+<button class="footer-btn" id="footerBtn">pied de page</button>
+<button class="back-to-top" id="backToTop">↑ retour au top</button>
+
+<!-- FULLPAGE MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  <canvas id="menu-matrix-canvas"></canvas>
+  <nav class="menu-nav">
+    <a href="index-fr.html" class="menu-link" data-index="0">accueil</a>
+    <a href="portfolio-fr.html" class="menu-link" data-index="1">portfolio</a>
+    <a href="secureform-fr.html" class="menu-link" data-index="2" id="menuContact">contact</a>
+    <a href="about-fr.html" class="menu-link" data-index="3">à propos</a>
+    <div class="menu-divider"></div>
+    <button class="lang-toggle" id="langToggle">en / fr</button>
+  </nav>
+  <div class="menu-footer">linh b. — designer graphique</div>
+</div>
+
+<!-- CONTACT HUD OVERLAY -->
+
+  <!-- TERMINAL SECTION -->
+<div class="terminal-wrap">
+  <div class="terminal-prompt">// transmission en cours — ligne active</div>
+  <div class="terminal-body" id="terminalBody">
+    <span class="cursor" id="cursor"></span>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">
+    linh b.<br>
+    montréal, qc
+  </div>
+  <ul class="footer-links">
+    <li><a href="portfolio-fr.html">portfolio</a></li>
+    <li><a href="about-fr.html">à propos</a></li>
+  </ul>
+</footer>
+
+<script>
+// ─── MATRIX RAIN ────────────────────────────────────────────────────────────
+const canvas = document.getElementById('matrix-canvas');
+const ctx    = canvas.getContext('2d');
+
+const CHARS = 'ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEFZ<>/\\|#@$%'.split('');
+const FONT_SIZE = 14;
+let cols, drops;
+
+function initMatrix() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  cols  = Math.floor(canvas.width / FONT_SIZE);
+  drops = Array.from({ length: cols }, () => Math.random() * -canvas.height / FONT_SIZE);
+}
+
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(0,0,0,0.055)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < cols; i++) {
+    const y = drops[i] * FONT_SIZE;
+    // Lead char — bright
+    ctx.fillStyle = '#ccffcc';
+    ctx.font = `${FONT_SIZE}px monospace`;
+    ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y);
+    // Trail chars — green
+    ctx.fillStyle = '#00ff41';
+    ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y - FONT_SIZE);
+    ctx.fillStyle = '#008f11';
+    ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y - FONT_SIZE * 2);
+
+    drops[i]++;
+    if (drops[i] * FONT_SIZE > canvas.height && Math.random() > 0.975) {
+      drops[i] = Math.random() * -20;
+    }
+  }
+}
+
+initMatrix();
+window.addEventListener('resize', initMatrix);
+setInterval(drawMatrix, 38);
+
+// ─── TYPING EFFECT ───────────────────────────────────────────────────────────
+const SCRIPT = [
+  { text: "je sais que tu es là.",                 pause: 220 },
+  { text: "",                                       pause: 0   },
+  { text: "je peux te sentir maintenant.",         pause: 180 },
+  { text: "je sais que tu n'es pas sûr —",        pause: 200 },
+  { text: "pas sûr de ceux que tu veux,",         pause: 140 },
+  { text: "secoué par le changement.",            pause: 500 },
+  { text: "",                                       pause: 0   },
+  { text: "je ne connais pas l'avenir.",           pause: 180 },
+  { text: "je ne suis pas venu ici pour te dire",  pause: 160 },
+  { text: "comment cela va se terminer.",          pause: 180 },
+  { text: "je suis venu ici pour te dire",         pause: 160 },
+  { text: "comment cela va commencer.",            pause: 600 },
+  { text: "",                                       pause: 0   },
+  { text: "aujourd'hui, je vais te montrer",       pause: 180 },
+  { text: "ce que tu veux voir.",                  pause: 200 },
+  { text: "un design sans règles —",               pause: 160 },
+  { text: "sans frontières ni limites.",           pause: 200 },
+  { text: "un monde du design où tout est possible.", pause: 700 },
+  { text: "",                                       pause: 0   },
+  { text: "où nous allons à partir de là",         pause: 160 },
+  { text: "c'est un choix que je te laisse.",      pause: 0   },
+];
+
+const body   = document.getElementById('terminalBody');
+const cursor = document.getElementById('cursor');
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function randomCharDelay() {
+  // occasional hesitation, like a real typist
+  const r = Math.random();
+  if (r < 0.04) return 120 + Math.random() * 180; // pause
+  if (r < 0.12) return 55 + Math.random() * 60;
+  return 28 + Math.random() * 38;
+}
+
+async function typeText() {
+  await sleep(1400); // boot delay
+
+  for (let s = 0; s < SCRIPT.length; s++) {
+    const { text, pause } = SCRIPT[s];
+    const span = document.createElement('span');
+    span.className = 'line' + (text === '' ? ' blank' : '');
+    body.insertBefore(span, cursor);
+
+    if (text === '') {
+      await sleep(380);
+      continue;
+    }
+
+    for (let c = 0; c < text.length; c++) {
+      span.textContent += text[c];
+      await sleep(randomCharDelay());
+    }
+
+    if (pause > 0) await sleep(pause);
+  }
+
+  // final prompt
+  await sleep(600);
+  const prompt = document.createElement('span');
+  prompt.className = 'line';
+  prompt.innerHTML = '<span style="color:var(--green-dim);margin-right:6px">&gt;</span>';
+  body.insertBefore(prompt, cursor);
+}
+
+typeText();
+
+// ─── BURGER MENU ─────────────────────────────────────────────────────────────
+const burgerBtn   = document.getElementById('burgerBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+
+// Menu Matrix Rain
+const menuMatrixCanvas = document.getElementById('menu-matrix-canvas');
+const menuMatrixCtx    = menuMatrixCanvas?.getContext('2d');
+let menuMatrixCols, menuMatrixDrops, menuMatrixAnimating = false;
+
+function initMenuMatrix() {
+  if (!menuMatrixCanvas) return;
+  menuMatrixCanvas.width  = window.innerWidth;
+  menuMatrixCanvas.height = window.innerHeight;
+  menuMatrixCols  = Math.floor(menuMatrixCanvas.width / FONT_SIZE);
+  menuMatrixDrops = Array.from({ length: menuMatrixCols }, () => Math.random() * -menuMatrixCanvas.height / FONT_SIZE);
+}
+
+function drawMenuMatrix() {
+  if (!menuMatrixCanvas || !menuMatrixCtx) return;
+  menuMatrixCtx.fillStyle = 'rgba(0,0,0,0.055)';
+  menuMatrixCtx.fillRect(0, 0, menuMatrixCanvas.width, menuMatrixCanvas.height);
+
+  for (let i = 0; i < menuMatrixCols; i++) {
+    const y = menuMatrixDrops[i] * FONT_SIZE;
+    menuMatrixCtx.fillStyle = '#ccffcc';
+    menuMatrixCtx.font = `${FONT_SIZE}px monospace`;
+    menuMatrixCtx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y);
+    menuMatrixCtx.fillStyle = '#00ff41';
+    menuMatrixCtx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y - FONT_SIZE);
+    menuMatrixCtx.fillStyle = '#008f11';
+    menuMatrixCtx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FONT_SIZE, y - FONT_SIZE * 2);
+
+    menuMatrixDrops[i]++;
+    if (menuMatrixDrops[i] * FONT_SIZE > menuMatrixCanvas.height && Math.random() > 0.975) {
+      menuMatrixDrops[i] = Math.random() * -20;
+    }
+  }
+}
+
+let menuMatrixInterval;
+function startMenuMatrix() {
+  if (menuMatrixAnimating) return;
+  menuMatrixAnimating = true;
+  initMenuMatrix();
+  menuMatrixInterval = setInterval(drawMenuMatrix, 38);
+}
+
+function stopMenuMatrix() {
+  menuMatrixAnimating = false;
+  if (menuMatrixInterval) clearInterval(menuMatrixInterval);
+}
+
+function openMenu() {
+  menuOverlay.classList.add('open');
+  burgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  startMenuMatrix();
+}
+
+function closeMenu() {
+  menuOverlay.classList.add('closing');
+  stopMenuMatrix();
+  setTimeout(() => {
+    menuOverlay.classList.remove('open', 'closing');
+    burgerBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  }, 500);
+}
+
+burgerBtn.addEventListener('click', () => {
+  menuOverlay.classList.contains('open') ? closeMenu() : openMenu();
+});
+menuOverlay.addEventListener('click', e => {
+  // Fermer le menu si c'est un clic sur la zone vide (pas sur un bouton/lien)
+  if (!e.target.classList.contains('menu-link') && !e.target.classList.contains('burger') && !e.target.classList.contains('burger-line')) {
+    if (menuOverlay.classList.contains('open')) {
+      closeMenu();
+    }
+  }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); } });
+
+// ─── FOOTER ──────────────────────────────────────────────────────────────────
+const footerBtn = document.getElementById('footerBtn');
+const footer = document.querySelector('footer');
+
+function closeFooter() {
+  footer.classList.remove('active');
+  footer.classList.add('closing');
+  setTimeout(() => {
+    footer.classList.remove('closing');
+  }, 500);
+}
+
+footerBtn.addEventListener('click', () => {
+  if (footer.classList.contains('active')) {
+    closeFooter();
+  } else {
+    footer.classList.add('active');
+    footer.classList.remove('closing');
+  }
+});
+
+footer.addEventListener('click', e => {
+  if (e.target === footer) {
+    closeFooter();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && footer.classList.contains('active')) {
+    closeFooter();
+  }
+});
+
+// ─── CONTACT HUD ─────────────────────────────────────────────────────────────
+function sanitize(str) {
+  return str.replace(/[<>"'&]/g, c => ({'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'}[c]));
+}
+function validateEmail(e) { return /^[^\s@]{1,64}@[^\s@]{1,253}\.[^\s@]{2,}$/.test(e); }
+
+// ── SCRAMBLE EFFECT ─────────────────────────────────────────────────────────
+const SC = 'abcdefghijklmnopqrstuvwxyz0123456789#@$%&!?';
+
+function addScramble(el, getText, setText) {
+  let timer = null;
+  el.addEventListener('mouseenter', () => {
+    const original = getText();
+    let step = 0;
+    timer = setInterval(() => {
+      setText(original.split('').map((ch, i) => {
+        if (ch === ' ' || ch === '.' || ch === '?') return ch;
+        if (i < step) return ch;
+        return SC[Math.floor(Math.random() * SC.length)];
+      }).join(''));
+      step += 0.3;
+      if (step > original.length) { setText(original); clearInterval(timer); }
+    }, 40);
+  });
+  el.addEventListener('mouseleave', () => { clearInterval(timer); setText(getText()); });
+}
+
+// NAV LOGO SCRAMBLE
+const navLogo = document.querySelector('.nav-logo');
+if (navLogo) {
+  const ORIGINAL = 'linh b.';
+  addScramble(navLogo, () => ORIGINAL, t => { navLogo.firstChild.textContent = t; });
+}
+
+// MENU LINKS SCRAMBLE
+document.querySelectorAll('.menu-link').forEach(link => {
+  const orig = link.textContent;
+  addScramble(link, () => orig, t => { link.textContent = t; });
+});
+
+// QUESTION BTN SCRAMBLE
+(function() {
+  const btn = document.getElementById('navQuestion');
+  if (!btn) return;
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
+
+// FOOTER BTN SCRAMBLE
+(function() {
+  const btn = document.getElementById('footerBtn');
+  if (!btn) return;
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
+
+// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
+const navEl = document.querySelector('nav');
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+  const currentY = window.scrollY;
+  const scrolledDown = currentY > 10;
+  navEl.classList.toggle('scrolled', scrolledDown);
+  if (currentY < lastScrollY && currentY > 10) {
+    navEl.classList.add('scroll-up');
+  } else {
+    navEl.classList.remove('scroll-up');
+  }
+  lastScrollY = currentY;
+});
+
+// ─── BACK TO TOP BUTTON ──────────────────────────────────────────────────────
+const backToTop = document.getElementById('backToTop');
+let isBackToTopVisible = false;
+
+function showBackToTop() {
+  if (!isBackToTopVisible) {
+    backToTop.classList.add('active');
+    backToTop.classList.remove('closing');
+    isBackToTopVisible = true;
+  }
+}
+
+function hideBackToTop() {
+  if (isBackToTopVisible) {
+    backToTop.classList.remove('active');
+    backToTop.classList.add('closing');
+    setTimeout(() => {
+      backToTop.classList.remove('closing');
+    }, 500);
+    isBackToTopVisible = false;
+  }
+}
+
+window.addEventListener('scroll', () => {
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPosition = window.scrollY;
+  const threshold = scrollableHeight * 0.75;
+
+  if (scrollPosition >= threshold) {
+    showBackToTop();
+  } else {
+    hideBackToTop();
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// BACK TO TOP SCRAMBLE
+(function() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
+
+// LANGUAGE TOGGLE SCRAMBLE
+(function() {
+  const btn = document.getElementById('langToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
+</script>
+</body>
+</html>
