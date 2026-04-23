@@ -831,13 +831,13 @@ h1,h2,h3,h4,h5,h6{
 #logos_journaux img{
     margin:auto;
     display: block;
-    margin-right:150px;
+    margin-right:113px;
 
 }
 
 #logos_journaux a img{
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 30px;
+    padding-left: 30px;
     display: block;
     margin: 0px auto;
 }
@@ -2194,10 +2194,10 @@ footer{
     }
     
     #logos_journaux a {
-    padding-right: 10px;
+    padding-right: 8px;
 }
     #logos_journaux img {
-         width: 75%;
+         width: 56%;
          margin: auto;
         display: block;
 }
