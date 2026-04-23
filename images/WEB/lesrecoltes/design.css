@@ -74,7 +74,7 @@ html{
     margin:0px;
     z-index:11;
 }
-.newmenu ul a b{color:#fff;font-size: 0.8em}
+.newmenu ul a b{color:#fff;font-size: 0.64em}
 
 /* Animate Background*/
 /*
@@ -129,7 +129,7 @@ html{
     text-transform: uppercase;
     font-weight: 900;
     padding : 0 25px;
-    font-size: 1.1em;
+    font-size: 0.88em;
 }
 
 /* HOVER MENU */ 
@@ -452,7 +452,7 @@ h1,h2,h3,h4,h5,h6{
 .w3-top a{
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.1em;
+    font-size: 0.88em;
 }
 .w3-top a:hover{
     transition: 0.4s ease-in-out;
@@ -649,19 +649,19 @@ h1,h2,h3,h4,h5,h6{
 #epi h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#AF7817;
 }
 #epi p{
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1a1a1a;
 }
 #epi h3{
-    font-size: 1.3em;
+    font-size: 1.04em;
     color:#AF7817;
 }
 #epi h3 a{
-    font-size: 1.3em;
+    font-size: 1.04em;
     font-weight: bold;
     color:#AF7817;
     text-decoration: none;
@@ -686,7 +686,7 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 2.45em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 1.96em;color:#AF7817}
 
 #epi_fact1{
     width:100%;
@@ -698,7 +698,7 @@ h1,h2,h3,h4,h5,h6{
 }
 #epi_fact1 p{
     font-weight:lighter;
-    font-size:1.3em;text-align:center;padding:60px 60px 30px 60px;color: #fff;text-align:center;line-height: 1em}
+    font-size: 1.04em;text-align:center;padding:60px 60px 30px 60px;color: #fff;text-align:center;line-height: 1em}
 
 
         /* PORTFOLIO */ 
@@ -764,12 +764,12 @@ h1,h2,h3,h4,h5,h6{
 
 .carre_texte p{
     text-align: center;
-    font-size: 3em;
+    font-size: 2.4em;
     margin-block-start: 27%;
     margin-bottom: 20px;
 }
 .credit a{
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-decoration: none;
     color: #1a1a1a;
 }
@@ -785,7 +785,7 @@ h1,h2,h3,h4,h5,h6{
 }
 #epiciere .credit h6{
     padding-left: 80px;
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-decoration: none;
     color: #1a1a1a;
 }
@@ -795,12 +795,12 @@ h1,h2,h3,h4,h5,h6{
 #text_gene h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#1a1a1a;
 }
 #text_gene p{
     padding: 10px 80px;
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1a1a1a;
 }
 #genevieve img {
@@ -818,7 +818,7 @@ h1,h2,h3,h4,h5,h6{
     padding-top: 40px;
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#AF7817;
 }
 #logos_journaux{
@@ -855,7 +855,7 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     display:inline;
     padding: 0px 25px; 
-    font-size: 1.5em;
+    font-size: 1.2em;
 
             }
 
@@ -878,22 +878,22 @@ h1,h2,h3,h4,h5,h6{
 #cours h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#AF7817;
 }
 #cours p{
     text-align: left;
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1A1A1A;
 }
 #cours .credit h6{
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-decoration: none;
     color:#1A1A1A;
 }
 #cours .text h3 a{
     text-align: center;
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1A1A1A;
     text-decoration: none;
 }
@@ -966,15 +966,15 @@ h1,h2,h3,h4,h5,h6{
 #bistro h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#AF7817;
 }
 #bistro p{
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1a1a1a;
 }
 #bistro h3{
-    font-size: 1.3em;
+    font-size: 1.04em;
     color:#AF7817;
     margin-bottom: 50px;
 }
@@ -1003,18 +1003,18 @@ h1,h2,h3,h4,h5,h6{
     color: #AF7817;
 }
 #qec .text p{
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#1a1a1a;
 }
 #qec .text a{
     text-decoration: underline;
-    font-size:1em;
+    font-size: 0.8em;
     color:#1a1a1a;
 }
 #qec h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#AF7817;
 }
 
@@ -1032,11 +1032,11 @@ h1,h2,h3,h4,h5,h6{
 #text_rachel h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color:#fff;
 }
 #text_rachel p{
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#fff;
 }
 #image_r img{
@@ -1063,7 +1063,7 @@ h1,h2,h3,h4,h5,h6{
 #fourn h1{
     text-align: center;
     font-weight: lighter;
-    font-size: 3.2em;
+    font-size: 2.56em;
 }
 
 /* NOTRE ENGAGEMENT */
@@ -1074,7 +1074,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .containerdonnee h1{
     color: #fff;
-    font-size: 3.5em;
+    font-size: 2.8em;
 }
 .containerdonnee #ucol {
     float:left;
@@ -1109,7 +1109,7 @@ h1,h2,h3,h4,h5,h6{
 
 .containerdonnee .nombre{
     color:#fff;
-    font-size: 6em;
+    font-size: 4.8em;
 }
 .containerdonnee .texte_data{
     font-size: 200%;
@@ -1120,7 +1120,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .containerdonnee .texte_expliq p{
     font-family: 'Abel', sans-serif;
-    font-size: 1.1em;
+    font-size: 0.88em;
     color:#fff;
     line-height: 25px;
 }
@@ -1136,7 +1136,7 @@ h1,h2,h3,h4,h5,h6{
 #contact p{
     color:#1a1a1a;
     padding: 0 125px 0 125px;
-    font-size: 1.1em;
+    font-size: 0.88em;
 }
 #formulaire{
     width:100%;
@@ -1156,7 +1156,7 @@ h1,h2,h3,h4,h5,h6{
 }
 #adresse h1{
     padding-top: 60px;
-    font-size: 3.5em;
+    font-size: 2.8em;
     color: #1a1a1a;    
 }
 #coordonnees{
@@ -1164,12 +1164,12 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
 }
 #coordonnees p,#tel p{
-    font-size: 1.1em;
+    font-size: 0.88em;
     line-height: 1.2em;
     margin: 0;
 }
 #tel h1,#email h1{
-   font-size: 3.5em;
+   font-size: 2.8em;
    padding-top: 10px; 
     color: #1a1a1a;
 }
@@ -1177,7 +1177,7 @@ h1,h2,h3,h4,h5,h6{
     text-decoration: none;
     color:#1a1a1a;
     font-weight: bold;
-    font-size: 1.8em;
+    font-size: 1.44em;
 }
 tel a:hover{
     background: #1a1a1a;
@@ -1194,7 +1194,7 @@ tel a:hover{
 }
 #form_contact h1{
     padding-top: 60px;
-    font-size: 3.5em;
+    font-size: 2.8em;
 }
 
 .champs{
@@ -1202,7 +1202,7 @@ tel a:hover{
     padding-bottom: 10px;
 }
 .contact_form{
-    font-size: 1em;
+    font-size: 0.8em;
     color: #603f02;
 }
 label {
@@ -1241,13 +1241,13 @@ input{
     width: 300px;
     height: 30px;
     font-family: 'Abel', sans-serif;
-    font-size:1.2em;
+    font-size: 0.96em;
     color: #1a1a1a;
 }
 textarea{
     background: #ededed;
     font-family: 'Abel', sans-serif;
-    font-size:1.2em;
+    font-size: 0.96em;
     color: #1a1a1a;
 }
 .envoi_btn{
@@ -1259,7 +1259,7 @@ textarea{
     border: none;
     height: 50px;
     font-family: 'Abel', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-transform: uppercase;
     margin-left:auto;
     margin-right:auto;
@@ -1282,7 +1282,7 @@ textarea{
 
         /* FAQ */ 
 #titre h1{
-    font-size: 3.5em;
+    font-size: 2.8em;
     padding-top: 110px;
     padding-left: 50px; 
 }
@@ -1358,13 +1358,13 @@ textarea{
 }
 #titre_horaire h1{
     color:#AF7817;
-    font-size: 3.5em;
+    font-size: 2.8em;
     padding-top: 80px;
     padding-bottom:20px;
     text-align: center;
 }
 #texte_heures h2{
-    font-size: 1.8em;
+    font-size: 1.44em;
     text-align: center;
     color:#fff;
 }
@@ -1378,7 +1378,7 @@ textarea{
     border:none;
     color: #fff;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.6em;
     }
 .button_infolettre:hover{
     opacity: 0.4;
@@ -1415,7 +1415,7 @@ textarea{
     padding-bottom: 20px;
 }
 #mc_embed_signup .indicates-required span{
-    font-size: 0.8em;
+    font-size: 0.64em;
     color: #fff;
 }
 label{
@@ -1448,7 +1448,7 @@ input:hover{
     border: 1px solid #fff;
     height: 50px;
     font-family: 'Abel', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-transform: uppercase;
 }
 #mc_embed_signup .button:hover{
@@ -1482,7 +1482,7 @@ input:hover{
 .close {
     color: #fff;
     float: right;
-    font-size: 3em;
+    font-size: 2.4em;
     padding-right:25px;
     font-weight: bold;
 }
@@ -1525,7 +1525,7 @@ h3{
    width: 700px;
    padding: 16px 67px 0 56px;
    text-align: center;
-   font-size: 1em;
+   font-size: 0.8em;
 }
 .right {
     padding: 18px 45px 0 34px;
@@ -1541,7 +1541,7 @@ h3{
     padding: 7px;
     cursor: pointer;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-transform: uppercase;
     text-decoration:none;
     text-align: center;
@@ -1556,7 +1556,7 @@ h3{
     border:none;
     color: #fff;
     font-weight: lighter;
-    font-size: 2em;
+    font-size: 1.6em;
     margin-right: 20px;
     }
 .button:hover{
@@ -1638,7 +1638,7 @@ footer{
    width: 700px;
    padding: 35px 150px 0 125px;
    text-align: center;
-   font-size: 1em;
+   font-size: 0.8em;
 }
 
     #text_gene {
@@ -1738,7 +1738,7 @@ footer{
         /* FAITS */ 
     
     #epi_fact1 p{
-    padding: 100px 50px;font-size: 2.2em; margin-top: 100px;
+    padding: 100px 50px;font-size: 1.76em; margin-top: 100px;
 }
         /*POP UP NEWSLETTER*/
 
@@ -1747,7 +1747,7 @@ footer{
    width: 700px;
    padding: 45px 150px 0 125px;
    text-align: center;
-   font-size: 1em;
+   font-size: 0.8em;
 }
 
     #text_gene {
@@ -1806,7 +1806,7 @@ footer{
     #epi .text {padding: 85px 15% 250px 15%}
     #epi {height: 580px}
     #epi img {padding-top: 50px}
-    #epi_fact1 p{padding: 70px 50px 80px 50px;font-size: 2.2em; margin-top: 100px;}
+    #epi_fact1 p{padding: 70px 50px 80px 50px;font-size: 1.408em; margin-top: 100px;}
     .newmenu li a {font-size: 30px}
     #epiciere {height: 745px}
     #genevieve img {height: 517px}
@@ -1936,7 +1936,7 @@ footer{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 3.5em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 2.8em;color:#AF7817}
 
 #epi_fact1{
     width:100%;
@@ -1948,7 +1948,7 @@ footer{
 }
 #epi_fact1 p{
     font-weight:lighter;
-    font-size:2.5em;text-align:center;padding:150px 50px 80px 50px;color: #fff;text-align:center;line-height: 1em}
+    font-size: 2em;text-align:center;padding:150px 50px 80px 50px;color: #fff;text-align:center;line-height: 1em}
      
     /* COURS */ 
     
@@ -2001,7 +2001,7 @@ footer{
         padding-top: 50px;
 }
     .containerdonnee .nombre{
-        font-size: 8em;
+        font-size: 6.4em;
     }
     .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
         float: none;
@@ -2024,7 +2024,7 @@ footer{
     
     #contact p {
         padding: 25px 0 25px;
-        font-size: 1.1em;
+        font-size: 0.88em;
 }
     #titre_horaire h1 {
         padding: 50px;
@@ -2032,7 +2032,7 @@ footer{
     }
     #texte_heures h2{
         padding: 25px;
-        font-size:1.1em;
+        font-size: 0.88em;
         
     }
     #horaire{
@@ -2214,9 +2214,9 @@ footer{
 .section_fact .text {padding-top: 80px}
 #epi_fact1{padding-top: 270px
 }
-#epi_fact1 #haut_faits{font-size: 2em;padding:50px 30px 50px 30px}
-#epi_fact1 p{font-size: 2em;padding:50px 30px 50px 30px}
-#epi_fact1 #bas_faits{font-size: 2em;padding:50px 30px 50px 30px}  
+#epi_fact1 #haut_faits{font-size: 1.6em;padding:50px 30px 50px 30px}
+#epi_fact1 p{font-size: 1.28em;padding:50px 30px 50px 30px}
+#epi_fact1 #bas_faits{font-size: 1.6em;padding:50px 30px 50px 30px}  
 
 
      
@@ -2271,7 +2271,7 @@ footer{
         padding-top: 50px;
 }
     .containerdonnee .nombre{
-        font-size: 8em;
+        font-size: 6.4em;
     }
     .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
         float: none;
@@ -2298,7 +2298,7 @@ footer{
     
     #contact p {
         padding: 25px 0 25px;
-        font-size: 1.1em;
+        font-size: 0.88em;
 }
     #titre_horaire h1 {
         padding: 50px;
@@ -2306,7 +2306,7 @@ footer{
     }
     #texte_heures h2{
         padding: 25px;
-        font-size:1.1em;
+        font-size: 0.88em;
         
     }
     #horaire{
@@ -2459,7 +2459,7 @@ footer{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 3.2em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 2.56em;color:#AF7817}
 #epi_fact1{
     width:100%;
     display: flex;
@@ -2470,13 +2470,13 @@ footer{
 }
 #epi_fact1 #haut_faits{
     font-weight:lighter;
-    font-size:2.5em;text-align:center;padding:150px 80px 0px 80px;color: #fff;text-align:center;line-height: 1em}
+    font-size: 2em;text-align:center;padding:150px 80px 0px 80px;color: #fff;text-align:center;line-height: 1em}
 #epi_fact1 p{
     font-weight:lighter;
-    font-size:2.5em;text-align:center;padding:0 80px 30px 80px;color: #fff;text-align:center;line-height: 1em}
+    font-size: 2em;text-align:center;padding:0 80px 30px 80px;color: #fff;text-align:center;line-height: 1em}
 #epi_fact1 #bas_faits{
     font-weight:lighter;
-    font-size:2.5em;text-align:center;padding:0 80px 60px 80px;color: #fff;text-align:center;line-height: 1em}    
+    font-size: 2em;text-align:center;padding:0 80px 60px 80px;color: #fff;text-align:center;line-height: 1em}    
     
     
     #container_cours2 img:nth-child(1), img:nth-child(3) {
@@ -2531,7 +2531,7 @@ footer{
         padding-top: 75px;
 }
     .containerdonnee .nombre{
-        font-size: 6em;
+        font-size: 4.8em;
     }
     .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
         float: none;
@@ -2558,7 +2558,7 @@ footer{
     
     #contact p {
         padding: 25px 0 25px;
-        font-size: 1.1em;
+        font-size: 0.88em;
 }
     #titre_horaire h1 {
         padding: 50px;
@@ -2566,7 +2566,7 @@ footer{
     }
     #texte_heures h2{
         padding: 25px;
-        font-size:1.6em;
+        font-size: 1.28em;
         
     }
     #horaire{
@@ -2603,13 +2603,13 @@ footer{
     padding: 7px;
     cursor: pointer;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-transform: uppercase;
     text-decoration:none;
     text-align: center;
     width: 175px;
 }
-    .button {font-size:1.7em}
+    .button {font-size: 1.36em}
     
     #mc_embed_signup {padding-top: 50px}
 
@@ -2617,7 +2617,7 @@ footer{
     width: 320px;
 }
     
-    .close{font-size: 2em;}
+    .close{font-size: 1.6em;}
     input {width: 250px;}
     .clear {
     padding-top: 5px;
@@ -2821,7 +2821,7 @@ footer{
         padding-top: 50px;
 }
     .containerdonnee .nombre{
-        font-size: 6em;
+        font-size: 4.8em;
     }
     .containerdonnee #dcol,.containerdonnee #ucol,.containerdonnee #tcol{
         float: none;
@@ -2839,7 +2839,7 @@ footer{
         
     }
     #fourn h1 {
-    font-size: 2.8em;
+    font-size: 2.24em;
 }
     
            /* FAQ */  
@@ -2851,7 +2851,7 @@ footer{
     
     #contact p {
         padding: 25px 0 25px;
-        font-size: 1.1em;
+        font-size: 0.88em;
 }
     #titre_horaire h1 {
         padding: 50px;
@@ -2859,7 +2859,7 @@ footer{
     }
     #texte_heures h2{
         padding: 25px;
-        font-size:1.1em;
+        font-size: 0.88em;
         
     }
     #horaire{
@@ -2897,13 +2897,13 @@ footer{
     padding: 7px;
     cursor: pointer;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 0.72em;
     text-transform: uppercase;
     text-decoration:none;
     text-align: center;
 }
 .button 
-{font-size:1.7em}
+{font-size: 1.36em}
     
 #mc_embed_signup {
     padding-top: 50px;
@@ -2913,7 +2913,7 @@ footer{
     width: 320px;
 }
     
-.close{font-size: 2em;}
+.close{font-size: 1.6em;}
 input {width: 250px;}
 .clear {
     padding-top: 5px;
