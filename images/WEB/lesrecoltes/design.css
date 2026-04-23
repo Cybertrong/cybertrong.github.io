@@ -23,7 +23,7 @@ html{
 
 /*NEW BURGER*/
 .newburger{
-    margin: 3.5% 0 0 93%;
+    margin: 3% 0 0 79%;
     cursor: pointer;
     display: inline-block;
     cursor: pointer;
@@ -31,17 +31,17 @@ html{
     z-index: 100;
 }
 .newbar1, .newbar3{
-    width: 40px;
-    height: 4px;
+    width: 34px;
+    height: 3px;
     background-color: #AF7817;
     margin: 5px 0;
     transition: 0.3s;
 }
 .newbar2 {
-    width: 20px;
-    height: 4px;
+    width: 17px;
+    height: 3px;
     background-color: #AF7817;
-    margin: 5px 0;
+    margin: 4px 0;
 }
 .change .newbar1 {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
