@@ -1516,12 +1516,6 @@ h3{
     line-height: 2.45rem;
     text-align: center;
 }
-.newsletter_field{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
 .left{
    width: 350px;
    padding: 16px 67px 11px 25px;
@@ -2086,7 +2080,7 @@ footer{
     
           /*DISPLAY NONE*/  
     
-    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,.newsletter_field{display: none}
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere{display: none}
 
         /*MENU ET MENU MOBILE*/
 
@@ -2350,7 +2344,7 @@ footer{
     
           /*DISPLAY NONE*/  
     
-    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle,.newsletter_field {
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle {
         display: none;
 }
 
@@ -2593,7 +2587,7 @@ footer{
     
        /* NEWSLETTER FIELD */ 
     
-    .newsletter_field{height: 90px}
+    {height: 90px}
     #infolettre h2 {padding-bottom: 0}
     .right {
     padding: 15px 30px 0 70px;
@@ -2649,7 +2643,7 @@ footer{
     
           /*DISPLAY NONE*/  
     
-    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle,.newsletter_field{
+    .logo_hosp,.mySlides img,.titre h1,h2 .iconesmobile h2,.arrow,.newburger,.fullscreen-bg__video,.tagho,.tagad,.tagbask,.portfolio,.presse,#container_cours,#container_cours2,.portfolio3 img,.portfolio4 .carre_texte,#epiciere,#bol img,.left,.middle{
         display: none;
 }
 
@@ -2886,7 +2880,7 @@ footer{
     
            /* NEWSLETTER FIELD */  
 
-.newsletter_field{height: 80px}
+{height: 80px}
  #infolettre h2 {padding-bottom: 0}
 .right {
     padding: 25px 30px 0 70px;
