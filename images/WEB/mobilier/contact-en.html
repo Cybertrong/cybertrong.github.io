@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Mobilier Design Commercial</title>
+    <title>Contact — Modular Commercial Furniture</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -109,9 +109,6 @@
         .logo span:nth-child(24) { animation-delay: 2.3s; }
         .logo span:nth-child(25) { animation-delay: 2.4s; }
         .logo span:nth-child(26) { animation-delay: 2.5s; }
-        .logo span:nth-child(27) { animation-delay: 2.6s; }
-        .logo span:nth-child(28) { animation-delay: 2.7s; }
-        .logo span:nth-child(29) { animation-delay: 2.8s; }
 
         .logo:hover span {
             opacity: 0.6;
@@ -246,29 +243,6 @@
             color: #99430e;
         }
 
-        .menu-footer {
-            position: absolute;
-            bottom: 3rem;
-            left: 3rem;
-            right: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--bg-light);
-            opacity: 0.6;
-        }
-
-        .menu-footer a {
-            color: var(--bg-light);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .menu-footer a:hover {
-            opacity: 1;
-        }
-
         .language-switcher {
             display: flex;
             gap: 1rem;
@@ -292,6 +266,29 @@
 
         .language-switcher a:hover {
             background: rgba(153, 67, 14, 0.5);
+        }
+
+        .menu-footer {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            right: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--bg-light);
+            opacity: 0.6;
+        }
+
+        .menu-footer a {
+            color: var(--bg-light);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-footer a:hover {
+            opacity: 1;
         }
 
         /* MOBILE LOGO BAR */
@@ -687,43 +684,43 @@
             <span></span>
             <span></span>
         </div>
-        <div class="logo" id="logo"><span>M</span><span>O</span><span>B</span><span>I</span><span>L</span><span>I</span><span>E</span><span>R</span><span> </span><span>M</span><span>O</span><span>D</span><span>U</span><span>L</span><span>A</span><span>I</span><span>R</span><span>E</span><span> </span><span>C</span><span>O</span><span>M</span><span>M</span><span>E</span><span>R</span><span>C</span><span>I</span><span>A</span><span>L</span></div>
+        <div class="logo" id="logo"><span>M</span><span>O</span><span>D</span><span>U</span><span>L</span><span>A</span><span>R</span><span> </span><span>C</span><span>O</span><span>M</span><span>M</span><span>E</span><span>R</span><span>C</span><span>I</span><span>A</span><span>L</span><span> </span><span>F</span><span>U</span><span>R</span><span>N</span><span>I</span><span>T</span><span>U</span><span>R</span><span>E</span></div>
     </header>
 
     <!-- MOBILE LOGO BAR -->
     <div class="mobile-logo-bar">
-        <div class="mobile-logo-text">MOBILIER MODULAIRE COMMERCIAL</div>
+        <div class="mobile-logo-text">MODULAR COMMERCIAL FURNITURE</div>
     </div>
 
     <div class="menu-modal" id="menuModal">
         <div class="menu-content">
-            <a href="index.html">Accueil</a>
-            <a href="index.html#projects">Approche</a>
-            <a href="index.html#about">Usages</a>
-            <a href="index.html#value">Valeur</a>
-            <a href="index.html#gallery">Galerie</a>
-            <a href="contact.html">Contact</a>
+            <a href="index-en.html">Home</a>
+            <a href="index-en.html#projects">Approach</a>
+            <a href="index-en.html#about">Uses</a>
+            <a href="index-en.html#value">Value</a>
+            <a href="index-en.html#gallery">Gallery</a>
+            <a href="contact-en.html">Contact</a>
             <div class="language-switcher">
-                <a href="contact.html" class="lang-fr active">FR</a>
-                <a href="contact-en.html" class="lang-en">EN</a>
+                <a href="contact.html" class="lang-fr">FR</a>
+                <a href="contact-en.html" class="lang-en active">EN</a>
             </div>
         </div>
     </div>
 
     <main>
         <div class="container">
-            <h1>Nous <span style="color: #083335;">contacter</span></h1>
+            <h1>Get in <span style="color: #083335;">touch</span></h1>
 
-            <p class="contact-intro">Vous avez des questions sur nos solutions de mobilier modulaire ? N'hésitez pas à nous écrire. Nous répondrons à votre message dans les 48h.</p>
+            <p class="contact-intro">Have questions about our modular furniture solutions? Feel free to reach out. We'll get back to you within 48 hours.</p>
 
             <form id="contactForm">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                     <div class="form-group">
-                        <label for="firstName">Prénom</label>
+                        <label for="firstName">First Name</label>
                         <input type="text" id="firstName" name="firstName" required>
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Nom</label>
+                        <label for="lastName">Last Name</label>
                         <input type="text" id="lastName" name="lastName" required>
                     </div>
                 </div>
@@ -734,7 +731,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Téléphone</label>
+                    <label for="phone">Phone</label>
                     <input type="tel" id="phone" name="phone">
                 </div>
 
@@ -743,14 +740,14 @@
                     <textarea id="message" name="message" required></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Envoyer</button>
+                <button type="submit" class="submit-btn">Send</button>
             </form>
         </div>
     </main>
 
     <footer>
-        <a href="contact.html">Contact</a>
-        <p>© 2026 Mobilier Design Commercial Modulaire.</p>
+        <a href="contact-en.html">Contact</a>
+        <p>© 2026 Modular Commercial Furniture Design.</p>
     </footer>
 
     <script>
@@ -780,18 +777,18 @@
 
         logo.style.cursor = 'pointer';
         logo.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = 'index-en.html';
         });
 
         // EmailJS Configuration
-        emailjs.init('YOUR_PUBLIC_KEY'); // À remplacer avec votre clé publique EmailJS
+        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
 
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const templateParams = {
-                to_email: 'votre-email@example.com', // À remplacer avec votre email
+                to_email: 'your-email@example.com', // Replace with your email
                 from_name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
                 from_email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
@@ -800,16 +797,16 @@
 
             try {
                 const response = await emailjs.send(
-                    'SERVICE_ID', // À remplacer
-                    'TEMPLATE_ID', // À remplacer
+                    'SERVICE_ID', // Replace
+                    'TEMPLATE_ID', // Replace
                     templateParams
                 );
-                console.log('Email envoyé!', response.status);
-                alert('Merci pour votre message! Nous vous répondrons bientôt.');
+                console.log('Email sent!', response.status);
+                alert('Thank you for your message! We will get back to you soon.');
                 form.reset();
             } catch (error) {
-                console.error('Erreur:', error);
-                alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                console.error('Error:', error);
+                alert('Error sending message. Please try again.');
             }
         });
     </script>
