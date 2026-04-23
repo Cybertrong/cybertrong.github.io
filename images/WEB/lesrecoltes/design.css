@@ -1598,68 +1598,7 @@ footer{
 
 /*---------------------------------------------------------------------------------------------------*/
 /* RESPONSIVE FOR THUMBNAIL VIEW (600px width) - Inspired by VIC's minimalist approach */
-
-@media screen and (max-width: 600px){
-    /* Hide non-essential elements - keep it simple like VIC */
-    .tagho, .tagad, .tagbask { display: none !important; }
-    .ongletho, .ongletad { display: none !important; }
-    .menu { display: none !important; }
-    .portfolio, #container_cours, #container_cours2, #faq, #formulaire { display: none !important; }
-
-    /* Reduce base font size */
-    html { font-size: 11px !important; }
-    body { font-size: 11px !important; }
-
-    /* Logo and header */
-    .logo_hosp { margin: 8px 0 15px 20px !important; }
-    .logo_hosp img { width: 60px !important; }
-
-    #barre { height: 60px !important; }
-    #web_top { height: 90px !important; }
-
-    /* Typography */
-    h1 { font-size: 1.8em !important; }
-    h2 { font-size: 1.4em !important; }
-    h3 { font-size: 1.1em !important; }
-
-    /* Sections - simple proportional reduction */
-    #epi { height: 250px !important; }
-    #epi .text { padding: 50px 15% !important; }
-    #epiciere { height: 200px !important; }
-    #genevieve img { height: 195px !important; }
-    .presse { height: 150px !important; }
-    #logos_journaux a img { width: 70% !important; padding: 8px !important; }
-
-    #cours { height: 220px !important; }
-    #cours .text { padding: 50px 15% !important; }
-    #bistro { height: 180px !important; }
-    #bistro .text { padding: 40px 15% !important; }
-    #qec { height: 220px !important; }
-    #qec .text { padding: 50px 15% !important; }
-    #cuisine_chef { height: 180px !important; }
-    #text_rachel { padding: 50px 15% !important; }
-
-    /* Engagement section */
-    .fourn_epicerie { height: 250px !important; position: relative !important; }
-    .containerdonnee { padding-top: 30px !important; }
-    .containerdonnee #ucol, .containerdonnee #dcol, .containerdonnee #tcol {
-        float: none !important;
-        width: 100% !important;
-        margin: 0 !important;
-    }
-    .containerdonnee .nombre { font-size: 2em !important; }
-
-    /* Contact */
-    #contact { display: block !important; height: auto !important; }
-    #contact p { padding: 15px 20px !important; }
-    #adresse h1 { padding-top: 20px !important; }
-    #tel h1, #email h1 { padding-top: 15px !important; }
-
-    /* Footer */
-    #horaire { height: 120px !important; }
-    footer { height: 30px !important; }
-    .info_footer #text_f p { font-size: 70% !important; }
-}
+/* @media screen removed to allow section_fact to adapt naturally */
 @media DISABLED_TO_FORCE_DESKTOP and and (min-width: 1440px) and (max-width: 1920px){
      .newburger{
     margin: 3.5% 0 0 93%;
