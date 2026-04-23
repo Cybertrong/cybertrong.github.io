@@ -16,7 +16,7 @@ html, body{
 
 .burger {
   position: fixed;
-  top: 3.5%;
+  top: 6%;
   right: 7%;
   width: 40px;
   height: 4px;
@@ -37,10 +37,10 @@ html, body{
   transform-origin: center;
 }
 .burger::before {
-  top: calc(3.5% - 8px);
+  top: calc(6% - 8px);
 }
 .burger::after {
-  top: calc(3.5% + 8px);
+  top: calc(6% + 8px);
 }
 .burger:hover {
   background: transparent;
