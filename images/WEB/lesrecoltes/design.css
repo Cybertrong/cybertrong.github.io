@@ -686,7 +686,7 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 1.96em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 1.96em;color:#AF7817;margin-bottom: 50px}
 
 #epi_fact1{
     width:100%;
@@ -1936,7 +1936,7 @@ footer{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 2.8em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 2.8em;color:#AF7817;margin-bottom: 50px}
 
 #epi_fact1{
     width:100%;
@@ -2459,7 +2459,7 @@ footer{
     text-align: center;
     z-index: 1;
 }
-.section_fact h1{font-weight: lighter;font-size: 2.56em;color:#AF7817}
+.section_fact h1{font-weight: lighter;font-size: 2.56em;color:#AF7817;margin-bottom: 50px}
 #epi_fact1{
     width:100%;
     display: flex;
