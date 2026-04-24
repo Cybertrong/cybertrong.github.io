@@ -1015,6 +1015,75 @@
     display: none;
   }
 
+  /* LIGHTBOX DETAILS BUTTON */
+  .lightbox-details-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    background: rgba(0,0,0,0.4);
+    color: var(--ink);
+    border: none;
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 501;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    outline: none;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, background 0.2s, color 0.2s;
+  }
+
+  .lightbox-modal.active .lightbox-details-btn {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-details-btn:hover {
+    background: var(--ink);
+    color: #000;
+  }
+
+  /* LIGHTBOX DETAILS OVERLAY */
+  .lightbox-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15vh;
+    z-index: 502;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.75));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease);
+    padding: 0 36px;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .lightbox-details-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lightbox-details-content {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-align: left;
+    white-space: pre-line;
+  }
+
   @keyframes lightboxSmoothDissolve {
     0% {
       opacity: 1;
@@ -1137,6 +1206,10 @@
 <!-- LIGHTBOX MODAL -->
 <div class="lightbox-modal" id="lightboxModal">
   <button class="lightbox-close" id="lightboxClose">×</button>
+  <button class="lightbox-details-btn" id="lightboxDetailsBtn">détails</button>
+  <div class="lightbox-details-overlay" id="lightboxDetailsOverlay">
+    <div class="lightbox-details-content" id="lightboxDetailsContent"></div>
+  </div>
   <div class="lightbox-container">
     <div class="lightbox-slides" id="lightboxSlides"></div>
     <div class="lightbox-filmstrip" id="lightboxFilmstrip"></div>
@@ -1165,7 +1238,8 @@ const projects = [
     tags: ["branding", "print"],
     category: ["branding"],
     color: "#000000",
-    imgs: ["images/signet-angele.jpg"]
+    imgs: ["images/signet-angele.jpg"],
+    details: "Company : ANALEKTA\nField : Music"
   },
   {
     title: "presentation",
@@ -1173,7 +1247,11 @@ const projects = [
     tags: ["presentation", "design"],
     category: ["design"],
     color: "#000000",
-    imgs: ["images/presentation/powerpoint-cdpq.jpg", "images/presentation/presentation_tom.jpg"]
+    imgs: ["images/presentation/powerpoint-cdpq.jpg", "images/presentation/presentation_tom.jpg"],
+    details: [
+      "Company : Canada Deposits and Placement Corporation\nField : Finance",
+      "Company : tomaté!\nField : Agriculture"
+    ]
   },
   {
     title: "flyer and business cards",
@@ -1181,7 +1259,14 @@ const projects = [
     tags: ["print", "identity"],
     category: ["print"],
     color: "#000000",
-    imgs: ["images/flyer-invitation.jpg", "images/carte-affaires-consentia.jpg", "images/invitation-eauvie.jpg", "images/brochure-epicerie.jpg", "images/brochure-dxp.jpg"]
+    imgs: ["images/flyer-invitation.jpg", "images/carte-affaires-consentia.jpg", "images/invitation-eauvie.jpg", "images/brochure-epicerie.jpg", "images/brochure-dxp.jpg"],
+    details: [
+      "Company : Vinos Y tango\nField : Events",
+      "Company : Consentia\nField : Non-profit",
+      "Company : EauVie\nField : Developer",
+      "Company : Fresh from the farm\nField : Distributor",
+      "Company : DXP\nField : Management"
+    ]
   },
   {
     title: "brochures and covers",
@@ -1189,7 +1274,11 @@ const projects = [
     tags: ["editorial", "print"],
     category: ["editorial"],
     color: "#000000",
-    imgs: ["images/couverture-brochure.jpg", "images/bilan-annuel.jpg"]
+    imgs: ["images/couverture-brochure.jpg", "images/bilan-annuel.jpg"],
+    details: [
+      "Company : Private\nField : Design",
+      "Company : Fresh from the farm\nField : Distributor"
+    ]
   },
   {
     title: "cover illustration",
@@ -1197,7 +1286,8 @@ const projects = [
     tags: ["illustration", "editorial"],
     category: ["editorial"],
     color: "#000000",
-    imgs: ["images/illustration-livre.jpg"]
+    imgs: ["images/illustration-livre.jpg"],
+    details: "Company : Quebec Amerique\nField : Publisher"
   },
   {
     title: "fly",
@@ -1241,7 +1331,8 @@ const projects = [
     tags: ["print"],
     category: ["editorial"],
     color: "#f5f5f5",
-    imgs: ["images/Affiche/affiches.png"]
+    imgs: ["images/Affiche/affiches.png"],
+    details: "Company : Épicerie les récoltes\nField : Grocery"
   },
   {
     title: "illustration",
@@ -1249,7 +1340,12 @@ const projects = [
     tags: ["illustration", "digital"],
     category: ["digital"],
     color: "#000000",
-    imgs: ["images/illustration/enseigne_illus.jpg", "images/illustration/hands_illus.jpg", "images/illustration/zamboni_illus.jpg"]
+    imgs: ["images/illustration/enseigne_illus.jpg", "images/illustration/hands_illus.jpg", "images/illustration/zamboni_illus.jpg"],
+    details: [
+      "Company : Private\nField : Illustration",
+      "Company : Convatec\nField : Pharmaceutical",
+      "Company : Hussard\nField : Online sales"
+    ]
   },
   {
     title: "product catalogs",
@@ -1257,7 +1353,8 @@ const projects = [
     tags: ["editorial", "design"],
     category: ["editorial"],
     color: "#000000",
-    imgs: ["images/Catalogue/Catalog.png"]
+    imgs: ["images/Catalogue/Catalog.png"],
+    details: "Company : Convatec\nField : Pharmaceutical"
   },
   {
     title: "television series",
@@ -1265,7 +1362,14 @@ const projects = [
     tags: ["art direction", "print"],
     category: ["print"],
     color: "#000000",
-    imgs: ["images/poster/poster_cine.png", "images/poster/flyer.jpg", "images/poster/art1.png", "images/poster/art2.png", "images/poster/jeux.png"]
+    imgs: ["images/poster/poster_cine.png", "images/poster/flyer.jpg", "images/poster/art1.png", "images/poster/art2.png", "images/poster/jeux.png"],
+    details: [
+      "Company : Radio Canada\nField : Television series",
+      "Company : Radio Canada\nField : Television series",
+      "Company : Radio Canada\nField : Television series",
+      "Company : Radio Canada\nField : Television series",
+      "Company : Radio Canada\nField : Television series"
+    ]
   },
   {
     title: "social media",
@@ -1273,7 +1377,11 @@ const projects = [
     tags: ["social media", "digital"],
     category: ["digital"],
     color: "#000000",
-    imgs: ["images/rs/reseaux_sociaux_tomate.jpg", "images/rs/reseaux_sociaux_hussard.jpg"]
+    imgs: ["images/rs/reseaux_sociaux_tomate.jpg", "images/rs/reseaux_sociaux_hussard.jpg"],
+    details: [
+      "Company : tomaté!\nField : Agriculture",
+      "Company : Hussard boutique\nField : Online sales"
+    ]
   },
   {
     title: "logo",
@@ -1281,7 +1389,15 @@ const projects = [
     tags: ["branding", "identity"],
     category: ["branding"],
     color: "#000000",
-    imgs: ["images/LOGO/PANZA.jpg", "images/LOGO/st.jpg", "images/LOGO/fly.jpg", "images/LOGO/ancetre.jpg", "images/LOGO/recoltes.jpg", "images/LOGO/girouette.jpg"]
+    imgs: ["images/LOGO/PANZA.jpg", "images/LOGO/st.jpg", "images/LOGO/fly.jpg", "images/LOGO/ancetre.jpg", "images/LOGO/recoltes.jpg", "images/LOGO/girouette.jpg"],
+    details: [
+      "Company : Panza\nField : Software",
+      "Company : Sainte fumée\nField : Designer",
+      "Company : Fly\nField : Application",
+      "Company : The Ancestors\nField : Rugby club",
+      "Company : Épicerie les récoltes\nField : Grocery",
+      "Company : Girouette\nField : Ice cream restaurant"
+    ]
   },
   {
     title: "identity",
@@ -1289,7 +1405,8 @@ const projects = [
     tags: ["identity", "branding"],
     category: ["branding"],
     color: "#000000",
-    imgs: ["images/identité/girouette.jpg"]
+    imgs: ["images/identité/girouette.jpg"],
+    details: "Company : Girouette\nField : Ice cream restaurant"
   }
 ];
 
@@ -1694,8 +1811,12 @@ const lightboxFilmstrip = document.getElementById('lightboxFilmstrip');
 const lightboxYear = document.getElementById('lightboxYear');
 const lightboxTitle = document.getElementById('lightboxTitle');
 const lightboxTags = document.getElementById('lightboxTags');
+const lightboxDetailsBtn = document.getElementById('lightboxDetailsBtn');
+const lightboxDetailsOverlay = document.getElementById('lightboxDetailsOverlay');
+const lightboxDetailsContent = document.getElementById('lightboxDetailsContent');
 let currentLightboxIdx = 0;
 let lightboxInterval;
+let currentDetailsProject = null;
 
 function openLightbox(projectIdx, project) {
   // Reset
@@ -1758,6 +1879,10 @@ function openLightbox(projectIdx, project) {
   lightboxTitle.textContent = project.title;
   lightboxTags.innerHTML = project.tags.map(t => `<span class="lightbox-tag">${t}</span>`).join('');
 
+  // Update details for lightbox
+  currentDetailsProject = project;
+  updateLightboxDetails(0);
+
   // Show modal
   lightboxModal.classList.add('active');
 
@@ -1767,8 +1892,23 @@ function openLightbox(projectIdx, project) {
   }
 }
 
+function updateLightboxDetails(slideIdx) {
+  lightboxDetailsOverlay.classList.remove('active');
+  if (currentDetailsProject && currentDetailsProject.details) {
+    const details = currentDetailsProject.details;
+    if (Array.isArray(details)) {
+      lightboxDetailsContent.textContent = details[slideIdx] || 'Détails à venir...';
+    } else {
+      lightboxDetailsContent.textContent = details;
+    }
+  } else {
+    lightboxDetailsContent.textContent = 'Détails à venir...';
+  }
+}
+
 function closeLightbox() {
   if (lightboxInterval) clearInterval(lightboxInterval);
+  lightboxDetailsOverlay.classList.remove('active');
   lightboxModal.classList.add('closing');
   setTimeout(() => {
     lightboxModal.classList.remove('active');
@@ -1795,6 +1935,8 @@ function startLightboxSlideshow(slideCount) {
     if (thumbnails[currentLightboxIdx]) {
       thumbnails[currentLightboxIdx].classList.add('active');
     }
+
+    updateLightboxDetails(currentLightboxIdx);
   }, 2000);
 }
 
@@ -1817,7 +1959,51 @@ function goToLightboxSlide(idx) {
   if (thumbnails[currentLightboxIdx]) {
     thumbnails[currentLightboxIdx].classList.add('active');
   }
+
+  updateLightboxDetails(currentLightboxIdx);
 }
+
+// LIGHTBOX DETAILS BUTTON HANDLERS
+lightboxDetailsBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = lightboxDetailsOverlay.classList.toggle('active');
+  if (isOpen) {
+    if (lightboxInterval) clearInterval(lightboxInterval);
+  } else {
+    const slides = lightboxSlides.querySelectorAll('.lightbox-slide');
+    if (slides.length > 1 && currentDetailsProject && !currentDetailsProject.isEmbedded && !currentDetailsProject.isMockup) {
+      startLightboxSlideshow(slides.length);
+    }
+  }
+});
+
+lightboxDetailsOverlay.addEventListener('click', (e) => {
+  if (e.target === lightboxDetailsOverlay) {
+    lightboxDetailsOverlay.classList.remove('active');
+    const slides = lightboxSlides.querySelectorAll('.lightbox-slide');
+    if (slides.length > 1 && currentDetailsProject && !currentDetailsProject.isEmbedded && !currentDetailsProject.isMockup) {
+      startLightboxSlideshow(slides.length);
+    }
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightboxDetailsOverlay.classList.contains('active')) {
+    lightboxDetailsOverlay.classList.remove('active');
+    const slides = lightboxSlides.querySelectorAll('.lightbox-slide');
+    if (slides.length > 1 && currentDetailsProject && !currentDetailsProject.isEmbedded && !currentDetailsProject.isMockup) {
+      startLightboxSlideshow(slides.length);
+    }
+  }
+});
+
+// Apply scramble to details button
+(function() {
+  const btn = document.getElementById('lightboxDetailsBtn');
+  if (!btn) return;
+  const orig = btn.textContent;
+  addScramble(btn, () => orig, t => { btn.textContent = t; });
+})();
 
 // Add click listener to each project card
 document.querySelectorAll('.project').forEach((card, idx) => {
@@ -1860,6 +2046,7 @@ lightboxFilmstrip.addEventListener('mouseleave', () => {
     startLightboxSlideshow(slides.length);
   }
 });
+
 
 // LANGUAGE TOGGLE
 const langToggleBtn = document.getElementById('langToggle');
