@@ -1482,14 +1482,14 @@ const projects = [
   }
 ];
 
-// PAGE LOADER
+// PAGE LOADER — progression pondérée par les octets réels téléchargés
 (function() {
-  const loader  = document.getElementById('page-loader');
-  const bar     = document.getElementById('loaderBar');
-  const pctEl   = document.getElementById('loaderPct');
+  const loader = document.getElementById('page-loader');
+  const bar    = document.getElementById('loaderBar');
+  const pctEl  = document.getElementById('loaderPct');
 
   const allImgs = projects.flatMap(p => p.imgs || []);
-  const total   = allImgs.length;
+  const n = allImgs.length;
 
   function finish() {
     bar.style.width = '100%';
@@ -1500,21 +1500,52 @@ const projects = [
     }, 300);
   }
 
-  if (total === 0) { finish(); return; }
+  if (n === 0) { finish(); return; }
 
-  let loaded = 0;
-  function onLoad() {
-    loaded++;
-    const p = Math.round((loaded / total) * 100);
-    bar.style.width = p + '%';
-    pctEl.textContent = p + '%';
-    if (loaded >= total) finish();
+  const bytesLoaded = new Array(n).fill(0);
+  const bytesTotal  = new Array(n).fill(0);
+  let completed = 0;
+
+  function updateBar() {
+    const sumL = bytesLoaded.reduce((a, b) => a + b, 0);
+    const sumT = bytesTotal.reduce((a, b) => a + b, 0);
+    if (sumT === 0) return;
+    const pct = Math.min(99, Math.round((sumL / sumT) * 100));
+    bar.style.width = pct + '%';
+    pctEl.textContent = pct + '%';
   }
 
-  allImgs.forEach(src => {
-    const img = new Image();
-    img.onload = img.onerror = onLoad;
-    img.src = src;
+  function onDone() {
+    if (++completed >= n) finish();
+  }
+
+  allImgs.forEach((src, i) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', src, true);
+    xhr.responseType = 'blob';
+
+    xhr.onprogress = (e) => {
+      if (e.lengthComputable) {
+        bytesLoaded[i] = e.loaded;
+        bytesTotal[i]  = e.total;
+        updateBar();
+      }
+    };
+
+    xhr.onload = () => {
+      const size = xhr.response ? xhr.response.size : (bytesTotal[i] || 1);
+      bytesLoaded[i] = bytesTotal[i] = size;
+      updateBar();
+      onDone();
+    };
+
+    xhr.onerror = () => {
+      bytesLoaded[i] = bytesTotal[i] = 1;
+      updateBar();
+      onDone();
+    };
+
+    xhr.send();
   });
 })();
 
