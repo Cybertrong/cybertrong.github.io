@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>analytics // linh b.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Syne:wght@300;400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#000;--green:#00ff41;--gdim:#008f11;--gdark:#003b00;--gold:#c9a84c;--mono:'DM Mono',monospace;--sans:'Syne',sans-serif}
+html,body{background:#000;color:var(--green);font-family:var(--mono);font-weight:300;min-height:100vh;overflow-x:hidden}
+#mc{position:fixed;inset:0;z-index:0;opacity:.22;pointer-events:none}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none;z-index:1}
+
+/* LOCK */
+#lock{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.93)}
+#lock.gone{display:none}
+.lbox{width:320px;border:1px solid var(--gdim);padding:40px 36px;background:rgba(0,6,0,.97);position:relative}
+.lbox::before{content:'';position:absolute;inset:0;border:1px solid transparent;background:linear-gradient(135deg,var(--green),transparent 50%,var(--gdim)) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;pointer-events:none}
+.ltag{font-size:8px;letter-spacing:.3em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px}
+.ltit{font-size:22px;color:var(--green);letter-spacing:.04em;margin-bottom:30px;text-shadow:0 0 24px rgba(0,255,65,.45)}
+.llbl{font-size:8px;letter-spacing:.25em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px;display:block}
+.linp{width:100%;background:transparent;border:none;border-bottom:1px solid var(--gdim);color:var(--green);font-family:var(--mono);font-size:14px;padding:10px 0;outline:none;letter-spacing:.1em;margin-bottom:26px;transition:border-color .2s}
+.linp:focus{border-bottom-color:var(--green)}
+.linp.err{border-bottom-color:#f33;animation:shk .4s ease}
+@keyframes shk{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.lbtn{width:100%;background:transparent;border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.2em;padding:14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.lbtn:hover{background:var(--green);color:#000}
+.lerr{font-size:9px;letter-spacing:.2em;color:#f33;margin-top:12px;text-transform:uppercase;text-align:center;min-height:14px}
+
+/* DASHBOARD */
+#dash{position:relative;z-index:2;display:none;flex-direction:column;min-height:100vh}
+#dash.on{display:flex}
+.dhdr{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.9);border-bottom:1px solid rgba(0,255,65,.18);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
+.dlogo{font-size:13px;letter-spacing:.1em}
+.dlogo em{color:var(--gold);font-style:normal;font-size:9px;letter-spacing:.25em;margin-left:12px}
+.dtime{font-size:9px;letter-spacing:.15em;color:var(--gdim)}
+.dacts{display:flex;gap:12px}
+.dbtn{font-family:var(--mono);font-size:9px;letter-spacing:.18em;background:transparent;border:1px solid rgba(0,255,65,.25);color:var(--gdim);padding:7px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.dbtn:hover{border-color:var(--green);color:var(--green)}
+.dbtn.g{border-color:rgba(201,168,76,.25);color:rgba(201,168,76,.55)}
+.dbtn.g:hover{border-color:var(--gold);color:var(--gold)}
+
+/* AUTH */
+#auth{display:none;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:20px;padding:60px}
+#auth.on{display:flex}
+.atit{font-size:11px;letter-spacing:.22em;color:var(--gdim);text-transform:uppercase}
+.abtn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:14px 32px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.abtn:hover{background:var(--gold);color:#000}
+
+/* CONTENT */
+#content{display:none;padding:24px 28px 70px;flex-direction:column;gap:18px}
+#content.on{display:flex}
+
+/* GRIDS */
+.g-rt{display:grid;grid-template-columns:180px 1fr;gap:18px}
+.g-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.g-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* CARD */
+.card{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px 22px;transition:border-color .3s}
+.card:hover{border-color:rgba(0,255,65,.38)}
+.clbl{font-size:7px;letter-spacing:.3em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px}
+.cval{font-size:34px;font-weight:400;color:var(--green);letter-spacing:-.02em;text-shadow:0 0 28px rgba(0,255,65,.38);line-height:1}
+.cval.gd{color:var(--gold);text-shadow:0 0 28px rgba(201,168,76,.35)}
+.csub{font-size:8px;letter-spacing:.12em;color:rgba(0,255,65,.3);margin-top:5px}
+
+/* REALTIME CARD */
+.rtcard{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.rtdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pls 1.5s ease-in-out infinite;margin-bottom:10px}
+@keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.rtlbl{font-size:7px;letter-spacing:.28em;color:var(--gdim);text-transform:uppercase;margin-bottom:6px}
+.rtval{font-size:48px;font-weight:300;color:var(--green);text-shadow:0 0 36px rgba(0,255,65,.55);line-height:1}
+.rtsub{font-size:7px;letter-spacing:.18em;color:var(--gdim);margin-top:5px}
+
+/* CHART CARD */
+.cc{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px 22px;transition:border-color .3s}
+.cc:hover{border-color:rgba(0,255,65,.33)}
+.ctit{font-size:7px;letter-spacing:.28em;color:var(--gdim);text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between}
+.ctit span{color:rgba(0,255,65,.22)}
+.cw{position:relative;height:190px}
+.cwd{position:relative;height:170px}
+.cwl{position:relative;height:230px}
+
+/* TABLE */
+.dt{width:100%;border-collapse:collapse;font-size:11px;letter-spacing:.07em}
+.dt th{font-size:7px;letter-spacing:.25em;color:var(--gdim);text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(0,255,65,.1);text-align:left;font-weight:300}
+.dt td{padding:9px 0;border-bottom:1px solid rgba(0,255,65,.05);color:rgba(0,255,65,.72)}
+.dt tr:hover td{color:var(--green);background:rgba(0,255,65,.025)}
+.dt .num{text-align:right;color:var(--gold)}
+
+.spin{display:flex;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--gdim);font-size:8px;letter-spacing:.2em}
+.spin::before{content:'';width:9px;height:9px;border:1px solid var(--gdim);border-top-color:var(--green);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media(max-width:860px){
+  .g-kpi{grid-template-columns:repeat(2,1fr)}
+  .g-2{grid-template-columns:1fr}
+  .g-rt{grid-template-columns:1fr}
+  #content{padding:16px 14px 70px}
+}
+</style>
+</head>
+<body>
+<canvas id="mc"></canvas>
+
+<!-- LOCK -->
+<div id="lock">
+  <div class="lbox">
+    <div class="ltag">accès restreint</div>
+    <div class="ltit">analytics</div>
+    <label class="llbl">mot de passe</label>
+    <input type="password" class="linp" id="pi" autocomplete="off" spellcheck="false">
+    <button class="lbtn" id="ub">entrer</button>
+    <div class="lerr" id="le"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash">
+  <div class="dhdr">
+    <div class="dlogo">linh b. <em>analytics</em></div>
+    <div class="dtime" id="dt"></div>
+    <div class="dacts">
+      <button class="dbtn" id="rb">↺ rafraîchir</button>
+      <button class="dbtn g" id="lb">verrouiller</button>
+    </div>
+  </div>
+
+  <div id="auth">
+    <div class="atit">connexion google analytics requise</div>
+    <button class="abtn" id="ab">autoriser l'accès google</button>
+  </div>
+
+  <div id="content">
+    <div class="g-rt">
+      <div class="rtcard">
+        <div class="rtdot"></div>
+        <div class="rtlbl">en ce moment</div>
+        <div class="rtval" id="rtv">—</div>
+        <div class="rtsub">utilisateurs actifs</div>
+      </div>
+      <div class="cc">
+        <div class="ctit">sessions — 30 derniers jours <span id="stot"></span></div>
+        <div class="cwl"><canvas id="sc"></canvas></div>
+      </div>
+    </div>
+
+    <div class="g-kpi">
+      <div class="card"><div class="clbl">sessions (30j)</div><div class="cval" id="ks">—</div><div class="csub">total</div></div>
+      <div class="card"><div class="clbl">pages vues (30j)</div><div class="cval" id="kp">—</div><div class="csub">total</div></div>
+      <div class="card"><div class="clbl">durée moyenne</div><div class="cval gd" id="kd">—</div><div class="csub">par session</div></div>
+      <div class="card"><div class="clbl">taux de rebond</div><div class="cval" id="kb">—</div><div class="csub">30 jours</div></div>
+    </div>
+
+    <div class="g-2">
+      <div class="cc">
+        <div class="ctit">pages les plus visitées</div>
+        <div class="cw"><canvas id="pc"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="ctit">appareils</div>
+        <div class="cwd"><canvas id="dc"></canvas></div>
+      </div>
+    </div>
+
+    <div class="g-2">
+      <div class="cc">
+        <div class="ctit">pays d'origine</div>
+        <div class="cw"><canvas id="coc"></canvas></div>
+      </div>
+      <div class="cc">
+        <div class="ctit">sources de trafic</div>
+        <div class="cwd"><canvas id="src"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cc">
+      <div class="ctit">villes — top 10</div>
+      <table class="dt">
+        <thead><tr><th>ville</th><th>pays</th><th class="num">sessions</th><th class="num">pages vues</th></tr></thead>
+        <tbody id="ctb"><tr><td colspan="4"><div class="spin">chargement</div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ── Remplir ces deux valeurs pour activer les données ───────────────
+// 1) Property ID → GA4 > Admin > Paramètres de la propriété > "ID de propriété" (chiffres seulement)
+// 2) Client ID   → console.cloud.google.com > APIs & Services > Identifiants > OAuth 2.0
+//    Ajouter https://cybertrong.github.io dans "Origines JS autorisées"
+const PID = 'YOUR_PROPERTY_ID';
+const CID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+
+// ── MOT DE PASSE ─────────────────────────────────────────────────────────────
+// Mot de passe par défaut : Matrix2025!
+// Pour changer → ouvrir la console du navigateur et taper :
+// crypto.subtle.digest('SHA-256',new TextEncoder().encode('VOTRE_MDP'))
+//   .then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
+// Puis remplacer la valeur de H ci-dessous.
+const H = 'e7dfec981d3ae49b5e5c966690b9f2dbc6c8f3b54c0dbc47a42df0e17b75e3e7';
+const SK = '_ax';
+
+let tok = null, charts = {};
+
+// ── MATRIX ───────────────────────────────────────────────────────────────────
+const cv = document.getElementById('mc'), cx = cv.getContext('2d');
+const CH = 'ｦｧｨｩｪｫｬｭｮｯｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCZ'.split('');
+const FS = 13; let cols, drops;
+function im(){cv.width=innerWidth;cv.height=innerHeight;cols=Math.floor(cv.width/FS);drops=Array.from({length:cols},()=>Math.random()*-cv.height/FS)}
+function dm(){cx.fillStyle='rgba(0,0,0,.06)';cx.fillRect(0,0,cv.width,cv.height);for(let i=0;i<cols;i++){const y=drops[i]*FS;cx.fillStyle='#ccffcc';cx.font=FS+'px monospace';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y);cx.fillStyle='#00ff41';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y-FS);cx.fillStyle='#008f11';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y-FS*2);drops[i]++;if(drops[i]*FS>cv.height&&Math.random()>.975)drops[i]=Math.random()*-20}}
+im();addEventListener('resize',im);setInterval(dm,38);
+
+// ── CLOCK ─────────────────────────────────────────────────────────────────────
+function tick(){document.getElementById('dt').textContent=new Date().toLocaleString('fr-CA',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+setInterval(tick,1000);tick();
+
+// ── PASSWORD ──────────────────────────────────────────────────────────────────
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function tryUnlock(){
+  const v=document.getElementById('pi').value;
+  if(await sha(v)===H){
+    sessionStorage.setItem(SK,'1');
+    document.getElementById('lock').classList.add('gone');
+    document.getElementById('dash').classList.add('on');
+    startGA();
+  } else {
+    const i=document.getElementById('pi'),e=document.getElementById('le');
+    i.classList.add('err');e.textContent='accès refusé';
+    setTimeout(()=>{i.classList.remove('err');i.value='';e.textContent=''},1600);
+  }
+}
+document.getElementById('ub').onclick=tryUnlock;
+document.getElementById('pi').onkeydown=e=>{if(e.key==='Enter')tryUnlock();document.getElementById('le').textContent=''};
+document.getElementById('lb').onclick=()=>{sessionStorage.removeItem(SK);tok=null;location.reload()};
+if(sessionStorage.getItem(SK)){document.getElementById('lock').classList.add('gone');document.getElementById('dash').classList.add('on')}
+
+// ── GOOGLE OAUTH ──────────────────────────────────────────────────────────────
+function startGA(){
+  if(!window.google){setTimeout(startGA,300);return}
+  document.getElementById('auth').classList.add('on');
+  document.getElementById('ab').onclick=()=>{
+    google.accounts.oauth2.initTokenClient({
+      client_id:CID,
+      scope:'https://www.googleapis.com/auth/analytics.readonly',
+      callback:r=>{
+        if(r.access_token){
+          tok=r.access_token;
+          document.getElementById('auth').classList.remove('on');
+          document.getElementById('content').classList.add('on');
+          loadAll();setInterval(loadRT,60000);
+        }
+      }
+    }).requestAccessToken();
+  };
+}
+if(sessionStorage.getItem(SK))startGA();
+document.getElementById('rb').onclick=loadAll;
+
+// ── GA4 API ───────────────────────────────────────────────────────────────────
+async function api(ep,body){
+  const r=await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${PID}${ep}`,
+    {method:'POST',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  return r.json();
+}
+
+function loadAll(){loadRT();loadSessions();loadKPIs();loadPages();loadDevices();loadCountries();loadSources();loadCities()}
+
+async function loadRT(){
+  try{const d=await api(':runRealtimeReport',{metrics:[{name:'activeUsers'}]});
+  document.getElementById('rtv').textContent=d.rows?.[0]?.metricValues?.[0]?.value??'0'}catch(e){}
+}
+
+async function loadSessions(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'date'}],metrics:[{name:'sessions'}],orderBys:[{dimension:{dimensionName:'date'}}]});
+    const lbls=(d.rows||[]).map(r=>{const v=r.dimensionValues[0].value;return v.slice(4,6)+'/'+v.slice(6,8)});
+    const vals=(d.rows||[]).map(r=>+r.metricValues[0].value);
+    document.getElementById('stot').textContent=vals.reduce((a,b)=>a+b,0).toLocaleString('fr-CA')+' sessions';
+    if(charts.s)charts.s.destroy();
+    charts.s=new Chart(document.getElementById('sc'),{type:'bar',data:{labels:lbls,datasets:[{data:vals,backgroundColor:'rgba(0,255,65,.22)',borderColor:'#00ff41',borderWidth:1,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tp()},scales:{x:{grid:{color:'rgba(0,255,65,.04)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:8},maxRotation:0,autoSkip:true,maxTicksLimit:10}},y:{grid:{color:'rgba(0,255,65,.07)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:9}}}}}});
+  }catch(e){}
+}
+
+async function loadKPIs(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],metrics:[{name:'sessions'},{name:'screenPageViews'},{name:'averageSessionDuration'},{name:'bounceRate'}]});
+    const m=d.rows?.[0]?.metricValues||[];
+    document.getElementById('ks').textContent=parseInt(m[0]?.value||0).toLocaleString('fr-CA');
+    document.getElementById('kp').textContent=parseInt(m[1]?.value||0).toLocaleString('fr-CA');
+    const dur=parseFloat(m[2]?.value||0);
+    document.getElementById('kd').textContent=Math.floor(dur/60)+'m'+String(Math.floor(dur%60)).padStart(2,'0');
+    document.getElementById('kb').textContent=(parseFloat(m[3]?.value||0)*100).toFixed(1)+'%';
+  }catch(e){}
+}
+
+async function loadPages(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'pagePath'}],metrics:[{name:'screenPageViews'}],orderBys:[{metric:{metricName:'screenPageViews'},desc:true}],limit:8});
+    const rows=d.rows||[];
+    const lbls=rows.map(r=>r.dimensionValues[0].value.slice(0,28));
+    const vals=rows.map(r=>+r.metricValues[0].value);
+    if(charts.p)charts.p.destroy();
+    charts.p=new Chart(document.getElementById('pc'),{type:'bar',data:{labels:lbls,datasets:[{data:vals,backgroundColor:vals.map((_,i)=>`rgba(0,255,65,${.6-i*.06})`),borderColor:'rgba(0,255,65,.4)',borderWidth:1,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tp()},scales:{x:{grid:{color:'rgba(0,255,65,.05)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:8}}},y:{grid:{display:false},ticks:{color:'#00ff41',font:{family:'DM Mono',size:9}}}}}});
+  }catch(e){}
+}
+
+async function loadDevices(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'deviceCategory'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}]});
+    donut('dc','dv',d.rows||[],['rgba(0,255,65,.82)','rgba(201,168,76,.72)','rgba(0,143,17,.68)']);
+  }catch(e){}
+}
+
+async function loadCountries(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'country'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:8});
+    donut('coc','co',d.rows||[],gpal(8));
+  }catch(e){}
+}
+
+async function loadSources(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'sessionDefaultChannelGroup'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:7});
+    donut('src','sr',d.rows||[],['rgba(0,255,65,.82)','rgba(201,168,76,.75)','rgba(0,200,50,.65)','rgba(180,140,40,.6)','rgba(0,120,30,.55)','rgba(150,100,30,.5)','rgba(0,80,20,.45)']);
+  }catch(e){}
+}
+
+async function loadCities(){
+  try{
+    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'city'},{name:'country'}],metrics:[{name:'sessions'},{name:'screenPageViews'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:10});
+    const tb=document.getElementById('ctb');tb.innerHTML='';
+    (d.rows||[]).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${r.dimensionValues[0].value}</td><td>${r.dimensionValues[1].value}</td><td class="num">${parseInt(r.metricValues[0].value).toLocaleString('fr-CA')}</td><td class="num">${parseInt(r.metricValues[1].value).toLocaleString('fr-CA')}</td>`;tb.appendChild(tr)});
+    if(!d.rows?.length)tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--gdim);font-size:9px;padding:18px">aucune donnée</td></tr>';
+  }catch(e){}
+}
+
+function donut(id,key,rows,colors){
+  if(charts[key])charts[key].destroy();
+  charts[key]=new Chart(document.getElementById(id),{type:'doughnut',data:{labels:rows.map(r=>r.dimensionValues[0].value),datasets:[{data:rows.map(r=>+r.metricValues[0].value),backgroundColor:colors,borderColor:'rgba(0,0,0,.5)',borderWidth:2,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'66%',plugins:{legend:{position:'right',labels:{color:'#008f11',font:{family:'DM Mono',size:9},padding:8,boxWidth:9}},tooltip:tp()}}});
+}
+
+function gpal(n){return['rgba(0,255,65,.85)','rgba(0,210,54,.75)','rgba(0,170,43,.68)','rgba(0,135,34,.62)','rgba(201,168,76,.72)','rgba(160,130,50,.62)','rgba(120,98,38,.54)','rgba(80,65,25,.48)'].slice(0,n)}
+
+function tp(){return{backgroundColor:'rgba(0,6,0,.95)',borderColor:'rgba(0,255,65,.28)',borderWidth:1,titleColor:'#00ff41',bodyColor:'#008f11',titleFont:{family:'DM Mono',size:10},bodyFont:{family:'DM Mono',size:10}}}
+</script>
+</body>
+</html>
