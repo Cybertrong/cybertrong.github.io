@@ -40,7 +40,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .dlogo em{color:var(--gold);font-style:normal;font-size:9px;letter-spacing:.25em;margin-left:12px}
 .dtime{font-size:9px;letter-spacing:.15em;color:var(--gdim)}
 .dacts{display:flex;gap:12px}
-.dbtn{font-family:var(--mono);font-size:9px;letter-spacing:.18em;background:transparent;border:1px solid rgba(0,255,65,.25);color:var(--gdim);padding:7px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.dbtn{font-family:var(--mono);font-size:9px;letter-spacing:.18em;background:transparent;border:1px solid rgba(0,255,65,.25);color:var(--gdim);padding:7px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center}
 .dbtn:hover{border-color:var(--green);color:var(--green)}
 .dbtn.g{border-color:rgba(201,168,76,.25);color:rgba(201,168,76,.55)}
 .dbtn.g:hover{border-color:var(--gold);color:var(--gold)}
@@ -126,6 +126,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <div class="dlogo">linh b. <em>analytics</em></div>
     <div class="dtime" id="dt"></div>
     <div class="dacts">
+      <a href="index.html" class="dbtn">← site</a>
       <button class="dbtn" id="rb">↺ rafraîchir</button>
       <button class="dbtn g" id="lb">verrouiller</button>
     </div>
