@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Projets de l’Ombre : théâtre visuel, danse et marionnette sous la direction de Marie-Pascale Bélanger.">
+<title>Projets de l'Ombre</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+
+/* Style théâtre sombre : bandeau photo plein écran, blocs image + panneau qui se chevauchent, cartes de spectacle, liste de dates en bloc */
+:root{
+  --bg:#1b1b1b; --panel:#262626; --panel-2:#2f2f2f; --ink:#f4f1ec; --muted:#9b978f; --line:#363636;
+  --btn:#f4f1ec; --btn-ink:#141414; --shade:rgba(10,10,10,.62);
+  --serif:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.75}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:.01em;margin:0;text-wrap:balance}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0}
+.btn{display:inline-block;background:var(--btn);color:var(--btn-ink);font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:13px 26px;border:0;cursor:pointer}
+.btn:hover{background:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--btn-ink)}
+.more{font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.more:hover{color:var(--muted);border-color:var(--muted)}
+
+/* Barre d'infos */
+.infobar{border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.infobar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:7px;flex-wrap:wrap}
+.social{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.social a{display:grid;place-items:center;width:28px;height:28px;color:var(--muted)}
+.social a:hover{color:var(--ink)}
+.social svg{width:14px;height:14px;fill:currentColor}
+
+/* En-tête */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(27,27,27,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;gap:28px;padding-block:16px}
+.brand{font-family:var(--serif);font-size:22px;text-decoration:none;white-space:nowrap}
+nav.main{margin-left:auto}
+nav.main ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav.main a{display:block;padding:8px 12px;font-size:14px;font-weight:400;text-decoration:none;color:var(--muted)}
+nav.main a:hover,nav.main a.on{color:var(--ink)}
+nav.main a.on{text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px}
+.burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:6px}
+.burger svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.6;fill:none}
+
+/* Bandeau accueil */
+.hero{position:relative;min-height:560px;display:flex;align-items:stretch;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--shade) 0%,rgba(10,10,10,.35) 55%,var(--shade) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.hero .wrap{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:80px 60px}
+.hero h1{font-size:clamp(46px,7vw,92px);line-height:1}
+.meta{list-style:none;margin:22px 0 0;padding:0;font-size:14px;line-height:1.9;color:#ddd8d0}
+.meta b{font-weight:500;color:var(--ink)}
+.hero-side{display:flex;flex-direction:column;gap:16px;max-width:42ch}
+.hero-side h2{font-size:26px}
+.hero-side p{margin:0;color:#ddd8d0;font-size:15px}
+.hero-foot{position:absolute;left:0;right:0;bottom:28px}
+.hero-foot .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:0}
+.trailer{display:flex;align-items:center;gap:14px;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.trailer span.dot{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--ink)}
+.trailer svg{width:16px;height:16px;fill:var(--btn-ink);margin-left:3px}
+.count{font-family:var(--serif);font-size:30px}.count small{font-family:var(--sans);font-size:13px;color:var(--muted)}
+
+/* Bloc image + panneau qui se chevauchent */
+.overlap{padding-block:100px}
+.overlap .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.ov-img{position:relative;grid-column:1;grid-row:1}
+.ov-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.quote{position:absolute;left:28px;right:28%;bottom:-48px;background:var(--panel-2);padding:24px 26px;border-left:2px solid var(--ink)}
+.quote p{margin:0 0 14px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5}
+.quote b{display:block;font-weight:500;font-size:14px}.quote span{font-size:12px;color:var(--muted)}
+.ov-panel{grid-column:2;grid-row:1;margin-left:-60px;position:relative;background:var(--panel);padding:52px 48px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.ov-panel h2{font-size:clamp(30px,3.4vw,42px);line-height:1.15}
+.ov-panel p{margin:0;color:#cfcac2}
+.ticks{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:14px;font-style:italic;color:#cfcac2}
+.ticks li{display:flex;gap:14px;align-items:center}
+.ticks li::before{content:"";width:16px;height:16px;flex:none;border:1px solid var(--muted);background:linear-gradient(var(--muted),var(--muted)) center/6px 6px no-repeat}
+
+/* Disciplines */
+.disc{padding-block:40px 90px}
+.disc .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
+.disc h3{font-size:24px;margin-bottom:10px}
+.disc p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.disc small{font-size:12px;letter-spacing:.06em}
+
+/* Cartes spectacles */
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.section-head h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1}
+.shows{padding-block:20px 100px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start}
+.card{background:var(--panel);text-decoration:none;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.card .body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:24px}
+.card .date{font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.card p{margin:0;font-size:14px;color:#cfcac2}
+.card .cta{margin-top:8px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.card:hover h3{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.card.soon{background:transparent;border:1px dashed var(--line);min-height:100%;justify-content:center;align-items:center;text-align:center;padding:40px 24px;color:var(--muted)}
+.card.soon h3{color:var(--ink)}
+
+/* Liste d'événements */
+.events{padding-block:20px 100px}
+.ev{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.ev li{display:grid;grid-template-columns:96px minmax(0,1fr) auto;align-items:center;gap:24px;background:var(--panel);padding:14px 22px 14px 14px}
+.dblock{background:var(--panel-2);text-align:center;padding:12px 6px;line-height:1.1}
+.dblock b{display:block;font-family:var(--serif);font-weight:400;font-size:34px}
+.dblock span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ev h3{font-size:20px}
+.ev .where{font-size:14px;color:var(--muted)}
+.ev .tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:6px 12px;white-space:nowrap}
+.region-h{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:30px 0 12px}
+.region-h:first-child{margin-top:0}
+
+/* Bandeau de page */
+.pagehead{position:relative;overflow:hidden}
+.pagehead>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pagehead::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(10,10,10,.6) 60%,rgba(10,10,10,.7) 100%)}
+.pagehead .wrap{position:relative;padding-block:110px 70px;display:flex;flex-direction:column;gap:12px}
+.pagehead h1{font-size:clamp(42px,6vw,76px);line-height:1.05}
+.pagehead p.sub{margin:0;color:#ddd8d0;max-width:52ch}
+
+/* Spectacle */
+.facts{padding-block:10px 100px}
+.facts .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:28px}
+.factbox{background:var(--panel);padding:34px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.factbox .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.factbox .v{font-family:var(--serif);font-size:22px;line-height:1.2;margin-top:-8px}
+.credits{background:var(--panel);padding:34px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 32px;margin:0}
+.credits dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.credits dd{margin:0;font-family:var(--serif);font-size:18px}
+.video{position:relative;display:block;aspect-ratio:16/9;max-width:100%;overflow:hidden;text-decoration:none}
+.video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,.45)}
+.video .trailer{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%)}
+.videosec{padding-block:0 100px}
+
+/* Contact */
+.contact{background:var(--panel);padding-block:90px}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:60px}
+.contact h2{font-size:clamp(32px,3.6vw,46px)}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.contact-info p{margin:0;color:#cfcac2}
+form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+form .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+input,textarea{font:inherit;font-weight:300;font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:12px 14px;border-radius:0;width:100%;box-sizing:border-box}
+input:focus,textarea:focus{border-color:var(--ink);outline:none}
+textarea{min-height:150px;resize:vertical}
+.actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-wrap:wrap}
+.status{font-size:14px;color:var(--muted)}
+
+/* Pied de page */
+footer{border-top:1px solid var(--line);padding-block:60px 30px}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:40px}
+.fgrid h4{font-family:var(--serif);font-weight:400;font-size:18px;margin:0 0 14px}
+.fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+.fgrid a{text-decoration:none}.fgrid a:hover{color:var(--ink)}
+.fgrid p{margin:10px 0 16px;font-size:14px;color:var(--muted);max-width:36ch}
+.fbottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:50px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.fbottom ul{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0}
+.fbottom a{text-decoration:none}.fbottom a:hover{color:var(--ink)}
+
+@media (max-width:900px){
+  .burger{display:block;margin-left:auto}
+  header.site .wrap{flex-wrap:wrap;gap:12px}
+  header.site .btn{display:none}
+  nav.main{order:3;width:100%;margin:0}
+  nav.main ul{display:none;flex-direction:column}
+  nav.main.open ul{display:flex}
+  .hero{min-height:0}
+  .hero .wrap{grid-template-columns:1fr;gap:28px;padding-block:70px 120px}
+  .overlap{padding-block:60px}
+  .overlap .wrap{grid-template-columns:1fr}
+  .ov-panel{grid-column:1;grid-row:2;margin:80px 0 0;padding:36px 26px}
+  .quote{right:28px}
+  .disc .wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+  .cards{grid-template-columns:1fr}
+  .card img{aspect-ratio:4/3}
+  .ev li{grid-template-columns:76px minmax(0,1fr);gap:16px}
+  .ev .tag{grid-column:2;justify-self:start}
+  .dblock b{font-size:26px}
+  .facts .wrap,.contact .wrap,.fgrid{grid-template-columns:1fr}
+  .credits{grid-template-columns:1fr;gap:2px}.credits dd{margin-bottom:12px}
+  form{grid-template-columns:1fr}
+}
+@media (max-width:480px){.disc .wrap{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Presse */
+.award{padding-block:10px 60px}
+.award .wrap>div{background:var(--panel);padding:34px 38px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:center}
+.award svg{width:46px;height:46px;stroke:var(--ink);fill:none;stroke-width:1.2}
+.award h2{font-size:clamp(24px,2.8vw,32px);line-height:1.2}
+.award p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.press{padding-block:0 100px}
+.press .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}
+.review{background:var(--panel);padding:40px 38px;display:flex;flex-direction:column;gap:22px;min-width:0}
+.review blockquote{margin:0;font-family:var(--serif);font-size:19px;line-height:1.55;position:relative;padding-left:22px;border-left:1px solid var(--line)}
+.review blockquote[lang="en"]{font-style:italic}
+.review .src{display:flex;flex-direction:column;gap:2px;padding-top:18px;border-top:1px solid var(--line)}
+.review .src b{font-weight:500}
+.review .src span{font-size:13px;color:var(--muted)}
+.article{grid-column:1/-1;background:transparent;border:1px solid var(--line);padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;text-decoration:none}
+.article h3{font-size:22px}
+.article:hover{border-color:var(--ink)}
+@media (max-width:900px){.press .wrap{grid-template-columns:1fr}.award .wrap>div{grid-template-columns:1fr;gap:14px;padding:28px 24px}.review{padding:30px 24px}}
+</style>
+</head>
+<body>
+
+
+<div class="infobar">
+  <div class="wrap">
+    <span>Théâtre visuel · Danse · Marionnette — Montréal, QC</span>
+    <ul class="social" aria-label="Réseaux sociaux">
+      <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.6c0-.4.2-.6.6-.6z"/></svg></a></li>
+      <li><a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a></li>
+      <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v12H3V9zm6 0h2.9v1.7c.5-.9 1.7-2 3.6-2 3.7 0 4.5 2.4 4.5 5.6V21h-3v-5.9c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1v6H9V9z"/></svg></a></li>
+      <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1"/></svg></a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#accueil">Projets de l’Ombre</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    <nav class="main" id="nav" aria-label="Menu principal">
+      <ul>
+        <li><a href="#accueil" data-nav="accueil">Accueil</a></li>
+        <li><a href="#spectacle" data-nav="spectacle">Spectacle</a></li>
+        <li><a href="#direction" data-nav="direction">Direction artistique</a></li>
+        <li><a href="#calendrier" data-nav="calendrier">Calendrier</a></li>
+        <li><a href="#">Collaborateur·trices</a></li>
+        <li><a href="#contact" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#contact">Nous joindre</a>
+  </div>
+</header>
+
+<!-- ACCUEIL -->
+<div data-view="accueil">
+  <section class="hero" aria-labelledby="h-home">
+    <img src="images/ombres-rideau.jpg" alt="Ombres de personnages projetées sur un rideau éclairé">
+    <div class="wrap">
+      <div>
+        <h1 id="h-home">Projets<br>de l’Ombre</h1>
+        <ul class="meta">
+          <li><b>Spectacle :</b> A comme Animal</li>
+          <li><b>Langues :</b> français et anglais</li>
+          <li><b>Durée :</b> 55 minutes · <b>Public :</b> 10 ans et plus</li>
+        </ul>
+      </div>
+      <div class="hero-side">
+        <h2>La métamorphose sur scène</h2>
+        <p>Des interprètes issus de la danse, du théâtre et de la marionnette, réunis sous la direction de Marie-Pascale Bélanger.</p>
+        <div><a class="btn ghost" href="#spectacle">Découvrir le spectacle</a></div>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="wrap">
+        <a class="trailer" href="#spectacle-video"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>Voir la bande-annonce</a>
+        <span class="count">01<small>/01</small></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlap" aria-labelledby="h-about">
+    <div class="wrap">
+      <div class="ov-img">
+        <img src="images/marie-pascale-belanger.jpg" alt="Marie-Pascale Bélanger devant un mur couvert de graffitis">
+        <div class="quote">
+          <p>Chaque objet scénique participe à une écriture visuelle et corporelle.</p>
+          <b>Marie-Pascale Bélanger</b><span>Idéation, mise en scène et scénographie</span>
+        </div>
+      </div>
+      <div class="ov-panel">
+        <p class="eyebrow">La compagnie</p>
+        <h2 id="h-about">Un théâtre de la métamorphose</h2>
+        <p>Sous la direction de Marie-Pascale Bélanger, les spectacles mettent en scène et en interaction des interprètes issus de la danse, du théâtre et de la marionnette. Les œuvres scéniques explorent les diverses dimensions de la métamorphose sur scène.</p>
+        <ul class="ticks">
+          <li>Scénographies et marionnettes conçues et fabriquées par l’artiste</li>
+          <li>Une esthétique nourrie par la bande dessinée et le surréalisme</li>
+          <li>Des œuvres présentées au Canada, aux États-Unis et en Europe</li>
+        </ul>
+        <div><a class="more" href="#direction">Direction artistique</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="disc" aria-label="Disciplines">
+    <div class="wrap">
+      <div><h3>Danse</h3><p>Le corps des interprètes comme matière première de la transformation.</p><small>Interprétation et mouvement</small></div>
+      <div><h3>Théâtre</h3><p>Un théâtre visuel inspiré des fables et des contes de fées.</p><small>Récit et mise en scène</small></div>
+      <div><h3>Marionnette</h3><p>Des marionnettes considérées comme des agents dramaturgiques à part entière.</p><small>Conception et fabrication</small></div>
+      <div><h3>Arts visuels</h3><p>Des dispositifs scéniques où le réel et le fantastique s’estompent.</p><small>Scénographie et image</small></div>
+    </div>
+  </section>
+
+  <section class="shows" aria-labelledby="h-shows">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Répertoire</p><h2 id="h-shows">Nos spectacles</h2></div>
+        <a class="more" href="#calendrier">Voir le calendrier</a>
+      </div>
+      <div class="cards">
+        <a class="card" href="#spectacle">
+          <img src="images/a-comme-animal.jpg" alt="Marionnette du vieux philosophe d’A comme Animal">
+          <div class="body">
+            <span class="date">Théâtre visuel · 55 min · 10 ans et plus</span>
+            <h3>A comme Animal</h3>
+            <p>Un vieux philosophe croque dans une pomme et s’endort, happé vers un rêve où tout est possible.</p>
+            <span class="cta">Voir le spectacle</span>
+          </div>
+        </a>
+        <div class="card soon"><div><p class="eyebrow">Bientôt</p><h3>Prochaine création</h3><p>Espace réservé pour un prochain spectacle.</p></div></div>
+        <div class="card soon"><div><p class="eyebrow">Bientôt</p><h3>Projet à venir</h3><p>Espace réservé pour un atelier ou une autre œuvre.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events" aria-labelledby="h-ev">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Tournée</p><h2 id="h-ev">Dernières représentations</h2></div>
+        <a class="more" href="#calendrier">Toutes les dates</a>
+      </div>
+      <ul class="ev">
+        <li><div class="dblock"><b>03</b><span>oct. 2025</span></div><div><h3>Spectaculo Interesse</h3><div class="where">Ostrava, Tchéquie</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>26</b><span>sept. 2025</span></div><div><h3>Festival mondial des théâtres de marionnettes</h3><div class="where">Charleville-Mézières, France · 26–27 septembre</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>18</b><span>sept. 2025</span></div><div><h3>Maison de la culture NDG</h3><div class="where">Montréal, QC, Canada</div></div><span class="tag">A comme Animal</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- SPECTACLE -->
+<div data-view="spectacle" hidden>
+  <section class="pagehead" aria-labelledby="h-spec">
+    <img src="images/a-comme-animal.jpg" alt="">
+    <div class="wrap">
+      <p class="eyebrow">Spectacle</p>
+      <h1 id="h-spec">A comme Animal</h1>
+      <p class="sub">Théâtre visuel · Disponible en français et en anglais</p>
+    </div>
+  </section>
+  <section class="overlap" aria-label="Présentation du spectacle">
+    <div class="wrap">
+      <div class="ov-img">
+        <img src="images/a-comme-animal.jpg" alt="Marionnette d’un vieil homme à lunettes, bras levé, manipulée par une interprète" style="aspect-ratio:306/372">
+      </div>
+      <div class="ov-panel">
+        <p class="eyebrow">Synopsis</p>
+        <h2>Un rêve où tout est possible</h2>
+        <p style="font-family:var(--serif);font-size:19px;line-height:1.55;color:var(--ink)">Un vieux philosophe s’apprête à partager ses réflexions, mais s’interrompt brusquement lorsqu’il croque dans une pomme et s’endort. Le voilà happé comme Alice dans son pays des merveilles, vers un rêve où tout est possible !</p>
+        <p>Guidé et habilement manipulé par trois interprètes métamorphosées en figures animales fantastiques, l’homme se décompose et se recompose, tout en explorant les souvenirs de son enfance. Tissé dans l’esprit des fables et des contes de fées, ce spectacle de théâtre visuel, librement inspiré des conférences de Gilles Deleuze, est une ode à l’imagination, à l’impermanence et à la quête d’identité. Il invite le public de tous âges à se laisser porter par cet univers unique, drôle, poétique et délicieusement déstabilisant.</p>
+        <div><a class="more" href="#presse">Dossier de presse</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="facts" aria-label="Informations et générique">
+    <div class="wrap">
+      <div class="factbox">
+        <span class="k">Langues</span><span class="v">Français et anglais</span>
+        <span class="k">Durée</span><span class="v">55 minutes</span>
+        <span class="k">Public</span><span class="v">Tous, 10 ans et plus</span>
+        <a class="btn" href="#">Fiche technique</a>
+      </div>
+      <dl class="credits">
+        <dt>Idéation, mise en scène, scénographie</dt><dd><a href="#direction" style="text-underline-offset:4px">Marie-Pascale Bélanger</a></dd>
+        <dt>Interprétation</dt><dd>Marika Karlsson, Elinor Fueter, Marie-Pascale Bélanger</dd>
+        <dt>Conception sonore</dt><dd>Rodrigo Rojas</dd>
+        <dt>Conception lumières</dt><dd>Julie Charrette</dd>
+        <dt>Regard extérieur, conseil artistique</dt><dd>Anne Lalancette, Catherine Tardif</dd>
+        <dt>Direction technique</dt><dd>Paul Foresto</dd>
+      </dl>
+    </div>
+  </section>
+  <section class="videosec" id="spectacle-video" aria-label="Vidéo">
+    <div class="wrap">
+      <a class="video" href="#" aria-label="Voir la vidéo d’A comme Animal sur YouTube">
+        <img src="images/video-a-comme-animal.jpg" alt="">
+        <span class="trailer"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>Voir la vidéo</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- DIRECTION ARTISTIQUE -->
+<div data-view="direction" hidden>
+  <section class="pagehead" aria-labelledby="h-da">
+    <img src="images/marie-pascale-belanger.jpg" alt="">
+    <div class="wrap">
+      <p class="eyebrow">Direction artistique</p>
+      <h1 id="h-da">Marie-Pascale Bélanger</h1>
+      <p class="sub">Danse · Arts visuels · Marionnette</p>
+    </div>
+  </section>
+  <section class="overlap" aria-label="Biographie">
+    <div class="wrap">
+      <div class="ov-img">
+        <img src="images/marie-pascale-belanger.jpg" alt="Marie-Pascale Bélanger devant un mur couvert de graffitis">
+        <div class="quote">
+          <p>Le corps, l’objet et l’image en tension.</p>
+          <b>Marie-Pascale Bélanger</b><span>Artiste multidisciplinaire</span>
+        </div>
+      </div>
+      <div class="ov-panel">
+        <p class="eyebrow">Parcours</p>
+        <h2>Artiste multidisciplinaire</h2>
+        <p>Artiste multidisciplinaire, Marie-Pascale Bélanger est diplômée en arts visuels et en interprétation en danse de l’École de danse contemporaine de Montréal (EDCM). Elle détient une maîtrise en danse de l’UQAM, axée sur l’intégration de l’image dans l’espace scénique, ainsi qu’un diplôme d’études supérieures en théâtre de marionnettes contemporain (UQAM, 2019). Son parcours l’a menée à créer des œuvres chorégraphiques diffusées au Canada, aux États-Unis et en Europe.</p>
+      </div>
+    </div>
+  </section>
+  <section class="facts" aria-label="Démarche">
+    <div class="wrap">
+      <div class="factbox">
+        <span class="k">Formation</span><span class="v">EDCM, arts visuels et danse</span>
+        <span class="k">Maîtrise</span><span class="v">Danse, UQAM</span>
+        <span class="k">DESS</span><span class="v">Théâtre de marionnettes contemporain, UQAM, 2019</span>
+      </div>
+      <div class="credits" style="display:block">
+        <p class="eyebrow" style="margin-bottom:14px">Démarche</p>
+        <p style="margin:0;color:#cfcac2">Sa démarche s’inscrit dans une recherche interdisciplinaire où se croisent la danse, les arts visuels et les arts de la marionnette. Développant une esthétique visuelle nourrie par la bande dessinée et le surréalisme, elle explore des dispositifs scéniques où les frontières entre le réel et le fantastique s’estompent. Animée par une soif de matière et de transformation, elle conçoit et fabrique ses scénographies et ses marionnettes, qu’elle considère comme des agents dramaturgiques à part entière. Chaque objet scénique participe ainsi à une écriture visuelle et corporelle qui met en tension le corps, l’objet et l’image, et modifie la perception, invitant le public à une expérience sensible où les repères se déplacent et se recomposent.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CALENDRIER -->
+<div data-view="calendrier" hidden>
+  <section class="pagehead" aria-labelledby="h-cal">
+    <img src="images/ombres-rideau.jpg" alt="">
+    <div class="wrap">
+      <p class="eyebrow">Calendrier</p>
+      <h1 id="h-cal"><a href="#spectacle" style="text-decoration:none">A comme Animal</a></h1>
+      <p class="sub">Les représentations en Europe et au Canada.</p>
+      <div style="margin-top:10px"><a class="btn" href="#">Fiche technique</a></div>
+    </div>
+  </section>
+  <section class="events" aria-label="Dates">
+    <div class="wrap">
+      <h2 class="region-h">Europe</h2>
+      <ul class="ev">
+        <li><div class="dblock"><b>26</b><span>sept. 2025</span></div><div><h3>Festival mondial des théâtres de marionnettes</h3><div class="where">Charleville-Mézières, France · 26–27 septembre</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>03</b><span>oct. 2025</span></div><div><h3>Spectaculo Interesse</h3><div class="where">Ostrava, Tchéquie</div></div><span class="tag">A comme Animal</span></li>
+      </ul>
+      <h2 class="region-h">Canada</h2>
+      <ul class="ev">
+        <li><div class="dblock"><b>18</b><span>sept. 2025</span></div><div><h3>Maison de la culture NDG</h3><div class="where">Montréal, QC, Canada</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>08</b><span>mars 2024</span></div><div><h3>Festival international de Casteliers</h3><div class="where">Montréal, QC, Canada</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>26</b><span>juil. 2023</span></div><div><h3>Festival international de marionnettes du Saguenay</h3><div class="where">Saguenay, QC, Canada · 26–27 juillet</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>03</b><span>juin 2023</span></div><div><h3>Festival Masqu’alors!</h3><div class="where">Saint-Camille, QC, Canada</div></div><span class="tag">A comme Animal</span></li>
+        <li><div class="dblock"><b>02</b><span>févr. 2023</span></div><div><h3>Maison internationale de la marionnette</h3><div class="where">Casteliers, Montréal, QC, Canada · 2–3 février</div></div><span class="tag">A comme Animal</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- PRESSE -->
+<div data-view="presse" hidden>
+  <section class="pagehead" aria-labelledby="h-presse">
+    <img src="images/video-a-comme-animal.jpg" alt="">
+    <div class="wrap">
+      <p class="eyebrow">Dossier de presse</p>
+      <h1 id="h-presse"><a href="#spectacle" style="text-decoration:none">A comme Animal</a></h1>
+      <p class="sub">Ce que la critique en dit, en Europe et au Canada.</p>
+    </div>
+  </section>
+  <section class="award" aria-label="Prix">
+    <div class="wrap"><div>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 6h18v10a9 9 0 0 1-18 0V6zM15 10H8v3a7 7 0 0 0 7 7M33 10h7v3a7 7 0 0 1-7 7M24 25v8M17 42h14M19 42l1.5-9h7L29 42"/></svg>
+      <div>
+        <p class="eyebrow">Prix</p>
+        <h2>« Coup de cœur du Jury Jeunes » Grand Est</h2>
+        <p>Festival mondial des théâtres de marionnettes, Charleville-Mézières, France, 2025</p>
+      </div>
+    </div></div>
+  </section>
+  <section class="press" aria-label="Critiques">
+    <div class="wrap">
+      <article class="review">
+        <blockquote lang="en">“I was blown away by the craftsmanship of the production. I enjoyed seeing a production that seemed so convincingly dreamlike while I was actually awake.”</blockquote>
+        <blockquote lang="en">“The dream-like performance, full of wit and ingenuity, seemed to be constantly looking for ways to surprise us and remind us that we are in a world of fantasy.”</blockquote>
+        <blockquote lang="en">“A spectacle in which puppeteers skillfully blurred the boundaries between the human body and the puppet.”</blockquote>
+        <div class="src"><b>Petr Broulík</b><span>Magazine « Patriot », Ostrava · 4 octobre 2025</span></div>
+      </article>
+      <article class="review">
+        <blockquote>« D’un protagoniste morcelé qui a du mal à rassembler tous les morceaux de son corps à sa multiplication, en passant par son accouchement de lui-même en miniature, on est épaté par les trouvailles qui toutes suscitent le rire. »</blockquote>
+        <blockquote>« On assiste à un surprenant florilège d’idées toutes plus extravagantes les unes que les autres, grâce à ce 11e art magique qu’est celui des marionnettes. (…) »</blockquote>
+        <div class="src"><b>Sophie Jama</b><span>Pieuvre, Montréal</span></div>
+      </article>
+      <a class="article" href="https://revuejeu.org/2024/03/05/cinq-questions-a-marie-pascale-belanger-metteuse-en-scene-choregraphe-et-scenographe/" target="_blank" rel="noopener">
+        <div><p class="eyebrow">Revue JEU · Entretien · 5 mars 2024</p><h3>Cinq questions à Marie-Pascale Bélanger, metteuse en scène, chorégraphe et scénographe</h3></div>
+        <span class="more">Lire l’article ↗</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT (commun) -->
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <div class="contact-info">
+      <p class="eyebrow">Contact</p>
+      <h2 id="h-contact">Contactez-nous !</h2>
+      <p>Diffusion, tournée, presse ou simple curiosité : écrivez-nous et nous vous répondrons.</p>
+    </div>
+    <form id="form" novalidate>
+      <label for="prenom">Prénom<input id="prenom" name="prenom" autocomplete="given-name"></label>
+      <label for="nom">Nom de famille<input id="nom" name="nom" autocomplete="family-name"></label>
+      <label class="full" for="email">E-mail *<input id="email" name="email" type="email" required autocomplete="email"></label>
+      <label class="full" for="message">Message<textarea id="message" name="message"></textarea></label>
+      <div class="actions full">
+        <span class="status" id="status" role="status"></span>
+        <button class="btn" type="submit">Envoyer</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#accueil">Projets de l’Ombre</a>
+        <p>Théâtre visuel, danse et marionnette sous la direction de Marie-Pascale Bélanger.</p>
+        <ul class="social" aria-label="Réseaux sociaux">
+          <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.6c0-.4.2-.6.6-.6z"/></svg></a></li>
+          <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1"/></svg></a></li>
+        </ul>
+      </div>
+      <div><h4>Le site</h4><ul><li><a href="#spectacle">Spectacle</a></li><li><a href="#direction">Direction artistique</a></li><li><a href="#calendrier">Calendrier</a></li><li><a href="#">Collaborateur·trices</a></li></ul></div>
+      <div><h4>Documents</h4><ul><li><a href="#">Fiche technique</a></li><li><a href="#presse">Dossier de presse</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 Projets de l’Ombre</span>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Politique en matière de cookies</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">Conditions d’utilisation</a></li>
+        <li><a href="#" id="top">Haut de page ↑</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+document.getElementById('burger').addEventListener('click',function(){var o=nav.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+document.getElementById('top').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+document.getElementById('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('email'),s=document.getElementById('status');
+  if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
+  s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
+});
+var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','presse'];
+function show(){
+  var h=(location.hash||'').slice(1),target=null;
+  if(h==='spectacle-video'){h='spectacle';target='spectacle-video'}
+  if(h==='contact')target='contact';
+  var cur=document.querySelector('[data-view]:not([hidden])');
+  var v=pages.indexOf(h)>-1?h:(h==='contact'&&cur?cur.dataset.view:'accueil');
+  views.forEach(function(el){el.hidden=el.dataset.view!==v});
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    var on=a.dataset.nav===(target==='contact'?'contact':(v==='presse'?'spectacle':v));a.classList.toggle('on',on);
+    if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+  });
+  nav.classList.remove('open');
+  if(target){var t=document.getElementById(target);t&&t.scrollIntoView()}else window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+</script>
+
+</body>
+</html>
