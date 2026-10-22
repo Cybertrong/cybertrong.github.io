@@ -243,6 +243,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
   .crew dl{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:480px){.crew dl{grid-template-columns:1fr}}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
 </style>
 </head>
 <body>
@@ -418,7 +419,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
   </section>
   <section class="videosec" id="spectacle-video" aria-label="Vidéo">
     <div class="wrap">
-      <a class="video" href="#" aria-label="Voir la vidéo d’A comme Animal sur YouTube">
+      <a class="video" id="video" href="https://youtu.be/8QTUAIsGfMQ" target="_blank" rel="noopener" data-yt="8QTUAIsGfMQ" aria-label="Lire la vidéo d’A comme Animal">
         <img src="images/video-a-comme-animal.jpg" alt="">
         <span class="trailer"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>Voir la vidéo</span>
       </a>
@@ -626,6 +627,18 @@ function show(){
   if(target){var t=document.getElementById(target);t&&t.scrollIntoView()}else window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',show);show();
+
+var vid=document.getElementById('video');
+if(vid)vid.addEventListener('click',function(e){
+  e.preventDefault();
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+vid.dataset.yt+'?autoplay=1&rel=0';
+  f.title='A comme Animal, vidéo';
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  f.allowFullscreen=true;
+  vid.replaceWith(Object.assign(document.createElement('div'),{className:'video'}));
+  document.querySelector('#spectacle-video .video').appendChild(f);
+});
 </script>
 
 </body>
