@@ -148,7 +148,7 @@ nav.main a.on{text-decoration:underline;text-underline-offset:8px;text-decoratio
 .videosec{padding-block:0 100px}
 
 /* Contact */
-.contact{background:var(--panel);padding-block:90px}
+.contact{background:var(--bg);padding-block:110px 100px}
 .contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:60px}
 .contact h2{font-size:clamp(32px,3.6vw,46px)}
 .contact-info{display:flex;flex-direction:column;gap:16px}
@@ -554,6 +554,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
 </div>
 
 <!-- CONTACT (commun) -->
+<div data-view="contact" hidden>
 <section class="contact" id="contact" aria-labelledby="h-contact">
   <div class="wrap">
     <div class="contact-info">
@@ -573,6 +574,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
     </form>
   </div>
 </section>
+</div>
 
 <footer>
   <div class="wrap">
@@ -612,16 +614,14 @@ document.getElementById('form').addEventListener('submit',function(e){
   if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
   s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
 });
-var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','collaborateurs'];
+var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','collaborateurs','contact'];
 function show(){
   var h=(location.hash||'').slice(1),target=null;
   if(h==='spectacle-video'){h='spectacle';target='spectacle-video'}
-  if(h==='contact')target='contact';
-  var cur=document.querySelector('[data-view]:not([hidden])');
-  var v=pages.indexOf(h)>-1?h:(h==='contact'&&cur?cur.dataset.view:'accueil');
+  var v=pages.indexOf(h)>-1?h:'accueil';
   views.forEach(function(el){el.hidden=el.dataset.view!==v});
   document.querySelectorAll('[data-nav]').forEach(function(a){
-    var on=a.dataset.nav===(target==='contact'?'contact':v);a.classList.toggle('on',on);
+    var on=a.dataset.nav===v;a.classList.toggle('on',on);
     if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   nav.classList.remove('open');
