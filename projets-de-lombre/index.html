@@ -217,6 +217,32 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
 .article h3{font-size:22px}
 .article:hover{border-color:var(--ink)}
 @media (max-width:900px){.press .wrap{grid-template-columns:1fr}.award .wrap>div{grid-template-columns:1fr;gap:14px;padding:28px 24px}.review{padding:30px 24px}}
+
+/* Collaborateur·trices */
+.team{padding-block:20px 100px}
+.team .wrap{display:flex;flex-direction:column;gap:28px}
+.member{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);background:var(--panel);align-items:stretch}
+.member:nth-child(even) .member-photo{order:2}
+.member-photo{position:relative;min-height:340px}
+.member-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.member-text{padding:48px 48px;display:flex;flex-direction:column;gap:14px;justify-content:center;min-width:0}
+.member-text h2{font-size:clamp(30px,3.4vw,42px);line-height:1.1}
+.member-text p{margin:0;color:#cfcac2;max-width:60ch}
+.member-text .shows-in{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:14px;border-top:1px solid var(--line);margin-top:6px}
+.crew{border:1px solid var(--line);padding:34px 38px}
+.crew h2{font-size:26px;margin-bottom:20px}
+.crew dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin:0}
+.crew dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.crew dd{margin:0;font-family:var(--serif);font-size:18px}
+@media (max-width:900px){
+  .member{grid-template-columns:1fr}
+  .member:nth-child(even) .member-photo{order:0}
+  .member-photo{min-height:0;aspect-ratio:4/3.4}
+  .member-text{padding:30px 24px}
+  .crew{padding:28px 24px}
+  .crew dl{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){.crew dl{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -244,7 +270,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
         <li><a href="#spectacle" data-nav="spectacle">Spectacle</a></li>
         <li><a href="#direction" data-nav="direction">Direction artistique</a></li>
         <li><a href="#calendrier" data-nav="calendrier">Calendrier</a></li>
-        <li><a href="#">Collaborateur·trices</a></li>
+        <li><a href="#collaborateurs" data-nav="collaborateurs">Collaborateur·trices</a></li>
         <li><a href="#contact" data-nav="contact">Contact</a></li>
       </ul>
     </nav>
@@ -512,6 +538,60 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
   </section>
 </div>
 
+<!-- COLLABORATEUR·TRICES -->
+<div data-view="collaborateurs" hidden>
+  <section class="pagehead" aria-labelledby="h-team">
+    <img src="images/ombres-rideau.jpg" alt="">
+    <div class="wrap">
+      <p class="eyebrow">L’équipe</p>
+      <h1 id="h-team">Collaborateur·trices</h1>
+      <p class="sub">Les artistes qui donnent vie aux créations de Projets de l’Ombre.</p>
+    </div>
+  </section>
+  <section class="team" aria-label="Membres de l’équipe">
+    <div class="wrap">
+      <div class="team-list" style="display:flex;flex-direction:column;gap:28px">
+        <article class="member">
+          <div class="member-photo"><img src="images/marika-karlsson.jpg" alt="Portrait de Marika Karlsson"></div>
+          <div class="member-text">
+            <p class="eyebrow">Marionnettiste</p>
+            <h2>Marika Karlsson</h2>
+            <p>Artiste, marionnettiste, Marika Karlsson commence son parcours théâtral en Finlande à un très jeune âge. Après avoir étudié la musique et l’art dramatique, elle poursuit ses études avec un baccalauréat en jeu à l’Université Concordia à Tiohtià:ke/Montréal. Elle complète le DESS en théâtre de marionnettes contemporain de l’UQAM en 2021. Dans son travail, elle s’appuie sur les approches somatiques et multidisciplinaires, et sa recherche artistique creuse autour de la temporalité du corps humain.</p>
+            <span class="shows-in">Interprétation · A comme Animal</span>
+          </div>
+        </article>
+        <article class="member">
+          <div class="member-photo"><img src="images/elinor-fueter.jpg" alt="Portrait d’Elinor Fueter"></div>
+          <div class="member-text">
+            <p class="eyebrow">Danse</p>
+            <h2>Elinor Fueter</h2>
+            <p>Diplômée des Ateliers de danse moderne de Montréal en 1998, Elinor Fueter a participé à des projets de danse multiples, à des créations en théâtre de rue, de films et d’improvisations. Elle a interprété des œuvres produites par Danse-Cité et de nombreux chorégraphes tels que Lina Cruz, Jean-Pierre Perreault, Catherine Lipscombe, Nathalie Morin, Chantal Wadge, Alain Francœur, Peter James et la compagnie Mobile Home, entre autres. Depuis une dizaine d’années, Elinor fait partie de l’équipe de Montréal Danse. Dernièrement, on a pu la voir sur scène dans les œuvres de Benoît Lachambre, George Stamos, Caroline Laurin-Beaucage et Karine Ledoyen.</p>
+            <span class="shows-in">Interprétation · A comme Animal</span>
+          </div>
+        </article>
+        <article class="member">
+          <div class="member-photo"><img src="images/rodrigo-rojas.jpg" alt="Portrait de Rodrigo Rojas"></div>
+          <div class="member-text">
+            <p class="eyebrow">Composition musicale</p>
+            <h2>Rodrigo Rojas</h2>
+            <p>Originaire du Chili, Rodrigo s’est formé au piano classique, qui a rapidement évolué vers la composition électroacoustique. Particulièrement bouleversé par les panoramas nordiques de la Baie James à son arrivée au Canada, il est toujours habité par l’impression qu’a eue sur lui cette nature sauvage. Par le jeu et la déformation des sons, il crée des univers musicaux qui s’écoutent comme des paysages sonores. Sa musique est empreinte d’une atmosphère à la fois visuelle et viscérale, qui transite par les émotions du corps. En plus de ses compositions avec le duo Mentasta, ses trames sonores ont été entendues autant sur les scènes théâtrales que sur celles de la danse contemporaine.</p>
+            <span class="shows-in">Conception sonore · A comme Animal</span>
+          </div>
+        </article>
+      </div>
+      <div class="crew">
+        <h2>Aussi dans l’équipe d’A comme Animal</h2>
+        <dl>
+          <div><dt>Conception lumières</dt><dd>Julie Charrette</dd></div>
+          <div><dt>Regard extérieur</dt><dd>Anne Lalancette</dd></div>
+          <div><dt>Conseil artistique</dt><dd>Catherine Tardif</dd></div>
+          <div><dt>Direction technique</dt><dd>Paul Foresto</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- CONTACT (commun) -->
 <section class="contact" id="contact" aria-labelledby="h-contact">
   <div class="wrap">
@@ -544,7 +624,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
           <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1"/></svg></a></li>
         </ul>
       </div>
-      <div><h4>Le site</h4><ul><li><a href="#spectacle">Spectacle</a></li><li><a href="#direction">Direction artistique</a></li><li><a href="#calendrier">Calendrier</a></li><li><a href="#">Collaborateur·trices</a></li></ul></div>
+      <div><h4>Le site</h4><ul><li><a href="#spectacle">Spectacle</a></li><li><a href="#direction">Direction artistique</a></li><li><a href="#calendrier">Calendrier</a></li><li><a href="#collaborateurs">Collaborateur·trices</a></li></ul></div>
       <div><h4>Documents</h4><ul><li><a href="#">Fiche technique</a></li><li><a href="#presse">Dossier de presse</a></li><li><a href="#contact">Contact</a></li></ul></div>
     </div>
     <div class="fbottom">
@@ -571,7 +651,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
   s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
 });
-var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','presse'];
+var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','presse','collaborateurs'];
 function show(){
   var h=(location.hash||'').slice(1),target=null;
   if(h==='spectacle-video'){h='spectacle';target='spectacle-video'}
