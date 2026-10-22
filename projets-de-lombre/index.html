@@ -394,7 +394,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
         <h2>Un rêve où tout est possible</h2>
         <p style="font-family:var(--serif);font-size:19px;line-height:1.55;color:var(--ink)">Un vieux philosophe s’apprête à partager ses réflexions, mais s’interrompt brusquement lorsqu’il croque dans une pomme et s’endort. Le voilà happé comme Alice dans son pays des merveilles, vers un rêve où tout est possible !</p>
         <p>Guidé et habilement manipulé par trois interprètes métamorphosées en figures animales fantastiques, l’homme se décompose et se recompose, tout en explorant les souvenirs de son enfance. Tissé dans l’esprit des fables et des contes de fées, ce spectacle de théâtre visuel, librement inspiré des conférences de Gilles Deleuze, est une ode à l’imagination, à l’impermanence et à la quête d’identité. Il invite le public de tous âges à se laisser porter par cet univers unique, drôle, poétique et délicieusement déstabilisant.</p>
-        <div><a class="more" href="#presse">Dossier de presse</a></div>
+        <div><a class="more" href="presse.html">Dossier de presse</a></div>
       </div>
     </div>
   </section>
@@ -497,47 +497,6 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
   </section>
 </div>
 
-<!-- PRESSE -->
-<div data-view="presse" hidden>
-  <section class="pagehead" aria-labelledby="h-presse">
-    <img src="images/video-a-comme-animal.jpg" alt="">
-    <div class="wrap">
-      <p class="eyebrow">Dossier de presse</p>
-      <h1 id="h-presse"><a href="#spectacle" style="text-decoration:none">A comme Animal</a></h1>
-      <p class="sub">Ce que la critique en dit, en Europe et au Canada.</p>
-    </div>
-  </section>
-  <section class="award" aria-label="Prix">
-    <div class="wrap"><div>
-      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 6h18v10a9 9 0 0 1-18 0V6zM15 10H8v3a7 7 0 0 0 7 7M33 10h7v3a7 7 0 0 1-7 7M24 25v8M17 42h14M19 42l1.5-9h7L29 42"/></svg>
-      <div>
-        <p class="eyebrow">Prix</p>
-        <h2>« Coup de cœur du Jury Jeunes » Grand Est</h2>
-        <p>Festival mondial des théâtres de marionnettes, Charleville-Mézières, France, 2025</p>
-      </div>
-    </div></div>
-  </section>
-  <section class="press" aria-label="Critiques">
-    <div class="wrap">
-      <article class="review">
-        <blockquote lang="en">“I was blown away by the craftsmanship of the production. I enjoyed seeing a production that seemed so convincingly dreamlike while I was actually awake.”</blockquote>
-        <blockquote lang="en">“The dream-like performance, full of wit and ingenuity, seemed to be constantly looking for ways to surprise us and remind us that we are in a world of fantasy.”</blockquote>
-        <blockquote lang="en">“A spectacle in which puppeteers skillfully blurred the boundaries between the human body and the puppet.”</blockquote>
-        <div class="src"><b>Petr Broulík</b><span>Magazine « Patriot », Ostrava · 4 octobre 2025</span></div>
-      </article>
-      <article class="review">
-        <blockquote>« D’un protagoniste morcelé qui a du mal à rassembler tous les morceaux de son corps à sa multiplication, en passant par son accouchement de lui-même en miniature, on est épaté par les trouvailles qui toutes suscitent le rire. »</blockquote>
-        <blockquote>« On assiste à un surprenant florilège d’idées toutes plus extravagantes les unes que les autres, grâce à ce 11e art magique qu’est celui des marionnettes. (…) »</blockquote>
-        <div class="src"><b>Sophie Jama</b><span>Pieuvre, Montréal</span></div>
-      </article>
-      <a class="article" href="https://revuejeu.org/2024/03/05/cinq-questions-a-marie-pascale-belanger-metteuse-en-scene-choregraphe-et-scenographe/" target="_blank" rel="noopener">
-        <div><p class="eyebrow">Revue JEU · Entretien · 5 mars 2024</p><h3>Cinq questions à Marie-Pascale Bélanger, metteuse en scène, chorégraphe et scénographe</h3></div>
-        <span class="more">Lire l’article ↗</span>
-      </a>
-    </div>
-  </section>
-</div>
-
 <!-- COLLABORATEUR·TRICES -->
 <div data-view="collaborateurs" hidden>
   <section class="pagehead" aria-labelledby="h-team">
@@ -625,7 +584,7 @@ footer{border-top:1px solid var(--line);padding-block:60px 30px}
         </ul>
       </div>
       <div><h4>Le site</h4><ul><li><a href="#spectacle">Spectacle</a></li><li><a href="#direction">Direction artistique</a></li><li><a href="#calendrier">Calendrier</a></li><li><a href="#collaborateurs">Collaborateur·trices</a></li></ul></div>
-      <div><h4>Documents</h4><ul><li><a href="#">Fiche technique</a></li><li><a href="#presse">Dossier de presse</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Documents</h4><ul><li><a href="#">Fiche technique</a></li><li><a href="presse.html">Dossier de presse</a></li><li><a href="#contact">Contact</a></li></ul></div>
     </div>
     <div class="fbottom">
       <span>© 2026 Projets de l’Ombre</span>
@@ -651,7 +610,7 @@ document.getElementById('form').addEventListener('submit',function(e){
   if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
   s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
 });
-var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','presse','collaborateurs'];
+var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','collaborateurs'];
 function show(){
   var h=(location.hash||'').slice(1),target=null;
   if(h==='spectacle-video'){h='spectacle';target='spectacle-video'}
@@ -660,7 +619,7 @@ function show(){
   var v=pages.indexOf(h)>-1?h:(h==='contact'&&cur?cur.dataset.view:'accueil');
   views.forEach(function(el){el.hidden=el.dataset.view!==v});
   document.querySelectorAll('[data-nav]').forEach(function(a){
-    var on=a.dataset.nav===(target==='contact'?'contact':(v==='presse'?'spectacle':v));a.classList.toggle('on',on);
+    var on=a.dataset.nav===(target==='contact'?'contact':v);a.classList.toggle('on',on);
     if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   nav.classList.remove('open');
