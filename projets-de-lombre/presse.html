@@ -6,17 +6,17 @@
 <title>Dossier de presse · Marie-Pascale Bélanger</title>
 <meta name="description" content="Dossier de presse d’A comme Animal : prix, critiques et entretien.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;900&family=League+Gothic&family=Oswald:wght@300;400;500&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=League+Gothic&display=swap">
 <style>
 /* Style affiche : barre noire, menu plein écran, très grandes lettres jaunes condensées, bandeaux-titres jaunes, sections moitié jaune / moitié blanche */
 :root{
   --bg:#ffffff; --ink:#000000; --muted:#45453f; --line:#e2e2da;
   --yellow:#f86448; --ghost:#feeae5; --bar:#000000; --bar-ink:#ffffff; --bar-muted:#a3a39b;
   --hero:"League Gothic","Oswald","Arial Narrow",sans-serif;
-  --giant:"Oswald","Arial Narrow",sans-serif;
-  --head:"Oswald","Arial Narrow",sans-serif;
-  --heavy:"Archivo","Arial Black",Arial,sans-serif;
-  --sans:"Roboto","Helvetica Neue",Arial,sans-serif;
+  --giant:"Cormorant Garamond","Garamond",Georgia,serif;
+  --head:"Cormorant Garamond","Garamond",Georgia,serif;
+  --heavy:"Jost","Helvetica Neue",Arial,sans-serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -30,7 +30,10 @@ strong,b{font-weight:700}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 header.site :focus-visible,footer :focus-visible,nav.main :focus-visible,.dark :focus-visible{outline-color:var(--yellow)}
 h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
-.pagehead h1,.yearbox h3,.contact-giant{font-weight:300}
+h1,h2,h3{font-weight:500}
+.pagehead h1,.yearbox h3,.contact-giant{font-weight:400}
+.pagehead h1{line-height:.92}
+.contact-giant{line-height:.92}
 p{margin:0}
 .eyebrow{font-family:var(--heavy);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
 
@@ -75,7 +78,7 @@ nav.main .side a:hover{color:var(--yellow)}
 .pagehead::before{background:rgba(0,0,0,.35)}
 .hero h1,.pagehead h1{position:relative;z-index:2;font-family:var(--giant);color:var(--yellow);line-height:.8;padding-inline:16px;text-transform:uppercase}
 .hero h1{font-family:var(--hero);font-size:clamp(110px,22vw,360px)}
-.hero h1 .pre{font-weight:900}
+.hero h1 .pre{font-family:"Archivo","Arial Black",Arial,sans-serif;font-weight:900}
 .pagehead h1{font-size:clamp(84px,15vw,250px)}
 .hero h1 .pre,.pagehead .pre{display:block;font-family:var(--heavy);font-weight:600;font-size:clamp(14px,1.6vw,22px);letter-spacing:.2em;line-height:1.4;margin-bottom:14px;color:var(--yellow)}
 .pagehead .stack{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:22px}
