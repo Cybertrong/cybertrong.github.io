@@ -292,15 +292,6 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 .legal a:hover{color:var(--yellow)}
 
 
-/* Apparition au défilement (activée par le script seulement) */
-.titleband{overflow:hidden}
-html.reveal-on .rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease var(--d,0s),transform 1s cubic-bezier(.16,1,.3,1) var(--d,0s),letter-spacing 1.2s cubic-bezier(.16,1,.3,1) var(--d,0s),clip-path 1s cubic-bezier(.16,1,.3,1) var(--d,0s)}
-html.reveal-on .rv.in{opacity:1;transform:none}
-html.reveal-on .titleband h2.rv{transform:none;letter-spacing:.34em}
-html.reveal-on .titleband h2.rv.in{letter-spacing:.14em}
-html.reveal-on .bigword.rv,html.reveal-on .person .name.rv,html.reveal-on h2.stag.rv,html.reveal-on .contact-giant.rv{clip-path:inset(0 0 100% 0);transform:translateY(50px)}
-html.reveal-on .bigword.rv.in,html.reveal-on .person .name.rv.in,html.reveal-on h2.stag.rv.in,html.reveal-on .contact-giant.rv.in{clip-path:inset(0 0 -10% 0);transform:none}
-
 @media (max-width:1000px){
   .showgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
   .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -441,18 +432,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classLi
 nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
 document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
-(function(){
-  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var sel='main h1:not(#h-home),main h2,main h3,main p,main blockquote,main .yearbox li,main .more,main .label,main .credits dt,main .credits dd,main .crew div,main .factbox,main .award,main .showgrid a,main .trio,main .framed,main .portrait,main form';
-  var all=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')&&!el.closest('.reel')});
-  var set=new Set(all);
-  var els=all.filter(function(el){for(var a=el.parentElement;a;a=a.parentElement){if(set.has(a))return false}return true});
-  document.documentElement.classList.add('reveal-on');
-  var n=new Map();
-  els.forEach(function(el){el.classList.add('rv');var p=el.parentElement,i=n.get(p)||0;n.set(p,i+1);el.style.setProperty('--d',(Math.min(i,6)*0.09)+'s')});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:0.1});
-  els.forEach(function(el){io.observe(el)});
-})();
 </script>
 </body>
 </html>
