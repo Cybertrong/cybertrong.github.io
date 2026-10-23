@@ -292,6 +292,10 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 .legal a:hover{color:var(--yellow)}
 
 
+
+.showsec{background:var(--yellow);margin-top:0!important;padding-block:60px 90px}
+.showsec .label:hover,.showsec .showgrid a:hover .label{color:var(--bar-ink)}
+
 @media (max-width:1000px){
   .showgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
   .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -382,7 +386,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   </section>
 
   <div class="titleband" style="margin-top:0"><h2>Découvrez A comme Animal</h2></div>
-  <section aria-label="A comme Animal">
+  <section class="showsec" aria-label="A comme Animal">
     <div class="showgrid">
       <a href="#spectacle"><img src="images/a-comme-animal-scene.jpg" alt=""><span class="label">Le spectacle</span></a>
       <a href="#spectacle-video"><img src="images/video-a-comme-animal.jpg" alt=""><span class="label">La vidéo</span></a>
