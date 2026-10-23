@@ -106,8 +106,8 @@ nav.main .side a:hover{color:var(--yellow)}
 .trailer:hover .dot{transform:scale(1.08)}
 
 /* Photo + grandes lettres pâles */
-.band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);min-height:620px}
-.band-img{position:relative;min-height:380px}
+.band{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);min-height:620px}
+.band-img{position:relative;min-height:380px;order:2}
 .band-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .band-text{position:relative;overflow:hidden;display:flex;align-items:center;padding-block:90px;padding-left:max(24px,9vw);padding-right:max(20px,6vw)}
 .ghost{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);align-content:start;font-family:var(--head);color:var(--ghost);font-size:clamp(150px,21vw,340px);line-height:.95;pointer-events:none;user-select:none;padding-left:1vw}
@@ -275,7 +275,7 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:28px solid var(--ye
   .hero{height:auto;aspect-ratio:3/4;min-height:0;margin-top:0}
   .pagehead{height:auto;min-height:0;aspect-ratio:4/5}
   .band,.split,.split.wide-left,.facts{grid-template-columns:1fr;min-height:0}
-  .band-img{min-height:0;aspect-ratio:4/3}
+  .band-img{min-height:0;aspect-ratio:4/3;order:0}
   .band-text{padding:64px 20px}
   .ghost{font-size:40vw}
   .photo{min-height:0;aspect-ratio:4/3}
