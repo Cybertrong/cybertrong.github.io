@@ -267,6 +267,19 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:28px solid var(--ye
 @media (max-width:600px){.leader{width:min(56%,260px)}.reel-cap .eyebrow{display:none}.sprockets::before{background:repeating-linear-gradient(90deg,rgba(255,255,255,.82) 0 14px,transparent 14px 30px)}}
 @media (prefers-reduced-motion:reduce){.reel *,.reel .reel-bg,.sprockets::before{animation:none!important}.count span:first-child{opacity:1}}
 
+
+/* Sections .wrap : fond noir pleine largeur, texte blanc */
+main section.wrap{background:var(--bar);color:var(--bar-ink);box-shadow:0 0 0 100vmax var(--bar);clip-path:inset(0 -100vmax);padding-block:80px 110px;margin-top:0!important}
+main section.wrap .label,main section.wrap .label.dark{color:var(--bar-ink)}
+main section.wrap .label:hover{color:var(--yellow)}
+main section.wrap .factbox{color:var(--ink)}
+main section.wrap .factbox .label{color:var(--ink)}
+main section.wrap .factbox .label:hover{color:var(--bar-ink)}
+main section.wrap .credits{border-color:var(--bar-ink)}
+main section.wrap .crew div{border-color:var(--bar-ink)}
+main section.wrap .award svg{stroke:var(--bar-ink)}
+main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)}
+
 @media (max-width:1000px){
   .showgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
   .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -375,7 +388,7 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:28px solid var(--ye
     </div>
   </section>
 
-  <section class="split wide-left" aria-labelledby="h-about" style="margin-top:110px">
+  <section class="split wide-left" aria-labelledby="h-about">
     <div class="pad y">
       <h2 class="stag" id="h-about">
         <span class="w r">À propos</span><span class="w">compagnie</span>

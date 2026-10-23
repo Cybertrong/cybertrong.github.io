@@ -267,6 +267,19 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:28px solid var(--ye
 @media (max-width:600px){.leader{width:min(56%,260px)}.reel-cap .eyebrow{display:none}.sprockets::before{background:repeating-linear-gradient(90deg,rgba(255,255,255,.82) 0 14px,transparent 14px 30px)}}
 @media (prefers-reduced-motion:reduce){.reel *,.reel .reel-bg,.sprockets::before{animation:none!important}.count span:first-child{opacity:1}}
 
+
+/* Sections .wrap : fond noir pleine largeur, texte blanc */
+main section.wrap{background:var(--bar);color:var(--bar-ink);box-shadow:0 0 0 100vmax var(--bar);clip-path:inset(0 -100vmax);padding-block:80px 110px;margin-top:0!important}
+main section.wrap .label,main section.wrap .label.dark{color:var(--bar-ink)}
+main section.wrap .label:hover{color:var(--yellow)}
+main section.wrap .factbox{color:var(--ink)}
+main section.wrap .factbox .label{color:var(--ink)}
+main section.wrap .factbox .label:hover{color:var(--bar-ink)}
+main section.wrap .credits{border-color:var(--bar-ink)}
+main section.wrap .crew div{border-color:var(--bar-ink)}
+main section.wrap .award svg{stroke:var(--bar-ink)}
+main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)}
+
 @media (max-width:1000px){
   .showgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
   .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -347,7 +360,7 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:28px solid var(--ye
     <div class="award"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 6h18v10a9 9 0 0 1-18 0V6zM15 10H8v3a7 7 0 0 0 7 7M33 10h7v3a7 7 0 0 1-7 7M24 25v8M17 42h14M19 42l1.5-9h7L29 42"/></svg><strong>« Coup de cœur du Jury Jeunes » Grand Est</strong><span>Festival mondial des théâtres de marionnettes · Charleville-Mézières, France · 2025</span></div>
   </section>
 
-  <section class="split" aria-label="Critique de Petr Broulík" style="margin-top:110px">
+  <section class="split" aria-label="Critique de Petr Broulík">
     <div class="pad critic first-mobile"><h2 class="bigword">Petr<br>Broulík</h2><p class="meta">Magazine Patriot · Ostrava · 4 octobre 2025</p></div>
     <div class="pad y">
       <div class="quote-list">
