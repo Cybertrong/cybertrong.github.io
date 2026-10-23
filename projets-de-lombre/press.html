@@ -343,6 +343,14 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   .bar .lang{margin-left:auto}
   .trio{gap:8px}
 }
+/* Barre du haut jaune, texte noir */
+header.site{background:var(--yellow);color:var(--ink)}
+body::before{background:var(--yellow)}
+header.site .bar :focus-visible{outline-color:var(--ink)}
+.toplinks a:hover,.bar-brand:hover{color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.bar .lang a,.bar .lang span{color:rgba(20,18,15,.45)}
+.bar .lang a[aria-current],.bar .lang a:hover{color:var(--ink)}
+.burger:hover .bl,.burger:focus-visible .bl{background:var(--ink)}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
