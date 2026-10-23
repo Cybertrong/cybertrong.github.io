@@ -351,15 +351,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 .bar .lang a,.bar .lang span{color:rgba(20,18,15,.45)}
 .bar .lang a[aria-current],.bar .lang a:hover{color:var(--ink)}
 .burger:hover .bl,.burger:focus-visible .bl{background:var(--ink)}
-/* Effet au clic sur les liens de la barre : trait fin qui se dessine puis file vers la droite */
-.toplinks a{position:relative;display:inline-block;padding:4px 0;letter-spacing:.01em;transition:letter-spacing .5s cubic-bezier(.22,1,.36,1),opacity .3s}
-.toplinks a:hover{text-decoration:none!important}
-.toplinks a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,1,.36,1)}
-.toplinks a:hover::after,.toplinks a:focus-visible::after{transform:scaleX(1)}
-.toplinks a.flash{letter-spacing:.09em}
-.toplinks a.flash::after{animation:line-out .55s cubic-bezier(.65,0,.35,1) forwards}
-@keyframes line-out{0%{transform:scaleX(1);transform-origin:right center;height:1.5px}40%{height:2.5px}100%{transform:scaleX(0);transform-origin:right center;height:1.5px}}
-@media (prefers-reduced-motion:reduce){.toplinks a,.toplinks a::after{transition:none}.toplinks a.flash::after{animation:none}}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
@@ -513,11 +504,6 @@ closeB.addEventListener('click',function(){setMenu(false);burger.focus()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);burger.focus()}});
 nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
-document.querySelectorAll('.toplinks a').forEach(function(a){a.addEventListener('click',function(e){
-  a.classList.remove('flash');void a.offsetWidth;a.classList.add('flash');setTimeout(function(){a.classList.remove('flash')},700);
-  var h=a.getAttribute('href');
-  if(h&&h.charAt(0)!=='#'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){e.preventDefault();setTimeout(function(){location.href=h},380)}
-})});
 document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
 </script>
 </body>
