@@ -351,13 +351,15 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 .bar .lang a,.bar .lang span{color:rgba(20,18,15,.45)}
 .bar .lang a[aria-current],.bar .lang a:hover{color:var(--ink)}
 .burger:hover .bl,.burger:focus-visible .bl{background:var(--ink)}
-/* Effet au clic sur les liens de la barre */
-.toplinks a{position:relative;display:inline-block;padding:6px 12px;margin:-6px -12px;border-radius:999px;overflow:hidden;isolation:isolate;transition:transform .15s cubic-bezier(.34,1.56,.64,1),color .2s}
-.toplinks a:active{transform:scale(.9)}
-.toplinks a.flash,.toplinks a.flash:hover{color:var(--yellow);text-decoration:none}
-.toplinks .ripple{position:absolute;z-index:-1;width:14px;height:14px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%) scale(0);pointer-events:none;animation:ripple .6s cubic-bezier(.22,1,.36,1) forwards}
-@keyframes ripple{0%{transform:translate(-50%,-50%) scale(0);opacity:1}55%{transform:translate(-50%,-50%) scale(16);opacity:1}100%{transform:translate(-50%,-50%) scale(18);opacity:0}}
-@media (prefers-reduced-motion:reduce){.toplinks .ripple{animation:none;opacity:0}.toplinks a:active{transform:none}}
+/* Effet au clic sur les liens de la barre : trait fin qui se dessine puis file vers la droite */
+.toplinks a{position:relative;display:inline-block;padding:4px 0;letter-spacing:.01em;transition:letter-spacing .5s cubic-bezier(.22,1,.36,1),opacity .3s}
+.toplinks a:hover{text-decoration:none!important}
+.toplinks a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.toplinks a:hover::after,.toplinks a:focus-visible::after{transform:scaleX(1)}
+.toplinks a.flash{letter-spacing:.09em}
+.toplinks a.flash::after{animation:line-out .55s cubic-bezier(.65,0,.35,1) forwards}
+@keyframes line-out{0%{transform:scaleX(1);transform-origin:right center;height:1.5px}40%{height:2.5px}100%{transform:scaleX(0);transform-origin:right center;height:1.5px}}
+@media (prefers-reduced-motion:reduce){.toplinks a,.toplinks a::after{transition:none}.toplinks a.flash::after{animation:none}}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
@@ -704,11 +706,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classLi
 nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
 document.querySelectorAll('.toplinks a').forEach(function(a){a.addEventListener('click',function(e){
-  var r=a.getBoundingClientRect(),sp=document.createElement('span');sp.className='ripple';
-  sp.style.left=((e.clientX||r.left+r.width/2)-r.left)+'px';sp.style.top=((e.clientY||r.top+r.height/2)-r.top)+'px';
-  a.appendChild(sp);a.classList.add('flash');setTimeout(function(){sp.remove();a.classList.remove('flash')},650);
+  a.classList.remove('flash');void a.offsetWidth;a.classList.add('flash');setTimeout(function(){a.classList.remove('flash')},700);
   var h=a.getAttribute('href');
-  if(h&&h.charAt(0)!=='#'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){e.preventDefault();setTimeout(function(){location.href=h},330)}
+  if(h&&h.charAt(0)!=='#'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){e.preventDefault();setTimeout(function(){location.href=h},380)}
 })});
 document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
 var form=document.getElementById('form');
