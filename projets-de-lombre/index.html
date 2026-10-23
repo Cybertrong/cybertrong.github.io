@@ -351,6 +351,16 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 .bar .lang a,.bar .lang span{color:rgba(20,18,15,.45)}
 .bar .lang a[aria-current],.bar .lang a:hover{color:var(--ink)}
 .burger:hover .bl,.burger:focus-visible .bl{background:var(--ink)}
+/* Apparition du grand titre d'accueil : la scène s'allume, les lettres montent une à une, un reflet passe */
+.hero>img{animation:hero-light 2.6s cubic-bezier(.16,1,.3,1) both}
+@keyframes hero-light{from{transform:scale(1.1);filter:brightness(.25)}to{transform:none;filter:none}}
+.hero h1 .pre{animation:pre-in 1.4s .2s cubic-bezier(.16,1,.3,1) both}
+@keyframes pre-in{from{opacity:0;letter-spacing:.8em}}
+.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-top:.04em;background:linear-gradient(105deg,var(--yellow) 42%,#fff6c9 50%,var(--yellow) 58%) 120% 0/250% 100% no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 1.6s 1.5s ease-in-out both}
+.hero h1 .ch{display:inline-block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.45s + var(--i) * .075s)}
+@keyframes rise{to{transform:none}}
+@keyframes shine{from{background-position:120% 0}to{background-position:-20% 0}}
+@media (prefers-reduced-motion:reduce){.hero>img,.hero h1 .pre,.hero h1 .word{animation:none}.hero h1 .ch{animation:none;transform:none}}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
@@ -453,7 +463,7 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 <div data-view="accueil">
   <section class="hero" aria-labelledby="h-home">
     <img src="images/a-comme-animal-cage.jpg" alt="Tête de marionnette du vieux philosophe enfermée dans une cage à oiseaux, dans A comme Animal" style="object-position:62% center">
-    <h1 id="h-home"><span class="pre">Marie-Pascale</span>Bélanger</h1>
+    <h1 id="h-home" aria-label="Marie-Pascale Bélanger"><span class="pre" aria-hidden="true">Marie-Pascale</span><span class="word" aria-hidden="true"><span class="ch" style="--i:0">B</span><span class="ch" style="--i:1">é</span><span class="ch" style="--i:2">l</span><span class="ch" style="--i:3">a</span><span class="ch" style="--i:4">n</span><span class="ch" style="--i:5">g</span><span class="ch" style="--i:6">e</span><span class="ch" style="--i:7">r</span></span></h1>
     <a class="trailer" href="#spectacle-video"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>Voir la bande-annonce</a>
     <span class="credit">A comme Animal © Vanessa Fortin</span>
   </section>
