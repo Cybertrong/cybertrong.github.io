@@ -51,7 +51,17 @@ p{margin:0}
 /* Barre du haut et menu plein écran */
 header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bar);color:var(--bar-ink)}
 header.site .bar{display:flex;align-items:center;gap:22px;padding-block:16px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-.burger{background:none;border:0;color:inherit;cursor:pointer;padding:4px;display:block;order:3;margin-left:20px}
+.burger{background:none;border:0;color:inherit;cursor:pointer;order:3;margin-left:20px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;width:46px;height:42px;padding:4px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.burger .bl{display:block;height:3px;border-radius:3px;background:currentColor;transition:width .35s cubic-bezier(.34,1.56,.64,1),background .2s}
+.burger .bl:nth-child(1){width:36px}
+.burger .bl:nth-child(2){width:22px}
+.burger .bl:nth-child(3){width:30px}
+.burger:hover,.burger:focus-visible{transform:rotate(-8deg) scale(1.08)}
+.burger:hover .bl,.burger:focus-visible .bl{background:var(--yellow);animation:jive .62s cubic-bezier(.45,0,.55,1) infinite alternate}
+.burger:hover .bl:nth-child(2),.burger:focus-visible .bl:nth-child(2){animation-delay:-.2s;animation-duration:.5s}
+.burger:hover .bl:nth-child(3),.burger:focus-visible .bl:nth-child(3){animation-delay:-.4s;animation-duration:.7s}
+@keyframes jive{0%{width:8px;transform:translateX(0)}45%{width:38px;transform:translateX(-3px)}100%{width:16px;transform:translateX(2px)}}
+@media (prefers-reduced-motion:reduce){.burger .bl{animation:none!important}}
 .burger svg{width:32px;height:32px;stroke:currentColor;stroke-width:2.8;fill:none;display:block}
 .bar-brand{font-family:var(--heavy);font-weight:600;font-size:21px;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
 .toplinks{margin:0 0 0 auto;display:flex;gap:44px;list-style:none;padding:0}
@@ -333,13 +343,75 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   .bar .lang{margin-left:auto}
   .trio{gap:8px}
 }
+/* Tablette */
+@media (max-width:900px){
+  .stag{display:flex;flex-direction:column;align-items:flex-start}
+  .stag .w:nth-child(1){order:1}
+  .stag .w:nth-child(3){order:2}
+  .stag .w:nth-child(2){order:3}
+  .stag .body{order:4;padding-top:24px}
+  .titleband h2{letter-spacing:.1em}
+  .split .pad{padding-block:64px}
+  .facts{gap:20px}
+}
+/* Téléphone */
+@media (max-width:600px){
+  header.site .bar{gap:10px;padding-block:12px}
+  .bar-brand{font-size:15px;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .bar .lang{margin-left:auto;font-size:15px}
+  .burger{margin-left:6px}
+  .burger{width:40px}
+  .hero{aspect-ratio:4/5}
+  .hero h1{font-size:clamp(84px,25vw,200px);max-width:100%}
+  .hero h1 .pre{font-size:13px;letter-spacing:.24em}
+  .hero .trailer{bottom:18px;font-size:11px}
+  .trailer .dot{width:48px;height:48px}
+  .credit{bottom:auto;top:12px}
+  .pagehead{aspect-ratio:auto;min-height:62vh}
+  .pagehead h1{font-size:clamp(52px,15vw,120px);overflow-wrap:anywhere;max-width:100%}
+  .statement{font-size:22px;letter-spacing:.06em}
+  .titleband{padding-block:12px}
+  .titleband h2{font-size:clamp(28px,8.4vw,44px);letter-spacing:.08em}
+  .titleband + *{margin-top:0}
+  .showsec{padding-block:40px 60px}
+  .showgrid{gap:40px;padding-inline:20px}
+  .showgrid a{gap:14px}
+  .centerbtn{margin-top:40px}
+  main section.wrap{padding-block:56px 72px}
+  .yearbox{padding:10px 0 20px}
+  .yearbox h3{font-size:44px;margin-bottom:14px}
+  .yearbox ul{gap:22px}
+  .dates{gap:12px}
+  .split .pad{padding:52px 20px;gap:28px}
+  .stag .w{font-size:clamp(46px,13vw,64px)}
+  .stag .body,.center-text,.left-text{font-size:17px;line-height:1.75}
+  .bigword,.person .name{font-size:clamp(48px,14vw,72px)}
+  .framed,.portrait,.trio{width:100%}
+  .lead{font-size:20px}
+  .factbox,.credits{padding:24px}
+  .crew{gap:16px}
+  .contact-giant{font-size:clamp(68px,20vw,120px)}
+  .award strong{font-size:24px}
+  .quote-list{gap:24px}
+  .quote-list blockquote{font-size:18px}
+  .interview h3{font-size:26px}
+  .legal{padding-block:56px 80px}
+  .foot-main{padding-top:56px}
+  .cols{gap:32px}
+  .cols h4{margin-bottom:16px}
+  .cols ul{gap:14px}
+  .fbottom{margin-top:48px;flex-direction:column;align-items:flex-start}
+  nav.main .menu a{font-size:clamp(32px,9.4vw,44px);padding-left:20px;padding-right:20px}
+  nav.main .side{padding-left:20px}
+  .close{margin-right:4px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <header class="site">
   <div class="bar">
-    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span class="bl"></span><span class="bl"></span><span class="bl"></span></button>
     <a class="bar-brand" href="en.html#accueil">Marie-Pascale Bélanger</a>
     <ul class="toplinks">
       <li><a href="press.html">Press kit</a></li>
