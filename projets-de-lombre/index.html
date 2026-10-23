@@ -239,7 +239,7 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:1px solid var(--bar
 /* Vidéo : amorce de film (compte à rebours, pellicule qui défile, grain) */
 @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
 .reel{background:#0b0b0b;isolation:isolate}
-.reel .reel-bg{z-index:0;object-position:62% center;filter:grayscale(1) contrast(1.25) brightness(.5);animation:flicker 2.6s infinite}
+.reel .reel-bg{z-index:0;object-position:center 40%;filter:grayscale(1) contrast(1.25) brightness(.5);animation:flicker 2.6s infinite}
 .reel::before{content:"";position:absolute;inset:0;z-index:1;background:var(--yellow);mix-blend-mode:multiply;opacity:.6}
 .reel::after{z-index:2;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,.88) 100%)}
 .sprockets{position:absolute;left:0;right:0;z-index:4;height:clamp(22px,5.5%,40px);background:#000}
@@ -388,10 +388,10 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   <div class="titleband" style="margin-top:0"><h2 style="color:var(--bar-ink)">Découvrez A comme Animal</h2></div>
   <section class="showsec" aria-label="A comme Animal">
     <div class="showgrid">
-      <a href="#spectacle"><img src="images/a-comme-animal-scene.jpg" alt=""><span class="label">Le spectacle</span></a>
-      <a href="#spectacle-video"><img src="images/video-a-comme-animal.jpg" alt=""><span class="label">La vidéo</span></a>
-      <a href="presse.html"><img src="images/a-comme-animal.jpg" alt="" style="object-position:center 30%"><span class="label">Dossier de presse</span></a>
-      <a href="#calendrier"><img src="images/ombres-rideau.jpg" alt=""><span class="label">Calendrier</span></a>
+      <a href="#spectacle"><img src="images/tete-portee.jpg" alt=""><span class="label">Le spectacle</span></a>
+      <a href="#spectacle-video"><img src="images/masques-animaux-papier.jpg" alt=""><span class="label">La vidéo</span></a>
+      <a href="presse.html"><img src="images/tete-sur-socle.jpg" alt="" style="object-position:60% center"><span class="label">Dossier de presse</span></a>
+      <a href="#calendrier"><img src="images/projecteurs-violets.jpg" alt=""><span class="label">Calendrier</span></a>
     </div>
     <div class="centerbtn"><a class="label" href="#">Fiche technique</a></div>
   </section>
@@ -416,7 +416,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
         </span>
       </h2>
     </div>
-    <div class="photo"><img src="images/ombres-rideau.jpg" alt="Ombres de personnages projetées sur un rideau éclairé"></div>
+    <div class="photo"><img src="images/marionnette-marche.jpg" alt="Une interprète guide la marionnette du vieux philosophe dans des bandes de lumière" style="object-position:center 40%"></div>
   </section>
 
   <section class="split" aria-labelledby="h-mp">
@@ -445,7 +445,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   <section class="wrap endpad" aria-label="Extraits de presse">
     <div class="facts" style="align-items:start">
       <div style="display:flex;flex-direction:column;align-items:center;gap:30px">
-        <img src="images/a-comme-animal.jpg" alt="Marionnette du vieux philosophe, bras levé, dans A comme Animal" style="width:100%;aspect-ratio:4/5;object-fit:cover">
+        <img src="images/marionnette-foulard.jpg" alt="Deux interprètes manipulent la marionnette du vieux philosophe au foulard rouge" style="width:100%;aspect-ratio:4/5;object-fit:cover">
         <a class="label" href="presse.html">Lire le dossier</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:28px;font-size:19px;font-weight:400">
@@ -461,7 +461,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 <!-- SPECTACLE -->
 <div data-view="spectacle" hidden>
   <section class="pagehead" aria-labelledby="h-spec">
-    <img src="images/a-comme-animal-scene.jpg" alt="" style="object-position:center 35%">
+    <img src="images/brume-manteaux.jpg" alt="">
     <div class="stack"><h1 id="h-spec"><span class="pre">Spectacle</span>A comme Animal</h1><p class="sub">Théâtre visuel · Disponible en français et en anglais</p></div>
   </section>
   <section class="split" aria-label="Synopsis">
@@ -471,7 +471,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
       <p class="left-text">Guidé et habilement manipulé par trois interprètes métamorphosées en figures animales fantastiques, l’homme se décompose et se recompose, tout en explorant les souvenirs de son enfance. Tissé dans l’esprit des fables et des contes de fées, ce spectacle de théâtre visuel, librement inspiré des conférences de Gilles Deleuze, est une ode à l’imagination, à l’impermanence et à la quête d’identité. Il invite le public de tous âges à se laisser porter par cet univers unique, drôle, poétique et délicieusement déstabilisant.</p>
       <a class="more" href="presse.html">Dossier de presse</a>
     </div>
-    <div class="photo first-mobile"><img src="images/a-comme-animal.jpg" alt="Marionnette d’un vieil homme à lunettes, bras levé, manipulée par une interprète" style="object-position:center 30%"></div>
+    <div class="photo first-mobile"><img src="images/marionnette-pomme.jpg" alt="La marionnette du vieux philosophe lève les bras, une pomme rouge tombe au premier plan" style="object-position:center 30%"></div>
   </section>
   <div class="titleband"><h2>Le spectacle en bref</h2></div>
   <section class="wrap" aria-label="Informations et générique">
@@ -495,7 +495,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
   <div class="titleband"><h2>Vidéo</h2></div>
   <section class="wrap endpad" id="spectacle-video" aria-label="Vidéo">
     <a class="video reel" id="video" href="https://youtu.be/8QTUAIsGfMQ" target="_blank" rel="noopener" data-yt="8QTUAIsGfMQ" aria-label="Lire la vidéo d’A comme Animal">
-      <img class="reel-bg" src="images/a-comme-animal-cage.jpg" alt="">
+      <img class="reel-bg" src="images/bouc-cheval.jpg" alt="">
       <span class="leader" aria-hidden="true"><span class="sweep"></span><span class="count"><span>3</span><span>2</span><span>1</span></span></span>
       <span class="grain" aria-hidden="true"></span>
       <span class="reel-cap"><span class="eyebrow">Vidéo · A comme Animal</span><span class="trailer"><span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>Lancer la projection</span></span>
@@ -528,7 +528,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 <!-- CALENDRIER -->
 <div data-view="calendrier" hidden>
   <section class="pagehead" aria-labelledby="h-cal">
-    <img src="images/ombres-rideau.jpg" alt="">
+    <img src="images/projecteurs-violets.jpg" alt="">
     <div class="stack"><h1 id="h-cal"><span class="pre">A comme Animal</span>Calendrier</h1><a class="label" href="#">Fiche technique</a></div>
   </section>
   <div class="titleband" style="margin-top:0"><h2>Prochaines dates :</h2></div>
@@ -551,7 +551,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 <!-- COLLABORATEUR·TRICES -->
 <div data-view="collaborateurs" hidden>
   <section class="pagehead" aria-labelledby="h-team">
-    <img src="images/a-comme-animal-scene.jpg" alt="" style="object-position:center 35%">
+    <img src="images/tete-portee.jpg" alt="" style="object-position:center 40%">
     <div class="stack"><h1 id="h-team"><span class="pre">Collaborateur·trices</span>L’équipe</h1></div>
   </section>
   <section class="split" aria-label="Marika Karlsson"><div class="pad person first-mobile"><p class="role">Marionnettiste</p><h2 class="name">Marika<br>Karlsson</h2></div><div class="pad y"><div class="portrait"><img src="images/marika-karlsson.jpg" alt="Portrait de Marika Karlsson"></div><p class="center-text"><strong>Artiste, marionnettiste</strong>, Marika Karlsson commence son parcours théâtral en <strong>Finlande</strong> à un très jeune âge. Après avoir étudié la musique et l’art dramatique, elle poursuit ses études avec un <strong>baccalauréat en jeu</strong> à l’Université Concordia à Tiohtià:ke/Montréal. Elle complète le <strong>DESS en théâtre de marionnettes contemporain</strong> de l’UQAM en 2021. Dans son travail, elle s’appuie sur les approches <strong>somatiques</strong> et <strong>multidisciplinaires</strong>, et sa recherche artistique creuse autour de la temporalité du corps humain.</p><p class="role">Interprétation · A comme Animal</p></div></section>

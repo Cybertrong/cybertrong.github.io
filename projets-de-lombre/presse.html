@@ -239,7 +239,7 @@ footer{background:var(--bar);color:var(--bar-ink);border-top:1px solid var(--bar
 /* Vidéo : amorce de film (compte à rebours, pellicule qui défile, grain) */
 @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
 .reel{background:#0b0b0b;isolation:isolate}
-.reel .reel-bg{z-index:0;object-position:62% center;filter:grayscale(1) contrast(1.25) brightness(.5);animation:flicker 2.6s infinite}
+.reel .reel-bg{z-index:0;object-position:center 40%;filter:grayscale(1) contrast(1.25) brightness(.5);animation:flicker 2.6s infinite}
 .reel::before{content:"";position:absolute;inset:0;z-index:1;background:var(--yellow);mix-blend-mode:multiply;opacity:.6}
 .reel::after{z-index:2;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,.88) 100%)}
 .sprockets{position:absolute;left:0;right:0;z-index:4;height:clamp(22px,5.5%,40px);background:#000}
@@ -367,7 +367,7 @@ main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)
 
 <main id="haut">
   <section class="pagehead" aria-labelledby="h1">
-    <img src="images/a-comme-animal-cage.jpg" alt="" style="object-position:62% center">
+    <img src="images/tete-sur-socle.jpg" alt="" style="object-position:60% center">
     <div class="stack"><h1 id="h1"><span class="pre">Dossier de presse · A comme Animal</span>Presse</h1><p class="sub">Ce que la critique en dit, en Europe et au Canada.</p></div>
   </section>
 
