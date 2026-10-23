@@ -1,0 +1,912 @@
+import sys, re
+
+OUT = sys.argv[1]  # repo folder: writes index.html and presse.html
+
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500&family=League+Gothic&display=swap">'
+
+CSS = r'''
+/* Style affiche : barre noire, menu plein écran, très grandes lettres jaunes condensées, bandeaux-titres jaunes, sections moitié jaune / moitié blanche */
+:root{
+  --bg:#ffffff; --ink:#14120f; --muted:#45453f; --line:#e2e2da;
+  --yellow:#f3ca20; --ghost:#fdf4d0; --bar:#14120f; --bar-ink:#ffffff; --bar-muted:#a3a39b;
+  --hero:"League Gothic","Oswald","Arial Narrow",sans-serif;
+  --giant:"Barlow Condensed","Arial Narrow",sans-serif;
+  --head:"Barlow Condensed","Arial Narrow",sans-serif;
+  --heavy:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --sans:"Barlow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:18px;line-height:1.75}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bar)}
+a{color:inherit}
+img{display:block;max-width:100%}
+strong,b{font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+header.site :focus-visible,footer :focus-visible,nav.main :focus-visible,.dark :focus-visible{outline-color:var(--yellow)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+h1,h2,h3{font-weight:500}
+.pagehead h1,.yearbox h3,.contact-giant{font-weight:300}
+.pagehead h1{line-height:.92}
+.contact-giant{line-height:.92}
+p{margin:0}
+.eyebrow{font-family:var(--heavy);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+
+/* Liens et étiquettes */
+.more{display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:400;font-size:15px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+.more::after{content:"⟶";font-size:20px;line-height:1;transition:transform .2s}
+.more:hover::after{transform:translateX(6px)}
+.label{display:inline-block;background:transparent;color:var(--ink);font-family:var(--heavy);font-weight:500;font-size:16px;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;padding:13px 30px;border:0;cursor:pointer;transition:background .15s,color .15s}
+.label:hover{color:var(--yellow)}
+.label.dark{background:transparent;color:var(--ink)}
+.pagehead .label{color:var(--bar-ink)}
+.pagehead .label:hover{color:var(--yellow)}
+.label.dark:hover{color:var(--bg)}
+
+/* Barre du haut et menu plein écran */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bar);color:var(--bar-ink)}
+header.site .bar{display:flex;align-items:center;gap:22px;padding-block:16px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.burger{background:none;border:0;color:inherit;cursor:pointer;order:3;margin-left:20px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;width:46px;height:42px;padding:4px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.burger .bl{display:block;height:3px;border-radius:3px;background:currentColor;transition:width .35s cubic-bezier(.34,1.56,.64,1),background .2s}
+.burger .bl:nth-child(1){width:36px}
+.burger .bl:nth-child(2){width:22px}
+.burger .bl:nth-child(3){width:30px}
+.burger:hover,.burger:focus-visible{transform:rotate(-8deg) scale(1.08)}
+.burger:hover .bl,.burger:focus-visible .bl{background:var(--yellow);animation:jive .62s cubic-bezier(.45,0,.55,1) infinite alternate}
+.burger:hover .bl:nth-child(2),.burger:focus-visible .bl:nth-child(2){animation-delay:-.2s;animation-duration:.5s}
+.burger:hover .bl:nth-child(3),.burger:focus-visible .bl:nth-child(3){animation-delay:-.4s;animation-duration:.7s}
+@keyframes jive{0%{width:8px;transform:translateX(0)}45%{width:38px;transform:translateX(-3px)}100%{width:16px;transform:translateX(2px)}}
+@media (prefers-reduced-motion:reduce){.burger .bl{animation:none!important}}
+.burger svg{width:32px;height:32px;stroke:currentColor;stroke-width:2.8;fill:none;display:block}
+.bar-brand{font-family:var(--heavy);font-weight:600;font-size:21px;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
+.toplinks{margin:0 0 0 auto;display:flex;gap:44px;list-style:none;padding:0}
+.toplinks a{font-family:var(--heavy);font-weight:600;font-size:18px;text-decoration:none;white-space:nowrap}
+.toplinks a:hover,.bar-brand:hover{color:var(--yellow)}
+.lang{display:flex;align-items:center;gap:6px;font-family:var(--heavy);font-weight:600;font-size:17px;letter-spacing:.06em}
+.lang a{text-decoration:none;color:var(--bar-muted);padding:2px 2px}
+.lang a[aria-current]{color:var(--bar-ink)}
+.lang a:hover{color:var(--yellow)}
+.lang span{color:var(--bar-muted)}
+.bar .lang{order:2;margin-left:36px}
+nav.main{position:fixed;inset:0;z-index:50;background:var(--bar);color:var(--bar-ink);display:grid;visibility:hidden;clip-path:inset(0 100% 0 0);transition:clip-path .65s cubic-bezier(.77,0,.18,1),visibility 0s linear .65s;overflow:auto;padding-block:env(safe-area-inset-top,0px) 40px;padding-left:env(safe-area-inset-left,0px);padding-right:max(20px,env(safe-area-inset-right,0px));grid-template-columns:minmax(0,1fr) minmax(0,820px);grid-template-rows:auto 1fr;column-gap:40px}
+nav.main.open{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path .65s cubic-bezier(.77,0,.18,1),visibility 0s}
+nav.main::before{content:"";position:absolute;inset:0;z-index:3;background:var(--yellow);transform:translateX(-101%);pointer-events:none}
+nav.main.open::before{animation:sweep .95s cubic-bezier(.77,0,.18,1)}
+@keyframes sweep{0%{transform:translateX(-101%)}48%{transform:translateX(0)}100%{transform:translateX(101%)}}
+nav.main .menu li,nav.main .side li{opacity:0;transform:translateX(-70px);transition:opacity .3s,transform .3s}
+nav.main.open .menu li,nav.main.open .side li{opacity:1;transform:none;transition:opacity .5s ease calc(.5s + var(--i,0) * .06s),transform .7s cubic-bezier(.16,1,.3,1) calc(.5s + var(--i,0) * .06s)}
+.close{opacity:0;transform:rotate(-180deg) scale(.4);transition:opacity .3s,transform .3s,color .15s}
+nav.main.open .close{opacity:1;transform:none;transition:opacity .4s ease .45s,transform .6s cubic-bezier(.16,1,.3,1) .45s,color .15s}
+@media (prefers-reduced-motion:reduce){nav.main.open::before{animation:none}nav.main,nav.main .menu li,nav.main .side li,.close{transform:none!important}}
+.close{grid-column:1/-1;justify-self:end;display:grid;place-items:center;width:64px;height:64px;margin:2px 0 0 0;background:transparent;color:var(--bar-ink);border:0;cursor:pointer;padding:0}
+.close svg{width:36px;height:36px;stroke:currentColor;stroke-width:3;fill:none}
+.close:hover{color:var(--yellow)}
+nav.main .menu{list-style:none;margin:0;padding:20px 0 0;display:flex;flex-direction:column;align-self:start}
+nav.main .menu a{display:flex;align-items:center;padding:4px 28px 4px max(28px,env(safe-area-inset-left,0px));font-family:var(--head);font-weight:500;font-size:clamp(38px,5.2vw,74px);line-height:1.05;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;transition:color .25s}
+nav.main .menu a::before{content:"";flex:none;width:0;height:4px;margin-right:0;background:var(--yellow);transition:width .45s cubic-bezier(.16,1,.3,1),margin-right .45s cubic-bezier(.16,1,.3,1)}
+nav.main .menu a:hover::before{width:40px;margin-right:18px}
+nav.main .menu a.on::before{width:90px;margin-right:24px}
+nav.main .menu a:hover{color:var(--yellow)}
+nav.main .menu a.on,nav.main .menu a.on:hover{background:none;color:var(--yellow);font-style:italic}
+nav.main .menu{grid-column:2;grid-row:2}
+nav.main .side{grid-column:1;grid-row:2;list-style:none;margin:0;padding:0 0 0 max(28px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;justify-content:center;align-self:center;gap:22px}
+nav.main .side a{font-family:var(--heavy);font-weight:600;font-size:21px;text-decoration:none}
+nav.main .side a:hover{color:var(--yellow)}
+@media (max-width:900px){nav.main{grid-template-columns:1fr}nav.main .menu{grid-column:1;grid-row:2}nav.main .side{grid-column:1;grid-row:3;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;padding:30px 0 0 28px;gap:16px 32px}}
+
+/* Bandeau photo avec grand mot */
+.hero,.pagehead{position:relative;overflow:hidden;background:var(--bar);display:grid;place-items:center;text-align:center}
+.hero{height:min(80vh,800px);min-height:480px}
+.pagehead{height:min(62vh,600px);min-height:380px}
+.hero>img,.pagehead>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before,.pagehead::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.18)}
+.pagehead::before{background:rgba(0,0,0,.35)}
+.hero h1,.pagehead h1{position:relative;z-index:2;font-family:var(--giant);color:var(--yellow);line-height:.8;padding-inline:16px;text-transform:uppercase}
+.hero h1{font-family:var(--hero);font-size:clamp(110px,22vw,360px)}
+.hero h1 .pre{font-family:"Archivo","Arial Black",Arial,sans-serif;font-weight:900}
+.pagehead h1{font-size:clamp(84px,15vw,250px)}
+.hero h1 .pre,.pagehead .pre{display:block;font-family:var(--heavy);font-weight:600;font-size:clamp(14px,1.6vw,22px);letter-spacing:.2em;line-height:1.4;margin-bottom:14px;color:var(--yellow)}
+.pagehead .stack{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:22px}
+.pagehead .sub{color:var(--bar-ink);font-weight:400;font-size:17px;max-width:44ch}
+.hero .trailer{position:absolute;z-index:2;left:max(20px,env(safe-area-inset-left,0px));bottom:24px;color:var(--bar-ink)}
+.credit{position:absolute;z-index:2;right:max(20px,env(safe-area-inset-right,0px));bottom:16px;font-size:11px;font-weight:400;letter-spacing:.06em;color:rgba(255,255,255,.78)}
+.trailer{display:inline-flex;align-items:center;gap:14px;font-family:var(--heavy);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.trailer .dot{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--yellow);transition:transform .2s}
+.trailer svg{width:18px;height:18px;fill:var(--ink);margin-left:3px}
+.trailer:hover .dot{transform:scale(1.08)}
+
+/* Photo + grandes lettres pâles */
+.band{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);min-height:620px}
+.band-img{position:relative;min-height:380px;order:2}
+.band-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.band-text{position:relative;overflow:hidden;display:flex;align-items:center;padding-block:90px;padding-left:max(24px,9vw);padding-right:max(20px,6vw)}
+.ghost{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);align-content:start;font-family:var(--head);color:var(--ghost);font-size:clamp(150px,21vw,340px);line-height:.95;pointer-events:none;user-select:none;padding-left:1vw}
+.band-body{position:relative;display:flex;flex-direction:column;gap:30px;align-items:flex-start}
+.statement{font-family:var(--head);font-size:clamp(26px,2.7vw,44px);line-height:1.2;letter-spacing:.09em;text-transform:uppercase;max-width:22em}
+
+/* Bandeau-titre jaune */
+.titleband{background:var(--yellow);padding-block:16px;text-align:center;margin-top:90px}
+.titleband h2{font-family:var(--head);text-transform:uppercase;font-size:clamp(32px,5.4vw,90px);line-height:1.1;letter-spacing:.14em;padding-inline:16px}
+.titleband + *{margin-top:70px}
+
+/* Cartes photo */
+.showgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;max-width:none;padding-inline:max(8px,env(safe-area-inset-left,0px)) max(8px,env(safe-area-inset-right,0px))}
+.showgrid a{display:flex;flex-direction:column;align-items:center;gap:26px;text-decoration:none}
+.showgrid img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:filter .2s}
+.showgrid a:hover img{filter:brightness(1.08)}
+.showgrid a:hover .label{color:var(--yellow)}
+.centerbtn{display:flex;justify-content:center;margin-top:70px}
+
+/* Dates par année */
+.dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:28px;align-items:start}
+.yearbox{background:transparent;padding:26px 22px 40px;text-align:center;font-weight:400}
+.yearbox h3{font-family:var(--giant);font-size:54px;line-height:1;margin-bottom:22px}
+.yearbox ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:28px}
+.yearbox li{line-height:1.55}
+.yearbox li b{display:block}
+.yearbox a{text-decoration:underline;text-underline-offset:4px}
+
+/* Moitié / moitié */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:680px}
+.split.wide-left{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.split>*{min-width:0}
+.y{background:var(--yellow)}
+.dark{background:var(--bar);color:var(--bar-ink)}
+.pad{padding:clamp(56px,8vw,120px) max(20px,6vw);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:40px}
+.pad.left{align-items:flex-start}
+.photo{position:relative;min-height:420px}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bigword{font-family:var(--head);text-transform:uppercase;font-size:clamp(60px,7.4vw,124px);line-height:.86;letter-spacing:.03em;text-align:center}
+.center-text{max-width:31em;text-align:center;font-size:19px;line-height:1.9}
+.left-text{max-width:33em;font-size:19px;line-height:1.9}
+.framed{width:min(100%,500px)}
+.framed img{width:100%;aspect-ratio:13/12;object-fit:cover}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(100%,500px)}
+.trio img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 25%}
+
+/* À propos : titre en escalier */
+.stag{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:22px;row-gap:6px;align-items:start;max-width:860px}
+.stag .w{font-family:var(--head);text-transform:uppercase;font-size:clamp(52px,6.4vw,112px);line-height:.95;letter-spacing:.01em}
+.stag .w.r{text-align:right}
+.stag .body{padding-top:10px;display:flex;flex-direction:column;gap:40px;align-items:flex-start;font-size:19px;line-height:1.9;max-width:30em}
+
+/* Spectacle */
+.lead{font-size:23px;line-height:1.6;font-weight:400}
+.facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:28px}
+.factbox{background:var(--yellow);padding:36px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.factbox .k{font-family:var(--heavy);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.factbox .v{font-family:var(--head);text-transform:uppercase;letter-spacing:.05em;font-size:26px;line-height:1.15;margin-top:-8px}
+.factbox .label{margin-top:10px}
+.credits{border:2px solid var(--ink);padding:36px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px 32px;margin:0;min-width:0}
+.credits dt{font-family:var(--heavy);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding-top:6px}
+.credits dd{margin:0;font-family:var(--head);text-transform:uppercase;letter-spacing:.05em;font-size:22px;line-height:1.3}
+.video{position:relative;display:block;aspect-ratio:16/9;max-width:100%;overflow:hidden;text-decoration:none;background:var(--bar)}
+.video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.video .trailer{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--bar-ink)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
+.endpad{padding-bottom:110px}
+
+/* Équipe */
+.person .name{font-family:var(--head);text-transform:uppercase;font-size:clamp(56px,6.6vw,112px);line-height:.86;letter-spacing:.03em;text-align:center}
+.person .role{font-family:var(--heavy);font-weight:500;font-size:14px;letter-spacing:.18em;text-transform:uppercase}
+.portrait{width:min(100%,340px)}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%}
+.crew{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:0}
+.crew div{border-top:2px solid var(--ink);padding-top:18px}
+.crew dt{font-family:var(--heavy);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.crew dd{margin:0;font-family:var(--head);text-transform:uppercase;font-size:24px;letter-spacing:.05em}
+
+/* Contact */
+.contact-giant{font-family:var(--giant);text-transform:uppercase;font-size:clamp(110px,15vw,250px);line-height:.82}
+form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;width:min(100%,560px)}
+form .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:6px;font-family:var(--heavy);font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+input,textarea{font:inherit;font-family:var(--sans);font-weight:400;font-size:17px;letter-spacing:0;text-transform:none;color:var(--ink);background:var(--bg);border:0;border-bottom:2px solid var(--ink);padding:12px 2px;border-radius:0;width:100%}
+textarea{min-height:170px;resize:vertical;border:2px solid var(--ink);padding:12px}
+input:focus,textarea:focus{outline:none;background:var(--ghost)}
+.actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-wrap:wrap}
+.status{font-size:15px;font-weight:400}
+
+/* Presse */
+.quote-list{display:flex;flex-direction:column;gap:34px;max-width:32em}
+.quote-list blockquote{margin:0;font-size:21px;line-height:1.7;font-weight:400;text-align:center}
+.quote-list blockquote[lang="en"]{font-style:italic}
+.quote-list blockquote.big{font-family:var(--head);font-style:normal;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(24px,2.4vw,34px);line-height:1.3}
+.critic{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.critic .meta{font-family:var(--heavy);font-weight:500;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.award{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.award svg{width:64px;height:64px;stroke:var(--ink);fill:none;stroke-width:1.3}
+.award strong{font-family:var(--head);font-weight:400;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(26px,3vw,42px);line-height:1.2}
+.award span{font-size:17px;font-weight:400}
+.interview{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+.interview h3{font-family:var(--head);text-transform:uppercase;letter-spacing:.05em;font-size:clamp(26px,3vw,44px);line-height:1.2;max-width:24em}
+
+/* Pied de page */
+footer{background:var(--bar);color:var(--bar-ink);border-top:1px solid var(--bar-ink);display:block;margin-top:0}
+.foot-main{padding:80px max(20px,6vw) 30px;padding-left:max(20px,env(safe-area-inset-left,0px),6vw)}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
+.cols h4{margin:0 0 26px;font-family:var(--heavy);font-weight:600;font-size:19px;text-transform:uppercase}
+.cols ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+.cols a{font-family:var(--heavy);font-weight:600;font-size:18px;line-height:1.3;text-decoration:none}
+.cols a:hover{color:var(--yellow)}
+.cols .heads a{text-transform:uppercase;font-size:19px}
+.social{display:flex;gap:10px;list-style:none;margin:70px 0 0;padding:0}
+.social a{display:grid;place-items:center;width:46px;height:46px;border:1.5px solid var(--bar-ink);color:var(--bar-ink)}
+.social a:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.social svg{width:20px;height:20px;fill:currentColor}
+.fbottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:80px;padding-top:24px;border-top:1px solid #2a2a2a;font-size:13px;font-weight:400;color:var(--bar-muted)}
+.fbottom ul{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0}
+.fbottom a{text-decoration:none}
+.fbottom a:hover{color:var(--yellow)}
+.vtab{background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;text-decoration:none;padding-right:env(safe-area-inset-right,0px)}
+.vtab span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--sans);font-weight:400;font-size:24px;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.vtab:hover{background:var(--yellow)}
+
+
+/* Vidéo : amorce de film (compte à rebours, pellicule qui défile, grain) */
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+.reel{background:#0b0b0b;isolation:isolate}
+.reel .reel-bg{z-index:0;object-position:center 40%;filter:grayscale(1) contrast(1.25) brightness(.5);animation:flicker 2.6s infinite}
+.reel::before{content:"";position:absolute;inset:0;z-index:1;background:var(--yellow);mix-blend-mode:multiply;opacity:.6}
+.reel::after{z-index:2;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,.88) 100%)}
+.sprockets{position:absolute;left:0;right:0;z-index:4;height:clamp(22px,5.5%,40px);background:#000}
+.sprockets.top{top:0}.sprockets.bottom{bottom:0}
+.sprockets::before{content:"";position:absolute;left:0;right:0;top:28%;bottom:28%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.82) 0 22px,transparent 22px 46px);border-radius:2px;animation:film 1.1s linear infinite}
+.sprockets.bottom::before{animation-direction:reverse}
+.leader{position:absolute;z-index:3;left:50%;top:50%;width:min(44%,360px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(255,255,255,.85);box-shadow:inset 0 0 0 14px rgba(0,0,0,.35),inset 0 0 0 16px rgba(255,255,255,.55);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.leader::before,.leader::after{content:"";position:absolute;background:rgba(255,255,255,.55)}
+.leader::before{left:-70%;right:-70%;top:50%;height:1.5px}
+.leader::after{top:-30%;bottom:-30%;left:50%;width:1.5px}
+.sweep{position:absolute;inset:16px;border-radius:50%;background:conic-gradient(rgba(0,0,0,.55) var(--a),transparent 0);animation:sweep-a 1s linear infinite}
+.count span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--hero);font-size:clamp(90px,16vw,230px);line-height:1;color:#fff;opacity:0;animation:num 3s linear infinite}
+.count span:nth-child(2){animation-delay:1s}
+.count span:nth-child(3){animation-delay:2s}
+.grain{position:absolute;inset:-50%;z-index:5;pointer-events:none;opacity:.22;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .45s steps(3) infinite}
+.reel-cap{position:absolute;z-index:6;left:max(20px,3%);right:max(20px,3%);bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;color:var(--bar-ink)}
+.reel .reel-cap .trailer{position:static;transform:none}
+.reel:hover .leader{transform:translate(-50%,-50%) scale(1.05)}
+.reel:hover .trailer .dot{transform:scale(1.08)}
+@keyframes film{to{background-position:46px 0}}
+@keyframes sweep-a{to{--a:360deg}}
+@keyframes num{0%,33.2%{opacity:1}33.3%,100%{opacity:0}}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-6%,4%)}66%{transform:translate(5%,-5%)}100%{transform:translate(-3%,7%)}}
+@keyframes flicker{0%,100%{opacity:1}8%{opacity:.86}10%{opacity:1}47%{opacity:.93}49%{opacity:1}73%{opacity:.88}75%{opacity:1}}
+@media (max-width:600px){.leader{width:min(56%,260px)}.reel-cap .eyebrow{display:none}.sprockets::before{background:repeating-linear-gradient(90deg,rgba(255,255,255,.82) 0 14px,transparent 14px 30px)}}
+@media (prefers-reduced-motion:reduce){.reel *,.reel .reel-bg,.sprockets::before{animation:none!important}.count span:first-child{opacity:1}}
+
+
+/* Sections .wrap : fond noir pleine largeur, texte blanc */
+main section.wrap{background:var(--bar);color:var(--bar-ink);box-shadow:0 0 0 100vmax var(--bar);clip-path:inset(0 -100vmax);padding-block:80px 110px;margin-top:0!important}
+main section.wrap .label,main section.wrap .label.dark{color:var(--bar-ink)}
+main section.wrap .label:hover{color:var(--yellow)}
+main section.wrap .factbox{color:var(--ink)}
+main section.wrap .factbox .label{color:var(--ink)}
+main section.wrap .factbox .label:hover{color:var(--bar-ink)}
+main section.wrap .credits{border-color:var(--bar-ink)}
+main section.wrap .crew div{border-color:var(--bar-ink)}
+main section.wrap .award svg{stroke:var(--bar-ink)}
+main section.wrap a:not(.label):not(.more):not(.video):hover{color:var(--yellow)}
+
+
+/* Page de texte (politique) */
+.legal{padding-block:90px 120px}
+.legal .col{max-width:44em;display:flex;flex-direction:column;gap:22px;font-size:18px;line-height:1.8;font-weight:400}
+.legal h1{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:clamp(40px,5.6vw,84px);line-height:1.05}
+.legal h2{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:clamp(24px,2.4vw,32px);margin-top:26px}
+.legal .updated{font-family:var(--heavy);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.legal ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:12px}
+.legal a{text-underline-offset:4px}
+.legal a:hover{color:var(--yellow)}
+
+
+
+.showsec{background:var(--yellow);margin-top:0!important;padding-block:60px 90px;border-bottom:1px solid var(--bar-ink)}
+.showsec .label:hover,.showsec .showgrid a:hover .label{color:var(--bar-ink)}
+
+@media (max-width:1000px){
+  .showgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .crew{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .toplinks li:not(:last-child){display:none}
+  .hero{height:auto;aspect-ratio:3/4;min-height:0;margin-top:0}
+  .pagehead{height:auto;min-height:0;aspect-ratio:4/5}
+  .band,.split,.split.wide-left,.facts{grid-template-columns:1fr;min-height:0}
+  .band-img{min-height:0;aspect-ratio:4/3;order:0}
+  .band-text{padding:64px 20px}
+  .ghost{font-size:40vw}
+  .photo{min-height:0;aspect-ratio:4/3}
+  .split .photo.first-mobile{order:-1}
+  .split .pad.first-mobile{order:-1}
+  .stag{grid-template-columns:1fr}
+  .stag .w.r{text-align:left}
+  .stag .body{grid-column:1}
+  .credits{grid-template-columns:1fr;gap:2px}
+  .credits dd{margin-bottom:12px}
+  form{grid-template-columns:1fr}
+  .titleband{margin-top:60px}
+  .titleband + *{margin-top:44px}
+  footer{grid-template-columns:1fr}
+  .vtab{padding-block:18px}
+  .vtab span{writing-mode:horizontal-tb;transform:none;font-size:18px}
+}
+@media (max-width:520px){
+  .showgrid,.cols,.crew{grid-template-columns:1fr}
+  .toplinks{display:none}
+  .bar .lang{margin-left:auto}
+  .trio{gap:8px}
+}
+/* Barre du haut jaune, texte noir */
+header.site{background:var(--yellow);color:var(--ink)}
+body::before{background:var(--yellow)}
+header.site .bar :focus-visible{outline-color:var(--ink)}
+.toplinks a:hover,.bar-brand:hover{color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.bar .lang a,.bar .lang span{color:rgba(20,18,15,.45)}
+.bar .lang a[aria-current],.bar .lang a:hover{color:var(--ink)}
+.burger:hover .bl,.burger:focus-visible .bl{background:var(--ink)}
+/* Tablette */
+@media (max-width:900px){
+  .stag{display:flex;flex-direction:column;align-items:flex-start}
+  .stag .w:nth-child(1){order:1}
+  .stag .w:nth-child(3){order:2}
+  .stag .w:nth-child(2){order:3}
+  .stag .body{order:4;padding-top:24px}
+  .titleband h2{letter-spacing:.1em}
+  .split .pad{padding-block:64px}
+  .facts{gap:20px}
+}
+/* Téléphone */
+@media (max-width:600px){
+  header.site .bar{gap:10px;padding-block:12px}
+  .bar-brand{font-size:15px;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .bar .lang{margin-left:auto;font-size:15px}
+  .burger{margin-left:6px}
+  .burger{width:40px}
+  .hero{aspect-ratio:4/5}
+  .hero h1{font-size:clamp(84px,25vw,200px);max-width:100%}
+  .hero h1 .pre{font-size:13px;letter-spacing:.24em}
+  .hero .trailer{bottom:18px;font-size:11px}
+  .trailer .dot{width:48px;height:48px}
+  .credit{bottom:auto;top:12px}
+  .pagehead{aspect-ratio:auto;min-height:62vh}
+  .pagehead h1{font-size:clamp(52px,15vw,120px);overflow-wrap:anywhere;max-width:100%}
+  .statement{font-size:22px;letter-spacing:.06em}
+  .titleband{padding-block:12px}
+  .titleband h2{font-size:clamp(28px,8.4vw,44px);letter-spacing:.08em}
+  .titleband + *{margin-top:0}
+  .showsec{padding-block:40px 60px}
+  .showgrid{gap:40px;padding-inline:20px}
+  .showgrid a{gap:14px}
+  .centerbtn{margin-top:40px}
+  main section.wrap{padding-block:56px 72px}
+  .yearbox{padding:10px 0 20px}
+  .yearbox h3{font-size:44px;margin-bottom:14px}
+  .yearbox ul{gap:22px}
+  .dates{gap:12px}
+  .split .pad{padding:52px 20px;gap:28px}
+  .stag .w{font-size:clamp(46px,13vw,64px)}
+  .stag .body,.center-text,.left-text{font-size:17px;line-height:1.75}
+  .bigword,.person .name{font-size:clamp(48px,14vw,72px)}
+  .framed,.portrait,.trio{width:100%}
+  .lead{font-size:20px}
+  .factbox,.credits{padding:24px}
+  .crew{gap:16px}
+  .contact-giant{font-size:clamp(68px,20vw,120px)}
+  .award strong{font-size:24px}
+  .quote-list{gap:24px}
+  .quote-list blockquote{font-size:18px}
+  .interview h3{font-size:26px}
+  .legal{padding-block:56px 80px}
+  .foot-main{padding-top:56px}
+  .cols{gap:32px}
+  .cols h4{margin-bottom:16px}
+  .cols ul{gap:14px}
+  .fbottom{margin-top:48px;flex-direction:column;align-items:flex-start}
+  nav.main .menu a{font-size:clamp(32px,9.4vw,44px);padding-left:20px;padding-right:20px}
+  nav.main .side{padding-left:20px}
+  .close{margin-right:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+'''
+
+ICON = {
+ 'fb':'<svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.6c0-.4.2-.6.6-.6z"/></svg>',
+ 'ig':'<svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM12 2.5c-2.6 0-2.9 0-3.9.1C5 2.7 3 4.3 2.6 7.4 2.5 8.4 2.5 8.7 2.5 12s0 3.6.1 4.6c.2 3.1 2.1 5 5.2 5.2 1 .1 1.3.1 4.2.1s3.2 0 4.2-.1c3.1-.2 5-2.1 5.2-5.2.1-1 .1-1.3.1-4.6s0-3.6-.1-4.6C21.2 4.3 19.3 2.7 16.2 2.6c-1-.1-1.6-.1-4.2-.1zm0 1.7c2.6 0 2.9 0 3.9.1 2.2.1 3.4 1.2 3.5 3.5.1 1 .1 1.3.1 4.2s0 3.2-.1 4.2c-.1 2.3-1.3 3.4-3.5 3.5-1 .1-1.3.1-3.9.1s-2.9 0-3.9-.1C5.9 19.4 4.7 18.3 4.6 16c-.1-1-.1-1.3-.1-4s0-3.2.1-4.2C4.7 5.6 5.9 4.4 8.1 4.3c1-.1 1.3-.1 3.9-.1z"/></svg>',
+ 'x':'<svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>',
+ 'in':'<svg viewBox="0 0 24 24"><path d="M4.5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v12H3V9zm6 0h2.9v1.7c.5-.9 1.7-2 3.6-2 3.7 0 4.5 2.4 4.5 5.6V21h-3v-5.9c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1v6H9V9z"/></svg>',
+ 'yt':'<svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg>',
+}
+PLAY = '<span class="dot"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>'
+TROPHY = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 6h18v10a9 9 0 0 1-18 0V6zM15 10H8v3a7 7 0 0 0 7 7M33 10h7v3a7 7 0 0 1-7 7M24 25v8M17 42h14M19 42l1.5-9h7L29 42"/></svg>'
+YT = 'https://youtu.be/8QTUAIsGfMQ'
+JEU = 'https://revuejeu.org/2024/03/05/cinq-questions-a-marie-pascale-belanger-metteuse-en-scene-choregraphe-et-scenographe/'
+CHARLEVILLE = 'https://marionnette.com/evenements/a-comme-animal/'
+
+def L(p, h):
+    """link to an in-site view; p='' on index, 'index.html' on other pages"""
+    return (p + '#' + h) if h else (p or '#accueil')
+
+def header(p, active):
+    items = [('accueil','Accueil'),('spectacle','Spectacle'),('direction','Direction artistique'),('calendrier','Calendrier'),('PRESSE','Presse'),('collaborateurs','Collaborateur·trices'),('contact','Contact')]
+    lis = []
+    for k, t in items:
+        if k == 'PRESSE':
+            on = ' class="on" aria-current="page"' if active == 'presse' else ''
+            lis.append(f'<li style="--i:{len(lis)}"><a href="presse.html"{on}>{t}</a></li>')
+        else:
+            lis.append(f'<li style="--i:{len(lis)}"><a href="{L(p,k)}" data-nav="{k}">{t}</a></li>')
+    return f'''<header class="site">
+  <div class="bar">
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span class="bl"></span><span class="bl"></span><span class="bl"></span></button>
+    <a class="bar-brand" href="{L(p,'accueil')}">Marie-Pascale Bélanger</a>
+    <ul class="toplinks">
+      <li><a href="presse.html">Dossier de presse</a></li>
+      <li><a href="{L(p,'calendrier')}">Calendrier</a></li>
+      <li><a href="{L(p,'contact')}">Nous joindre</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Langue"><a href="#" aria-current="true" lang="fr">FR</a><span aria-hidden="true">/</span><a href="#" lang="en" title="English version coming soon">EN</a></div>
+  </div>
+  <nav class="main" id="nav" aria-label="Menu principal">
+    <button class="close" id="close" type="button" aria-label="Fermer le menu"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <ul class="menu">
+      {chr(10).join('      '+l for l in lis).strip()}
+    </ul>
+    <ul class="side">
+      <li style="--i:8"><a href="presse.html">Dossier de presse</a></li>
+      <li style="--i:9"><a href="#">Fiche technique</a></li>
+      <li style="--i:10"><a href="{L(p,'contact')}">Nous joindre</a></li>
+      <li style="--i:11"><div class="lang" role="group" aria-label="Langue"><a href="#" aria-current="true" lang="fr">FR</a><span aria-hidden="true">/</span><a href="#" lang="en" title="English version coming soon">EN</a></div></li>
+    </ul>
+  </nav>
+</header>'''
+
+def footer(p):
+    soc = ''.join(f'<li><a href="#" aria-label="{n}">{ICON[k]}</a></li>' for k, n in (('fb','Facebook'),('ig','Instagram'),('x','X (Twitter)'),('in','LinkedIn'),('yt','YouTube')))
+    soc = soc.replace('<a href="#" aria-label="YouTube">', f'<a href="{YT}" target="_blank" rel="noopener" aria-label="YouTube">')
+    return f'''<footer>
+  <div class="foot-main">
+    <div class="cols">
+      <div><h4>Spectacle</h4><ul><li><a href="{L(p,'spectacle')}">A comme Animal</a></li><li><a href="{L(p,'spectacle-video')}">Vidéo</a></li><li><a href="presse.html">Dossier de presse</a></li><li><a href="#">Fiche technique</a></li></ul></div>
+      <div><h4>La compagnie</h4><ul><li><a href="{L(p,'direction')}">Direction artistique</a></li><li><a href="{L(p,'collaborateurs')}">Collaborateur·trices</a></li><li><a href="presse.html">Presse</a></li></ul></div>
+      <div><h4>Marie-Pascale Bélanger</h4><ul><li><a href="{L(p,'direction')}">Biographie</a></li><li><a href="{JEU}" target="_blank" rel="noopener">Entretien Revue JEU</a></li></ul></div>
+      <div class="heads"><ul><li><a href="{L(p,'calendrier')}">Calendrier</a></li><li><a href="{L(p,'contact')}">Contact</a></li></ul></div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 Marie-Pascale Bélanger</span>
+      <ul>
+        <li><a href="cookies.html">Politique en matière de cookies</a></li>
+        <li><a href="#haut" id="top">Haut de page ↑</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>'''
+
+REVEAL_JS = r'''(function(){
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var sel='main h1:not(#h-home),main h2,main h3,main p,main blockquote,main .yearbox li,main .more,main .label,main .credits dt,main .credits dd,main .crew div,main .factbox,main .award,main .showgrid a,main .trio,main .framed,main .portrait,main form';
+  var all=[].slice.call(document.querySelectorAll(sel)).filter(function(el){return !el.closest('.hero')&&!el.closest('.reel')});
+  var set=new Set(all);
+  var els=all.filter(function(el){for(var a=el.parentElement;a;a=a.parentElement){if(set.has(a))return false}return true});
+  document.documentElement.classList.add('reveal-on');
+  var n=new Map();
+  els.forEach(function(el){el.classList.add('rv');var p=el.parentElement,i=n.get(p)||0;n.set(p,i+1);el.style.setProperty('--d',(Math.min(i,6)*0.09)+'s')});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:0.1});
+  els.forEach(function(el){io.observe(el)});
+})();
+'''
+
+MENU_JS = '''var nav=document.getElementById('nav'),burger=document.getElementById('burger'),closeB=document.getElementById('close');
+function setMenu(o){nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';if(o)closeB.focus();}
+burger.addEventListener('click',function(){setMenu(true)});
+closeB.addEventListener('click',function(){setMenu(false);burger.focus()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);burger.focus()}});
+nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
+'''
+
+INDEX_JS = '''var form=document.getElementById('form');
+if(form)form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('email'),s=document.getElementById('status');
+  if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
+  s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
+});
+var vid=document.getElementById('video');
+if(vid)vid.addEventListener('click',function(e){
+  e.preventDefault();
+  var box=document.createElement('div');box.className='video';
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+vid.dataset.yt+'?autoplay=1&rel=0';
+  f.title='A comme Animal, vidéo';
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  f.allowFullscreen=true;box.appendChild(f);vid.replaceWith(box);
+});
+var views=document.querySelectorAll('[data-view]'),pages=['accueil','spectacle','direction','calendrier','collaborateurs','contact'];
+function show(){
+  var h=(location.hash||'').slice(1),target=null;
+  if(h==='spectacle-video'){h='spectacle';target='spectacle-video'}
+  var v=pages.indexOf(h)>-1?h:'accueil';
+  views.forEach(function(el){el.hidden=el.dataset.view!==v});
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    var on=a.dataset.nav===v;a.classList.toggle('on',on);
+    if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+  });
+  setMenu(false);
+  if(target){var t=document.getElementById(target);t&&t.scrollIntoView()}else window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);show();
+'''
+
+def li_date(d, show, place, link=None):
+    if link:
+        place = f'<a href="{link}" target="_blank" rel="noopener">{place}</a>'
+    return f'<li><b>{d}</b><i>{show}</i> · {place}</li>'
+
+AC = 'A comme Animal'
+D2025 = [li_date('18 septembre 2025', AC, 'Maison de la culture NDG (Montréal, QC)'),
+         li_date('26 – 27 septembre 2025', AC, 'Festival mondial des théâtres de marionnettes (Charleville-Mézières, France)', CHARLEVILLE),
+         li_date('3 octobre 2025', AC, 'Spectaculo Interesse (Ostrava, Tchéquie)', 'https://www.spectaculo.cz/a-as-animal/')]
+D2024 = [li_date('8 mars 2024', AC, 'Festival international de Casteliers (Montréal, QC)', 'https://festival.casteliers.ca/en/spectacle/a-comme-animal/')]
+D2023 = [li_date('2 – 3 février 2023', AC, 'Maison internationale des arts de la marionnette, Casteliers (Montréal, QC)', 'https://casteliers.ca/en/spectacle/a-comme-animal/'),
+         li_date('3 juin 2023', AC, 'Festival Masqu’alors! (Saint-Camille, QC)', 'https://masqalors.ca/en/festival/edition/2023/a-comme-animal-a-as-animal/'),
+         li_date('26 – 27 juillet 2023', AC, 'Festival international des arts de la marionnette à Saguenay (Saguenay, QC)', 'https://www.fiams.com/en/programmation/a-comme-animal/')]
+
+N2026 = [li_date('29 octobre 2026 · 19 h', AC, 'Centre culturel et communautaire Henri-Lemieux, Théâtre du Grand Sault (Montréal, QC)', 'https://montreal.ca/evenements/comme-animal-projets-de-lombre-109275')]
+N2027 = [li_date('29 janvier 2027 · 19 h 30', AC, 'Maison de la culture Janine-Sutto (Montréal, QC)', 'https://montreal.ca/evenements/comme-animal-projets-de-lombre-110117'),
+         li_date('4 mars 2027 · 19 h 30', AC, 'Maison de la culture Claude-Léveillée (Montréal, QC)', 'https://montreal.ca/evenements/comme-animal-projets-de-lombre-120842')]
+
+def ybox(title, items):
+    return f'<div class="yearbox"><h3>{title}</h3><ul>{"".join(items)}</ul></div>'
+
+CREDITS = '''<dl class="credits">
+        <dt>Idéation, mise en scène, scénographie</dt><dd><a href="#direction" style="text-underline-offset:5px">Marie-Pascale Bélanger</a></dd>
+        <dt>Interprétation</dt><dd>Marika Karlsson, Elinor Fueter, Marie-Pascale Bélanger</dd>
+        <dt>Conception sonore</dt><dd>Rodrigo Rojas</dd>
+        <dt>Conception lumières</dt><dd>Julie Charrette</dd>
+        <dt>Regard extérieur, conseil artistique</dt><dd>Anne Lalancette, Catherine Tardif</dd>
+        <dt>Direction technique</dt><dd>Paul Foresto</dd>
+      </dl>'''
+
+def person(first, last, role, img, alt, text, credit, photo_side):
+    words = f'<div class="pad person first-mobile"><p class="role">{role}</p><h2 class="name">{first}<br>{last}</h2></div>'
+    yel = f'''<div class="pad y"><div class="portrait"><img src="images/{img}" alt="{alt}"></div><p class="center-text">{text}</p><p class="role">{credit}</p></div>'''
+    return f'<section class="split" aria-label="{first} {last}">{words + yel if photo_side == "right" else yel + words}</section>'
+
+INDEX_BODY = f'''
+<main id="haut">
+<!-- ACCUEIL -->
+<div data-view="accueil">
+  <section class="hero" aria-labelledby="h-home">
+    <img src="images/a-comme-animal-cage.jpg" alt="Tête de marionnette du vieux philosophe enfermée dans une cage à oiseaux, dans A comme Animal" style="object-position:62% center">
+    <h1 id="h-home"><span class="pre">Marie-Pascale</span>Bélanger</h1>
+    <a class="trailer" href="#spectacle-video">{PLAY}Voir la bande-annonce</a>
+    <span class="credit">A comme Animal © Vanessa Fortin</span>
+  </section>
+
+  <section class="band" aria-label="La compagnie en une phrase">
+    <div class="band-img"><img src="images/a-comme-animal-scene.jpg" alt="Deux interprètes manipulent la marionnette du vieux philosophe au-dessus d’un tapis de gazon" style="object-position:50% 40%"></div>
+    <div class="band-text">
+      <div class="band-body">
+        <p class="statement">Danse, théâtre et marionnette : des spectacles qui explorent la métamorphose sur scène, sous la direction de Marie-Pascale Bélanger</p>
+        <a class="more" href="#spectacle">Découvrir A comme Animal</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="titleband" style="margin-top:0"><h2 style="color:var(--bar-ink)">Découvrez A comme Animal</h2></div>
+  <section class="showsec" aria-label="A comme Animal">
+    <div class="showgrid">
+      <a href="#spectacle"><img src="images/tete-portee.jpg" alt=""><span class="label">Le spectacle</span></a>
+      <a href="#spectacle-video"><img src="images/masques-animaux-papier.jpg" alt=""><span class="label">La vidéo</span></a>
+      <a href="presse.html"><img src="images/tete-sur-socle.jpg" alt="" style="object-position:60% center"><span class="label">Dossier de presse</span></a>
+      <a href="#calendrier"><img src="images/projecteurs-violets.jpg" alt=""><span class="label">Calendrier</span></a>
+    </div>
+    <div class="centerbtn"><a class="label" href="#">Fiche technique</a></div>
+  </section>
+
+  <div class="titleband" style="margin-top:0"><h2>Nos prochaines dates :</h2></div>
+  <section class="wrap" aria-label="Prochaines dates">
+    <div class="dates">
+      {ybox('2026', N2026)}
+      {ybox('2027', N2027)}
+    </div>
+    <div class="centerbtn" style="margin-top:50px"><a class="more" href="#calendrier">Toutes les dates</a></div>
+  </section>
+
+  <section class="split wide-left" aria-labelledby="h-about">
+    <div class="pad y">
+      <h2 class="stag" id="h-about">
+        <span class="w r">À propos</span><span class="w" style="color:var(--bar-ink)">compagnie</span>
+        <span class="w r">de la</span>
+        <span class="body">
+          <span>Sous la direction de <strong>Marie-Pascale Bélanger</strong>, les spectacles mettent en scène et en interaction des interprètes issus de la <strong>danse</strong>, du <strong>théâtre</strong> et de la <strong>marionnette</strong>. Les œuvres scéniques explorent les diverses dimensions de la <strong>métamorphose sur scène</strong>.</span>
+          <a class="more" href="#spectacle">En savoir plus</a>
+        </span>
+      </h2>
+    </div>
+    <div class="photo"><img src="images/marionnette-marche.jpg" alt="Une interprète guide la marionnette du vieux philosophe dans des bandes de lumière" style="object-position:center 40%"></div>
+  </section>
+
+  <section class="split" aria-labelledby="h-mp">
+    <div class="pad first-mobile"><h2 class="bigword" id="h-mp">Marie-Pascale<br>Bélanger</h2></div>
+    <div class="pad y">
+      <div class="framed"><img src="images/marie-pascale-belanger.jpg" alt="Marie-Pascale Bélanger devant un mur couvert de graffitis" style="object-position:70% center"></div>
+      <p class="center-text"><strong>Artiste multidisciplinaire</strong>, Marie-Pascale Bélanger est diplômée en <strong>arts visuels</strong> et en <strong>interprétation en danse</strong> de l’École de danse contemporaine de Montréal. Elle détient une <strong>maîtrise en danse</strong> de l’UQAM et un <strong>diplôme d’études supérieures en théâtre de marionnettes contemporain</strong>.</p>
+      <a class="more" href="#direction">En savoir plus</a>
+    </div>
+  </section>
+
+  <section class="split" aria-labelledby="h-team-home">
+    <div class="pad y">
+      <div class="trio">
+        <img src="images/marika-karlsson.jpg" alt="Marika Karlsson">
+        <img src="images/elinor-fueter.jpg" alt="Elinor Fueter">
+        <img src="images/rodrigo-rojas.jpg" alt="Rodrigo Rojas">
+      </div>
+      <p class="center-text">Sur scène et en coulisses, <strong>Marika Karlsson</strong>, <strong>Elinor Fueter</strong>, <strong>Rodrigo Rojas</strong>, <strong>Julie Charrette</strong>, <strong>Anne Lalancette</strong>, <strong>Catherine Tardif</strong> et <strong>Paul Foresto</strong> donnent vie aux créations de la compagnie.</p>
+      <a class="more" href="#collaborateurs">Rencontrer l’équipe</a>
+    </div>
+    <div class="pad first-mobile"><h2 class="bigword" id="h-team-home">L’équipe</h2></div>
+  </section>
+
+  <div class="titleband" style="margin-top:0"><h2>Dossier de presse</h2></div>
+  <section class="wrap endpad" aria-label="Extraits de presse">
+    <div class="facts" style="align-items:start">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:30px">
+        <img src="images/marionnette-foulard.jpg" alt="Deux interprètes manipulent la marionnette du vieux philosophe au foulard rouge" style="width:100%;aspect-ratio:4/5;object-fit:cover">
+        <a class="label" href="presse.html">Lire le dossier</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:28px;font-size:19px;font-weight:400">
+        <p><strong>« Coup de cœur du Jury Jeunes » Grand Est</strong>, Festival mondial des théâtres de marionnettes de Charleville-Mézières, France, 2025.</p>
+        <p>« On assiste à un surprenant florilège d’idées toutes plus extravagantes les unes que les autres, grâce à ce 11e art magique qu’est celui des marionnettes. »<br><strong>Sophie Jama</strong>, Pieuvre, Montréal</p>
+        <p lang="en"><i>“A spectacle in which puppeteers skillfully blurred the boundaries between the human body and the puppet.”</i><br><strong>Petr Broulík</strong>, magazine Patriot, Ostrava</p>
+        <p><a class="more" href="{JEU}" target="_blank" rel="noopener">Lire l’entretien de la Revue JEU</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SPECTACLE -->
+<div data-view="spectacle" hidden>
+  <section class="pagehead" aria-labelledby="h-spec">
+    <img src="images/brume-manteaux.jpg" alt="">
+    <div class="stack"><h1 id="h-spec"><span class="pre">Spectacle</span>A comme Animal</h1><p class="sub">Théâtre visuel · Disponible en français et en anglais</p></div>
+  </section>
+  <section class="split" aria-label="Synopsis">
+    <div class="pad y left">
+      <p class="eyebrow">Synopsis</p>
+      <p class="lead">Un vieux philosophe s’apprête à partager ses réflexions, mais s’interrompt brusquement lorsqu’il croque dans une pomme et s’endort. Le voilà happé comme Alice dans son pays des merveilles, vers un rêve où tout est possible !</p>
+      <p class="left-text">Guidé et habilement manipulé par trois interprètes métamorphosées en figures animales fantastiques, l’homme se décompose et se recompose, tout en explorant les souvenirs de son enfance. Tissé dans l’esprit des fables et des contes de fées, ce spectacle de théâtre visuel, librement inspiré des conférences de Gilles Deleuze, est une ode à l’imagination, à l’impermanence et à la quête d’identité. Il invite le public de tous âges à se laisser porter par cet univers unique, drôle, poétique et délicieusement déstabilisant.</p>
+      <a class="more" href="presse.html">Dossier de presse</a>
+    </div>
+    <div class="photo first-mobile"><img src="images/marionnette-pomme.jpg" alt="La marionnette du vieux philosophe lève les bras, une pomme rouge tombe au premier plan" style="object-position:center 30%"></div>
+  </section>
+  <div class="titleband"><h2>Le spectacle en bref</h2></div>
+  <section class="wrap" aria-label="Informations et générique">
+    <div class="facts">
+      <div class="factbox">
+        <span class="k">Langues</span><span class="v">Français et anglais</span>
+        <span class="k">Durée</span><span class="v">55 minutes</span>
+        <span class="k">Public</span><span class="v">Tous, 10 ans et plus</span>
+        <a class="label dark" href="#">Fiche technique</a>
+      </div>
+      {CREDITS}
+    </div>
+  </section>
+  <div class="titleband"><h2>Vidéo</h2></div>
+  <section class="wrap endpad" id="spectacle-video" aria-label="Vidéo">
+    <a class="video reel" id="video" href="{YT}" target="_blank" rel="noopener" data-yt="8QTUAIsGfMQ" aria-label="Lire la vidéo d’A comme Animal">
+      <img class="reel-bg" src="images/bouc-cheval.jpg" alt="">
+      <span class="leader" aria-hidden="true"><span class="sweep"></span><span class="count"><span>3</span><span>2</span><span>1</span></span></span>
+      <span class="grain" aria-hidden="true"></span>
+      <span class="reel-cap"><span class="eyebrow">Vidéo · A comme Animal</span><span class="trailer">{PLAY}Lancer la projection</span></span>
+    </a>
+  </section>
+</div>
+
+<!-- DIRECTION ARTISTIQUE -->
+<div data-view="direction" hidden>
+  <section class="split" aria-labelledby="h-da" style="min-height:calc(100vh - 66px)">
+    <div class="pad first-mobile"><p class="eyebrow">Direction artistique</p><h1 class="bigword" id="h-da">Marie-Pascale<br>Bélanger</h1></div>
+    <div class="pad y">
+      <div class="framed"><img src="images/marie-pascale-belanger.jpg" alt="Marie-Pascale Bélanger devant un mur couvert de graffitis" style="object-position:70% center"></div>
+      <p class="center-text"><strong>Artiste multidisciplinaire</strong>, Marie-Pascale Bélanger est diplômée en <strong>arts visuels</strong> et en <strong>interprétation en danse</strong> de l’<strong>École de danse contemporaine de Montréal</strong> (EDCM). Elle détient une <strong>maîtrise en danse</strong> de l’UQAM, axée sur l’intégration de l’image dans l’espace scénique, ainsi qu’un <strong>diplôme d’études supérieures en théâtre de marionnettes contemporain</strong> (UQAM, 2019). Son parcours l’a menée à créer des œuvres chorégraphiques diffusées au <strong>Canada</strong>, aux <strong>États-Unis</strong> et en <strong>Europe</strong>.</p>
+    </div>
+  </section>
+  <div class="titleband" style="margin-top:0"><h2>Démarche</h2></div>
+  <section class="wrap endpad" aria-label="Démarche">
+    <div class="facts">
+      <div class="factbox">
+        <span class="k">Formation</span><span class="v">EDCM, arts visuels et danse</span>
+        <span class="k">Maîtrise</span><span class="v">Danse, UQAM</span>
+        <span class="k">DESS</span><span class="v">Théâtre de marionnettes contemporain, UQAM, 2019</span>
+      </div>
+      <p class="left-text" style="max-width:none">Sa démarche s’inscrit dans une recherche interdisciplinaire où se croisent la <strong>danse</strong>, les <strong>arts visuels</strong> et les <strong>arts de la marionnette</strong>. Développant une esthétique visuelle nourrie par la <strong>bande dessinée</strong> et le <strong>surréalisme</strong>, elle explore des dispositifs scéniques où les frontières entre le réel et le fantastique s’estompent. Animée par une soif de matière et de transformation, elle conçoit et fabrique ses <strong>scénographies</strong> et ses <strong>marionnettes</strong>, qu’elle considère comme des agents dramaturgiques à part entière. Chaque objet scénique participe ainsi à une écriture visuelle et corporelle qui met en tension le corps, l’objet et l’image, et modifie la perception, invitant le public à une expérience sensible où les repères se déplacent et se recomposent.</p>
+    </div>
+  </section>
+</div>
+
+<!-- CALENDRIER -->
+<div data-view="calendrier" hidden>
+  <section class="pagehead" aria-labelledby="h-cal">
+    <img src="images/projecteurs-violets.jpg" alt="">
+    <div class="stack"><h1 id="h-cal"><span class="pre">A comme Animal</span>Calendrier</h1><a class="label" href="#">Fiche technique</a></div>
+  </section>
+  <div class="titleband" style="margin-top:0"><h2>Prochaines dates :</h2></div>
+  <section class="wrap" aria-label="Prochaines dates">
+    <div class="dates">
+      {ybox('2026', N2026)}
+      {ybox('2027', N2027)}
+    </div>
+  </section>
+  <div class="titleband" style="margin-top:0"><h2>Dates passées :</h2></div>
+  <section class="wrap endpad" aria-label="Dates passées">
+    <div class="dates">
+      {ybox('2025', D2025)}
+      {ybox('2024', D2024)}
+      {ybox('2023', D2023)}
+    </div>
+  </section>
+</div>
+
+<!-- COLLABORATEUR·TRICES -->
+<div data-view="collaborateurs" hidden>
+  <section class="pagehead" aria-labelledby="h-team">
+    <img src="images/tete-portee.jpg" alt="" style="object-position:center 40%">
+    <div class="stack"><h1 id="h-team"><span class="pre">Collaborateur·trices</span>L’équipe</h1></div>
+  </section>
+  {person('Marika','Karlsson','Marionnettiste','marika-karlsson.jpg','Portrait de Marika Karlsson',
+    '<strong>Artiste, marionnettiste</strong>, Marika Karlsson commence son parcours théâtral en <strong>Finlande</strong> à un très jeune âge. Après avoir étudié la musique et l’art dramatique, elle poursuit ses études avec un <strong>baccalauréat en jeu</strong> à l’Université Concordia à Tiohtià:ke/Montréal. Elle complète le <strong>DESS en théâtre de marionnettes contemporain</strong> de l’UQAM en 2021. Dans son travail, elle s’appuie sur les approches <strong>somatiques</strong> et <strong>multidisciplinaires</strong>, et sa recherche artistique creuse autour de la temporalité du corps humain.',
+    'Interprétation · A comme Animal','right')}
+  {person('Elinor','Fueter','Danse','elinor-fueter.jpg','Portrait d’Elinor Fueter',
+    'Diplômée des <strong>Ateliers de danse moderne de Montréal</strong> en 1998, Elinor Fueter a participé à des projets de danse multiples, à des créations en théâtre de rue, de films et d’improvisations. Elle a interprété des œuvres produites par <strong>Danse-Cité</strong> et de nombreux chorégraphes tels que Lina Cruz, Jean-Pierre Perreault, Catherine Lipscombe, Nathalie Morin, Chantal Wadge, Alain Francœur, Peter James et la compagnie Mobile Home, entre autres. Depuis une dizaine d’années, elle fait partie de l’équipe de <strong>Montréal Danse</strong>. Dernièrement, on a pu la voir sur scène dans les œuvres de Benoît Lachambre, George Stamos, Caroline Laurin-Beaucage et Karine Ledoyen.',
+    'Interprétation · A comme Animal','left')}
+  {person('Rodrigo','Rojas','Composition musicale','rodrigo-rojas.jpg','Portrait de Rodrigo Rojas',
+    'Originaire du <strong>Chili</strong>, Rodrigo s’est formé au <strong>piano classique</strong>, qui a rapidement évolué vers la <strong>composition électroacoustique</strong>. Particulièrement bouleversé par les panoramas nordiques de la Baie James à son arrivée au Canada, il est toujours habité par l’impression qu’a eue sur lui cette nature sauvage. Par le jeu et la déformation des sons, il crée des univers musicaux qui s’écoutent comme des <strong>paysages sonores</strong>. En plus de ses compositions avec le duo <strong>Mentasta</strong>, ses trames sonores ont été entendues autant sur les scènes théâtrales que sur celles de la danse contemporaine.',
+    'Conception sonore · A comme Animal','right')}
+  <div class="titleband" style="margin-top:0"><h2>Aussi dans l’équipe</h2></div>
+  <section class="wrap endpad" aria-label="Aussi dans l’équipe">
+    <dl class="crew">
+      <div><dt>Conception lumières</dt><dd>Julie Charrette</dd></div>
+      <div><dt>Regard extérieur</dt><dd>Anne Lalancette</dd></div>
+      <div><dt>Conseil artistique</dt><dd>Catherine Tardif</dd></div>
+      <div><dt>Direction technique</dt><dd>Paul Foresto</dd></div>
+    </dl>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div data-view="contact" hidden>
+  <section class="split" id="contact" aria-labelledby="h-contact" style="min-height:calc(100vh - 66px)">
+    <div class="pad y left">
+      <h1 class="contact-giant" id="h-contact">Écrivez-<br>nous</h1>
+      <p class="left-text">Diffusion, tournée, presse ou simple curiosité : écrivez-nous et nous vous répondrons.</p>
+    </div>
+    <div class="pad">
+      <form id="form" novalidate>
+        <label for="prenom">Prénom<input id="prenom" name="prenom" autocomplete="given-name"></label>
+        <label for="nom">Nom de famille<input id="nom" name="nom" autocomplete="family-name"></label>
+        <label class="full" for="email">E-mail *<input id="email" name="email" type="email" required autocomplete="email"></label>
+        <label class="full" for="message">Message<textarea id="message" name="message"></textarea></label>
+        <div class="actions full"><span class="status" id="status" role="status"></span><button class="label dark" type="submit">Envoyer</button></div>
+      </form>
+    </div>
+  </section>
+</div>
+</main>
+'''
+
+PRESSE_BODY = f'''
+<main id="haut">
+  <section class="pagehead" aria-labelledby="h1">
+    <img src="images/tete-sur-socle.jpg" alt="" style="object-position:60% center">
+    <div class="stack"><h1 id="h1"><span class="pre">Dossier de presse · A comme Animal</span>Presse</h1><p class="sub">Ce que la critique en dit, en Europe et au Canada.</p></div>
+  </section>
+
+  <div class="titleband"><h2>Prix</h2></div>
+  <section class="wrap" aria-label="Prix">
+    <div class="award">{TROPHY}<strong>« Coup de cœur du Jury Jeunes » Grand Est</strong><span>Festival mondial des théâtres de marionnettes · Charleville-Mézières, France · 2025</span></div>
+  </section>
+
+  <section class="split" aria-label="Critique de Petr Broulík">
+    <div class="pad critic first-mobile"><h2 class="bigword">Petr<br>Broulík</h2><p class="meta">Magazine Patriot · Ostrava · 4 octobre 2025</p></div>
+    <div class="pad y">
+      <div class="quote-list">
+        <blockquote lang="en" class="big">“I was blown away by the craftsmanship of the production.”</blockquote>
+        <blockquote lang="en">“I enjoyed seeing a production that seemed so convincingly dreamlike while I was actually awake.”</blockquote>
+        <blockquote lang="en">“The dream-like performance, full of wit and ingenuity, seemed to be constantly looking for ways to surprise us and remind us that we are in a world of fantasy.”</blockquote>
+        <blockquote lang="en">“A spectacle in which puppeteers skillfully blurred the boundaries between the human body and the puppet.”</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="split" aria-label="Critique de Sophie Jama">
+    <div class="pad y">
+      <div class="quote-list">
+        <blockquote class="big">« On est épaté par les trouvailles qui toutes suscitent le rire. »</blockquote>
+        <blockquote>« D’un protagoniste morcelé qui a du mal à rassembler tous les morceaux de son corps à sa multiplication, en passant par son accouchement de lui-même en miniature, on est épaté par les trouvailles qui toutes suscitent le rire. »</blockquote>
+        <blockquote>« On assiste à un surprenant florilège d’idées toutes plus extravagantes les unes que les autres, grâce à ce 11e art magique qu’est celui des marionnettes. (…) »</blockquote>
+      </div>
+    </div>
+    <div class="pad critic first-mobile"><h2 class="bigword">Sophie<br>Jama</h2><p class="meta">Pieuvre · Montréal</p></div>
+  </section>
+
+  <div class="titleband" style="margin-top:0"><h2>Entretien</h2></div>
+  <section class="wrap endpad" aria-label="Entretien">
+    <div class="interview">
+      <p class="eyebrow">Revue JEU · 5 mars 2024</p>
+      <h3>Cinq questions à Marie-Pascale Bélanger, metteuse en scène, chorégraphe et scénographe</h3>
+      <a class="label" href="{JEU}" target="_blank" rel="noopener">Lire l’article</a>
+      <p style="margin-top:30px;font-weight:400">Pour recevoir la fiche technique ou des photos de presse en haute résolution, <a href="index.html#contact">écrivez-nous</a>.</p>
+    </div>
+  </section>
+</main>
+'''
+
+
+COOKIES_BODY = f'''
+<main id="haut">
+  <section class="legal">
+    <div class="wrap col" style="margin:0 auto">
+      <p class="updated">Dernière mise à jour : 23 octobre 2026</p>
+      <h1>Politique en matière de cookies</h1>
+      <p>Cette page explique comment ce site utilise les cookies et les technologies semblables, et comment vous pouvez les contrôler.</p>
+
+      <h2>Qu’est-ce qu’un cookie ?</h2>
+      <p>Un cookie est un petit fichier texte enregistré sur votre ordinateur, votre tablette ou votre téléphone lorsque vous visitez un site web. Il permet au site, ou à un service tiers, de reconnaître votre appareil et de mémoriser certaines informations, comme vos préférences ou votre navigation.</p>
+
+      <h2>Les cookies de ce site</h2>
+      <p>Ce site ne dépose <strong>aucun cookie publicitaire</strong> et n’utilise <strong>aucun outil de mesure d’audience</strong>. Il ne crée pas de profil de ses visiteurs. Certains services externes nécessaires à son fonctionnement peuvent toutefois recevoir des données techniques :</p>
+      <ul>
+        <li><strong>Hébergement.</strong> Le site est hébergé par GitHub Pages. Comme tout hébergeur, GitHub peut enregistrer des données techniques de connexion, comme votre adresse IP, notamment à des fins de sécurité.</li>
+        <li><strong>Polices de caractères.</strong> Les polices du site sont chargées depuis Google Fonts. Lors de ce chargement, votre navigateur transmet votre adresse IP aux serveurs de Google.</li>
+        <li><strong>Vidéo.</strong> La vidéo d’A comme Animal est hébergée par YouTube et utilise son mode de confidentialité renforcée. Le lecteur ne se charge que si vous cliquez pour lancer la vidéo. À partir de ce moment, YouTube peut déposer des cookies ou enregistrer des données sur votre appareil, selon sa propre politique.</li>
+      </ul>
+      <p>Ces services appliquent leurs propres politiques de confidentialité, que vous pouvez consulter sur leurs sites respectifs.</p>
+
+      <h2>Comment contrôler les cookies</h2>
+      <p>Vous pouvez à tout moment accepter, bloquer ou supprimer les cookies dans les réglages de votre navigateur (Chrome, Safari, Firefox, Edge, etc.). Le blocage des cookies n’empêche pas la consultation de ce site ; seule la lecture de la vidéo pourrait en être affectée.</p>
+
+      <h2>Vos renseignements personnels</h2>
+      <p>Les renseignements transmis par le formulaire de contact servent uniquement à répondre à votre message. Ils ne sont ni vendus ni partagés à des fins commerciales. Conformément aux lois applicables en matière de protection des renseignements personnels, notamment au Québec, vous pouvez demander à consulter, à corriger ou à supprimer les renseignements vous concernant en nous écrivant par la <a href="index.html#contact">page Contact</a>.</p>
+
+      <h2>Modifications</h2>
+      <p>Cette politique peut être mise à jour, par exemple si de nouveaux services sont ajoutés au site. La date de la dernière mise à jour figure en haut de cette page.</p>
+    </div>
+  </section>
+</main>
+'''
+
+def page(title, desc, body, js, p, active):
+    return f'''<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+{FONTS}
+<style>{CSS}</style>
+</head>
+<body>
+{header(p, active)}
+{body}
+{footer(p)}
+<script>
+{MENU_JS}{js}</script>
+</body>
+</html>
+'''
+
+idx = page("Marie-Pascale Bélanger", 'Marie-Pascale Bélanger : théâtre visuel, danse et marionnette.', INDEX_BODY, INDEX_JS, '', 'accueil')
+pr = page("Dossier de presse · Marie-Pascale Bélanger", 'Dossier de presse d’A comme Animal : prix, critiques et entretien.', PRESSE_BODY, '', 'index.html', 'presse')
+open(OUT + '/index.html', 'w').write(idx)
+open(OUT + '/presse.html', 'w').write(pr)
+ck = page("Politique en matière de cookies · Marie-Pascale Bélanger", 'Politique en matière de cookies du site de Marie-Pascale Bélanger.', COOKIES_BODY, '', 'index.html', 'cookies')
+open(OUT + '/cookies.html', 'w').write(ck)
+print(len(idx), len(pr))
