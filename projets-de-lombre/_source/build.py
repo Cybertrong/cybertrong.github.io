@@ -10,8 +10,8 @@ CSS = r'''
   --bg:#ffffff; --ink:#14120f; --muted:#45453f; --line:#e2e2da;
   --yellow:#f3ca20; --ghost:#fdf4d0; --bar:#14120f; --bar-ink:#ffffff; --bar-muted:#a3a39b;
   --hero:"League Gothic","Oswald","Arial Narrow",sans-serif;
-  --giant:"Barlow Condensed","Arial Narrow",sans-serif;
-  --head:"Barlow Condensed","Arial Narrow",sans-serif;
+  --giant:"League Gothic","Barlow Condensed","Arial Narrow",sans-serif;
+  --head:"League Gothic","Barlow Condensed","Arial Narrow",sans-serif;
   --heavy:"Barlow","Helvetica Neue",Arial,sans-serif;
   --sans:"Barlow","Helvetica Neue",Arial,sans-serif;
   color-scheme:light;
