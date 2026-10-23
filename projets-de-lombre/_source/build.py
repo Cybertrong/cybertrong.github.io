@@ -353,11 +353,11 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 @keyframes hero-light{from{transform:scale(1.1);filter:brightness(.25)}to{transform:none;filter:none}}
 .hero h1 .pre{animation:pre-in 1.4s .2s cubic-bezier(.16,1,.3,1) both}
 @keyframes pre-in{from{opacity:0;letter-spacing:.8em}}
-.hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-top:.04em;background:linear-gradient(105deg,var(--yellow) 42%,#fff6c9 50%,var(--yellow) 58%) 120% 0/250% 100% no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 1.6s 1.5s ease-in-out both}
-.hero h1 .ch{display:inline-block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.45s + var(--i) * .075s)}
+.hero h1 .word{display:inline-block;white-space:nowrap;overflow:hidden;vertical-align:bottom;padding-top:.04em}
+.hero h1 .ch{display:inline-block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.16,1,.3,1) forwards,glow 1.4s ease-in-out forwards;animation-delay:calc(.45s + var(--i) * .075s),calc(1.5s + var(--i) * .09s)}
 @keyframes rise{to{transform:none}}
-@keyframes shine{from{background-position:120% 0}to{background-position:-20% 0}}
-@media (prefers-reduced-motion:reduce){.hero>img,.hero h1 .pre,.hero h1 .word{animation:none}.hero h1 .ch{animation:none;transform:none}}
+@keyframes glow{0%,100%{text-shadow:0 0 0 rgba(255,246,201,0)}45%{text-shadow:0 0 28px rgba(255,246,201,.9),0 0 2px rgba(255,255,255,.8)}}
+@media (prefers-reduced-motion:reduce){.hero>img,.hero h1 .pre{animation:none}.hero h1 .ch{animation:none;transform:none}}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
