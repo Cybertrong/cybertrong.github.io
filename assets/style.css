@@ -433,14 +433,17 @@ button.work-media:hover img { opacity: .88; }
 .burger .bl:nth-child(1) { width: 36px; }
 .burger .bl:nth-child(2) { width: 22px; }
 .burger .bl:nth-child(3) { width: 30px; }
-.burger:hover, .burger:focus-visible { transform: rotate(-8deg) scale(1.08); }
-.burger:hover .bl, .burger:focus-visible .bl { animation: jive .62s cubic-bezier(.45,0,.55,1) infinite alternate; }
-.burger:hover .bl:nth-child(2), .burger:focus-visible .bl:nth-child(2) { animation-delay: -.2s; animation-duration: .5s; }
-.burger:hover .bl:nth-child(3), .burger:focus-visible .bl:nth-child(3) { animation-delay: -.4s; animation-duration: .7s; }
-@keyframes jive {
-  0%   { width: 8px;  transform: translateX(0); }
-  45%  { width: 38px; transform: translateX(-3px); }
-  100% { width: 16px; transform: translateX(2px); }
+/* survol : les traits s'alignent, puis s'effacent vers la droite
+   et se redessinent depuis la gauche, l'un après l'autre */
+.burger .bl { transform-origin: right center; }
+.burger:hover .bl, .burger:focus-visible .bl { width: 36px; animation: brush .7s cubic-bezier(.65,0,.35,1) both; }
+.burger:hover .bl:nth-child(2), .burger:focus-visible .bl:nth-child(2) { animation-delay: .08s; }
+.burger:hover .bl:nth-child(3), .burger:focus-visible .bl:nth-child(3) { animation-delay: .16s; }
+@keyframes brush {
+  0%     { transform: scaleX(1); transform-origin: right center; }
+  45%    { transform: scaleX(0); transform-origin: right center; }
+  45.1%  { transform: scaleX(0); transform-origin: left center; }
+  100%   { transform: scaleX(1); transform-origin: left center; }
 }
 
 /* ── MENU PLEIN ÉCRAN ────────────────────────────────── */
