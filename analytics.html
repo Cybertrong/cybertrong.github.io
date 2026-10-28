@@ -4,355 +4,322 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>analytics // linh b.</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Syne:wght@300;400&display=swap" rel="stylesheet">
+  <title>analytics — linh b.</title>
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <meta name="theme-color" content="#ECE7E2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Damion&family=Jost:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=20261028-15">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#000;--green:#00ff41;--gdim:#008f11;--gdark:#003b00;--gold:#c9a84c;--mono:'DM Mono',monospace;--sans:'Syne',sans-serif}
-html,body{background:#000;color:var(--green);font-family:var(--mono);font-weight:300;min-height:100vh;overflow-x:hidden}
-#mc{position:fixed;inset:0;z-index:0;opacity:.22;pointer-events:none}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none;z-index:1}
+  /* ── Page statistiques : même langage que le site, clair et minimal ── */
+  .an-label { font: 500 11px/1.2 var(--font); letter-spacing: .22em; text-transform: uppercase; opacity: .6; }
+  .an-link {
+    background: none; border: 0; color: inherit; cursor: pointer; padding: 6px 0;
+    font: 500 12px/1 var(--font); letter-spacing: .2em; text-transform: uppercase;
+    text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color .2s;
+  }
+  .an-link:hover, .an-link:focus-visible { border-bottom-color: currentColor; }
 
-/* LOCK */
-#lock{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.93)}
-#lock.gone{display:none}
-.lbox{width:320px;border:1px solid var(--gdim);padding:40px 36px;background:rgba(0,6,0,.97);position:relative}
-.lbox::before{content:'';position:absolute;inset:0;border:1px solid transparent;background:linear-gradient(135deg,var(--green),transparent 50%,var(--gdim)) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:destination-out;mask-composite:exclude;pointer-events:none}
-.ltag{font-size:8px;letter-spacing:.3em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px}
-.ltit{font-size:22px;color:var(--green);letter-spacing:.04em;margin-bottom:30px;text-shadow:0 0 24px rgba(0,255,65,.45)}
-.llbl{font-size:8px;letter-spacing:.25em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px;display:block}
-.linp{width:100%;background:transparent;border:none;border-bottom:1px solid var(--gdim);color:var(--green);font-family:var(--mono);font-size:14px;padding:10px 0;outline:none;letter-spacing:.1em;margin-bottom:26px;transition:border-color .2s}
-.linp:focus{border-bottom-color:var(--green)}
-.linp.err{border-bottom-color:#f33;animation:shk .4s ease}
-@keyframes shk{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
-.lbtn{width:100%;background:transparent;border:1px solid var(--green);color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.2em;padding:14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
-.lbtn:hover{background:var(--green);color:#000}
-.lerr{font-size:9px;letter-spacing:.2em;color:#f33;margin-top:12px;text-transform:uppercase;text-align:center;min-height:14px}
+  /* verrou */
+  #lock { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px var(--gutter); }
+  #lock[hidden] { display: none; }
+  .lock-box { width: min(100%, 420px); }
+  .lock-box .display { font-size: clamp(80px, 14vw, 150px); margin: 18px 0 56px; }
+  .lock-box .field { margin-bottom: 36px; }
+  .lock-box .btn { width: 100%; }
+  .lock-err { min-height: 1.4em; margin-top: 16px; font-size: 14px; }
+  .shake { animation: shake .4s ease; }
+  @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+  .lock-back { display: flex; gap: 28px; margin-top: 48px; }
 
-/* DASHBOARD */
-#dash{position:relative;z-index:2;display:none;flex-direction:column;min-height:100vh}
-#dash.on{display:flex}
-.dhdr{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.9);border-bottom:1px solid rgba(0,255,65,.18);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
-.dlogo{font-size:13px;letter-spacing:.1em}
-.dlogo em{color:var(--gold);font-style:normal;font-size:9px;letter-spacing:.25em;margin-left:12px}
-.dtime{font-size:9px;letter-spacing:.15em;color:var(--gdim)}
-.dacts{display:flex;gap:12px}
-.dbtn{font-family:var(--mono);font-size:9px;letter-spacing:.18em;background:transparent;border:1px solid rgba(0,255,65,.25);color:var(--gdim);padding:7px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center}
-.dbtn:hover{border-color:var(--green);color:var(--green)}
-.dbtn.g{border-color:rgba(201,168,76,.25);color:rgba(201,168,76,.55)}
-.dbtn.g:hover{border-color:var(--gold);color:var(--gold)}
+  /* tableau de bord */
+  #dash[hidden] { display: none; }
+  .an-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .an-head .logo small { font: 500 11px/1 var(--font); letter-spacing: .24em; text-transform: uppercase; margin-left: 14px; opacity: .6; vertical-align: middle; }
+  .an-actions { display: flex; gap: 28px; flex-wrap: wrap; }
+  .an-title { padding-top: clamp(40px, 8vh, 96px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .an-title .display { font-size: clamp(72px, 12vw, 190px); margin-top: 18px; }
+  .an-title .an-label { display: block; }
+  #clock { margin-top: 24px; }
 
-/* AUTH */
-#auth{display:none;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:20px;padding:60px}
-#auth.on{display:flex}
-.atit{font-size:11px;letter-spacing:.22em;color:var(--gdim);text-transform:uppercase}
-.abtn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:14px 32px;cursor:pointer;text-transform:uppercase;transition:all .2s}
-.abtn:hover{background:var(--gold);color:#000}
+  #auth { padding-bottom: 160px; }
+  #auth[hidden], #content[hidden] { display: none; }
+  #auth p { max-width: 36ch; margin: 12px 0 32px; font-size: 19px; }
 
-/* CONTENT */
-#content{display:none;padding:24px 28px 70px;flex-direction:column;gap:18px}
-#content.on{display:flex}
+  #content { padding-bottom: clamp(120px, 18vh, 200px); }
+  .an-row { display: grid; gap: clamp(28px, 4vw, 56px); margin-bottom: clamp(56px, 8vh, 96px); }
+  .an-kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1.5px solid color-mix(in srgb, var(--fg) 25%, transparent); padding-top: 28px; }
+  .an-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .an-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 1000px) { .an-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } .an-3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px)  { .an-kpis, .an-2, .an-3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px)  { .an-2, .an-3 { grid-template-columns: 1fr; } }
 
-/* GRIDS */
-.g-rt{display:grid;grid-template-columns:180px 1fr;gap:18px}
-.g-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.g-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .kpi-val { white-space: nowrap; font-size: clamp(40px, 4.4vw, 64px); font-weight: 400; line-height: 1; margin-top: 14px; letter-spacing: -.01em; color: var(--fg); }
+  .kpi-sub { font-size: 14px; opacity: .65; margin-top: 8px; }
+  .live { display: inline-flex; align-items: center; gap: 8px; }
+  .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .3; transform: scale(.7); } }
 
-/* CARD */
-.card{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px 22px;transition:border-color .3s}
-.card:hover{border-color:rgba(0,255,65,.38)}
-.clbl{font-size:7px;letter-spacing:.3em;color:var(--gdim);text-transform:uppercase;margin-bottom:8px}
-.cval{font-size:34px;font-weight:400;color:var(--green);letter-spacing:-.02em;text-shadow:0 0 28px rgba(0,255,65,.38);line-height:1}
-.cval.gd{color:var(--gold);text-shadow:0 0 28px rgba(201,168,76,.35)}
-.csub{font-size:8px;letter-spacing:.12em;color:rgba(0,255,65,.3);margin-top:5px}
+  .panel h2 { padding-bottom: 14px; margin-bottom: 20px; border-bottom: 1.5px solid color-mix(in srgb, var(--fg) 25%, transparent); display: flex; justify-content: space-between; gap: 12px; }
+  .panel h2 span:last-child { opacity: 1; letter-spacing: .1em; }
+  .chart-box { position: relative; height: 260px; }
 
-/* REALTIME CARD */
-.rtcard{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.rtdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pls 1.5s ease-in-out infinite;margin-bottom:10px}
-@keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
-.rtlbl{font-size:7px;letter-spacing:.28em;color:var(--gdim);text-transform:uppercase;margin-bottom:6px}
-.rtval{font-size:48px;font-weight:300;color:var(--green);text-shadow:0 0 36px rgba(0,255,65,.55);line-height:1}
-.rtsub{font-size:7px;letter-spacing:.18em;color:var(--gdim);margin-top:5px}
+  /* listes classées avec barre fine */
+  .rank { list-style: none; }
+  .rank li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 10px 0; }
+  .rank .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank .val { font-variant-numeric: tabular-nums; }
+  .rank .bar { grid-column: 1 / -1; height: 3px; background: color-mix(in srgb, var(--fg) 12%, transparent); }
+  .rank .bar i { display: block; height: 100%; background: var(--fg); transform-origin: left; animation: grow .9s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes grow { from { transform: scaleX(0); } }
+  .empty { opacity: .55; font-size: 14px; padding: 10px 0; }
 
-/* CHART CARD */
-.cc{background:rgba(0,6,0,.82);border:1px solid rgba(0,255,65,.16);padding:18px 22px;transition:border-color .3s}
-.cc:hover{border-color:rgba(0,255,65,.33)}
-.ctit{font-size:7px;letter-spacing:.28em;color:var(--gdim);text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between}
-.ctit span{color:rgba(0,255,65,.22)}
-.cw{position:relative;height:190px}
-.cwd{position:relative;height:170px}
-.cwl{position:relative;height:230px}
+  .an-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .an-table th { font: 500 11px/1 var(--font); letter-spacing: .2em; text-transform: uppercase; opacity: .6; text-align: left; padding: 0 0 14px; }
+  .an-table td { padding: 14px 0; border-top: 1px solid color-mix(in srgb, var(--fg) 15%, transparent); }
+  .an-table .num { text-align: right; font-variant-numeric: tabular-nums; }
 
-/* TABLE */
-.dt{width:100%;border-collapse:collapse;font-size:11px;letter-spacing:.07em}
-.dt th{font-size:7px;letter-spacing:.25em;color:var(--gdim);text-transform:uppercase;padding:8px 0;border-bottom:1px solid rgba(0,255,65,.1);text-align:left;font-weight:300}
-.dt td{padding:9px 0;border-bottom:1px solid rgba(0,255,65,.05);color:rgba(0,255,65,.72)}
-.dt tr:hover td{color:var(--green);background:rgba(0,255,65,.025)}
-.dt .num{text-align:right;color:var(--gold)}
-
-.spin{display:flex;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--gdim);font-size:8px;letter-spacing:.2em}
-.spin::before{content:'';width:9px;height:9px;border:1px solid var(--gdim);border-top-color:var(--green);border-radius:50%;animation:sp .7s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-
-@media(max-width:860px){
-  .g-kpi{grid-template-columns:repeat(2,1fr)}
-  .g-2{grid-template-columns:1fr}
-  .g-rt{grid-template-columns:1fr}
-  #content{padding:16px 14px 70px}
-}
+  .loading { opacity: .5; font-size: 14px; }
+  @media (prefers-reduced-motion: reduce) { .rank .bar i, .live::before, .shake { animation: none; } }
 </style>
 </head>
-<body>
-<canvas id="mc"></canvas>
+<body class="theme-cream">
 
-<!-- LOCK -->
-<div id="lock">
-  <div class="lbox">
-    <div class="ltag">accès restreint</div>
-    <div class="ltit">analytics</div>
-    <label class="llbl">mot de passe</label>
-    <input type="password" class="linp" id="pi" autocomplete="off" spellcheck="false">
-    <button class="lbtn" id="ub">entrer</button>
-    <div class="lerr" id="le"></div>
-    <div style="display:flex;justify-content:center;gap:20px;margin-top:20px">
-      <a href="index.html" style="font-size:9px;letter-spacing:.2em;color:rgba(0,255,65,.3);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='rgba(0,255,65,.7)'" onmouseout="this.style.color='rgba(0,255,65,.3)'">← en</a>
-      <a href="index-fr.html" style="font-size:9px;letter-spacing:.2em;color:rgba(0,255,65,.3);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='rgba(0,255,65,.7)'" onmouseout="this.style.color='rgba(0,255,65,.3)'">← fr</a>
+<!-- VERROU -->
+<section id="lock" aria-labelledby="lock-title">
+  <div class="lock-box">
+    <p class="an-label">accès restreint</p>
+    <h1 class="display" id="lock-title">analytics</h1>
+    <form id="lockForm" novalidate>
+      <div class="field">
+        <label for="pi">mot de passe</label>
+        <input type="password" id="pi" autocomplete="current-password" spellcheck="false" required>
+      </div>
+      <button class="btn solid" type="submit">entrer</button>
+      <p class="lock-err" id="le" role="alert"></p>
+    </form>
+    <div class="lock-back">
+      <a class="an-link" href="index.html" lang="en">← site (en)</a>
+      <a class="an-link" href="index-fr.html">← site (fr)</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- DASHBOARD -->
-<div id="dash">
-  <div class="dhdr">
-    <div class="dlogo">linh b. <em>analytics</em></div>
-    <div class="dtime" id="dt"></div>
-    <div class="dacts">
-      <a href="index.html" class="dbtn">← site</a>
-      <button class="dbtn" id="rb">↺ rafraîchir</button>
-      <button class="dbtn g" id="lb">verrouiller</button>
-    </div>
-  </div>
-
-  <div id="auth">
-    <div class="atit">connexion google analytics requise</div>
-    <button class="abtn" id="ab">autoriser l'accès google</button>
-  </div>
-
-  <div id="content">
-    <div class="g-rt">
-      <div class="rtcard">
-        <div class="rtdot"></div>
-        <div class="rtlbl">en ce moment</div>
-        <div class="rtval" id="rtv">—</div>
-        <div class="rtsub">utilisateurs actifs</div>
-      </div>
-      <div class="cc">
-        <div class="ctit">sessions — 30 derniers jours <span id="stot"></span></div>
-        <div class="cwl"><canvas id="sc"></canvas></div>
+<!-- TABLEAU DE BORD -->
+<div id="dash" hidden>
+  <header class="site-header an-head">
+    <div class="wrap">
+      <a href="index-fr.html" class="logo">linh b.<small>analytics</small></a>
+      <div class="an-actions">
+        <a href="index-fr.html" class="an-link">← site</a>
+        <button type="button" class="an-link" id="rb">rafraîchir</button>
+        <button type="button" class="an-link" id="lb">verrouiller</button>
       </div>
     </div>
+  </header>
 
-    <div class="g-kpi">
-      <div class="card"><div class="clbl">sessions (30j)</div><div class="cval" id="ks">—</div><div class="csub">total</div></div>
-      <div class="card"><div class="clbl">pages vues (30j)</div><div class="cval" id="kp">—</div><div class="csub">total</div></div>
-      <div class="card"><div class="clbl">durée moyenne</div><div class="cval gd" id="kd">—</div><div class="csub">par session</div></div>
-      <div class="card"><div class="clbl">taux de rebond</div><div class="cval" id="kb">—</div><div class="csub">30 jours</div></div>
-    </div>
+  <main>
+    <section class="wrap an-title">
+      <span class="an-label">30 derniers jours</span>
+      <h1 class="display">statistiques</h1>
+      <p class="an-label" id="clock"></p>
+    </section>
 
-    <div class="g-2">
-      <div class="cc">
-        <div class="ctit">pages les plus visitées</div>
-        <div class="cw"><canvas id="pc"></canvas></div>
-      </div>
-      <div class="cc">
-        <div class="ctit">appareils</div>
-        <div class="cwd"><canvas id="dc"></canvas></div>
-      </div>
-    </div>
+    <section class="wrap" id="auth" hidden>
+      <p class="an-label">connexion requise</p>
+      <p>Connecte-toi avec le compte Google lié à Google Analytics pour afficher les chiffres.</p>
+      <button type="button" class="btn solid" id="ab">autoriser l'accès google</button>
+    </section>
 
-    <div class="g-2">
-      <div class="cc">
-        <div class="ctit">pays d'origine</div>
-        <div class="cw"><canvas id="coc"></canvas></div>
+    <section class="wrap" id="content" hidden>
+      <div class="an-row an-kpis">
+        <div><span class="an-label live">en ce moment</span><div class="kpi-val" id="rtv">—</div><div class="kpi-sub">visiteurs actifs</div></div>
+        <div><span class="an-label">sessions</span><div class="kpi-val" id="ks">—</div><div class="kpi-sub">30 jours</div></div>
+        <div><span class="an-label">pages vues</span><div class="kpi-val" id="kp">—</div><div class="kpi-sub">30 jours</div></div>
+        <div><span class="an-label">durée moyenne</span><div class="kpi-val" id="kd">—</div><div class="kpi-sub">min par session</div></div>
+        <div><span class="an-label">taux de rebond</span><div class="kpi-val" id="kb">—</div><div class="kpi-sub">30 jours</div></div>
       </div>
-      <div class="cc">
-        <div class="ctit">sources de trafic</div>
-        <div class="cwd"><canvas id="src"></canvas></div>
-      </div>
-    </div>
 
-    <div class="cc">
-      <div class="ctit">villes — top 10</div>
-      <table class="dt">
-        <thead><tr><th>ville</th><th>pays</th><th class="num">sessions</th><th class="num">pages vues</th></tr></thead>
-        <tbody id="ctb"><tr><td colspan="4"><div class="spin">chargement</div></td></tr></tbody>
-      </table>
-    </div>
-  </div>
+      <div class="an-row">
+        <div class="panel">
+          <h2 class="an-label"><span>sessions par jour</span><span id="stot"></span></h2>
+          <div class="chart-box"><canvas id="sc" aria-label="Sessions par jour sur 30 jours" role="img"></canvas></div>
+        </div>
+      </div>
+
+      <div class="an-row an-2">
+        <div class="panel"><h2 class="an-label"><span>pages les plus vues</span></h2><ul class="rank" id="pages"><li class="loading">chargement…</li></ul></div>
+        <div class="panel"><h2 class="an-label"><span>sources de trafic</span></h2><ul class="rank" id="sources"><li class="loading">chargement…</li></ul></div>
+      </div>
+
+      <div class="an-row an-2">
+        <div class="panel"><h2 class="an-label"><span>pays</span></h2><ul class="rank" id="countries"><li class="loading">chargement…</li></ul></div>
+        <div class="panel"><h2 class="an-label"><span>appareils</span></h2><ul class="rank" id="devices"><li class="loading">chargement…</li></ul></div>
+      </div>
+
+      <div class="an-row">
+        <div class="panel">
+          <h2 class="an-label"><span>villes — top 10</span></h2>
+          <table class="an-table">
+            <thead><tr><th>ville</th><th>pays</th><th class="num">sessions</th><th class="num">pages vues</th></tr></thead>
+            <tbody id="ctb"><tr><td colspan="4" class="loading">chargement…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <script>
-// ── CONFIG ── Remplir ces deux valeurs pour activer les données ───────────────
-// 1) Property ID → GA4 > Admin > Paramètres de la propriété > "ID de propriété" (chiffres seulement)
-// 2) Client ID   → console.cloud.google.com > APIs & Services > Identifiants > OAuth 2.0
-//    Ajouter https://cybertrong.github.io dans "Origines JS autorisées"
+// ── CONFIG GOOGLE ANALYTICS ─────────────────────────────────────────────────
+// PID : GA4 > Admin > Paramètres de la propriété > ID de propriété
+// CID : console.cloud.google.com > APIs & Services > Identifiants > OAuth 2.0
+//       (https://cybertrong.github.io doit figurer dans « Origines JS autorisées »)
 const PID = '535397811';
 const CID = '846242190205-0mc2b01v30frnvo7mb73k5ck717levqe.apps.googleusercontent.com';
 
-// ── MOT DE PASSE ─────────────────────────────────────────────────────────────
-// Mot de passe par défaut : Matrix2025!
-// Pour changer → ouvrir la console du navigateur et taper :
-// crypto.subtle.digest('SHA-256',new TextEncoder().encode('VOTRE_MDP'))
-//   .then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
-// Puis remplacer la valeur de H ci-dessous.
+// ── MOT DE PASSE ────────────────────────────────────────────────────────────
+// Seule l'empreinte SHA-256 est stockée ici. Pour changer de mot de passe :
+// dans la console du navigateur,
+//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('NOUVEAU_MDP'))
+//     .then(b => console.log([...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('')))
+// puis remplacer la valeur de H.
 const H = '52d83f0fece7642a63f556ea52754d5c69e1dbc4bf34c746afedc9b0f6335a2a';
 const SK = '_ax';
 
-let tok = null, charts = {};
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n).toLocaleString('fr-CA');
+const BLUE = '#2A58A8';
+let tok = null, chart = null, rtTimer = null;
 
-// ── MATRIX ───────────────────────────────────────────────────────────────────
-const cv = document.getElementById('mc'), cx = cv.getContext('2d');
-const CH = 'ｦｧｨｩｪｫｬｭｮｯｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCZ'.split('');
-const FS = 13; let cols, drops;
-function im(){cv.width=innerWidth;cv.height=innerHeight;cols=Math.floor(cv.width/FS);drops=Array.from({length:cols},()=>Math.random()*-cv.height/FS)}
-function dm(){cx.fillStyle='rgba(0,0,0,.06)';cx.fillRect(0,0,cv.width,cv.height);for(let i=0;i<cols;i++){const y=drops[i]*FS;cx.fillStyle='#ccffcc';cx.font=FS+'px monospace';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y);cx.fillStyle='#00ff41';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y-FS);cx.fillStyle='#008f11';cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*FS,y-FS*2);drops[i]++;if(drops[i]*FS>cv.height&&Math.random()>.975)drops[i]=Math.random()*-20}}
-im();addEventListener('resize',im);setInterval(dm,38);
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function store(get, k, v) { try { return get ? sessionStorage.getItem(k) : (v === null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v)); } catch (e) { return null; } }
 
-// ── CLOCK ─────────────────────────────────────────────────────────────────────
-function tick(){document.getElementById('dt').textContent=new Date().toLocaleString('fr-CA',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})}
-setInterval(tick,1000);tick();
+// horloge
+function tick() { $('clock').textContent = new Date().toLocaleString('fr-CA', { dateStyle: 'long', timeStyle: 'short' }); }
+setInterval(tick, 30000); tick();
 
-// ── PASSWORD ──────────────────────────────────────────────────────────────────
-async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
-async function tryUnlock(){
-  const v=document.getElementById('pi').value;
-  if(await sha(v)===H){
-    sessionStorage.setItem(SK,'1');
-    document.getElementById('lock').classList.add('gone');
-    document.getElementById('dash').classList.add('on');
-    startGA();
-  } else {
-    const i=document.getElementById('pi'),e=document.getElementById('le');
-    i.classList.add('err');e.textContent='accès refusé';
-    setTimeout(()=>{i.classList.remove('err');i.value='';e.textContent=''},1600);
+// ── verrou ──
+async function sha(s) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); }
+function openDash() { $('lock').hidden = true; $('dash').hidden = false; startGA(); }
+$('lockForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const i = $('pi');
+  if (await sha(i.value) === H) { store(false, SK, '1'); openDash(); }
+  else {
+    i.classList.remove('shake'); void i.offsetWidth; i.classList.add('shake');
+    $('le').textContent = 'mot de passe incorrect';
+    i.value = ''; i.focus();
   }
-}
-document.getElementById('ub').onclick=tryUnlock;
-document.getElementById('pi').onkeydown=e=>{if(e.key==='Enter')tryUnlock();document.getElementById('le').textContent=''};
-document.getElementById('lb').onclick=()=>{sessionStorage.removeItem(SK);tok=null;location.reload()};
-if(sessionStorage.getItem(SK)){document.getElementById('lock').classList.add('gone');document.getElementById('dash').classList.add('on')}
+});
+$('pi').addEventListener('input', () => { $('le').textContent = ''; });
+$('lb').addEventListener('click', () => { store(false, SK, null); tok = null; location.reload(); });
+if (store(true, SK)) openDash(); else $('pi').focus();
 
-// ── GOOGLE OAUTH ──────────────────────────────────────────────────────────────
-function startGA(){
-  if(!window.google){setTimeout(startGA,300);return}
-  document.getElementById('auth').classList.add('on');
-  document.getElementById('ab').onclick=()=>{
+// ── connexion Google ──
+function startGA() {
+  if (!window.google || !google.accounts) { setTimeout(startGA, 300); return; }
+  $('auth').hidden = false;
+  $('ab').onclick = () => {
     google.accounts.oauth2.initTokenClient({
-      client_id:CID,
-      scope:'https://www.googleapis.com/auth/analytics.readonly',
-      callback:r=>{
-        if(r.access_token){
-          tok=r.access_token;
-          document.getElementById('auth').classList.remove('on');
-          document.getElementById('content').classList.add('on');
-          loadAll();setInterval(loadRT,60000);
-        }
+      client_id: CID,
+      scope: 'https://www.googleapis.com/auth/analytics.readonly',
+      callback: r => {
+        if (!r.access_token) return;
+        tok = r.access_token;
+        $('auth').hidden = true; $('content').hidden = false;
+        loadAll();
+        clearInterval(rtTimer); rtTimer = setInterval(loadRT, 60000);
       }
     }).requestAccessToken();
   };
 }
-if(sessionStorage.getItem(SK))startGA();
-document.getElementById('rb').onclick=loadAll;
+$('rb').addEventListener('click', () => { if (tok) loadAll(); });
 
-// ── GA4 API ───────────────────────────────────────────────────────────────────
-async function api(ep,body){
-  const r=await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${PID}${ep}`,
-    {method:'POST',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify(body)});
+// ── API GA4 ──
+async function api(ep, body) {
+  const r = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${PID}${ep}`,
+    { method: 'POST', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   return r.json();
 }
+const LAST30 = [{ startDate: '29daysAgo', endDate: 'today' }];
+function loadAll() { loadRT(); loadSessions(); loadKPIs(); loadPages(); loadSources(); loadCountries(); loadDevices(); loadCities(); }
 
-function loadAll(){loadRT();loadSessions();loadKPIs();loadPages();loadDevices();loadCountries();loadSources();loadCities()}
-
-async function loadRT(){
-  try{const d=await api(':runRealtimeReport',{metrics:[{name:'activeUsers'}]});
-  document.getElementById('rtv').textContent=d.rows?.[0]?.metricValues?.[0]?.value??'0'}catch(e){}
+async function loadRT() {
+  try { const d = await api(':runRealtimeReport', { metrics: [{ name: 'activeUsers' }] });
+    $('rtv').textContent = d.rows?.[0]?.metricValues?.[0]?.value ?? '0'; } catch (e) {}
 }
 
-async function loadSessions(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'date'}],metrics:[{name:'sessions'}],orderBys:[{dimension:{dimensionName:'date'}}]});
-    const lbls=(d.rows||[]).map(r=>{const v=r.dimensionValues[0].value;return v.slice(4,6)+'/'+v.slice(6,8)});
-    const vals=(d.rows||[]).map(r=>+r.metricValues[0].value);
-    document.getElementById('stot').textContent=vals.reduce((a,b)=>a+b,0).toLocaleString('fr-CA')+' sessions';
-    if(charts.s)charts.s.destroy();
-    charts.s=new Chart(document.getElementById('sc'),{type:'bar',data:{labels:lbls,datasets:[{data:vals,backgroundColor:'rgba(0,255,65,.22)',borderColor:'#00ff41',borderWidth:1,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tp()},scales:{x:{grid:{color:'rgba(0,255,65,.04)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:8},maxRotation:0,autoSkip:true,maxTicksLimit:10}},y:{grid:{color:'rgba(0,255,65,.07)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:9}}}}}});
-  }catch(e){}
+async function loadKPIs() {
+  try {
+    const d = await api(':runReport', { dateRanges: LAST30, metrics: [{ name: 'sessions' }, { name: 'screenPageViews' }, { name: 'averageSessionDuration' }, { name: 'bounceRate' }] });
+    const m = d.rows?.[0]?.metricValues || [];
+    $('ks').textContent = fmt(parseInt(m[0]?.value || 0));
+    $('kp').textContent = fmt(parseInt(m[1]?.value || 0));
+    const s = parseFloat(m[2]?.value || 0);
+    $('kd').textContent = Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    $('kb').textContent = (parseFloat(m[3]?.value || 0) * 100).toFixed(0) + ' %';
+  } catch (e) {}
 }
 
-async function loadKPIs(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],metrics:[{name:'sessions'},{name:'screenPageViews'},{name:'averageSessionDuration'},{name:'bounceRate'}]});
-    const m=d.rows?.[0]?.metricValues||[];
-    document.getElementById('ks').textContent=parseInt(m[0]?.value||0).toLocaleString('fr-CA');
-    document.getElementById('kp').textContent=parseInt(m[1]?.value||0).toLocaleString('fr-CA');
-    const dur=parseFloat(m[2]?.value||0);
-    document.getElementById('kd').textContent=Math.floor(dur/60)+'m'+String(Math.floor(dur%60)).padStart(2,'0');
-    document.getElementById('kb').textContent=(parseFloat(m[3]?.value||0)*100).toFixed(1)+'%';
-  }catch(e){}
+async function loadSessions() {
+  try {
+    const d = await api(':runReport', { dateRanges: LAST30, dimensions: [{ name: 'date' }], metrics: [{ name: 'sessions' }], orderBys: [{ dimension: { dimensionName: 'date' } }] });
+    const rows = d.rows || [];
+    const labels = rows.map(r => { const v = r.dimensionValues[0].value; return v.slice(6, 8) + '/' + v.slice(4, 6); });
+    const vals = rows.map(r => +r.metricValues[0].value);
+    $('stot').textContent = fmt(vals.reduce((a, b) => a + b, 0)) + ' au total';
+    if (chart) chart.destroy();
+    chart = new Chart($('sc'), {
+      type: 'bar',
+      data: { labels, datasets: [{ data: vals, backgroundColor: BLUE, borderRadius: 2, maxBarThickness: 22 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { backgroundColor: '#fff', titleColor: BLUE, bodyColor: BLUE, borderColor: 'rgba(42,88,168,.25)', borderWidth: 1, padding: 10, displayColors: false, titleFont: { family: 'Jost' }, bodyFont: { family: 'Jost' } } },
+        scales: {
+          x: { grid: { display: false }, border: { display: false }, ticks: { color: 'rgba(42,88,168,.6)', font: { family: 'Jost', size: 11 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } },
+          y: { beginAtZero: true, grid: { color: 'rgba(42,88,168,.1)' }, border: { display: false }, ticks: { color: 'rgba(42,88,168,.6)', font: { family: 'Jost', size: 11 }, precision: 0, maxTicksLimit: 5 } }
+        }
+      }
+    });
+  } catch (e) {}
 }
 
-async function loadPages(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'pagePath'}],metrics:[{name:'screenPageViews'}],orderBys:[{metric:{metricName:'screenPageViews'},desc:true}],limit:8});
-    const rows=d.rows||[];
-    const lbls=rows.map(r=>r.dimensionValues[0].value.slice(0,28));
-    const vals=rows.map(r=>+r.metricValues[0].value);
-    if(charts.p)charts.p.destroy();
-    charts.p=new Chart(document.getElementById('pc'),{type:'bar',data:{labels:lbls,datasets:[{data:vals,backgroundColor:vals.map((_,i)=>`rgba(0,255,65,${.6-i*.06})`),borderColor:'rgba(0,255,65,.4)',borderWidth:1,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tp()},scales:{x:{grid:{color:'rgba(0,255,65,.05)'},ticks:{color:'#008f11',font:{family:'DM Mono',size:8}}},y:{grid:{display:false},ticks:{color:'#00ff41',font:{family:'DM Mono',size:9}}}}}});
-  }catch(e){}
+// listes classées
+function rank(id, rows, label) {
+  const ul = $(id);
+  if (!rows.length) { ul.innerHTML = '<li class="empty">aucune donnée</li>'; return; }
+  const max = Math.max(...rows.map(r => +r.metricValues[0].value)) || 1;
+  ul.innerHTML = rows.map(r => {
+    const name = label ? label(r.dimensionValues[0].value) : r.dimensionValues[0].value;
+    const v = +r.metricValues[0].value;
+    return `<li><span class="name" title="${esc(name)}">${esc(name)}</span><span class="val">${fmt(v)}</span><span class="bar"><i style="width:${(v / max * 100).toFixed(1)}%"></i></span></li>`;
+  }).join('');
 }
-
-async function loadDevices(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'deviceCategory'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}]});
-    donut('dc','dv',d.rows||[],['rgba(0,255,65,.82)','rgba(201,168,76,.72)','rgba(0,143,17,.68)']);
-  }catch(e){}
+async function report(dim, metric, limit) {
+  const d = await api(':runReport', { dateRanges: LAST30, dimensions: [{ name: dim }], metrics: [{ name: metric }], orderBys: [{ metric: { metricName: metric }, desc: true }], limit });
+  return d.rows || [];
 }
+const DEV = { desktop: 'ordinateur', mobile: 'mobile', tablet: 'tablette' };
+async function loadPages()     { try { rank('pages', await report('pagePath', 'screenPageViews', 8), p => p === '/' ? 'accueil' : p.replace(/^\//, '')); } catch (e) {} }
+async function loadSources()   { try { rank('sources', await report('sessionDefaultChannelGroup', 'sessions', 7)); } catch (e) {} }
+async function loadCountries() { try { rank('countries', await report('country', 'sessions', 8)); } catch (e) {} }
+async function loadDevices()   { try { rank('devices', await report('deviceCategory', 'sessions', 5), v => DEV[v] || v); } catch (e) {} }
 
-async function loadCountries(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'country'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:8});
-    donut('coc','co',d.rows||[],gpal(8));
-  }catch(e){}
+async function loadCities() {
+  try {
+    const d = await api(':runReport', { dateRanges: LAST30, dimensions: [{ name: 'city' }, { name: 'country' }], metrics: [{ name: 'sessions' }, { name: 'screenPageViews' }], orderBys: [{ metric: { metricName: 'sessions' }, desc: true }], limit: 10 });
+    const rows = d.rows || [];
+    $('ctb').innerHTML = rows.length
+      ? rows.map(r => `<tr><td>${esc(r.dimensionValues[0].value)}</td><td>${esc(r.dimensionValues[1].value)}</td><td class="num">${fmt(r.metricValues[0].value)}</td><td class="num">${fmt(r.metricValues[1].value)}</td></tr>`).join('')
+      : '<tr><td colspan="4" class="empty">aucune donnée</td></tr>';
+  } catch (e) {}
 }
-
-async function loadSources(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'sessionDefaultChannelGroup'}],metrics:[{name:'sessions'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:7});
-    donut('src','sr',d.rows||[],['rgba(0,255,65,.82)','rgba(201,168,76,.75)','rgba(0,200,50,.65)','rgba(180,140,40,.6)','rgba(0,120,30,.55)','rgba(150,100,30,.5)','rgba(0,80,20,.45)']);
-  }catch(e){}
-}
-
-async function loadCities(){
-  try{
-    const d=await api(':runReport',{dateRanges:[{startDate:'29daysAgo',endDate:'today'}],dimensions:[{name:'city'},{name:'country'}],metrics:[{name:'sessions'},{name:'screenPageViews'}],orderBys:[{metric:{metricName:'sessions'},desc:true}],limit:10});
-    const tb=document.getElementById('ctb');tb.innerHTML='';
-    (d.rows||[]).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${r.dimensionValues[0].value}</td><td>${r.dimensionValues[1].value}</td><td class="num">${parseInt(r.metricValues[0].value).toLocaleString('fr-CA')}</td><td class="num">${parseInt(r.metricValues[1].value).toLocaleString('fr-CA')}</td>`;tb.appendChild(tr)});
-    if(!d.rows?.length)tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--gdim);font-size:9px;padding:18px">aucune donnée</td></tr>';
-  }catch(e){}
-}
-
-function donut(id,key,rows,colors){
-  if(charts[key])charts[key].destroy();
-  charts[key]=new Chart(document.getElementById(id),{type:'doughnut',data:{labels:rows.map(r=>r.dimensionValues[0].value),datasets:[{data:rows.map(r=>+r.metricValues[0].value),backgroundColor:colors,borderColor:'rgba(0,0,0,.5)',borderWidth:2,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'66%',plugins:{legend:{position:'right',labels:{color:'#008f11',font:{family:'DM Mono',size:9},padding:8,boxWidth:9}},tooltip:tp()}}});
-}
-
-function gpal(n){return['rgba(0,255,65,.85)','rgba(0,210,54,.75)','rgba(0,170,43,.68)','rgba(0,135,34,.62)','rgba(201,168,76,.72)','rgba(160,130,50,.62)','rgba(120,98,38,.54)','rgba(80,65,25,.48)'].slice(0,n)}
-
-function tp(){return{backgroundColor:'rgba(0,6,0,.95)',borderColor:'rgba(0,255,65,.28)',borderWidth:1,titleColor:'#00ff41',bodyColor:'#008f11',titleFont:{family:'DM Mono',size:10},bodyFont:{family:'DM Mono',size:10}}}
 </script>
 </body>
 </html>
