@@ -1,50 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <style>
-      @font-face {
-        font-family: 'Courier New', monospace;
-      }
-      .favicon-text {
-        font-family: 'Courier New', monospace;
-        font-weight: bold;
-        font-size: 60px;
-        letter-spacing: 2px;
-        fill: #c9a84c;
-        text-anchor: middle;
-      }
-      .favicon-accent {
-        fill: #00ff41;
-      }
-    </style>
-  </defs>
-
-  <!-- Black background -->
-  <rect width="100" height="100" fill="#000000"/>
-
-  <!-- Outer glitch border -->
-  <rect x="8" y="8" width="84" height="84" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
-
-  <!-- Inner tech accent -->
-  <circle cx="50" cy="50" r="42" fill="none" stroke="#00ff41" stroke-width="1" opacity="0.3" stroke-dasharray="4,4"/>
-
-  <!-- Main text: LB -->
-  <text x="50" y="62" class="favicon-text">LB</text>
-
-  <!-- Top accent line - gold -->
-  <line x1="15" y1="28" x2="35" y2="28" stroke="#c9a84c" stroke-width="2" opacity="0.8"/>
-
-  <!-- Bottom accent line - neon green -->
-  <line x1="65" y1="72" x2="85" y2="72" stroke="#00ff41" stroke-width="2" opacity="0.8" stroke-linecap="round"/>
-
-  <!-- Small corner brackets for tech vibe -->
-  <g stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.7">
-    <!-- Top left bracket -->
-    <path d="M 15 15 L 15 25 L 25 25"/>
-    <!-- Bottom right bracket -->
-    <path d="M 75 75 L 85 75 L 85 85"/>
-  </g>
-
-  <!-- Subtle scan line effect -->
-  <line x1="10" y1="50" x2="90" y2="50" stroke="#00ff41" stroke-width="0.5" opacity="0.2"/>
-  <line x1="10" y1="52" x2="90" y2="52" stroke="#00ff41" stroke-width="0.5" opacity="0.2"/>
+  <!-- linh b. : « L » en Damion, crème sur bleu -->
+  <rect width="100" height="100" rx="22" fill="#2A58A8"/>
+  <path fill="#ECE7E2" transform="translate(13.59 81.66) scale(0.04481 -0.04481)" d="M607 -30Q362 -30 249.0 34.0Q136 98 136 194Q136 287 201.0 325.5Q266 364 363 364Q414 364 470.5 340.5Q527 317 579.0 281.5Q631 246 667 208Q714 329 793 498Q831 579 873.0 664.5Q915 750 957 833Q999 916 1039.0 993.0Q1079 1070 1113 1134Q1181 1263 1215 1322Q1245 1383 1295.5 1413.0Q1346 1443 1392 1443Q1424 1443 1446.0 1426.5Q1468 1410 1468 1378Q1468 1351 1455 1324Q1364 1130 1283.0 964.0Q1202 798 1110 622Q1028 464 952.5 335.5Q877 207 822 136Q909 142 981.0 152.0Q1053 162 1120 175Q1185 188 1255.0 204.0Q1325 220 1400 235Q1409 239 1422 239Q1453 239 1471.0 214.5Q1489 190 1489 159Q1489 131 1412.5 98.0Q1336 65 1208 36Q1086 8 928.5 -11.0Q771 -30 607 -30ZM571 129Q537 148 496.0 171.0Q455 194 419.0 211.0Q383 228 362 228Q326 228 326 209Q326 178 392.0 154.5Q458 131 571 129Z"/>
 </svg>
