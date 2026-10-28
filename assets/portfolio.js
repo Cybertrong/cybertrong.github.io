@@ -22,8 +22,9 @@
   var cats = ['all'];
   PROJECTS.forEach(function (p) { if (cats.indexOf(p.cat) < 0) cats.push(p.cat); });
   filters.innerHTML = cats.map(function (c, i) {
+    var n = c === 'all' ? PROJECTS.length : PROJECTS.filter(function (p) { return p.cat === c; }).length;
     return '<li><button type="button" data-cat="' + c + '" aria-pressed="' + (i === 0) + '">' +
-      esc(c === 'all' ? T.all : T.cats[c]) + '</button></li>';
+      esc(c === 'all' ? T.all : T.cats[c]) + '<sup>' + n + '</sup></button></li>';
   }).join('');
 
   // projets
@@ -39,7 +40,7 @@
       media = '<div class="work-media"><div class="placeholder"><span>' + esc(p.type[lang]) + '</span>' +
         '<strong>' + esc(client(p)) + '</strong><span>' + esc(T.soon) + '</span></div></div>';
     }
-    return '<article class="work" data-cat="' + p.cat + '"' + (i % 2 ? ' data-parallax="-0.05"' : '') + '>' +
+    return '<article class="work" data-cat="' + p.cat + '">' +
       media +
       '<div class="work-meta"><h3>' + esc(client(p)) + '</h3><span class="year">' + esc(p.year) + '</span></div>' +
       '<p class="work-sub">' + esc(p.type[lang]) + ' · ' + esc(p.field[lang]) + '</p>' +
@@ -47,16 +48,32 @@
       '</article>';
   }).join('');
 
+  var bar = document.querySelector('.filter-bar');
+  function applyFilter(cat, scroll) {
+    if (cats.indexOf(cat) < 0) cat = 'all';
+    filters.querySelectorAll('button').forEach(function (x) {
+      x.setAttribute('aria-pressed', x.dataset.cat === cat ? 'true' : 'false');
+    });
+    grid.classList.add('is-switching');
+    setTimeout(function () {
+      grid.querySelectorAll('.work').forEach(function (w) {
+        w.hidden = !(cat === 'all' || w.dataset.cat === cat);
+      });
+      if (scroll && bar) {
+        var section = bar.closest('.pf-body') || bar.parentElement;
+        var top = section.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(bar).top) || 0);
+        if (window.scrollY > top + 1) window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+      grid.classList.remove('is-switching');
+      if (window.LinhParallax) window.LinhParallax.refresh();
+    }, 220);
+    try { history.replaceState(null, '', cat === 'all' ? location.pathname : '#' + cat); } catch (e) {}
+  }
   filters.addEventListener('click', function (e) {
     var b = e.target.closest('button');
-    if (!b) return;
-    var cat = b.dataset.cat;
-    filters.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
-    grid.querySelectorAll('.work').forEach(function (w) {
-      w.hidden = !(cat === 'all' || w.dataset.cat === cat);
-    });
-    if (window.LinhParallax) window.LinhParallax.refresh();
+    if (b) applyFilter(b.dataset.cat, true);
   });
+  if (location.hash) applyFilter(location.hash.slice(1), false);
 
   // visionneuse
   var lb = document.getElementById('lightbox');

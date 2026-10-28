@@ -25,6 +25,18 @@
   });
 })();
 
+// ── hauteur de l'en-tête (pour coller la barre des filtres dessous) ──
+(function () {
+  var h = document.querySelector('.site-header');
+  if (!h) return;
+  function set() {
+    var sticky = getComputedStyle(h).position === 'sticky';
+    document.documentElement.style.setProperty('--header-h', (sticky ? h.offsetHeight : 0) + 'px');
+  }
+  set();
+  window.addEventListener('resize', set);
+})();
+
 // ── apparition des titres : lettres une à une ──────────
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
