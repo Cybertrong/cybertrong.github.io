@@ -706,3 +706,84 @@ body.home { transition: background-color .4s ease; }
   transition: opacity .2s;
 }
 .access-link:hover, .access-link:focus-visible { opacity: 1; }
+
+/* ── PORTFOLIO : présentation par catégories, cartes sobres ── */
+.pf-body .grid { display: block; padding-bottom: clamp(120px, 18vh, 220px); }
+.cat-section + .cat-section { margin-top: clamp(96px, 14vh, 160px); }
+.cat-section[hidden] { display: none; }
+.cat-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: clamp(32px, 5vh, 56px);
+  border-bottom: 1.5px solid color-mix(in srgb, var(--fg) 25%, transparent);
+}
+.cat-head h2 {
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(44px, 5.4vw, 80px);
+  line-height: 1;
+  color: var(--fg);
+}
+.cat-head span { font: 500 12px/1 var(--font); letter-spacing: .2em; text-transform: uppercase; opacity: .6; }
+.grid.single .cat-head { display: none; }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(48px, 6vw, 80px) clamp(20px, 2.6vw, 40px);
+}
+@media (max-width: 1000px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px)  { .cat-grid { grid-template-columns: 1fr; } }
+
+.cat-grid .work { gap: 10px; }
+.cat-grid .work-media {
+  aspect-ratio: 4 / 3;
+  background: #F4F2EF;
+}
+.cat-grid .work-media img { object-fit: cover; }
+.cat-grid .work-meta { margin-top: 6px; }
+.cat-grid .work-meta h3 { font-size: 18px; }
+.cat-grid .work-sub {
+  margin-top: -6px;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: .7;
+}
+.work-media .count {
+  position: absolute;
+  right: 12px; bottom: 12px;
+  background: #fff;
+  color: var(--blue);
+  font: 500 11px/1 var(--font);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+}
+/* aperçu des sites : plus grand, donc lisible */
+.is-site .site-preview iframe { width: 250%; height: 250%; transform: scale(.4); }
+
+/* visionneuse : flèches et compteur */
+.lightbox-img { position: relative; }
+.lb-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  background: none; border: 0; color: inherit; cursor: pointer;
+  opacity: .6; transition: opacity .2s, transform .2s;
+}
+.lb-nav:hover, .lb-nav:focus-visible { opacity: 1; }
+.lb-prev { left: 0; } .lb-next { right: 0; }
+.lb-prev:hover { transform: translate(-4px, -50%); }
+.lb-next:hover { transform: translate(4px, -50%); }
+.lb-nav svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.lb-nav[hidden], .lb-count[hidden] { display: none; }
+.lb-count {
+  position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+  font: 500 12px/1 var(--font); letter-spacing: .2em; opacity: .7;
+}
+.lightbox-img img { max-width: calc(100% - 140px); }
+@media (max-width: 600px) { .lightbox-img img { max-width: 100%; } .lb-nav { display: none; } }
