@@ -693,3 +693,16 @@ html[data-palette="cream-red"]   body.home { --bg: var(--cream); --fg: var(--red
 html[data-palette="red-cream"]   body.home { --bg: var(--red);   --fg: var(--cream); --text: var(--cream); --glow: #fff6d9; }
 html[data-palette="cream-ochre"] body.home { --bg: var(--cream); --fg: var(--ochre); --text: #855C22;     --glow: var(--ochre); }
 body.home { transition: background-color .4s ease; }
+
+/* Lien discret vers les statistiques (comme sur l'ancien site) */
+.access-link {
+  display: inline-block;
+  margin-top: clamp(80px, 12vh, 140px);
+  font: 500 11px/1 var(--font);
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: .35;
+  transition: opacity .2s;
+}
+.access-link:hover, .access-link:focus-visible { opacity: 1; }
