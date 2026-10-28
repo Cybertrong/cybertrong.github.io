@@ -445,7 +445,7 @@ button.work-media:hover img { opacity: .88; }
 
 /* ── MENU PLEIN ÉCRAN ────────────────────────────────── */
 .menu {
-  --accent: var(--red);
+  --accent: var(--cream);
   position: fixed; inset: 0; z-index: 100;
   background: var(--blue); color: var(--cream);
   display: grid;
