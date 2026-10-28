@@ -40,7 +40,7 @@
 // ── apparition des titres : lettres une à une ──────────
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var targets = document.querySelectorAll('.lockup-name, .display');
+  var targets = document.querySelectorAll('.display');
   targets.forEach(function (el) {
     var text = el.textContent;
     el.setAttribute('aria-label', text.replace(/\s+/g, ' ').trim());

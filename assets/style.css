@@ -790,3 +790,6 @@ body.home { transition: background-color .4s ease; }
 
 /* Portfolio entièrement blanc (haut compris) */
 .theme-white { --bg: #FFFFFF; --fg: var(--blue); --text: var(--blue); --glow: var(--blue); }
+
+/* Accueil : « Linh » affiché sans animation */
+.lockup { animation: none; }
