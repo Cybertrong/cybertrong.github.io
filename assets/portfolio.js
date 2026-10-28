@@ -100,6 +100,7 @@
         if (window.scrollY > top + 1) window.scrollTo({ top: top, behavior: 'smooth' });
       }
       grid.classList.remove('is-switching');
+      setupReveal();
       if (window.LinhParallax) window.LinhParallax.refresh();
     }, 220);
     try { history.replaceState(null, '', cat === 'all' ? location.pathname : '#' + cat); } catch (e) {}
@@ -109,6 +110,45 @@
     if (b) applyFilter(b.dataset.cat, true);
   });
   if (location.hash) applyFilter(location.hash.slice(1), false);
+
+
+  // ── apparition des rangées : gauche → droite, puis droite → gauche, en alternance ──
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io = ('IntersectionObserver' in window && !reduceMotion) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }) : null;
+
+  function setupReveal() {
+    if (!io) return;
+    io.disconnect();
+    var cards = Array.prototype.filter.call(grid.querySelectorAll('.work'), function (c) { return c.offsetParent !== null; });
+    var rows = [], lastTop = null;
+    cards.forEach(function (c) {
+      var top = Math.round(c.getBoundingClientRect().top + window.scrollY);
+      if (lastTop === null || Math.abs(top - lastTop) > 4) { rows.push([]); lastTop = top; }
+      rows[rows.length - 1].push(c);
+    });
+    rows.forEach(function (row, r) {
+      var fromRight = r % 2 === 1;
+      row.forEach(function (c, k) {
+        var order = fromRight ? row.length - 1 - k : k;
+        c.classList.add('reveal');
+        c.classList.remove('in');
+        c.dataset.dir = fromRight ? 'right' : 'left';
+        c.style.setProperty('--d', (order * 0.12) + 's');
+        io.observe(c);
+      });
+    });
+  }
+  setupReveal();
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () {
+    grid.querySelectorAll('.work.in').forEach(function (c) { c.classList.add('keep'); });
+    setupReveal();
+    grid.querySelectorAll('.work.keep').forEach(function (c) { c.classList.add('in'); c.classList.remove('keep'); });
+  }, 200); });
 
   // ── visionneuse avec flèches ──
   var lb = document.getElementById('lightbox');
