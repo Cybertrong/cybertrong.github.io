@@ -676,3 +676,17 @@ button.work-media:hover img { opacity: .88; }
 
 /* Vue agrandie des images : fond blanc */
 .lightbox { background: #fff; }
+
+/* ── ACCUEIL : combinaison de couleurs tirée au hasard à chaque visite ── */
+:root { --white: #FFFFFF; --gold: #E2B04A; }
+html[data-palette] body.home { background: var(--bg); color: var(--text); }
+html[data-palette="blue-cream"]  body.home { --bg: var(--blue);  --fg: var(--cream); --text: var(--cream); --glow: #fff6d9; }
+html[data-palette="cream-blue"]  body.home { --bg: var(--cream); --fg: var(--blue);  --text: var(--blue);  --glow: var(--blue); }
+html[data-palette="white-blue"]  body.home { --bg: var(--white); --fg: var(--blue);  --text: var(--blue);  --glow: var(--blue); }
+html[data-palette="blue-white"]  body.home { --bg: var(--blue);  --fg: var(--white); --text: var(--white); --glow: #fff; }
+html[data-palette="gold-blue"]   body.home { --bg: var(--gold);  --fg: var(--blue);  --text: var(--blue);  --glow: #fff6d9; }
+html[data-palette="blue-gold"]   body.home { --bg: var(--blue);  --fg: var(--gold);  --text: var(--gold);  --glow: #ffe7a8; }
+html[data-palette="cream-red"]   body.home { --bg: var(--cream); --fg: var(--red);   --text: #B03C27;     --glow: var(--red); }
+html[data-palette="red-cream"]   body.home { --bg: var(--red);   --fg: var(--cream); --text: var(--cream); --glow: #fff6d9; }
+html[data-palette="cream-ochre"] body.home { --bg: var(--cream); --fg: var(--ochre); --text: #855C22;     --glow: var(--ochre); }
+body.home { transition: background-color .4s ease; }

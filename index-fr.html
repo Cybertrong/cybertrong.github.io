@@ -20,7 +20,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Damion&family=Jost:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=20261028-9">
+  <link rel="stylesheet" href="assets/style.css?v=20261028-10">
+  <script>
+    // Accueil : une combinaison de couleurs au hasard, jamais deux fois la même de suite
+    (function () {
+      var P = ['blue-cream','cream-blue','white-blue','blue-white','gold-blue','blue-gold','cream-red','red-cream','cream-ochre'];
+      var BG = {'blue-cream':'#2A58A8','cream-blue':'#ECE7E2','white-blue':'#FFFFFF','blue-white':'#2A58A8','gold-blue':'#E2B04A','blue-gold':'#2A58A8','cream-red':'#ECE7E2','red-cream':'#D35035','cream-ochre':'#ECE7E2'};
+      var last = null;
+      try { last = sessionStorage.getItem('linh-palette'); } catch (e) {}
+      var pick;
+      do { pick = P[Math.floor(Math.random() * P.length)]; } while (pick === last);
+      try { sessionStorage.setItem('linh-palette', pick); } catch (e) {}
+      document.documentElement.setAttribute('data-palette', pick);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute('content', BG[pick]);
+    })();
+  </script>
 </head>
 <body class="theme-blue home">
 
@@ -54,6 +69,6 @@
 </main>
 
 
-<script src="assets/site.js?v=20261028-9"></script>
+<script src="assets/site.js?v=20261028-10"></script>
 </body>
 </html>
