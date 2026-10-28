@@ -646,3 +646,7 @@ button.work-media:hover img { opacity: .88; }
   .contact-page .burger { color: var(--cream); }
   .contact-right { padding-top: 72px; }
 }
+
+/* Portfolio : zone des projets sur fond blanc, le haut reste crème */
+.pf-body { background: #fff; padding-top: clamp(32px, 5vh, 64px); }
+.pf-body .work-media { background: #fff; }
