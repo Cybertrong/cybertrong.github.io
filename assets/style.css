@@ -787,3 +787,6 @@ body.home { transition: background-color .4s ease; }
 }
 .lightbox-img img { max-width: calc(100% - 140px); }
 @media (max-width: 600px) { .lightbox-img img { max-width: 100%; } .lb-nav { display: none; } }
+
+/* Portfolio entièrement blanc (haut compris) */
+.theme-white { --bg: #FFFFFF; --fg: var(--blue); --text: var(--blue); --glow: var(--blue); }
