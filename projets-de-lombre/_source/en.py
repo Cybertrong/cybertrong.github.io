@@ -39,8 +39,8 @@ BLOCKS = [
 ('''<div class="quote-list">
         <blockquote class="big">''', '''<div class="quote-list" lang="fr">
         <blockquote class="big">'''),
-('''Pour recevoir la fiche technique ou des photos de presse en haute résolution, <a href="index.html#contact">écrivez-nous</a>.''',
- '''To receive the technical rider or high-resolution press photos, <a href="index.html#contact">write to us</a>.'''),
+('''Pour recevoir des photos de presse en haute résolution, <a href="index.html#contact">écrivez-nous</a>.''',
+ '''To receive high-resolution press photos, <a href="index.html#contact">write to us</a>.'''),
 # Cookies page
 ('''<p>Ce site ne dépose <strong>aucun cookie publicitaire</strong> et n’utilise <strong>aucun outil de mesure d’audience</strong>. Il ne crée pas de profil de ses visiteurs. Certains services externes nécessaires à son fonctionnement peuvent toutefois recevoir des données techniques :</p>''',
  '''<p>This site sets <strong>no advertising cookies</strong> and uses <strong>no audience measurement tools</strong>. It does not build profiles of its visitors. However, some external services the site needs in order to work may receive technical data:</p>'''),
@@ -66,7 +66,7 @@ TEXT = [
 ('Dossier de presse · A comme Animal', 'Press kit · A comme Animal'),
 ('Dossier de presse', 'Press kit'), ('Calendrier', 'Calendar'), ('Nous joindre', 'Contact us'),
 ('Accueil', 'Home'), ('Spectacle', 'Show'), ('Direction artistique', 'Artistic direction'), ('Presse', 'Press'),
-('Collaborateur·trices', 'Collaborators'), ('Fiche technique', 'Technical rider'),
+('Collaborateur·trices', 'Collaborators'),
 ('Tête de marionnette du vieux philosophe enfermée dans une cage à oiseaux, dans A comme Animal', 'The old philosopher’s puppet head locked in a birdcage, in A comme Animal'),
 ('Voir la bande-annonce', 'Watch the trailer'),
 ('La compagnie en une phrase', 'The company in one sentence'),

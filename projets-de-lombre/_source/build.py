@@ -467,7 +467,6 @@ def header(p, active):
     </ul>
     <ul class="side">
       <li style="--i:8"><a href="presse.html">Dossier de presse</a></li>
-      <li style="--i:9"><a href="#">Fiche technique</a></li>
       <li style="--i:10"><a href="{L(p,'contact')}">Nous joindre</a></li>
       <li style="--i:11"><div class="lang" role="group" aria-label="Langue"><a href="#" aria-current="true" lang="fr">FR</a><span aria-hidden="true">/</span><a href="#" lang="en" title="English version coming soon">EN</a></div></li>
     </ul>
@@ -480,7 +479,7 @@ def footer(p):
     return f'''<footer>
   <div class="foot-main">
     <div class="cols">
-      <div><h4>Spectacle</h4><ul><li><a href="{L(p,'spectacle')}">A comme Animal</a></li><li><a href="{L(p,'spectacle-video')}">Vidéo</a></li><li><a href="presse.html">Dossier de presse</a></li><li><a href="#">Fiche technique</a></li></ul></div>
+      <div><h4>Spectacle</h4><ul><li><a href="{L(p,'spectacle')}">A comme Animal</a></li><li><a href="{L(p,'spectacle-video')}">Vidéo</a></li><li><a href="presse.html">Dossier de presse</a></li></ul></div>
       <div><h4>La compagnie</h4><ul><li><a href="{L(p,'direction')}">Direction artistique</a></li><li><a href="{L(p,'collaborateurs')}">Collaborateur·trices</a></li><li><a href="presse.html">Presse</a></li></ul></div>
       <div><h4>Marie-Pascale Bélanger</h4><ul><li><a href="{L(p,'direction')}">Biographie</a></li><li><a href="{JEU}" target="_blank" rel="noopener">Entretien Revue JEU</a></li></ul></div>
       <div class="heads"><ul><li><a href="{L(p,'calendrier')}">Calendrier</a></li><li><a href="{L(p,'contact')}">Contact</a></li></ul></div>
@@ -616,7 +615,6 @@ INDEX_BODY = f'''
       <a href="presse.html"><img src="images/tete-sur-socle.jpg" alt="" style="object-position:60% center"><span class="label">Dossier de presse</span></a>
       <a href="#calendrier"><img src="images/projecteurs-violets.jpg" alt=""><span class="label">Calendrier</span></a>
     </div>
-    <div class="centerbtn"><a class="label" href="#">Fiche technique</a></div>
   </section>
 
   <div class="titleband" style="margin-top:0"><h2>Nos prochaines dates :</h2></div>
@@ -703,7 +701,6 @@ INDEX_BODY = f'''
         <span class="k">Langues</span><span class="v">Français et anglais</span>
         <span class="k">Durée</span><span class="v">55 minutes</span>
         <span class="k">Public</span><span class="v">Tous, 10 ans et plus</span>
-        <a class="label dark" href="#">Fiche technique</a>
       </div>
       {CREDITS}
     </div>
@@ -745,7 +742,7 @@ INDEX_BODY = f'''
 <div data-view="calendrier" hidden>
   <section class="pagehead" aria-labelledby="h-cal">
     <img src="images/projecteurs-violets.jpg" alt="">
-    <div class="stack"><h1 id="h-cal"><span class="pre">A comme Animal</span>Calendrier</h1><a class="label" href="#">Fiche technique</a></div>
+    <div class="stack"><h1 id="h-cal"><span class="pre">A comme Animal</span>Calendrier</h1></div>
   </section>
   <div class="titleband" style="margin-top:0"><h2>Prochaines dates :</h2></div>
   <section class="wrap" aria-label="Prochaines dates">
@@ -852,7 +849,7 @@ PRESSE_BODY = f'''
       <p class="eyebrow">Revue JEU · 5 mars 2024</p>
       <h3>Cinq questions à Marie-Pascale Bélanger, metteuse en scène, chorégraphe et scénographe</h3>
       <a class="label" href="{JEU}" target="_blank" rel="noopener">Lire l’article</a>
-      <p style="margin-top:30px;font-weight:400">Pour recevoir la fiche technique ou des photos de presse en haute résolution, <a href="index.html#contact">écrivez-nous</a>.</p>
+      <p style="margin-top:30px;font-weight:400">Pour recevoir des photos de presse en haute résolution, <a href="index.html#contact">écrivez-nous</a>.</p>
     </div>
   </section>
 </main>
