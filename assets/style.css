@@ -805,3 +805,10 @@ body.home { transition: background-color .4s ease; }
 .work.reveal[data-dir="right"] { transform: translateX(90px); }
 .work.reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .work.reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Titres : plus de reflet lumineux derrière les lettres */
+.split .ch { animation: ch-rise 1.1s cubic-bezier(.16,1,.3,1) forwards; animation-delay: calc(.45s + var(--i) * .075s); text-shadow: none; }
+
+/* Logo « linh b. » en haut des pages : deux fois plus grand */
+.site-header .logo { font-size: 80px; }
+@media (max-width: 600px) { .site-header .logo { font-size: 60px; } }
