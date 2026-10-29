@@ -198,40 +198,55 @@
 
   var prev = document.createElement('button');
   prev.type = 'button'; prev.className = 'lb-nav lb-prev'; prev.setAttribute('aria-label', T.prev);
-  prev.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>';
+  prev.innerHTML = '<svg viewBox="0 0 40 16" aria-hidden="true"><path d="M39 8H2M9 1L2 8l7 7"/></svg>';
   var next = document.createElement('button');
   next.type = 'button'; next.className = 'lb-nav lb-next'; next.setAttribute('aria-label', T.next);
-  next.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>';
+  next.innerHTML = '<svg viewBox="0 0 40 16" aria-hidden="true"><path d="M1 8h37M31 1l7 7-7 7"/></svg>';
   var counter = document.createElement('span');
   counter.className = 'lb-count';
   stage.appendChild(prev); stage.appendChild(next); stage.appendChild(counter);
 
-  var cur = null, pos = 0, lastFocus = null;
-  function show() {
-    var imgs = cur.items.filter(function (p) { return p.img; });
-    var p = imgs[pos];
+  // Diaporama : toutes les images de la même section, dans l'ordre de la page
+  var slides = [], pos = 0, lastFocus = null;
+  function sectionSlides(cat) {
+    var out = [];
+    all.forEach(function (g) {
+      if (g.cat !== cat) return;
+      g.items.forEach(function (p) { if (p.img && !g.site) out.push({ g: g, p: p }); });
+    });
+    return out;
+  }
+  function show(dir) {
+    var s = slides[pos], p = s.p, g = s.g;
+    stage.classList.remove('slide-l', 'slide-r');
+    void stage.offsetWidth;
+    if (dir) stage.classList.add(dir > 0 ? 'slide-r' : 'slide-l');
     lbImg.src = p.img;
-    lbImg.alt = cur.client + ' — ' + tr(p.type);
-    lbTitle.textContent = cur.client;
+    lbImg.alt = g.client + ' — ' + tr(p.type);
+    lbTitle.textContent = g.client;
     lbSub.textContent = tr(p.type) + ' · ' + tr(p.field) + ' · ' + p.year;
-    var link = p.link || cur.items.filter(function (x) { return x.link; }).map(function (x) { return x.link; })[0];
+    var link = p.link || g.items.filter(function (x) { return x.link; }).map(function (x) { return x.link; })[0];
     lbLink.hidden = !link;
     if (link) { lbLink.href = link.url; lbLink.textContent = (link.label || T.visit) + ' ↗'; }
-    var many = imgs.length > 1;
+    var many = slides.length > 1;
     prev.hidden = next.hidden = counter.hidden = !many;
-    counter.textContent = (pos + 1) + ' / ' + imgs.length;
+    counter.textContent = String(pos + 1).padStart(2, '0') + ' — ' + String(slides.length).padStart(2, '0');
+    // précharge les voisines
+    [pos - 1, pos + 1].forEach(function (i) { var q = slides[(i + slides.length) % slides.length]; if (q) (new Image()).src = q.p.img; });
   }
   function step(d) {
-    var n = cur.items.filter(function (p) { return p.img; }).length;
-    if (n < 2) return;
-    pos = (pos + d + n) % n;
-    show();
+    if (slides.length < 2) return;
+    pos = (pos + d + slides.length) % slides.length;
+    show(d);
   }
   grid.addEventListener('click', function (e) {
     var b = e.target.closest('button.work-media');
     if (!b) return;
-    cur = all[+b.dataset.g]; pos = 0; lastFocus = b;
-    show();
+    var g = all[+b.dataset.g]; lastFocus = b;
+    slides = sectionSlides(g.cat);
+    pos = 0;
+    for (var i = 0; i < slides.length; i++) { if (slides[i].g === g) { pos = i; break; } }
+    show(0);
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
