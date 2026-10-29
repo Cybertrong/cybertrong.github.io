@@ -13,9 +13,9 @@
 
 const PROJECTS = [
   // ── branding ──────────────────────────────────────────
-  { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "branding", year: "2026", img: "images/SUPPORT/analekta-signet.jpg" },
+  { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "branding", year: "2026", img: "images/SUPPORT/analekta-signet-blanc.jpg" },
   { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "branding", year: "2026", img: "images/SUPPORT/tomate-presentoir-blanc.jpg", bg: "#FFFFFF" },
-  { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque.png" },
+  { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque-blanc.jpg" },
   { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-blanc.jpg?v=hd1", zoom: 3.4, focus: "28% 55%", bg: "#FFFFFF" },
   { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes-logo.jpg?v=hd1", zoom: 3.2, focus: "62% 55%", bg: "#FFFFFF" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-blanc.jpg?v=hd1", zoom: 2.4, focus: "30% 45%", bg: "#FFFFFF" },
@@ -28,18 +28,18 @@ const PROJECTS = [
   // ── print ─────────────────────────────────────────────
   { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2026", img: "images/flyer-invitation.jpg" },
   { client: "Consentia", type: { en: "business card", fr: "carte d'affaires" }, field: { en: "Non-profit", fr: "OBNL" }, cat: "print", year: "2026", img: "images/carte-affaires-consentia.jpg" },
-  { client: "EauVie", type: { en: "invitation", fr: "invitation" }, field: { en: "Developer", fr: "Promoteur" }, cat: "print", year: "2026", img: "images/invitation-eauvie.jpg" },
+  { client: "EauVie", type: { en: "invitation", fr: "invitation" }, field: { en: "Developer", fr: "Promoteur" }, cat: "print", year: "2026", img: "images/invitation-eauvie-blanc.jpg" },
   { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "brochure", fr: "brochure" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "print", year: "2026", img: "images/brochure-epicerie.jpg" },
   { client: "DXP", type: { en: "brochure", fr: "brochure" }, field: { en: "Management", fr: "Gestion" }, cat: "print", year: "2026", img: "images/brochure-dxp.jpg" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/existence.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/killing-jane.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series flyer", fr: "dépliant de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/oli-drags.jpg", bg: "#FFFFFF" },
-  { client: "Radio-Canada", type: { en: "game cover", fr: "pochette de jeu" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/jeux.png" },
+  { client: "Radio-Canada", type: { en: "game cover", fr: "pochette de jeu" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/jeux-blanc.jpg" },
 
   // ── editorial ─────────────────────────────────────────
-  { client: "Private", clientFr: "Privé", type: { en: "brochure cover", fr: "couverture de brochure" }, field: { en: "Design", fr: "Design" }, cat: "editorial", year: "2026", img: "images/couverture-brochure.jpg" },
+  { client: "Private", clientFr: "Privé", type: { en: "brochure cover", fr: "couverture de brochure" }, field: { en: "Design", fr: "Design" }, cat: "editorial", year: "2026", img: "images/couverture-brochure-blanc.jpg" },
   { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "annual report", fr: "bilan annuel" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "editorial", year: "2026", img: "images/bilan-annuel.jpg" },
-  { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre.jpg" },
+  { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre-blanc.jpg" },
   { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2026", img: "images/Affiche/affiches-regions.jpg?v=hr3" },
   { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2025–2026", img: "images/Catalogue/catalogue-convatec.jpg", zoom: 2, focus: "4% 40%" },
 
@@ -55,5 +55,5 @@ const PROJECTS = [
   { client: "tomaté!", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_tomate.jpg", link: { url: "https://www.instagram.com/tomate.tomate.tomate/", label: "Instagram" } },
 
   // ── design ────────────────────────────────────────────
-  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation_tom.jpg" },
+  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation_tom-blanc.jpg" },
 ];
