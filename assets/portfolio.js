@@ -91,8 +91,8 @@
       var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
             // tous les projets : gros plan sur un détail ; l'image entière s'ouvre au clic
       var isLogo = g.cat === 'branding' && first.type.en === 'logo';
-      var zoom = ' is-zoom';
-      var imgStyle = ' style="--zoom:' + (first.zoom || (isLogo ? 3.4 : 2.6)) + ';--focus:' + esc(first.focus || '50% 50%') + '"';
+      var zoom = '';
+      var imgStyle = '';
       media = '<button type="button" class="work-media' + zoom + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
         '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type)) + '" loading="lazy"' + imgStyle + '>' +
         (n > 1 ? '<span class="count">' + n + ' ' + esc(T.visuals) + '</span>' : '') + '</button>';

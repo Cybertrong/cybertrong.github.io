@@ -854,3 +854,22 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 }
 .lb-link[hidden] { display: none; }
 .lb-link:hover { opacity: .7; }
+
+/* Vignettes : image entière, centrée dans un cadre clair aux coins arrondis */
+.cat-grid .work-media {
+  border-radius: 14px;
+  background: #F2F1EE;
+}
+.cat-grid .work-media img {
+  object-fit: contain !important;
+  padding: 7%;
+  transform: none;
+  transition: transform .9s cubic-bezier(.16, 1, .3, 1);
+}
+.cat-grid .work-media.is-flat img { padding: 0; }
+.cat-grid button.work-media:hover img,
+.cat-grid button.work-media:focus-visible img { transform: scale(1.04); }
+.cat-grid .work-media img { filter: drop-shadow(0 6px 14px rgba(0,0,0,.10)); }
+.cat-grid .work-media.is-flat img { filter: none; }
+@media (prefers-reduced-motion: reduce) { .cat-grid .work-media img { transition: none; } }
+.cat-grid .work-media { box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
