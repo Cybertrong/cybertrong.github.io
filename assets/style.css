@@ -782,7 +782,7 @@ body.home { transition: background-color .4s ease; }
 .lb-nav svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .lb-nav[hidden], .lb-count[hidden] { display: none; }
 .lb-count {
-  position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+  position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%);
   font: 500 12px/1 var(--font); letter-spacing: .2em; opacity: .7;
 }
 .lightbox-img img { max-width: calc(100% - 140px); }
