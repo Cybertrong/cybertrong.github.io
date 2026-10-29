@@ -187,6 +187,11 @@
   var lbImg = lb.querySelector('img');
   var lbTitle = lb.querySelector('h2');
   var lbSub = lb.querySelector('p');
+  var lbLink = document.createElement('a');
+  lbLink.className = 'lb-link';
+  lbLink.target = '_blank';
+  lbLink.rel = 'noopener';
+  lbSub.parentNode.appendChild(lbLink);
   var lbClose = lb.querySelector('.lightbox-close');
   var stage = lb.querySelector('.lightbox-img');
   lbClose.textContent = T.close;
@@ -209,6 +214,9 @@
     lbImg.alt = cur.client + ' — ' + tr(p.type);
     lbTitle.textContent = cur.client;
     lbSub.textContent = tr(p.type) + ' · ' + tr(p.field) + ' · ' + p.year;
+    var link = p.link || cur.items.filter(function (x) { return x.link; }).map(function (x) { return x.link; })[0];
+    lbLink.hidden = !link;
+    if (link) { lbLink.href = link.url; lbLink.textContent = (link.label || T.visit) + ' ↗'; }
     var many = imgs.length > 1;
     prev.hidden = next.hidden = counter.hidden = !many;
     counter.textContent = (pos + 1) + ' / ' + imgs.length;

@@ -840,3 +840,17 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 .cat-grid button.work-media.is-zoom:hover img,
 .cat-grid button.work-media.is-zoom:focus-visible img { transform: scale(calc(var(--zoom, 3.4) * .82)); }
 @media (prefers-reduced-motion: reduce) { .cat-grid .work-media.is-zoom img { transition: none; } }
+
+/* Vue agrandie : lien externe (ex. Instagram) */
+.lb-link {
+  display: inline-block;
+  margin-top: 14px;
+  font: 500 12px/1 var(--font);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 3px;
+}
+.lb-link[hidden] { display: none; }
+.lb-link:hover { opacity: .7; }
