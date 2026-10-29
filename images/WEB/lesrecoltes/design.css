@@ -2936,3 +2936,5 @@ input {width: 250px;}
 
 
    
+/* Texte du menu agrandi de 40 % (22,5 px → 31,5 px) */
+.newmenu li a { font-size: 31.5px; }
