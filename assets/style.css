@@ -859,10 +859,10 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 .cat-grid .work-media {
   border-radius: 14px;
   background: #F2F1EE;
-  box-shadow: inset 0 0 0 3px rgba(0,0,0,.06);
+  box-shadow: inset 0 0 0 2px var(--blue);
 }
 .cat-grid .work-media::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
-  box-shadow: inset 0 0 0 3px rgba(0,0,0,.06); pointer-events: none; z-index: 1;
+  box-shadow: inset 0 0 0 2px var(--blue); pointer-events: none; z-index: 1;
 }
 .work-media .count { z-index: 2; }
