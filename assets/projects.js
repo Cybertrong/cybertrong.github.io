@@ -55,6 +55,5 @@ const PROJECTS = [
   { client: "tomaté!", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_tomate.jpg" },
 
   // ── design ────────────────────────────────────────────
-  { client: "CDPQ", type: { en: "presentation", fr: "présentation" }, field: { en: "Finance", fr: "Finance" }, cat: "design", year: "2026", img: "images/presentation/powerpoint-cdpq.jpg" },
   { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation_tom.jpg" },
 ];
