@@ -1,0 +1,8 @@
+/* Kim Bui (VIC) — parallaxe (voir js/parallax.js) */
+.mySlides img { will-change: translate; }
+.row > .column, .text_about, .text_contact { will-change: translate; }
+/* les colonnes décalées ne doivent pas déborder sur le pied de page */
+.row { padding-bottom: 80px; }
+@media (prefers-reduced-motion: reduce) {
+  .mySlides img, .row > .column, .text_about, .text_contact { translate: none !important; }
+}
