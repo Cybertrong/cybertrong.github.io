@@ -4,6 +4,8 @@
    1. dépose le fichier à plat (jpg/png) dans images/projets/
    2. remplis le champ img du projet, ex. img: "images/projets/panza-logo.jpg"
    Tant que img est vide (""), le portfolio affiche une case vide avec le nom du client.
+   Pour un visuel à plat (logo) : ajouter bg: "#couleur du fond" pour l'afficher en entier,
+   centré sur cette couleur, au lieu d'être recadré.
 
    Pour l'instant, les anciennes images (montages) sont affichées en attendant les originaux.
 
@@ -16,7 +18,8 @@ const PROJECTS = [
   { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque.png" },
   { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/PANZA.jpg" },
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/st.jpg" },
-  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2026", img: "images/LOGO/fly.jpg" },
+  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2026", img: "images/LOGO/fly-rouge.jpg", bg: "#ED1B24" },
+  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2026", img: "images/LOGO/fly-blanc.jpg" },
   { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes.jpg" },
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette.jpg" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2026", img: "images/LOGO/ancetre.jpg" },

@@ -812,3 +812,6 @@ body.home { transition: background-color .4s ease; }
 /* Logo « linh b. » en haut des pages : deux fois plus grand */
 .site-header .logo { font-size: 80px; }
 @media (max-width: 600px) { .site-header .logo { font-size: 60px; } }
+
+/* Visuels à plat (logos) : affichés en entier, centrés sur leur couleur de fond */
+.cat-grid .work-media.is-flat img { object-fit: contain; }

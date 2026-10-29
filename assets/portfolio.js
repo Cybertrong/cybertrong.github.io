@@ -61,7 +61,8 @@
       media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site) +
         '" title="' + esc(g.client) + '" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div>';
     } else if (first.img) {
-      media = '<button type="button" class="work-media" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
+      var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
+      media = '<button type="button" class="work-media' + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
         '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + first.type[lang]) + '" loading="lazy">' +
         (n > 1 ? '<span class="count">' + n + ' ' + esc(T.visuals) + '</span>' : '') + '</button>';
     } else {
