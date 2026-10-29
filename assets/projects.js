@@ -16,7 +16,7 @@ const PROJECTS = [
   { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "branding", year: "2026", img: "images/signet-angele.jpg" },
   { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "branding", year: "2026", img: "images/SUPPORT/marketing1.png" },
   { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque.png" },
-  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg", bg: "#F4F2EF" },
+  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg?v=2", bg: "#FFFFFF" },
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/st.jpg" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-rouge.jpg", bg: "#ED1B24" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-blanc.jpg" },
