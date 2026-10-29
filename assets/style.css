@@ -815,3 +815,4 @@ body.home { transition: background-color .4s ease; }
 
 /* Visuels à plat (logos) : affichés en entier, centrés sur leur couleur de fond */
 .cat-grid .work-media.is-flat img { object-fit: contain; }
+.work-media.is-flat .count { background: var(--blue); color: #fff; }
