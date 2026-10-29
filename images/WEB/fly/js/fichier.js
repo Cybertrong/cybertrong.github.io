@@ -25,9 +25,9 @@
       var r = b.getBoundingClientRect();
       if (r.bottom < 0 || r.top > vh) return;
       var p = (r.top + r.height / 2 - mid) / (vh + r.height);   // -0.5 … 0.5
-      b.style.backgroundPosition = 'center ' + (50 + p * 60).toFixed(2) + '%';
+      if (!b.classList.contains('fly-comment')) b.style.backgroundPosition = 'center ' + (50 + p * 60).toFixed(2) + '%';
       var inner = b.querySelector('.fly-inner');
-      if (inner) inner.style.transform = 'translate3d(0,' + (p * -70).toFixed(1) + 'px,0)';
+      if (inner) inner.style.transform = 'translate3d(0,' + (p * -40).toFixed(1) + 'px,0)';
     });
 
     // écrans de l'app : chaque téléphone à sa propre vitesse

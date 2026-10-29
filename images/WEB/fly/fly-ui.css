@@ -83,7 +83,9 @@
 .menu ul li:hover { background: rgba(0, 0, 0, .18); }
 
 /* ── Parallaxe des sections Quoi / Comment ── */
-.fly-band { background-size: auto 118%; background-position: center 50%; }
+.fly-band { background-size: auto 108%; background-position: center 50%; }
+/* Comment : photo à sa taille exacte, le téléphone reste aligné avec le texte */
+.fly-comment { background-size: cover !important; background-position: center center !important; }
 .fly-inner { will-change: transform; }
 .iphone { will-change: transform; }
 
@@ -95,3 +97,9 @@
 /* focus clavier discret */
 .burger:focus { outline: none; }
 .burger:focus-visible { outline: 2px solid rgba(255, 255, 255, .6); outline-offset: 8px; }
+
+/* Comment : titre un peu plus petit et décollé du téléphone */
+@media (min-width: 761px) {
+    .fly-comment .fly-inner { padding-left: 17.5%; }
+    .fly-comment .fly-title { font-size: 4vw; }
+}
