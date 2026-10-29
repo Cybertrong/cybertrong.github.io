@@ -32,8 +32,6 @@ const PROJECTS = [
   { client: "DXP", type: { en: "brochure", fr: "brochure" }, field: { en: "Management", fr: "Gestion" }, cat: "print", year: "2026", img: "images/brochure-dxp.jpg" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/poster_cine.png" },
   { client: "Radio-Canada", type: { en: "series flyer", fr: "dépliant de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/flyer.jpg" },
-  { client: "Radio-Canada", type: { en: "series artwork", fr: "visuel de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/art1.png" },
-  { client: "Radio-Canada", type: { en: "series artwork", fr: "visuel de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/art2.png" },
   { client: "Radio-Canada", type: { en: "game cover", fr: "pochette de jeu" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/jeux.png" },
 
   // ── editorial ─────────────────────────────────────────
