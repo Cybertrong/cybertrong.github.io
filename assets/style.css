@@ -855,14 +855,17 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 .lb-link[hidden] { display: none; }
 .lb-link:hover { opacity: .7; }
 
-/* Vignettes : cadre clair aux coins arrondis, contour fin */
+/* Vignettes : cadre clair aux coins arrondis, contour fin bleu
+   (le contour est une couche par-dessus l'image, pour que le zoom ne le cache pas) */
 .cat-grid .work-media {
   border-radius: 14px;
   background: #F2F1EE;
-  box-shadow: inset 0 0 0 2px var(--blue);
+  isolation: isolate;
 }
-.cat-grid .work-media::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
-  box-shadow: inset 0 0 0 2px var(--blue); pointer-events: none; z-index: 1;
+.cat-grid .work-media img { position: relative; z-index: 0; }
+.cat-grid .work-media .frame-line {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid var(--blue); border-radius: inherit;
+  pointer-events: none; z-index: 3;
 }
-.work-media .count { z-index: 2; }
+.work-media .count { z-index: 4; }

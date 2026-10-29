@@ -41,14 +41,14 @@ const PROJECTS = [
   { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "annual report", fr: "bilan annuel" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "editorial", year: "2026", img: "images/bilan-annuel.jpg" },
   { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre.jpg" },
   { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2026", img: "images/Affiche/affiches-regions.jpg?v=hr3" },
-  { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2023", img: "images/Catalogue/Catalog.png" },
+  { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2025–2026", img: "images/Catalogue/catalogue-convatec.jpg", zoom: 2, focus: "4% 40%" },
 
   // ── web : aperçu du site en direct ────────────────────
   { client: "Fly", type: { en: "website", fr: "site web" }, field: { en: "Application", fr: "Application" }, cat: "web", year: "2017", site: "images/WEB/fly/index.html" },
   { client: "Les récoltes", type: { en: "website", fr: "site web" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "web", year: "2019", site: "images/WEB/lesrecoltes/index.html" },
   { client: "VIC", type: { en: "website", fr: "site web" }, field: { en: "Photography", fr: "Photographie" }, cat: "web", year: "2023", site: "images/WEB/VIC/index.html" },
   { client: "Mobilier", type: { en: "website", fr: "site web" }, field: { en: "Furniture", fr: "Mobilier" }, cat: "web", year: "2026", site: "images/WEB/mobilier/index.html" },
-  { client: "Projets de l'ombre", type: { en: "website", fr: "site web" }, field: { en: "Theatre company", fr: "Compagnie de théâtre" }, cat: "web", year: "2026", site: "images/WEB/projets-de-lombre/index.html" },
+  { client: "Marie-Pascale Bélanger", type: { en: "website", fr: "site web" }, field: { en: "Theatre company", fr: "Compagnie de théâtre" }, cat: "web", year: "2026", site: "images/WEB/projets-de-lombre/index.html" },
 
   // ── digital ───────────────────────────────────────────
   { client: "Hussard", type: { en: "illustration", fr: "illustration" }, field: { en: "Online sales", fr: "Vente en ligne" }, cat: "digital", year: "2026", img: "images/illustration/hussard-tshirt.jpg", bg: "#FFFFFF" },
