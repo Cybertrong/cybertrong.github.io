@@ -480,3 +480,62 @@ footer p{
 }
 
 
+
+/* ── QUOI / COMMENT (d'après la maquette PSD) ───────────────── */
+@font-face {
+  font-family: 'Bebas';
+  src: url('web fonts/bebas_regular_macroman/BEBAS___-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.fly-band {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1800 / 961;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+    font-weight: 300;
+    overflow: hidden;
+}
+.fly-quoi    { background-image: url('images/quoi.jpg');    background-color: #0d3438; }
+.fly-comment { background-image: url('images/comment.jpg'); background-color: #0b0f3a; }
+.fly-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-items: center;
+    padding: 0 17.8% 0 21.4%;
+}
+.fly-quoi .fly-inner    { grid-template-columns: 45.8% 1fr; column-gap: 0; padding: 0 18% 0 21.4%; }
+.fly-comment .fly-inner { grid-template-columns: 30.8% 38.5% 30.7%; column-gap: 0; padding: 0 17.8% 0 19.8%; }
+.fly-title {
+    font-family: 'Bebas', 'Yanone Kaffeesatz', sans-serif;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: .01em;
+}
+.fly-quoi .fly-title   { font-size: 8.6vw; }
+.fly-comment .fly-title { font-size: 4.4vw; }
+.fly-title.glow {
+    color: #e9fdff;
+    text-shadow: 0 0 .06em #fff, 0 0 .18em #5fe6ff, 0 0 .45em #19c6e6, 0 0 .9em rgba(25, 198, 230, .55);
+}
+.fly-text { margin: 0; font-size: 1.5vw; line-height: 1.38; }
+.fly-text b { font-weight: 700; }
+.fly-text.small { font-size: .9vw; line-height: 1.32; }
+.fly-text.small p { margin: 0 0 .9em; }
+@media (max-width: 760px) {
+    .fly-band { aspect-ratio: auto; min-height: 100vh; }
+    .fly-inner, .fly-quoi .fly-inner, .fly-comment .fly-inner {
+        position: relative; display: block; padding: 90px 28px; inset: auto;
+    }
+    .fly-quoi .fly-title, .fly-comment .fly-title { font-size: 64px; margin-bottom: 24px; }
+    .fly-text, .fly-text.small { font-size: 16px; line-height: 1.5; }
+    .fly-phone-space { display: none; }
+    .fly-comment { background-position: 50% 50%; }
+    .fly-comment::before { content: ""; position: absolute; inset: 0; background: rgba(11, 15, 58, .82); }
+    .fly-comment .fly-inner { z-index: 1; }
+}
