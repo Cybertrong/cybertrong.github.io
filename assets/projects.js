@@ -24,7 +24,6 @@ const PROJECTS = [
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette-logo.jpg", bg: "#FFFFFF" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2026", img: "images/LOGO/ancetre.jpg", bg: "#FFFFFF" },
   { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-blanc.jpg", bg: "#FFFFFF" },
-  { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-orange.jpg", bg: "#F57D20" },
 
   // ── print ─────────────────────────────────────────────
   { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2026", img: "images/flyer-invitation.jpg" },
