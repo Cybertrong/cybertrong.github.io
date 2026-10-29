@@ -19,7 +19,7 @@
     'Non-profit': 'Phi lợi nhuận', 'Developer': 'Chủ đầu tư bất động sản', 'Distributor': 'Nhà phân phối',
     'Management': 'Quản lý', 'Television series': 'Phim truyền hình', 'Design': 'Thiết kế', 'Publisher': 'Nhà xuất bản',
     'Photography': 'Nhiếp ảnh', 'Furniture': 'Nội thất', 'Theatre company': 'Đoàn kịch', 'Illustration': 'Minh họa',
-    'Online sales': 'Bán hàng trực tuyến', 'Finance': 'Tài chính',
+    'Online sales': 'Bán hàng trực tuyến', 'Finance': 'Tài chính', 'Branding': 'Thương hiệu',
     'Private': 'Khách hàng riêng'
   };
   function tr(o) { return lang === 'vi' ? (VI[o.en] || o.en) : o[lang]; }
