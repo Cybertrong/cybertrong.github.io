@@ -40,7 +40,7 @@ const PROJECTS = [
   { client: "Private", clientFr: "Privé", type: { en: "brochure cover", fr: "couverture de brochure" }, field: { en: "Design", fr: "Design" }, cat: "editorial", year: "2026", img: "images/couverture-brochure.jpg" },
   { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "annual report", fr: "bilan annuel" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "editorial", year: "2026", img: "images/bilan-annuel.jpg" },
   { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre.jpg" },
-  { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2026", img: "images/Affiche/affiches-regions.jpg" },
+  { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2026", img: "images/Affiche/affiches-regions.jpg?v=hr1" },
   { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2023", img: "images/Catalogue/Catalog.png" },
 
   // ── web : aperçu du site en direct ────────────────────
