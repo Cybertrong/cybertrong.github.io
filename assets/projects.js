@@ -45,8 +45,8 @@ const PROJECTS = [
 
   // ── web : aperçu du site en direct ────────────────────
   { client: "Fly", type: { en: "website", fr: "site web" }, field: { en: "Application", fr: "Application" }, cat: "web", year: "2017", site: "images/WEB/fly/index.html" },
-  { client: "Les récoltes", type: { en: "website", fr: "site web" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "web", year: "2026", site: "images/WEB/lesrecoltes/index.html" },
-  { client: "VIC", type: { en: "website", fr: "site web" }, field: { en: "Photography", fr: "Photographie" }, cat: "web", year: "2026", site: "images/WEB/VIC/index.html" },
+  { client: "Les récoltes", type: { en: "website", fr: "site web" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "web", year: "2019", site: "images/WEB/lesrecoltes/index.html" },
+  { client: "VIC", type: { en: "website", fr: "site web" }, field: { en: "Photography", fr: "Photographie" }, cat: "web", year: "2023", site: "images/WEB/VIC/index.html" },
   { client: "Mobilier", type: { en: "website", fr: "site web" }, field: { en: "Furniture", fr: "Mobilier" }, cat: "web", year: "2026", site: "images/WEB/mobilier/index.html" },
   { client: "Projets de l'ombre", type: { en: "website", fr: "site web" }, field: { en: "Theatre company", fr: "Compagnie de théâtre" }, cat: "web", year: "2026", site: "images/WEB/projets-de-lombre/index.html" },
 
