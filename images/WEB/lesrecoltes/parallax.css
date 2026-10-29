@@ -1,0 +1,22 @@
+/* Épicerie Les Récoltes — parallaxe (voir js/parallax.js) */
+.plx-frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    line-height: 0;
+}
+.plx-frame > .plx-img {
+    display: block;
+    width: 100% !important;
+    height: auto;
+    margin: 0 !important;
+    border: 0 !important;
+    will-change: transform;
+    transform: scale(1.16);
+}
+.plx-frame > .plx-img.plx-cover { height: 100%; object-fit: cover; }
+.plx-float, .plx-title { will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+    .plx-frame > .plx-img { transform: none !important; }
+}
