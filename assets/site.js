@@ -128,3 +128,74 @@ window.LinhParallax = (function () {
 
   return { refresh: refresh };
 })();
+
+// ── accueil : on essaie de descendre ? les lettres se mélangent et un message apparaît ──
+(function () {
+  var title = document.querySelector('.lockup-title');
+  if (!title) return;
+  var lang = (document.documentElement.lang || 'en').slice(0, 2);
+  var MSG = {
+    fr: 'clique sur le burger, ici tu ne vas nulle\u00a0part\u00a0:)',
+    en: 'click the burger, you’re going nowhere\u00a0here\u00a0:)',
+    vi: 'bấm vào nút menu, ở đây bạn chẳng đi đâu\u00a0cả\u00a0:)'
+  };
+  var original = title.textContent.trim();
+  var message = MSG[lang] || MSG.en;
+  var GLYPHS = '!<>-_\\/[]{}—=+*^?#%&@ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf = null, showing = false, back = null;
+  var burger = document.getElementById('burger');
+  title.setAttribute('aria-live', 'polite');
+
+  function esc(c) { return c === '<' ? '&lt;' : c === '>' ? '&gt;' : c === '&' ? '&amp;' : c; }
+
+  function scramble(to, done) {
+    cancelAnimationFrame(raf);
+    if (reduce) { title.textContent = to; if (done) done(); return; }
+    var from = title.textContent;
+    var len = Math.max(from.length, to.length), q = [];
+    for (var i = 0; i < len; i++) {
+      var start = Math.floor(Math.random() * 18);
+      q.push({ from: from[i] || '', to: to[i] || '', start: start, end: start + 10 + Math.floor(Math.random() * 26), ch: '' });
+    }
+    var frame = 0;
+    (function tick() {
+      var out = '', complete = 0;
+      for (var i = 0; i < q.length; i++) {
+        var it = q[i];
+        if (frame >= it.end) { complete++; out += esc(it.to); }
+        else if (frame >= it.start) {
+          if (!it.ch || Math.random() < 0.3) it.ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          out += '<span class="scr" style="--r:' + (Math.random() * 30 - 15).toFixed(0) + 'deg">' + esc(it.ch) + '</span>';
+        } else out += esc(it.from);
+      }
+      title.innerHTML = out;
+      if (complete === q.length) { title.textContent = to; if (done) done(); return; }
+      frame++;
+      raf = requestAnimationFrame(tick);
+    })();
+  }
+
+  function trigger() {
+    clearTimeout(back);
+    back = setTimeout(function () {
+      showing = false;
+      title.classList.remove('is-msg');
+      if (burger) burger.classList.remove('nudge');
+      scramble(original);
+    }, 5000);
+    if (showing) return;
+    showing = true;
+    title.classList.add('is-msg');
+    if (burger) burger.classList.add('nudge');
+    scramble(message);
+  }
+
+  window.addEventListener('wheel', function (e) { if (e.deltaY > 0) trigger(); }, { passive: true });
+  var ty = null;
+  window.addEventListener('touchstart', function (e) { ty = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchmove', function (e) { if (ty !== null && ty - e.touches[0].clientY > 30) { ty = null; trigger(); } }, { passive: true });
+  window.addEventListener('keydown', function (e) {
+    if (['ArrowDown', 'PageDown', ' ', 'End'].indexOf(e.key) >= 0) trigger();
+  });
+})();
