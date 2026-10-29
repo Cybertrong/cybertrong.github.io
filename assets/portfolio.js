@@ -89,8 +89,12 @@
         '" title="' + esc(g.client) + '" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div>';
     } else if (first.img) {
       var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
-      media = '<button type="button" class="work-media' + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
-        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type)) + '" loading="lazy">' +
+            // tous les projets : gros plan sur un détail ; l'image entière s'ouvre au clic
+      var isLogo = g.cat === 'branding' && first.type.en === 'logo';
+      var zoom = ' is-zoom';
+      var imgStyle = ' style="--zoom:' + (first.zoom || (isLogo ? 3.4 : 2.6)) + ';--focus:' + esc(first.focus || '50% 50%') + '"';
+      media = '<button type="button" class="work-media' + zoom + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
+        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type)) + '" loading="lazy"' + imgStyle + '>' +
         (n > 1 ? '<span class="count">' + n + ' ' + esc(T.visuals) + '</span>' : '') + '</button>';
     } else {
       media = '<div class="work-media"><div class="placeholder"><strong>' + esc(g.client) + '</strong><span>' + esc(T.soon) + '</span></div></div>';

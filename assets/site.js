@@ -82,7 +82,7 @@ window.LinhParallax = (function () {
     document.querySelectorAll('[data-parallax]').forEach(function (el) {
       items.push({ el: el, speed: parseFloat(el.dataset.parallax) || 0, mode: 'block' });
     });
-    document.querySelectorAll('.work:not([hidden]) .work-media:not(.is-flat) img, .work:not([hidden]) .placeholder strong').forEach(function (el) {
+    document.querySelectorAll('.work:not([hidden]) .work-media:not(.is-flat):not(.is-zoom) img, .work:not([hidden]) .placeholder strong').forEach(function (el) {
       items.push({ el: el, speed: 0.12, mode: 'inner' });
     });
   }
