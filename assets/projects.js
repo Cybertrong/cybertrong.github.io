@@ -18,8 +18,8 @@ const PROJECTS = [
   { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque.png" },
   { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg", bg: "#F4F2EF" },
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/st.jpg" },
-  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2026", img: "images/LOGO/fly-rouge.jpg", bg: "#ED1B24" },
-  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2026", img: "images/LOGO/fly-blanc.jpg" },
+  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-rouge.jpg", bg: "#ED1B24" },
+  { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-blanc.jpg" },
   { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes.jpg" },
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette.jpg" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2026", img: "images/LOGO/ancetre.jpg" },
@@ -45,7 +45,7 @@ const PROJECTS = [
   { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2023", img: "images/Catalogue/Catalog.png" },
 
   // ── web : aperçu du site en direct ────────────────────
-  { client: "Fly", type: { en: "website", fr: "site web" }, field: { en: "Application", fr: "Application" }, cat: "web", year: "2026", site: "images/WEB/fly/index.html" },
+  { client: "Fly", type: { en: "website", fr: "site web" }, field: { en: "Application", fr: "Application" }, cat: "web", year: "2017", site: "images/WEB/fly/index.html" },
   { client: "Les récoltes", type: { en: "website", fr: "site web" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "web", year: "2026", site: "images/WEB/lesrecoltes/index.html" },
   { client: "VIC", type: { en: "website", fr: "site web" }, field: { en: "Photography", fr: "Photographie" }, cat: "web", year: "2026", site: "images/WEB/VIC/index.html" },
   { client: "Mobilier", type: { en: "website", fr: "site web" }, field: { en: "Furniture", fr: "Mobilier" }, cat: "web", year: "2026", site: "images/WEB/mobilier/index.html" },
