@@ -899,6 +899,7 @@ def page(title, desc, body, js, p, active):
 <meta name="description" content="{desc}">
 {FONTS}
 <style>{CSS}</style>
+<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 {header(p, active)}
@@ -906,6 +907,7 @@ def page(title, desc, body, js, p, active):
 {footer(p)}
 <script>
 {MENU_JS}{js}</script>
+<script src="plx.js?v=1"></script>
 </body>
 </html>
 '''

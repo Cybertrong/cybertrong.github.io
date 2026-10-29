@@ -1,0 +1,8 @@
+/* Projets de l'ombre — parallaxe (voir plx.js) */
+.band-img, .photo { overflow: hidden; }
+.plx-bg { scale: 1.17; will-change: translate; }
+.plx-move { will-change: translate; }
+.titleband { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .plx-bg { scale: none; }
+}
