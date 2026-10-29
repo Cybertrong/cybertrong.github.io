@@ -1,0 +1,64 @@
+/* FLY — version mobile (chargée en dernier) */
+html { -webkit-text-size-adjust: 100%; }
+
+@media (max-width: 760px) {
+  body { overflow-x: hidden; }
+  img { max-width: 100%; }
+  /* burger toujours visible, en haut à droite */
+  .burger, .burger.active { display: block !important; top: 26px; right: 22px; margin: 0; width: 34px; height: 22px; }
+  .burger.active::before { transform: translateY(9px) rotate(45deg); }
+  .burger.active::after  { transform: translateY(-9px) rotate(-45deg); }
+
+  /* menu plein écran */
+  .menu ul { height: 100svh; height: 100dvh; gap: 0; }
+  .menu ul li { padding: 18px 0; }
+  .menu ul li img { max-height: 44px; width: auto; }
+  li a #details { font-size: 28px; letter-spacing: .06em; margin: 0; }
+
+  /* accueil : un écran, texte centré sur le téléphone */
+  .parallax { min-height: 100svh; background-position: center 0; background-size: cover; }
+  .container_logo { height: auto; padding-top: 14svh; }
+  .container_logo #logo { width: 56px; height: 56px; }
+  .text_intro { top: 0; left: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 24px; box-sizing: border-box; }
+  .text_intro h2 { width: 230px; padding-top: 6svh; margin: 0 auto 14px; font-size: 38px; line-height: 1; }
+  .text_intro p { width: 220px; font-size: 13px; line-height: 1.5; letter-spacing: .04em; margin: 0 auto; }
+
+  /* Mission / Combien */
+  #fond2, #fond4 { position: relative; height: auto; min-height: 0; padding: 120px 28px 90px; box-sizing: border-box; }
+  #fond2 h1, #fond4 h1 { padding-top: 0; font-size: 68px; margin-bottom: 44px; line-height: 1; }
+  .fly-band { min-height: 0; }
+  .fly-inner, .fly-quoi .fly-inner, .fly-comment .fly-inner { padding: 110px 28px; }
+  #fond2 p, #fond4 p { margin: 0; font-size: 17px; line-height: 1.6; }
+  #fond2 #nota { text-align: center; font-size: 13px; padding-bottom: 0; margin-top: 12px; }
+  .container_logo2 { height: auto; padding-top: 40px; }
+  .container_logo2 #logo { width: 50px; height: 50px; }
+  #fond4 .container_logo2 { position: static; padding: 0 0 40px; }
+  #fond4 { padding-top: 70px; }
+
+  /* écrans de l'app : en colonne */
+  .iphone_apps { flex-direction: column; height: auto; padding: 50px 0 20px; gap: 30px; }
+  .iphone { padding: 0; }
+  .iphone img { padding: 0; width: 62vw; max-width: 280px; height: auto; display: block; margin: 0 auto; opacity: 1; }
+
+  /* formulaire */
+  .form div { height: auto; }
+  form { height: auto; padding: 0 24px 70px; box-sizing: border-box; }
+  .form h1 { padding-top: 90px; font-size: 56px; line-height: 1; }
+  input[type="email"] { width: 100%; max-width: 340px; box-sizing: border-box; margin-top: 36px; height: 52px; font-size: 18px; padding: 12px 14px; }
+  #box { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 18px; }
+  input[type="checkbox"] { margin: 0; width: 22px; height: 22px; flex: none; }
+  label { font: 15px Roboto, sans-serif; }
+  input[type="submit"] { font-size: 38px; margin: 26px auto 0; padding: 8px 22px; }
+
+  footer { margin-top: 0; height: auto; }
+  footer p { margin: 0; font-size: 13px; padding: 12px; }
+
+  .back-to-top { right: 18px; bottom: 18px; width: 44px; height: 44px; font-size: 20px; }
+
+  /* page Fonctionnement */
+  .fonct .container_logo { padding-top: 70px; }
+  .fonct .parallax { display: none; }
+  .fonct #fond2 { padding: 170px 26px 60px; }
+  .fonct #fond2 h1 { font-size: 40px; word-break: break-word; }
+  .fonct #fond2 p { padding: 0; font-size: 16px; line-height: 1.6; text-align: left; }
+}

@@ -1,0 +1,85 @@
+/* Épicerie Les Récoltes — version mobile (chargée en dernier) */
+html { -webkit-text-size-adjust: 100%; }
+
+@media (max-width: 760px) {
+  html, body { overflow-x: hidden; }
+  img, iframe { max-width: 100%; }
+  body { font-size: 16px; }
+
+  /* en-tête : logo à gauche, burger à droite */
+  .logo_hosp { margin: 0; top: 16px; left: 18px; }
+  .logo_hosp img { max-height: 46px; width: auto; }
+  .newburger { margin: 0; top: 22px; right: 20px; left: auto; }
+  .newmenu li a { font-size: 24px; }
+  #epiptop { padding-top: 120px; }
+  .newmenu li a:hover { margin-left: 0; filter: none; -webkit-filter: none; }
+
+  /* onglets latéraux (heures / adresse) : retirés sur mobile, l'info est sur la page Contact */
+  .tagho, .ongletho, .tagad, .ongletad, .tagbask { display: none !important; }
+
+  /* pied de page : à la fin du contenu plutôt que fixé sur l'écran */
+  footer { position: static; height: auto; padding: 14px 16px 18px; box-sizing: border-box; }
+  body:has(.slideshow-container) footer { position: fixed; }
+  /* pas de dérive des titres sur mobile (ils chevauchaient le texte) */
+  .plx-title { transform: none !important; }
+  .info_footer { padding-top: 0; }
+  .info_footer #text_f p { line-height: 1.4em; font-size: 11px; margin: 0; }
+
+  /* titres et textes */
+  h1.plx-title, #epi h1, #cours h1, #text_gene h1, .presse h1, .containerdonnee h1, #adresse h1, #tel h1, #email h1 { font-size: 34px !important; line-height: 1.15; }
+  #epi p, #cours p, #text_gene p, #text_rachel p, .containerdonnee .texte_expliq p, #contact p { font-size: 15px; line-height: 1.6; }
+
+  /* ACCUEIL */
+  .slideshow-container { height: 100svh; width: 100%; }
+  .mySlides img { transform: none; height: 100svh !important; }
+  .titre h1 { font-size: 34px; top: 50svh; line-height: 1.15; padding: 0 22px; }
+  #banniere h1 { font-size: 30px; }
+
+  /* L'ÉPICERIE */
+  #epi { height: auto; position: relative; }
+  #epi .text { position: relative; padding: 110px 24px 30px; }
+  #epi img { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); padding-top: 0; opacity: .12; max-height: 80%; z-index: 0; }
+  #epi .text { z-index: 1; }
+  .portfolio, .portfolio3 { flex-direction: column; }
+  .portfolio img, .portfolio img:nth-child(1), .portfolio img:nth-child(3),
+  .portfolio3 img, .portfolio3 img:nth-child(1) { width: 100% !important; height: auto !important; border: 0 !important; border-top: 8px solid #fff !important; box-sizing: border-box; }
+  #epiciere { flex-direction: column; display: flex; }
+  #text_gene { padding: 50px 0 30px; }
+  #text_gene p { padding: 6px 24px; }
+  #epiciere .credit h6 { padding: 0 24px; }
+  #genevieve { width: 100%; }
+  #genevieve img { width: 100%; height: auto !important; min-height: 0 !important; display: block; }
+  .presse { height: auto; padding-bottom: 50px; margin-top: 0; }
+  #logos_journaux { flex-wrap: wrap; gap: 18px 26px; padding: 0 20px; box-sizing: border-box; }
+  #logos_journaux > div { width: auto; }
+  #logos_journaux img { margin: 0 !important; max-height: 30px; width: auto; }
+  #logos_journaux a img { padding: 0; }
+
+  /* LES COURS */
+  #cours { height: auto; padding-bottom: 40px; }
+  #cours .text { padding: 110px 24px 0; }
+  .cours-photos { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 6px; }
+
+  /* CANTINE */
+  #bistro .text, #qec .text { padding: 100px 24px 20px !important; }
+  #bol img { width: 100%; height: auto; margin-top: 10px; }
+  #text_rachel { padding: 80px 24px 60px !important; }
+  .qec_epicerie { font-size: 1em; }
+
+  /* NOS PROMESSES : les trois colonnes l'une sous l'autre */
+  .containerdonnee { height: auto; padding: 110px 24px 60px; box-sizing: border-box; }
+  .containerdonnee #ucol, .containerdonnee #dcol, .containerdonnee #tcol { float: none; width: 100%; margin: 0 0 40px; }
+  .containerdonnee .nombre { font-size: 3.4em; }
+  .containerdonnee .texte_data { font-size: 150%; }
+  .fourn_epicerie { overflow: visible; }
+
+  /* CONTACT */
+  #contact { flex-direction: column; height: auto; }
+  #formulaire { height: auto; border-right: 0; border-bottom: 1px dotted #1a1a1a; padding: 70px 0 30px; }
+  #contact p { padding: 0 24px; }
+  #coordonnees { padding-bottom: 30px; }
+  #adresse h1 { padding-top: 40px; }
+  .map-responsive { margin: 0 20px; }
+  #horaire { height: auto; padding-bottom: 50px; }
+  #titre_horaire h1 { font-size: 34px !important; }
+}

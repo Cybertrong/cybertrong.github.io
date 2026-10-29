@@ -35,7 +35,7 @@
       var r = ph.getBoundingClientRect();
       if (r.bottom < -200 || r.top > vh + 200) return;
       var p = (r.top + r.height / 2 - mid) / vh;
-      var speed = [-70, 0, 70][i % 3];
+      var speed = window.innerWidth < 761 ? 0 : [-70, 0, 70][i % 3];
       ph.style.transform = 'translate3d(0,' + (p * speed).toFixed(1) + 'px,0)';
     });
 
