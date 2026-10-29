@@ -52,7 +52,7 @@ const PROJECTS = [
   // ── digital ───────────────────────────────────────────
   { client: "Private", clientFr: "Privé", type: { en: "illustration", fr: "illustration" }, field: { en: "Illustration", fr: "Illustration" }, cat: "digital", year: "2026", img: "images/illustration/enseigne_illus.jpg" },
   { client: "Convatec", type: { en: "illustration", fr: "illustration" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "digital", year: "2026", img: "images/illustration/hands_illus.jpg" },
-  { client: "Hussard", type: { en: "illustration", fr: "illustration" }, field: { en: "Online sales", fr: "Vente en ligne" }, cat: "digital", year: "2026", img: "images/illustration/zamboni_illus.jpg" },
+  { client: "Hussard", type: { en: "illustration", fr: "illustration" }, field: { en: "Online sales", fr: "Vente en ligne" }, cat: "digital", year: "2026", img: "images/illustration/hussard-tshirt.jpg", bg: "#FFFFFF" },
   { client: "tomaté!", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_tomate.jpg" },
   { client: "Hussard boutique", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Online sales", fr: "Vente en ligne" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_hussard.jpg" },
 
