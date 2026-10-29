@@ -2938,3 +2938,45 @@ input {width: 250px;}
    
 /* Texte du menu agrandi de 40 % (22,5 px → 31,5 px) */
 .newmenu li a { font-size: 31.5px; }
+
+/* Photos des cours : grille 3 x 2 sous le texte */
+.cours-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+}
+.cours-photos img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+
+/* Accueil : titre centré dans l'écran et agrandi de 75 % (262 % → 458,5 %) */
+.titre h1 {
+    font-size: 458.5%;
+    top: 50vh;
+    left: 0;
+    margin: 0;
+    padding: 0 4%;
+    box-sizing: border-box;
+    transform: translateY(-50%);
+    text-shadow: 0 2px 22px rgba(0, 0, 0, .28);
+}
+
+/* ── Espacements resserrés : les sections suivent la hauteur de leur contenu ── */
+/* Les cours */
+#cours { height: auto; padding-bottom: 70px; }
+/* Votre épicière : plus de grand vide sous le texte, photo alignée au texte */
+#epiciere { height: auto; align-items: stretch; }
+#text_gene { flex: 1; padding-bottom: 60px; }
+#genevieve { display: flex; }
+#genevieve img { height: 100%; min-height: 452px; object-fit: cover; }
+/* La cantine */
+#bistro { height: auto; }
+#bistro .text { position: relative; padding: 110px 15% 0 15%; }
+#bol img { margin-top: 30px; }
+/* Notre cuisine */
+#qec { height: auto; }
+#qec .text { position: relative; padding: 110px 15% 60px 15%; }
+/* Dans notre cuisine */
+#cuisine_chef { height: auto; }
+#text_rachel { padding: 110px 15% 90px 15%; }
+.cours-photos img { width: 100% !important; margin: 0 !important; border: 0 !important; transform: none !important; }
