@@ -16,14 +16,14 @@ const PROJECTS = [
   { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "branding", year: "2026", img: "images/SUPPORT/analekta-signet.jpg" },
   { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "branding", year: "2026", img: "images/SUPPORT/tomate-presentoir.jpg", bg: "#F6F6F5" },
   { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque.png" },
-  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg?v=2", bg: "#FFFFFF" },
-  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-logo.jpg?v=3", bg: "#FFFFFF" },
+  { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-blanc.jpg", bg: "#FFFFFF" },
+  { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes-logo.jpg?v=2", bg: "#FFFFFF" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-blanc.jpg", bg: "#FFFFFF" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-rouge.jpg", bg: "#ED1B24" },
-  { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes-logo.jpg?v=2", bg: "#FFFFFF" },
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette-logo.jpg", bg: "#FFFFFF" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2026", img: "images/LOGO/ancetre.jpg", bg: "#FFFFFF" },
-  { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-blanc.jpg", bg: "#FFFFFF" },
+  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg?v=2", bg: "#FFFFFF" },
+  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-logo.jpg?v=3", bg: "#FFFFFF" },
 
   // ── print ─────────────────────────────────────────────
   { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2026", img: "images/flyer-invitation.jpg" },
