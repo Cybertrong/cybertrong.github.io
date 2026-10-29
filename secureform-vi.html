@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEC7JREJ3V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FEC7JREJ3V');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contact — linh b.</title>
+  <meta name="description" content="Liên hệ với linh b., nhà thiết kế đồ họa tại Montréal.">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+  <meta name="theme-color" content="#2A58A8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;1,400&family=Damion&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=20261029-22">
+</head>
+<body class="theme-red contact-page">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index-vi.html" class="logo">linh b.</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Mở menu"><span class="bl"></span><span class="bl"></span><span class="bl"></span></button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Menu chính">
+  <button class="menu-close" id="menuClose" type="button" aria-label="Đóng menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <ul class="menu-list">
+      <li style="--i:0"><a href="index-vi.html">trang chủ</a></li>
+      <li style="--i:1"><a href="portfolio-vi.html">portfolio</a></li>
+      <li style="--i:2"><a href="about-vi.html">giới thiệu</a></li>
+      <li style="--i:3"><a href="secureform-vi.html" class="on" aria-current="page">liên hệ</a></li>
+  </ul>
+  <ul class="menu-side">
+    <li style="--i:5"><a class="menu-brand" href="index-vi.html">linh b.</a></li>
+    <li style="--i:6"><span>nhà thiết kế đồ họa<br>montréal, qc</span></li>
+    <li style="--i:7"><div class="lang" role="group" aria-label="Ngôn ngữ"><a href="secureform.html" lang="en">EN</a><span aria-hidden="true">/</span><a href="secureform-fr.html" lang="fr">FR</a><span aria-hidden="true">/</span><a href="secureform-vi.html" lang="vi" aria-current="true">VI</a></div></li>
+  </ul>
+</nav>
+
+<main class="contact-split">
+  <section class="contact-left">
+    <div class="contact-left-inner" data-parallax="0.12">
+      <p class="eyebrow">liên hệ</p>
+      <h1 class="display">liên hệ nhé.</h1>
+      <p class="lead">gửi tin nhắn cho tôi</p>
+      <p class="eyebrow" style="margin-top:48px">linh b. — montréal, qc</p>
+    </div>
+  </section>
+  <section class="contact-right">
+    <div class="contact-right-inner">
+      <form id="contactForm" class="form" novalidate
+            data-sending="đang gửi…" data-error="Không gửi được tin nhắn. Vui lòng thử lại sau ít phút.">
+        <div class="field">
+          <label for="prenom">tên</label>
+          <input id="prenom" name="prenom" type="text" maxlength="80" autocomplete="given-name" required>
+          <span class="error">bắt buộc</span>
+        </div>
+        <div class="field">
+          <label for="nom">họ</label>
+          <input id="nom" name="nom" type="text" maxlength="80" autocomplete="family-name" required>
+          <span class="error">bắt buộc</span>
+        </div>
+        <div class="field full">
+          <label for="email">email</label>
+          <input id="email" name="email" type="email" maxlength="120" autocomplete="email" required>
+          <span class="error">vui lòng nhập email hợp lệ</span>
+        </div>
+        <div class="field full">
+          <label for="message">tin nhắn</label>
+          <textarea id="message" name="message" maxlength="2000" required></textarea>
+          <span class="error">vui lòng nhập tin nhắn (tối đa 2000 ký tự)</span>
+          <span class="counter"><span id="counter">0</span> / 2000</span>
+        </div>
+        <input class="hp" type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-end">
+          <button type="submit" class="btn solid">gửi tin nhắn</button>
+          <span id="formStatus" role="status"></span>
+        </div>
+      </form>
+
+      <div class="thanks" id="thanks" tabindex="-1">
+        <p class="display" style="font-size:clamp(48px,7vw,96px)">cảm ơn!</p>
+        <p class="lead" style="margin-top:32px">tin nhắn của bạn đã được nhận.</p>
+        <div class="cta-row"><a href="portfolio-vi.html" class="btn">quay lại dự án</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script src="assets/contact.js?v=20261029-22"></script>
+<script src="assets/site.js?v=20261029-22"></script>
+</body>
+</html>

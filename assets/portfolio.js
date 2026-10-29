@@ -2,14 +2,37 @@
 // Les visuels d'un même client dans une même catégorie sont regroupés en un seul projet,
 // présenté par catégorie. Un clic ouvre la visionneuse, avec flèches s'il y a plusieurs visuels.
 (function () {
-  var lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+  var docLang = document.documentElement.lang;
+  var lang = docLang === 'fr' ? 'fr' : docLang === 'vi' ? 'vi' : 'en';
+  // traductions vietnamiennes des types de projet et des domaines (à partir de l'anglais)
+  var VI = {
+    'marketing item': 'vật phẩm quảng bá', 'point-of-sale display': 'kệ trưng bày', 'trade show booth': 'gian hàng triển lãm',
+    'logo': 'logo', 'identity': 'nhận diện thương hiệu', 'flyer': 'tờ rơi', 'business card': 'danh thiếp',
+    'invitation': 'thiệp mời', 'brochure': 'brochure', 'series poster': 'áp phích phim', 'series flyer': 'tờ rơi phim',
+    'series artwork': 'hình ảnh phim', 'game cover': 'bìa trò chơi', 'brochure cover': 'bìa brochure',
+    'annual report': 'báo cáo thường niên', 'cover illustration': 'minh họa bìa sách', 'poster': 'áp phích',
+    'product catalog': 'catalogue sản phẩm', 'website': 'trang web', 'illustration': 'minh họa',
+    'social media': 'mạng xã hội', 'presentation': 'bài thuyết trình',
+    'Music': 'Âm nhạc', 'Agriculture': 'Nông nghiệp', 'Pharmaceutical': 'Dược phẩm', 'Software': 'Phần mềm',
+    'Designer': 'Nhà thiết kế', 'Application': 'Ứng dụng', 'Grocery': 'Cửa hàng thực phẩm',
+    'Ice cream restaurant': 'Tiệm kem', 'Rugby club': 'Câu lạc bộ bóng bầu dục', 'Events': 'Sự kiện',
+    'Non-profit': 'Phi lợi nhuận', 'Developer': 'Chủ đầu tư bất động sản', 'Distributor': 'Nhà phân phối',
+    'Management': 'Quản lý', 'Television series': 'Phim truyền hình', 'Design': 'Thiết kế', 'Publisher': 'Nhà xuất bản',
+    'Photography': 'Nhiếp ảnh', 'Furniture': 'Nội thất', 'Theatre company': 'Đoàn kịch', 'Illustration': 'Minh họa',
+    'Online sales': 'Bán hàng trực tuyến', 'Finance': 'Tài chính',
+    'Private': 'Khách hàng riêng'
+  };
+  function tr(o) { return lang === 'vi' ? (VI[o.en] || o.en) : o[lang]; }
   var T = {
     en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', close: 'close',
           prev: 'Previous', next: 'Next', visuals: 'visuals', project: 'project', projects: 'projects',
           cats: { branding: 'branding', print: 'print', editorial: 'editorial', web: 'web', digital: 'digital', design: 'design' } },
     fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', close: 'fermer',
           prev: 'Précédent', next: 'Suivant', visuals: 'visuels', project: 'projet', projects: 'projets',
-          cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'design' } }
+          cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'design' } },
+    vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', close: 'đóng',
+          prev: 'Trước', next: 'Tiếp', visuals: 'hình', project: 'dự án', projects: 'dự án',
+          cats: { branding: 'thương hiệu', print: 'in ấn', editorial: 'xuất bản', web: 'web', digital: 'kỹ thuật số', design: 'thiết kế' } }
   }[lang];
 
   var grid = document.getElementById('grid');
@@ -20,7 +43,11 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function clientOf(p) { return lang === 'fr' && p.clientFr ? p.clientFr : p.client; }
+  function clientOf(p) {
+    if (lang === 'fr' && p.clientFr) return p.clientFr;
+    if (lang === 'vi' && VI[p.client]) return VI[p.client];
+    return p.client;
+  }
   function uniq(a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); }
 
   // ── regroupement : un projet par client et par catégorie ──
@@ -52,8 +79,8 @@
   function card(g) {
     var idx = all.push(g) - 1;
     var first = g.items[0];
-    var typeList = uniq(g.items.map(function (p) { return p.type[lang]; }));
-    var types = typeList.length > 2 ? first.field[lang] : typeList.join(' · ');
+    var typeList = uniq(g.items.map(function (p) { return tr(p.type); }));
+    var types = typeList.length > 2 ? tr(first.field) : typeList.join(' · ');
     var years = uniq(g.items.map(function (p) { return p.year; })).sort().join(' — ');
     var n = g.items.filter(function (p) { return p.img; }).length;
     var media;
@@ -63,7 +90,7 @@
     } else if (first.img) {
       var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
       media = '<button type="button" class="work-media' + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
-        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + first.type[lang]) + '" loading="lazy">' +
+        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type)) + '" loading="lazy">' +
         (n > 1 ? '<span class="count">' + n + ' ' + esc(T.visuals) + '</span>' : '') + '</button>';
     } else {
       media = '<div class="work-media"><div class="placeholder"><strong>' + esc(g.client) + '</strong><span>' + esc(T.soon) + '</span></div></div>';
@@ -175,9 +202,9 @@
     var imgs = cur.items.filter(function (p) { return p.img; });
     var p = imgs[pos];
     lbImg.src = p.img;
-    lbImg.alt = cur.client + ' — ' + p.type[lang];
+    lbImg.alt = cur.client + ' — ' + tr(p.type);
     lbTitle.textContent = cur.client;
-    lbSub.textContent = p.type[lang] + ' · ' + p.field[lang] + ' · ' + p.year;
+    lbSub.textContent = tr(p.type) + ' · ' + tr(p.field) + ' · ' + p.year;
     var many = imgs.length > 1;
     prev.hidden = next.hidden = counter.hidden = !many;
     counter.textContent = (pos + 1) + ' / ' + imgs.length;
