@@ -40,7 +40,7 @@ const PROJECTS = [
   { client: "Private", clientFr: "Privé", type: { en: "brochure cover", fr: "couverture de brochure" }, field: { en: "Design", fr: "Design" }, cat: "editorial", year: "2026", img: "images/couverture-brochure-blanc.jpg" },
   { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "annual report", fr: "bilan annuel" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "editorial", year: "2016", img: "images/bilan-annuel.jpg" },
   { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre-blanc.jpg" },
-  { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2026", img: "images/Affiche/affiches-regions.jpg?v=hr3" },
+  { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2021", img: "images/Affiche/affiches-regions.jpg?v=hr3" },
   { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2025–2026", img: "images/Catalogue/catalogue-convatec.jpg", zoom: 2, focus: "4% 40%" },
 
   // ── web : aperçu du site en direct ────────────────────
