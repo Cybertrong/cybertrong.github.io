@@ -2,6 +2,9 @@ import sys, re
 
 OUT = sys.argv[1]  # repo folder: writes index.html and presse.html
 
+# Adresse Formspree du formulaire de contact (ex. 'https://formspree.io/f/abcd1234'). Vide = mode démonstration.
+FORMSPREE = 'https://formspree.io/f/xrppaawp'
+
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500&family=League+Gothic&display=swap">'
 
 CSS = r'''
@@ -521,9 +524,14 @@ document.getElementById('top').addEventListener('click',function(e){e.preventDef
 INDEX_JS = '''var form=document.getElementById('form');
 if(form)form.addEventListener('submit',function(e){
   e.preventDefault();
-  var em=document.getElementById('email'),s=document.getElementById('status');
+  var em=document.getElementById('email'),s=document.getElementById('status'),btn=form.querySelector('button[type="submit"]'),url=form.dataset.endpoint;
   if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
-  s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
+  if(!url){s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';return}
+  btn.disabled=true;s.textContent='Envoi en cours…';
+  fetch(url,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(function(r){if(!r.ok)throw new Error(r.status);form.reset();s.textContent='Merci ! Votre message a bien été envoyé.'})
+    .catch(function(){s.textContent='L’envoi a échoué. Réessayez dans quelques instants.'})
+    .then(function(){btn.disabled=false});
 });
 var vid=document.getElementById('video');
 if(vid)vid.addEventListener('click',function(e){
@@ -795,7 +803,9 @@ INDEX_BODY = f'''
       <p class="left-text">Diffusion, tournée, presse ou simple curiosité : écrivez-nous et nous vous répondrons.</p>
     </div>
     <div class="pad">
-      <form id="form" novalidate>
+      <form id="form" novalidate action="{FORMSPREE or '#'}" method="POST" data-endpoint="{FORMSPREE}">
+        <input type="hidden" name="_subject" value="Nouveau message depuis mariepascalebelanger.com">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <label for="prenom">Prénom<input id="prenom" name="prenom" autocomplete="given-name"></label>
         <label for="nom">Nom de famille<input id="nom" name="nom" autocomplete="family-name"></label>
         <label class="full" for="email">E-mail *<input id="email" name="email" type="email" required autocomplete="email"></label>
@@ -880,6 +890,7 @@ COOKIES_BODY = f'''
       <p>Vous pouvez à tout moment accepter, bloquer ou supprimer les cookies dans les réglages de votre navigateur (Chrome, Safari, Firefox, Edge, etc.). Le blocage des cookies n’empêche pas la consultation de ce site ; seule la lecture de la vidéo pourrait en être affectée.</p>
 
       <h2>Vos renseignements personnels</h2>
+      <p>Les messages envoyés par le formulaire de contact transitent par le service <strong>Formspree</strong>, qui nous les transmet par courriel.</p>
       <p>Les renseignements transmis par le formulaire de contact servent uniquement à répondre à votre message. Ils ne sont ni vendus ni partagés à des fins commerciales. Conformément aux lois applicables en matière de protection des renseignements personnels, notamment au Québec, vous pouvez demander à consulter, à corriger ou à supprimer les renseignements vous concernant en nous écrivant par la <a href="index.html#contact">page Contact</a>.</p>
 
       <h2>Modifications</h2>
@@ -899,7 +910,6 @@ def page(title, desc, body, js, p, active):
 <meta name="description" content="{desc}">
 {FONTS}
 <style>{CSS}</style>
-<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 {header(p, active)}
@@ -907,7 +917,6 @@ def page(title, desc, body, js, p, active):
 {footer(p)}
 <script>
 {MENU_JS}{js}</script>
-<script src="plx.js?v=1"></script>
 </body>
 </html>
 '''

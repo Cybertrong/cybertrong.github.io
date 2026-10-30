@@ -425,7 +425,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 <header class="site">
@@ -530,6 +529,5 @@ nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
 document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
 </script>
-<script src="plx.js?v=1"></script>
 </body>
 </html>

@@ -425,7 +425,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 <header class="site">
@@ -481,6 +480,7 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
       <p>Vous pouvez à tout moment accepter, bloquer ou supprimer les cookies dans les réglages de votre navigateur (Chrome, Safari, Firefox, Edge, etc.). Le blocage des cookies n’empêche pas la consultation de ce site ; seule la lecture de la vidéo pourrait en être affectée.</p>
 
       <h2>Vos renseignements personnels</h2>
+      <p>Les messages envoyés par le formulaire de contact transitent par le service <strong>Formspree</strong>, qui nous les transmet par courriel.</p>
       <p>Les renseignements transmis par le formulaire de contact servent uniquement à répondre à votre message. Ils ne sont ni vendus ni partagés à des fins commerciales. Conformément aux lois applicables en matière de protection des renseignements personnels, notamment au Québec, vous pouvez demander à consulter, à corriger ou à supprimer les renseignements vous concernant en nous écrivant par la <a href="index.html#contact">page Contact</a>.</p>
 
       <h2>Modifications</h2>
@@ -516,6 +516,5 @@ nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
 document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
 </script>
-<script src="plx.js?v=1"></script>
 </body>
 </html>

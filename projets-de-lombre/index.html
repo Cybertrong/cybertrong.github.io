@@ -425,7 +425,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 <header class="site">
@@ -667,7 +666,9 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
       <p class="left-text">Diffusion, tournée, presse ou simple curiosité : écrivez-nous et nous vous répondrons.</p>
     </div>
     <div class="pad">
-      <form id="form" novalidate>
+      <form id="form" novalidate action="https://formspree.io/f/xrppaawp" method="POST" data-endpoint="https://formspree.io/f/xrppaawp">
+        <input type="hidden" name="_subject" value="Nouveau message depuis mariepascalebelanger.com">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <label for="prenom">Prénom<input id="prenom" name="prenom" autocomplete="given-name"></label>
         <label for="nom">Nom de famille<input id="nom" name="nom" autocomplete="family-name"></label>
         <label class="full" for="email">E-mail *<input id="email" name="email" type="email" required autocomplete="email"></label>
@@ -708,9 +709,14 @@ document.getElementById('top').addEventListener('click',function(e){e.preventDef
 var form=document.getElementById('form');
 if(form)form.addEventListener('submit',function(e){
   e.preventDefault();
-  var em=document.getElementById('email'),s=document.getElementById('status');
+  var em=document.getElementById('email'),s=document.getElementById('status'),btn=form.querySelector('button[type="submit"]'),url=form.dataset.endpoint;
   if(!em.value||!em.checkValidity()){s.textContent='Entrez une adresse e-mail valide.';em.focus();return}
-  s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';
+  if(!url){s.textContent='Formulaire de démonstration : le message n’est pas encore envoyé.';return}
+  btn.disabled=true;s.textContent='Envoi en cours…';
+  fetch(url,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(function(r){if(!r.ok)throw new Error(r.status);form.reset();s.textContent='Merci ! Votre message a bien été envoyé.'})
+    .catch(function(){s.textContent='L’envoi a échoué. Réessayez dans quelques instants.'})
+    .then(function(){btn.disabled=false});
 });
 var vid=document.getElementById('video');
 if(vid)vid.addEventListener('click',function(e){
@@ -737,6 +743,5 @@ function show(){
 }
 window.addEventListener('hashchange',show);show();
 </script>
-<script src="plx.js?v=1"></script>
 </body>
 </html>

@@ -4,6 +4,8 @@ D = sys.argv[1]  # repo folder containing index.html, presse.html, cookies.html 
 
 # 1) Whole blocks (exact HTML) -------------------------------------------------
 BLOCKS = [
+('''<p>Les messages envoyés par le formulaire de contact transitent par le service <strong>Formspree</strong>, qui nous les transmet par courriel.</p>''',
+ '''<p>Messages sent through the contact form go through the <strong>Formspree</strong> service, which forwards them to us by email.</p>'''),
 # About heading (staircase)
 ('''<span class="w r">À propos</span><span class="w" style="color:var(--bar-ink)">compagnie</span>
         <span class="w r">de la</span>''',
@@ -144,6 +146,10 @@ TEXT = [
 ]
 
 JS = [
+("'Envoi en cours…'", "'Sending…'"),
+("'Merci ! Votre message a bien été envoyé.'", "'Thank you! Your message has been sent.'"),
+("'L’envoi a échoué. Réessayez dans quelques instants.'", "'Sending failed. Please try again in a moment.'"),
+('value="Nouveau message depuis mariepascalebelanger.com"', 'value="New message from mariepascalebelanger.com (English site)"'),
 ("'Entrez une adresse e-mail valide.'", "'Please enter a valid email address.'"),
 ("'Formulaire de démonstration : le message n’est pas encore envoyé.'", "'Demo form: your message has not been sent yet.'"),
 ("f.title='A comme Animal, vidéo'", "f.title='A comme Animal, video'"),
