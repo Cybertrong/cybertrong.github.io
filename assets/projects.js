@@ -35,7 +35,6 @@ const PROJECTS = [
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/existence.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/killing-jane.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series flyer", fr: "dépliant de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/oli-drags.jpg", bg: "#FFFFFF" },
-  { client: "Radio-Canada", type: { en: "game cover", fr: "pochette de jeu" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/jeux-blanc.jpg" },
 
   // ── editorial ─────────────────────────────────────────
   { client: "Private", clientFr: "Privé", type: { en: "brochure cover", fr: "couverture de brochure" }, field: { en: "Design", fr: "Design" }, cat: "editorial", year: "2026", img: "images/couverture-brochure-blanc.jpg" },
