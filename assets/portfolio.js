@@ -63,8 +63,12 @@
   });
   var cats = [];
   order.forEach(function (k) { if (cats.indexOf(groups[k].cat) < 0) cats.push(groups[k].cat); });
+  var CAT_ORDER = ['branding', 'print', 'editorial', 'web', 'digital', 'design'];
+  cats.sort(function (a, b) { return (CAT_ORDER.indexOf(a) + 99) % 99 - (CAT_ORDER.indexOf(b) + 99) % 99; });
   var byCat = {};
-  cats.forEach(function (c) { byCat[c] = order.map(function (k) { return groups[k]; }).filter(function (g) { return g.cat === c; }); });
+  // dans chaque section : projets par ordre alphabétique (sans tenir compte des majuscules ni des accents)
+  var byName = function (a, b) { return a.client.localeCompare(b.client, document.documentElement.lang || 'fr', { sensitivity: 'base' }); };
+  cats.forEach(function (c) { byCat[c] = order.map(function (k) { return groups[k]; }).filter(function (g) { return g.cat === c; }).sort(byName); });
 
   // ── filtres ──
   var total = order.length;
