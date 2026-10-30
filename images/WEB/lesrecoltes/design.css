@@ -2980,3 +2980,10 @@ input {width: 250px;}
 #cuisine_chef { height: auto; }
 #text_rachel { padding: 110px 15% 90px 15%; }
 .cours-photos img { width: 100% !important; margin: 0 !important; border: 0 !important; }
+
+/* Menu ouvert : texte des liens agrandi de 100 % (31,5 px → 63 px) */
+.newmenu li a { font-size: 63px; line-height: 1.05; }
+.newmenu ul { display: flex; flex-direction: column; justify-content: center; }
+.newmenu ul li { padding-top: 6px; padding-bottom: 6px; }
+#epiptop { padding-top: 0; }
+@media (max-height: 760px) { .newmenu li a { font-size: 52px; } }
