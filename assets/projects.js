@@ -23,7 +23,7 @@ const PROJECTS = [
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-rouge.jpg?v=hd1", zoom: 2.4, focus: "30% 45%", bg: "#ED1B24" },
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette-logo.jpg?v=hd1", zoom: 3.4, focus: "20% 42%", bg: "#FFFFFF" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2026", img: "images/LOGO/ancetre.jpg", zoom: 2.6, focus: "50% 42%", bg: "#FFFFFF" },
-  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg?v=hd1", zoom: 3, focus: "24% 50%", bg: "#FFFFFF" },
+  { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2026", img: "images/LOGO/panza-logo.jpg?v=hd2", zoom: 3, focus: "24% 50%", bg: "#FFFFFF" },
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-logo.jpg?v=3", zoom: 3, focus: "50% 42%", bg: "#FFFFFF" },
 
   // ── print ─────────────────────────────────────────────
