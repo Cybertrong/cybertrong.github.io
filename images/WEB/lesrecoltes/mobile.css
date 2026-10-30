@@ -10,7 +10,8 @@ html { -webkit-text-size-adjust: 100%; }
   .logo_hosp { margin: 0; top: 16px; left: 18px; }
   .logo_hosp img { max-height: 46px; width: auto; }
   .newburger { margin: 0; top: 22px; right: 20px; left: auto; }
-  .newmenu li a { font-size: min(48px, 9.4vw); }
+  .newmenu li a { font-size: min(41px, 8vw); }
+  .newmenu ul li { padding-top: 13px !important; padding-bottom: 13px !important; }
   #epiptop { padding-top: 0; }
   .newmenu li a:hover { margin-left: 0; filter: none; -webkit-filter: none; }
 

@@ -2982,8 +2982,8 @@ input {width: 250px;}
 .cours-photos img { width: 100% !important; margin: 0 !important; border: 0 !important; }
 
 /* Menu ouvert : texte des liens agrandi de 100 % (31,5 px → 63 px) */
-.newmenu li a { font-size: 63px; line-height: 1.05; }
+.newmenu li a { font-size: 53.5px; line-height: 1.05; }  /* 63 px − 15 % */
 .newmenu ul { display: flex; flex-direction: column; justify-content: center; }
-.newmenu ul li { padding-top: 6px; padding-bottom: 6px; }
+.newmenu ul li { padding-top: 15px; padding-bottom: 15px; }
 #epiptop { padding-top: 0; }
-@media (max-height: 760px) { .newmenu li a { font-size: 52px; } }
+@media (max-height: 760px) { .newmenu li a { font-size: 44px; } .newmenu ul li { padding-top: 10px; padding-bottom: 10px; } }
