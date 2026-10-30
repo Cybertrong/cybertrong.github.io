@@ -14,8 +14,8 @@
 const PROJECTS = [
   // ── branding ──────────────────────────────────────────
   { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "print", year: "2026", img: "images/SUPPORT/analekta-signet-blanc.jpg?v=2" },
-  { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "branding", year: "2026", img: "images/SUPPORT/tomate-presentoir-blanc.jpg", bg: "#FFFFFF" },
-  { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "branding", year: "2026", img: "images/Kiosque-blanc.jpg" },
+  { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "print", year: "2026", img: "images/SUPPORT/tomate-presentoir-blanc.jpg", bg: "#FFFFFF" },
+  { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "print", year: "2026", img: "images/Kiosque-blanc.jpg" },
   { client: "Dandelion", type: { en: "logo", fr: "logo" }, field: { en: "Branding", fr: "Image de marque" }, cat: "branding", year: "2026", img: "images/LOGO/dandelion-blanc.jpg?v=hd1", zoom: 3.4, focus: "28% 55%", bg: "#FFFFFF" },
   { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes-logo.jpg?v=hd1", zoom: 3.2, focus: "62% 55%", bg: "#FFFFFF" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-blanc.jpg?v=hd1", zoom: 2.4, focus: "30% 45%", bg: "#FFFFFF" },
