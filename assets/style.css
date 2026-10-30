@@ -929,3 +929,38 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
   60% { transform: scale(.95) rotate(5deg); }
 }
 @media (prefers-reduced-motion: reduce) { .burger.nudge { animation: none; } }
+
+/* Accueil : onglet « contact » en bas au centre, aux couleurs inversées de la page */
+.home-tab {
+  position: fixed; left: 50%; bottom: 0; z-index: 40;
+  transform: translate(-50%, 0);
+  display: inline-flex; align-items: center; gap: 0;
+  padding: 16px 38px 18px;
+  border-radius: 22px 22px 0 0;
+  background: var(--fg); color: var(--bg);
+  font: 500 15px/1 var(--font); letter-spacing: .28em; text-transform: uppercase;
+  text-decoration: none;
+  transition: padding .5s cubic-bezier(.16,1,.3,1), gap .5s cubic-bezier(.16,1,.3,1), border-radius .5s cubic-bezier(.16,1,.3,1);
+  animation: tab-in 1s cubic-bezier(.16,1,.3,1) 1.2s both;
+}
+@keyframes tab-in { from { transform: translate(-50%, 100%); } to { transform: translate(-50%, 0); } }
+.home-tab-txt span { display: inline-block; transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+.home-tab-arrow {
+  width: 0; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;
+  opacity: 0; transform: translate(-6px, 6px);
+  transition: width .5s cubic-bezier(.16,1,.3,1), opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
+}
+/* survol : l'onglet s'élève, les lettres font une vague, une flèche apparaît */
+.home-tab:hover, .home-tab:focus-visible {
+  padding: 26px 44px 26px; gap: 12px; border-radius: 30px 30px 0 0; outline: none;
+}
+.home-tab:hover .home-tab-txt span, .home-tab:focus-visible .home-tab-txt span {
+  animation: tab-wave .7s cubic-bezier(.34,1.56,.64,1) calc(var(--i) * .045s) both;
+}
+@keyframes tab-wave { 0% { transform: none; } 40% { transform: translateY(-7px); } 100% { transform: none; } }
+.home-tab:hover .home-tab-arrow, .home-tab:focus-visible .home-tab-arrow { width: 16px; opacity: 1; transform: none; }
+.home-tab:active { padding-bottom: 22px; }
+@media (max-width: 600px) { .home-tab { padding: 14px 30px 16px; font-size: 13px; } }
+@media (prefers-reduced-motion: reduce) {
+  .home-tab, .home-tab-txt span, .home-tab-arrow { animation: none !important; transition: none; }
+}
