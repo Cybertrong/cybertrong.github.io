@@ -964,3 +964,8 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 @media (prefers-reduced-motion: reduce) {
   .home-tab, .home-tab-txt span, .home-tab-arrow { animation: none !important; transition: none; }
 }
+
+/* Menu : couleurs tirées au hasard à chaque ouverture (voir site.js) */
+.menu { background: var(--m-bg, var(--blue)); color: var(--m-fg, var(--cream)); --accent: var(--m-fg, var(--cream)); }
+.menu-list a.on::before { background: var(--m-fg, var(--cream)); }
+.menu-list a:hover:not(.on), .lang a:hover { color: var(--m-hover, #fff); }

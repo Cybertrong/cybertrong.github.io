@@ -7,7 +7,31 @@
   var closeB = document.getElementById('menuClose');
   if (!menu || !burger || !closeB) return;
 
+  // couleur du menu tirée au hasard parmi les combinaisons de l'accueil (jamais deux fois la même de suite)
+  var MENU_P = {
+    'blue-cream':  ['#2A58A8', '#ECE7E2', '#FFFFFF'],
+    'cream-blue':  ['#ECE7E2', '#2A58A8', '#163A7A'],
+    'white-blue':  ['#FFFFFF', '#2A58A8', '#163A7A'],
+    'blue-white':  ['#2A58A8', '#FFFFFF', '#ECE7E2'],
+    'gold-blue':   ['#E2B04A', '#2A58A8', '#163A7A'],
+    'blue-gold':   ['#2A58A8', '#E2B04A', '#FFFFFF'],
+    'cream-red':   ['#ECE7E2', '#D35035', '#9E2F1A'],
+    'red-cream':   ['#D35035', '#ECE7E2', '#FFFFFF'],
+    'cream-ochre': ['#ECE7E2', '#916527', '#5E4015']
+  };
+  var lastMenu = null;
+  function paintMenu() {
+    var keys = Object.keys(MENU_P), page = document.documentElement.getAttribute('data-palette'), k;
+    do { k = keys[Math.floor(Math.random() * keys.length)]; } while (k === lastMenu || k === page);
+    lastMenu = k;
+    var c = MENU_P[k];
+    menu.style.setProperty('--m-bg', c[0]);
+    menu.style.setProperty('--m-fg', c[1]);
+    menu.style.setProperty('--m-hover', c[2]);
+  }
+
   function setMenu(open) {
+    if (open) paintMenu();
     menu.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';
