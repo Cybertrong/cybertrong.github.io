@@ -55,5 +55,5 @@ const PROJECTS = [
   { client: "tomaté!", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_tomate.jpg", link: { url: "https://www.instagram.com/tomate.tomate.tomate/", label: "Instagram" } },
 
   // ── design ────────────────────────────────────────────
-  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation_tom-blanc.jpg" },
+  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation-tomate-slides.jpg" },
 ];
