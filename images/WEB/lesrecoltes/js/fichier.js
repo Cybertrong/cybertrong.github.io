@@ -1,7 +1,6 @@
-// Menu : des volets verticaux tombent l'un après l'autre, puis les liens apparaissent (styles dans design.css)
+// Menu : un rideau à bord ondulé descend, puis les liens se dévoilent (styles dans design.css)
 $(document).ready(function () {
   var menu = $(".newmenu");
-  var strips = $('<div class="nm-strips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>');
-  menu.prepend(strips).show().addClass("nm-ready");
+  menu.prepend('<div class="nm-curtain" aria-hidden="true"></div>').show().addClass("nm-ready");
   $(".newburger").click(function () { menu.toggleClass("nm-open"); });
 });
