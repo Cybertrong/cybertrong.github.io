@@ -1012,3 +1012,31 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 @media (max-width: 600px) { .cat-grid { gap: 10px !important; } }
 .tile-card { background: #fff; box-shadow: 0 6px 22px rgba(0, 0, 0, .10); }
+
+/* ── Ouverture d'un projet : une vague bleue traverse l'écran ── */
+.lb-wave {
+  position: fixed; left: -5%; right: -5%; top: 0; height: 100vh; z-index: 300;
+  background: var(--blue); pointer-events: none;
+  transform: translateY(130%); visibility: hidden;
+}
+.lb-wave::before, .lb-wave::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 18vh;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L0,60 C150,0 300,0 450,50 C600,100 750,110 900,55 C1020,15 1110,20 1200,45 L1200,120 Z" fill="%232A58A8"/></svg>') no-repeat 0 0 / 100% 100%;
+}
+.lb-wave::before { bottom: 100%; margin-bottom: -1px; }
+.lb-wave::after { top: 100%; margin-top: -1px; transform: scaleY(-1) scaleX(-1); }
+.lb-wave.go { visibility: visible; animation: lb-wave 1.05s cubic-bezier(.65, 0, .35, 1) forwards; }
+@keyframes lb-wave {
+  0%   { transform: translateY(125%) skewY(3deg); }
+  45%  { transform: translateY(0) skewY(0); }
+  55%  { transform: translateY(0) skewY(0); }
+  100% { transform: translateY(-125%) skewY(-3deg); }
+}
+/* la visionneuse apparaît pendant que la vague couvre l'écran */
+.lightbox.open { animation: lb-behind-wave 1.05s linear both; }
+@keyframes lb-behind-wave { 0%, 46% { opacity: 0; } 47%, 100% { opacity: 1; } }
+.lightbox.open .lightbox-img:not(.slide-r):not(.slide-l) img { animation: lb-float .9s cubic-bezier(.16, 1, .3, 1) .55s both; }
+@keyframes lb-float { from { opacity: 0; transform: translateY(40px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .lightbox.open, .lightbox.open .lightbox-img img { animation: none; }
+}

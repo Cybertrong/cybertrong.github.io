@@ -217,6 +217,15 @@
   stage.appendChild(prev); stage.appendChild(next); stage.appendChild(counter);
 
   // Diaporama : toutes les images de la même section, dans l'ordre de la page
+  // vague bleue qui traverse l'écran à l'ouverture d'un projet
+  var wave = document.createElement('div');
+  wave.className = 'lb-wave'; wave.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(wave);
+  function playWave() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    wave.classList.remove('go'); void wave.offsetWidth; wave.classList.add('go');
+  }
+  wave.addEventListener('animationend', function () { wave.classList.remove('go'); });
   var slides = [], pos = 0, lastFocus = null;
   function sectionSlides(cat) {
     var out = [];
@@ -257,6 +266,7 @@
     pos = 0;
     for (var i = 0; i < slides.length; i++) { if (slides[i].g === g) { pos = i; break; } }
     show(0);
+    playWave();
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
