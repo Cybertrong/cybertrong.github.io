@@ -178,3 +178,22 @@
     .menu li a #details { font-size: 15vw !important; text-shadow: 4px 4px 0 #a3070d; }
 }
 @media (prefers-reduced-motion: reduce) { .menu li a:hover #details { animation: none; } }
+
+/* App Store : droit et centré */
+.menu ul li:nth-child(1) { justify-self: center; text-align: center; }
+.menu ul li:nth-child(1) img, .menu ul li:nth-child(1):hover img { transform: none !important; margin: 0 auto; transition: opacity .4s ease; }
+.menu ul li:nth-child(1):hover img { opacity: .8; }
+
+/* Fonctionnement : survol doux — le mot se redresse, l'ombre se resserre, un fin trait se dessine */
+.menu li a:hover #details { animation: none !important; }
+.menu li a #details {
+    position: relative;
+    transition: transform .8s cubic-bezier(.16, 1, .3, 1), text-shadow .8s cubic-bezier(.16, 1, .3, 1);
+}
+.menu li a:hover #details { transform: rotate(0deg) translateY(-4px); text-shadow: 3px 3px 0 #a3070d; }
+.menu li a #details::after {
+    content: ""; position: absolute; left: 4%; right: 4%; bottom: -.12em; height: 3px; border-radius: 3px;
+    background: #fff; transform: scaleX(0); transform-origin: 50% 50%;
+    transition: transform .8s cubic-bezier(.16, 1, .3, 1);
+}
+.menu li a:hover #details::after { transform: scaleX(1); }
