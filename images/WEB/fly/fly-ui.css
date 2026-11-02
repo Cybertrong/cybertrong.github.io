@@ -142,7 +142,6 @@
 /* App Store : autocollant penché */
 .menu ul li:nth-child(1) img {
     display: block; height: 58px; width: auto;
-    filter: drop-shadow(5px 5px 0 #a3070d);
     transform: rotate(-7deg);
     transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
 }
