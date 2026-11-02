@@ -969,3 +969,6 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 .menu { background: var(--m-bg, var(--blue)); color: var(--m-fg, var(--cream)); --accent: var(--m-fg, var(--cream)); }
 .menu-list a.on::before { background: var(--m-fg, var(--cream)); }
 .menu-list a:hover:not(.on), .lang a:hover { color: var(--m-hover, #fff); }
+
+/* À propos : signature sous la citation */
+.bio-sign { margin-top: 18px; font: 500 13px/1.4 var(--font); letter-spacing: .24em; text-transform: uppercase; opacity: .7; }
