@@ -223,3 +223,22 @@
 .logo-home:focus-visible { outline: none; }
 /* écrans tactiles : l'indication reste visible, très légère */
 @media (hover: none) { .logo-hint { opacity: .6; transform: none; } }
+
+/* Accueil : indication discrète pour faire défiler (souris qui « roule ») */
+a.scroll-cue, a.scroll-cue:-webkit-any-link { color: #fff; }
+.scroll-cue {
+  position: absolute; left: 50%; top: calc(100vh - 76px); top: calc(100svh - 76px);
+  transform: translateX(-50%); z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: #fff; text-decoration: none; opacity: .75;
+  transition: opacity .6s ease;
+  animation: cue-in 1.2s ease 1.2s both;
+}
+.scroll-cue:hover { opacity: 1; }
+.scroll-cue.gone { opacity: 0; pointer-events: none; }
+.scroll-cue svg { width: 22px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.scroll-cue .wheel { stroke-linecap: round; stroke-width: 2.2; animation: cue-wheel 1.8s cubic-bezier(.65, 0, .35, 1) infinite; }
+.scroll-cue span { font: 400 10px/1 'Roboto', sans-serif; letter-spacing: .35em; text-transform: uppercase; padding-left: .35em; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(9px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes cue-in { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: .75; transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue, .scroll-cue .wheel { animation: none; } }

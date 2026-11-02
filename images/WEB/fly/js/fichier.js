@@ -57,3 +57,14 @@
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   });
 })();
+
+// indication « défiler » : disparaît dès qu'on descend, défilement doux au clic
+(function () {
+  var cue = document.querySelector('.scroll-cue');
+  if (!cue) return;
+  window.addEventListener('scroll', function () { cue.classList.toggle('gone', window.pageYOffset > 60); }, { passive: true });
+  cue.addEventListener('click', function (e) {
+    var t = document.getElementById('fond2'); if (!t) return;
+    e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' });
+  });
+})();
