@@ -10,7 +10,7 @@ html { -webkit-text-size-adjust: 100%; }
   .burger.active::after  { transform: translateY(-9px) rotate(-45deg); }
 
   /* menu plein écran */
-  .menu ul { height: 100svh; height: 100dvh; gap: 0; }
+  .menu ul { height: 100svh; height: 100dvh; row-gap: 56px; column-gap: 22px; }
   .menu ul li { padding: 18px 0; }
   .menu ul li img { max-height: 44px; width: auto; }
   li a #details { font-size: 28px; letter-spacing: .06em; margin: 0; }

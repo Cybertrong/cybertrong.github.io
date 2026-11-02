@@ -115,3 +115,67 @@
 .menu li a #details { font-family: 'Roboto', sans-serif; font-size: 420%; color: #fff; margin: 0; }
 @media (max-width: 760px) { .menu li a #details { font-size: 28px; letter-spacing: .06em; } }
 .burger, .burger.active { margin: 0 !important; }
+
+/* ── Menu « funky » : autocollants penchés, pastilles, gros titre Bubbleboy ── */
+.menu ul {
+    display: grid !important;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center; align-content: center;
+    column-gap: clamp(18px, 3vw, 40px); row-gap: clamp(26px, 4.5vh, 54px);
+    background: #ed1c24 radial-gradient(rgba(255, 255, 255, .13) 2px, transparent 2.6px) 0 0 / 26px 26px;
+    overflow: hidden; list-style: none;
+}
+.menu ul li { list-style: none; }
+.menu ul li::marker { content: none; }
+/* grand « FLY » fantôme en fond */
+.menu ul::before {
+    content: "FLY"; position: absolute; left: 50%; top: 50%;
+    font-family: 'Bubbleboy', sans-serif; font-size: 46vw; line-height: 1;
+    color: rgba(255, 255, 255, .07);
+    transform: translate(-50%, -52%) rotate(-12deg);
+    pointer-events: none; z-index: 0; white-space: nowrap;
+}
+.menu ul li { position: relative; z-index: 1; padding: 0 !important; background: transparent !important; }
+.menu ul li:hover { background: transparent !important; }
+.menu ul li:nth-child(1), .menu ul li:nth-child(5) { grid-column: 1 / -1; justify-self: center; }
+
+/* App Store : autocollant penché */
+.menu ul li:nth-child(1) img {
+    display: block; height: 58px; width: auto;
+    filter: drop-shadow(5px 5px 0 #a3070d);
+    transform: rotate(-7deg);
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
+}
+.menu ul li:nth-child(1):hover img { transform: rotate(4deg) scale(1.08); }
+
+/* réseaux : pastilles rondes à hauteurs décalées */
+.menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a {
+    display: grid; place-items: center;
+    width: 78px; height: 78px; border-radius: 50%;
+    border: 3px solid #fff; background: rgba(0, 0, 0, .12);
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), background .3s;
+}
+.menu ul li:nth-child(2) a { transform: translateY(14px) rotate(-10deg); }
+.menu ul li:nth-child(3) a { transform: translateY(-10px) rotate(8deg); }
+.menu ul li:nth-child(4) a { transform: translateY(18px) rotate(-5deg); }
+.menu ul li:nth-child(2) a:hover, .menu ul li:nth-child(3) a:hover, .menu ul li:nth-child(4) a:hover {
+    background: #a3070d; transform: translateY(0) rotate(0) scale(1.12);
+}
+
+/* FONCTIONNEMENT : gros titre Bubbleboy, ombre décalée, il se dandine au survol */
+.menu li a #details {
+    font-family: 'Bubbleboy', sans-serif !important; text-transform: lowercase;
+    font-size: clamp(56px, 9vw, 140px) !important; line-height: .95; letter-spacing: 0 !important;
+    color: #fff; text-shadow: 7px 7px 0 #a3070d;
+    transform: rotate(-4deg); display: inline-block;
+}
+.menu li a:hover #details { animation: fly-wiggle .6s ease-in-out infinite; }
+@keyframes fly-wiggle { 0%, 100% { transform: rotate(-4deg); } 25% { transform: rotate(2deg) scale(1.04); } 75% { transform: rotate(-7deg) scale(1.04); } }
+
+@media (max-width: 760px) {
+    .menu ul { row-gap: 64px; }
+    .menu ul li:nth-child(1) img { height: 48px; }
+    .menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a { width: 62px; height: 62px; }
+    .menu li a #details { font-size: 15vw !important; text-shadow: 4px 4px 0 #a3070d; }
+}
+@media (prefers-reduced-motion: reduce) { .menu li a:hover #details { animation: none; } }
