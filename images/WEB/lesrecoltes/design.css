@@ -3031,3 +3031,25 @@ input {width: 250px;}
 @media (prefers-reduced-motion: reduce) {
   .nm-curtain, .nm-curtain::after, .newmenu.nm-ready ul li a { transition: none !important; }
 }
+
+/* ── Survol des liens du menu : effet doux ── */
+.newmenu li a {
+    position: relative;
+    transition: color .6s ease, letter-spacing .7s cubic-bezier(.16, 1, .3, 1), opacity .6s ease !important;
+}
+.newmenu li a:hover {
+    margin-left: 0 !important; filter: none !important; -webkit-filter: none !important;
+    color: #F3E3C3 !important; letter-spacing: .04em;
+}
+.newmenu li a b { transition: color .6s ease; }
+.newmenu li a:hover b { color: #AF7817 !important; }
+/* fin trait doré qui se dessine depuis le centre */
+.newmenu li a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+    background: #AF7817; transform: scaleX(0); transform-origin: 50% 50%;
+    transition: transform .7s cubic-bezier(.16, 1, .3, 1);
+}
+.newmenu li a:hover::after { transform: scaleX(1); }
+/* les autres liens s'estompent légèrement */
+.newmenu ul:hover li a:not(:hover):not(.menu-off) { opacity: .55; }
+.newmenu li a.menu-off::after { display: none; }
