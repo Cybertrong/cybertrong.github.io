@@ -1052,3 +1052,6 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 .lb-wave.go { animation-duration: .72s; }
 .lightbox.open { animation-duration: .72s; }
 .lightbox.open .lightbox-img:not(.slide-r):not(.slide-l) img { animation-delay: .38s; animation-duration: .7s; }
+.lb-wave.go { animation-duration: .5s; }
+.lightbox.open { animation-duration: .5s; }
+.lightbox.open .lightbox-img:not(.slide-r):not(.slide-l) img { animation-delay: .26s; animation-duration: .55s; }
