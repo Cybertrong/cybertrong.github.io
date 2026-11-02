@@ -24,13 +24,13 @@
   };
   function tr(o) { return lang === 'vi' ? (VI[o.en] || o.en) : o[lang]; }
   var T = {
-    en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', close: 'close',
+    en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', more: 'view', close: 'close',
           prev: 'Previous', next: 'Next', visuals: 'visuals', project: 'project', projects: 'projects',
           cats: { branding: 'branding', print: 'print', editorial: 'editorial', web: 'web', digital: 'digital', design: 'design' } },
-    fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', close: 'fermer',
+    fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', more: 'voir', close: 'fermer',
           prev: 'Précédent', next: 'Suivant', visuals: 'visuels', project: 'projet', projects: 'projets',
           cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'design' } },
-    vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', close: 'đóng',
+    vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', more: 'xem', close: 'đóng',
           prev: 'Trước', next: 'Tiếp', visuals: 'hình', project: 'dự án', projects: 'dự án',
           cats: { branding: 'thương hiệu', print: 'in ấn', editorial: 'xuất bản', web: 'web', digital: 'kỹ thuật số', design: 'thiết kế' } }
   }[lang];
@@ -103,10 +103,16 @@
     } else {
       media = '<div class="work-media"><div class="placeholder"><strong>' + esc(g.client) + '</strong><span>' + esc(T.soon) + '</span></div></div>';
     }
-    return '<article class="work">' + media +
-      '<div class="work-meta"><h3>' + esc(g.client) + '</h3><span class="year">' + esc(years) + '</span></div>' +
-      '<p class="work-sub">' + esc(types) + '</p>' +
-      (g.site ? '<a class="work-link" href="' + esc(g.site) + '" target="_blank" rel="noopener">' + esc(T.visit) + ' ↗</a>' : '') +
+    // carte crème qui apparaît sur la vignette (inspirée des grilles éditoriales)
+    var field = tr(first.field);
+    var sub = types + (field && types.indexOf(field) < 0 ? ' · ' + field : '');
+    var more = g.site
+      ? '<a class="tc-more" href="' + esc(g.site) + '" target="_blank" rel="noopener">' + esc(T.visit) + ' ↗</a>'
+      : '<span class="tc-more">' + (n > 1 ? n + ' ' + esc(T.visuals) : esc(T.more)) + ' +</span>';
+    return '<article class="work tile">' + media +
+      '<div class="tile-card"><h3 class="tc-title">' + esc(g.client) + '</h3>' +
+      '<p class="tc-sub">' + esc(sub) + '</p>' +
+      '<div class="tc-foot"><span class="tc-year">' + esc(years) + '</span>' + more + '</div></div>' +
       '</article>';
   }
   grid.innerHTML = cats.map(function (c) {

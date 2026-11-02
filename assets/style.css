@@ -972,3 +972,42 @@ html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
 
 /* À propos : signature sous la citation */
 .bio-sign { margin-top: 18px; font: 500 13px/1.4 var(--font); letter-spacing: .24em; text-transform: uppercase; opacity: .7; }
+
+/* ── Portfolio : grille de vignettes carrées, carte crème au survol ── */
+.cat-grid { gap: 14px !important; }
+.cat-grid .work.tile { position: relative; gap: 0; }
+.cat-grid .tile .work-media {
+  aspect-ratio: 1 / 1; border-radius: 8px; border: 0;
+}
+.cat-grid .tile .count { display: none; }
+.cat-grid .tile .frame-line { border-radius: 8px; }
+.tile-card {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 4;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 22px 22px 18px; border-radius: 6px;
+  background: #F1ECE3; color: #1d1d1b;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  pointer-events: none;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .45s ease, transform .6s cubic-bezier(.16, 1, .3, 1);
+}
+.tile:hover .tile-card, .tile:focus-within .tile-card { opacity: 1; transform: none; }
+.tc-title { font: 500 clamp(20px, 1.9vw, 28px)/1.15 var(--font); letter-spacing: -.005em; margin: 0; }
+.tc-sub { font: 400 15px/1.4 var(--font); opacity: .75; margin: 0 0 14px; }
+.tc-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  font: 600 12px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
+.tc-more { color: var(--red); text-decoration: none; pointer-events: auto; }
+a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* l'image s'assombrit à peine sous la carte */
+.cat-grid .tile .work-media::after {
+  content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background .45s ease; pointer-events: none;
+}
+.cat-grid .tile:hover .work-media::after { background: rgba(0,0,0,.06); }
+/* écrans tactiles : carte compacte toujours visible */
+@media (hover: none) {
+  .tile-card { opacity: 1; transform: none; padding: 12px 14px; gap: 2px; left: 10px; right: 10px; bottom: 10px; }
+  .tc-sub { display: none; }
+  .tc-title { font-size: 17px; }
+  .tc-foot { margin-top: 4px; font-size: 11px; }
+}
+@media (max-width: 600px) { .cat-grid { gap: 10px !important; } }
