@@ -242,3 +242,9 @@ a.scroll-cue, a.scroll-cue:-webkit-any-link { color: #fff; }
 @keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(9px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
 @keyframes cue-in { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: .75; transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .scroll-cue, .scroll-cue .wheel { animation: none; } }
+
+/* Liens du menu bien droits (sans inclinaison ni décalage) */
+.menu li a .nav-label, .menu li a:hover .nav-label { transform: none !important; }
+.menu li a:hover .nav-label { transform: translateY(-3px) !important; }
+.menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a { transform: none !important; }
+.menu ul li:nth-child(2) a:hover, .menu ul li:nth-child(3) a:hover, .menu ul li:nth-child(4) a:hover { transform: scale(1.08) !important; }
