@@ -103,3 +103,15 @@
     .fly-comment .fly-inner { padding-left: 17.5%; }
     .fly-comment .fly-title { font-size: 4vw; }
 }
+
+/* ── Menu identique sur toutes les pages (fonctionnement.html chargeait d'autres styles) ── */
+.menu ul {
+    position: fixed; inset: 0; margin: 0; padding: 0;
+    width: 100%; height: 100vh; height: 100dvh;
+    background: #ed1c24; z-index: 9990;
+}
+.menu ul li { background: transparent; border: 0; padding: 20px 0; text-align: center; }
+.menu ul li:hover { background: rgba(0, 0, 0, .18); }
+.menu li a #details { font-family: 'Roboto', sans-serif; font-size: 420%; color: #fff; margin: 0; }
+@media (max-width: 760px) { .menu li a #details { font-size: 28px; letter-spacing: .06em; } }
+.burger, .burger.active { margin: 0 !important; }
