@@ -8,8 +8,11 @@ html { -webkit-text-size-adjust: 100%; }
 
   /* en-tête : logo à gauche, burger à droite */
   .logo_hosp { margin: 0; top: 16px; left: 18px; }
-  .logo_hosp img { max-height: 46px; width: auto; }
-  .newburger { margin: 0; top: 22px; right: 20px; left: auto; }
+  .logo_hosp img { max-height: 46px; width: auto; margin: 0 !important; }
+  /* au défilement, le script d'origine décale le logo (-30 px / -25 px) : on le garde en place */
+  #barre { height: 70px; }
+  .logo_hosp { top: 12px; }
+  .newburger { margin: 0 !important; top: 22px; right: 20px; left: auto; }
   .newmenu li a { font-size: min(41px, 8vw); }
   .newmenu ul li { padding-top: 13px !important; padding-bottom: 13px !important; }
   #epiptop { padding-top: 0; }

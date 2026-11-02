@@ -2987,3 +2987,6 @@ input {width: 250px;}
 .newmenu ul li { padding-top: 15px; padding-bottom: 15px; }
 #epiptop { padding-top: 0; }
 @media (max-height: 760px) { .newmenu li a { font-size: 44px; } .newmenu ul li { padding-top: 10px; padding-bottom: 10px; } }
+
+/* Lien « En ligne » désactivé */
+.newmenu li a.menu-off, .newmenu li a.menu-off:hover { opacity: .35; cursor: not-allowed; pointer-events: none; margin-left: 0; filter: none; -webkit-filter: none; color: #AF7817; }
