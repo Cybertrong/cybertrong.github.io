@@ -1011,3 +1011,4 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
   .tc-foot { margin-top: 4px; font-size: 11px; }
 }
 @media (max-width: 600px) { .cat-grid { gap: 10px !important; } }
+.tile-card { background: #fff; box-shadow: 0 6px 22px rgba(0, 0, 0, .10); }
