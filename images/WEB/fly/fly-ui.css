@@ -208,3 +208,18 @@
 .menu li a .nav-label { font-size: clamp(48px, 7.4vw, 116px) !important; }
 @media (max-width: 760px) { .menu li a .nav-label { font-size: 13vw !important; } }
 .menu.open ul li:nth-child(6) { transition-delay: .38s, .38s, 0s; }
+
+/* Logo → accueil : le logo se soulève et un discret « ← accueil » apparaît dessous */
+.logo-home { display: inline-flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; cursor: pointer; position: relative; left: 50%; transform: translateX(-50%); }
+.logo-home #logo { margin: 0; transition: transform .6s cubic-bezier(.16, 1, .3, 1), box-shadow .6s ease; }
+.logo-hint {
+  font: 500 11px/1 'Roboto', sans-serif; letter-spacing: .32em; text-transform: uppercase;
+  color: #ed1c24; white-space: nowrap;
+  opacity: 0; transform: translateY(-6px);
+  transition: opacity .5s ease, transform .6s cubic-bezier(.16, 1, .3, 1);
+}
+.logo-home:hover #logo, .logo-home:focus-visible #logo { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(237, 28, 36, .25); }
+.logo-home:hover .logo-hint, .logo-home:focus-visible .logo-hint { opacity: 1; transform: none; }
+.logo-home:focus-visible { outline: none; }
+/* écrans tactiles : l'indication reste visible, très légère */
+@media (hover: none) { .logo-hint { opacity: .6; transform: none; } }
