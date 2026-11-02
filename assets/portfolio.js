@@ -223,6 +223,10 @@
   document.body.appendChild(wave);
   function playWave() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // couleur au hasard parmi celles de l'accueil, jamais deux fois la même de suite
+    var C = ['#2A58A8', '#E2B04A', '#D35035', '#916527', '#ECE7E2'], c;
+    do { c = C[Math.floor(Math.random() * C.length)]; } while (c === wave.dataset.c);
+    wave.dataset.c = c; wave.style.setProperty('--wave', c);
     wave.classList.remove('go'); void wave.offsetWidth; wave.classList.add('go');
   }
   wave.addEventListener('animationend', function () { wave.classList.remove('go'); });
