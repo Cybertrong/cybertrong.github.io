@@ -249,3 +249,8 @@ a.scroll-cue, a.scroll-cue:-webkit-any-link { color: #fff; }
 .menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a { transform: none !important; }
 .menu ul li:nth-child(2) a:hover, .menu ul li:nth-child(3) a:hover, .menu ul li:nth-child(4) a:hover { transform: scale(1.08) !important; }
 .menu li a .nav-label, .menu li a:hover .nav-label { text-shadow: none !important; }
+/* ordre : liens texte, puis réseaux sociaux, puis App Store */
+.menu ul li.nav-txt { order: 0; }
+.menu ul li:nth-child(2), .menu ul li:nth-child(3), .menu ul li:nth-child(4) { order: 1; }
+.menu ul li:nth-child(1) { order: 2; }
+.menu ul li.nav-txt + li.nav-txt { margin-bottom: clamp(10px, 3vh, 34px); }
