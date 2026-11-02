@@ -248,3 +248,4 @@ a.scroll-cue, a.scroll-cue:-webkit-any-link { color: #fff; }
 .menu li a:hover .nav-label { transform: translateY(-3px) !important; }
 .menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a { transform: none !important; }
 .menu ul li:nth-child(2) a:hover, .menu ul li:nth-child(3) a:hover, .menu ul li:nth-child(4) a:hover { transform: scale(1.08) !important; }
+.menu li a .nav-label, .menu li a:hover .nav-label { text-shadow: none !important; }
