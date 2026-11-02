@@ -31,7 +31,7 @@ html { -webkit-text-size-adjust: 100%; }
 
   /* titres et textes */
   h1.plx-title, #epi h1, #cours h1, #text_gene h1, .presse h1, .containerdonnee h1, #adresse h1, #tel h1, #email h1 { font-size: 34px !important; line-height: 1.15; }
-  #text_rachel p, .containerdonnee .texte_expliq p { font-size: 15px; line-height: 1.6; }
+  #text_rachel p, .containerdonnee .texte_expliq p { font-size: 18px; line-height: 1.6; }
   #epi p, #cours p, #text_gene p, #bistro p, #qec .text p, #contact p { font-size: 18px; line-height: 1.6; }
 
   /* ACCUEIL */

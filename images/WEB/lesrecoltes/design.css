@@ -3056,3 +3056,5 @@ input {width: 250px;}
 
 /* Textes noirs sous les titres dorés : +20 % (0,88em → 1,056em) */
 #epi p, #text_gene p, #cours p, #bistro p, #qec .text p, #contact p, #coordonnees p, #tel p { font-size: 1.056em; line-height: 1.55; }
+/* textes blancs aussi : +20 % */
+#text_rachel p, .containerdonnee .texte_expliq p { font-size: 1.056em; line-height: 1.6; }
