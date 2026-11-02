@@ -3053,3 +3053,6 @@ input {width: 250px;}
 /* les autres liens s'estompent légèrement */
 .newmenu ul:hover li a:not(:hover):not(.menu-off) { opacity: .55; }
 .newmenu li a.menu-off::after { display: none; }
+
+/* Textes noirs sous les titres dorés : +20 % (0,88em → 1,056em) */
+#epi p, #text_gene p, #cours p, #bistro p, #qec .text p, #contact p, #coordonnees p, #tel p { font-size: 1.056em; line-height: 1.55; }
