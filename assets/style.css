@@ -1048,3 +1048,7 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
   -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L0,60 C150,0 300,0 450,50 C600,100 750,110 900,55 C1020,15 1110,20 1200,45 L1200,120 Z"/></svg>') no-repeat 0 0 / 100% 100%;
           mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L0,60 C150,0 300,0 450,50 C600,100 750,110 900,55 C1020,15 1110,20 1200,45 L1200,120 Z"/></svg>') no-repeat 0 0 / 100% 100%;
 }
+/* vague plus rapide */
+.lb-wave.go { animation-duration: .72s; }
+.lightbox.open { animation-duration: .72s; }
+.lightbox.open .lightbox-img:not(.slide-r):not(.slide-l) img { animation-delay: .38s; animation-duration: .7s; }
