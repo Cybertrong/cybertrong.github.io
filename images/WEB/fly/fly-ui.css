@@ -112,8 +112,8 @@
 }
 .menu ul li { background: transparent; border: 0; padding: 20px 0; text-align: center; }
 .menu ul li:hover { background: rgba(0, 0, 0, .18); }
-.menu li a #details { font-family: 'Roboto', sans-serif; font-size: 420%; color: #fff; margin: 0; }
-@media (max-width: 760px) { .menu li a #details { font-size: 28px; letter-spacing: .06em; } }
+.menu li a .nav-label { font-family: 'Roboto', sans-serif; font-size: 420%; color: #fff; margin: 0; }
+@media (max-width: 760px) { .menu li a .nav-label { font-size: 28px; letter-spacing: .06em; } }
 .burger, .burger.active { margin: 0 !important; }
 
 /* ── Menu « funky » : autocollants penchés, pastilles, gros titre Bubbleboy ── */
@@ -162,22 +162,22 @@
 }
 
 /* FONCTIONNEMENT : gros titre Bubbleboy, ombre décalée, il se dandine au survol */
-.menu li a #details {
+.menu li a .nav-label {
     font-family: 'Bubbleboy', sans-serif !important; text-transform: lowercase;
     font-size: clamp(56px, 9vw, 140px) !important; line-height: .95; letter-spacing: 0 !important;
     color: #fff; text-shadow: 7px 7px 0 #a3070d;
     transform: rotate(-4deg); display: inline-block;
 }
-.menu li a:hover #details { animation: fly-wiggle .6s ease-in-out infinite; }
+.menu li a:hover .nav-label { animation: fly-wiggle .6s ease-in-out infinite; }
 @keyframes fly-wiggle { 0%, 100% { transform: rotate(-4deg); } 25% { transform: rotate(2deg) scale(1.04); } 75% { transform: rotate(-7deg) scale(1.04); } }
 
 @media (max-width: 760px) {
     .menu ul { row-gap: 64px; }
     .menu ul li:nth-child(1) img { height: 48px; }
     .menu ul li:nth-child(2) a, .menu ul li:nth-child(3) a, .menu ul li:nth-child(4) a { width: 62px; height: 62px; }
-    .menu li a #details { font-size: 15vw !important; text-shadow: 4px 4px 0 #a3070d; }
+    .menu li a .nav-label { font-size: 15vw !important; text-shadow: 4px 4px 0 #a3070d; }
 }
-@media (prefers-reduced-motion: reduce) { .menu li a:hover #details { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .menu li a:hover .nav-label { animation: none; } }
 
 /* App Store : droit et centré */
 .menu ul li:nth-child(1) { justify-self: center; text-align: center; }
@@ -185,19 +185,26 @@
 .menu ul li:nth-child(1):hover img { opacity: .8; }
 
 /* Fonctionnement : survol doux — le mot se redresse, l'ombre se resserre, un fin trait se dessine */
-.menu li a:hover #details { animation: none !important; }
-.menu li a #details {
+.menu li a:hover .nav-label { animation: none !important; }
+.menu li a .nav-label {
     position: relative;
     transition: transform .8s cubic-bezier(.16, 1, .3, 1), text-shadow .8s cubic-bezier(.16, 1, .3, 1);
 }
-.menu li a:hover #details { transform: rotate(0deg) translateY(-4px); text-shadow: 3px 3px 0 #a3070d; }
-.menu li a #details::after {
+.menu li a:hover .nav-label { transform: rotate(0deg) translateY(-4px); text-shadow: 3px 3px 0 #a3070d; }
+.menu li a .nav-label::after {
     content: ""; position: absolute; left: 4%; right: 4%; bottom: -.12em; height: 3px; border-radius: 3px;
     background: #fff; transform: scaleX(0); transform-origin: 50% 50%;
     transition: transform .8s cubic-bezier(.16, 1, .3, 1);
 }
-.menu li a:hover #details::after { transform: scaleX(1); }
+.menu li a:hover .nav-label::after { transform: scaleX(1); }
 
 /* fond du menu : rouge uni, sans points ni « FLY » fantôme */
 .menu ul { background: #ed1c24 !important; }
 .menu ul::before { content: none !important; }
+
+/* Accueil + Fonctionnement : deux grands liens l'un sous l'autre */
+.menu ul li.nav-txt { grid-column: 1 / -1; justify-self: center; }
+.menu ul li.nav-txt + li.nav-txt { margin-top: calc(-1 * clamp(10px, 2.5vh, 30px)); }
+.menu li a .nav-label { font-size: clamp(48px, 7.4vw, 116px) !important; }
+@media (max-width: 760px) { .menu li a .nav-label { font-size: 13vw !important; } }
+.menu.open ul li:nth-child(6) { transition-delay: .38s, .38s, 0s; }

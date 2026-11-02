@@ -13,7 +13,7 @@ html { -webkit-text-size-adjust: 100%; }
   .menu ul { height: 100svh; height: 100dvh; row-gap: 56px; column-gap: 22px; }
   .menu ul li { padding: 18px 0; }
   .menu ul li img { max-height: 44px; width: auto; }
-  li a #details { font-size: 28px; letter-spacing: .06em; margin: 0; }
+  li a .nav-label { font-size: 28px; letter-spacing: .06em; margin: 0; }
 
   /* accueil : un écran, texte centré sur le téléphone */
   .parallax { min-height: 100svh; background-position: center 0; background-size: cover; }
