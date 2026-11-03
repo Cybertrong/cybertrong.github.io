@@ -202,6 +202,23 @@
       });
     });
   }
+  // chaque section : des cases vides complètent la dernière rangée
+  function fillGaps() {
+    grid.querySelectorAll('.tile-filler').forEach(function (f) { f.remove(); });
+    grid.querySelectorAll('.cat-section:not([hidden]) .cat-grid').forEach(function (g) {
+    var cols = getComputedStyle(g).gridTemplateColumns.split(' ').filter(Boolean).length;
+    var n = g.querySelectorAll('.work:not(.tile-filler)').length, missing = (cols - n % cols) % cols;
+    for (var i = 0; i < missing; i++) {
+      var f = document.createElement('div');
+      f.className = 'work tile tile-filler'; f.setAttribute('aria-hidden', 'true');
+      f.innerHTML = '<div class="work-media"><span class="frame-line"></span></div>';
+      g.appendChild(f);
+    }
+    });
+  }
+  fillGaps();
+  window.addEventListener('resize', fillGaps);
+  filters.addEventListener('click', function () { setTimeout(fillGaps, 260); });
   setupReveal();
   var rt;
   window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () {
