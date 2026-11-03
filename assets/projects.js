@@ -23,7 +23,7 @@ const PROJECTS = [
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette-or.jpg", zoom: 3, focus: "17% 47%", bg: "#C09F40" },
   { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2023", img: "images/LOGO/ancetre.jpg", zoom: 2.6, focus: "50% 42%", bg: "#FFFFFF" },
   { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2024", img: "images/LOGO/panza-vert.jpg", zoom: 2.6, focus: "24% 50%", bg: "#D3E7D4" },
-  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-gris.jpg", zoom: 2.8, focus: "26% 40%", bg: "#FFFFFF" },
+  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-fonce.jpg", zoom: 2.8, focus: "26% 40%", bg: "#3F3F3F" },
 
   // ── print ─────────────────────────────────────────────
   { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2026", img: "images/flyer-invitation.jpg" },
