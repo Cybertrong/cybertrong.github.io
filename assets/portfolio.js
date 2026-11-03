@@ -26,13 +26,13 @@
   var T = {
     en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', more: 'view', close: 'close',
           prev: 'Previous', next: 'Next', visuals: 'visuals', project: 'project', projects: 'projects',
-          cats: { branding: 'branding', print: 'print', editorial: 'editorial', web: 'web', digital: 'digital', design: 'design' } },
+          cats: { branding: 'branding', print: 'print', editorial: 'editorial', web: 'web', digital: 'digital', design: 'presentation' } },
     fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', more: 'voir', close: 'fermer',
           prev: 'Précédent', next: 'Suivant', visuals: 'visuels', project: 'projet', projects: 'projets',
-          cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'design' } },
+          cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'presentation' } },
     vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', more: 'xem', close: 'đóng',
           prev: 'Trước', next: 'Tiếp', visuals: 'hình', project: 'dự án', projects: 'dự án',
-          cats: { branding: 'thương hiệu', print: 'in ấn', editorial: 'xuất bản', web: 'web', digital: 'kỹ thuật số', design: 'thiết kế' } }
+          cats: { branding: 'thương hiệu', print: 'in ấn', editorial: 'xuất bản', web: 'web', digital: 'kỹ thuật số', design: 'thuyết trình' } }
   }[lang];
 
   var grid = document.getElementById('grid');
