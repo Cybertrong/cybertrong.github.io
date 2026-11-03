@@ -1060,3 +1060,13 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 html.intro .lockup-name { opacity: 0; }
 html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
 .intro-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 5; transition: opacity .6s ease; }
+
+/* Portfolio : barre du haut compacte au défilement */
+.site-header .wrap { transition: padding .5s cubic-bezier(.16, 1, .3, 1); }
+.site-header .logo { transition: font-size .5s cubic-bezier(.16, 1, .3, 1); }
+.site-header .burger { transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.site-header.compact .wrap { padding-top: 12px; padding-bottom: 12px; }
+.site-header.compact .logo { font-size: 42px; }
+.site-header.compact .burger { transform: scale(.8); }
+.site-header.compact { box-shadow: 0 1px 0 rgba(0, 0, 0, .06); }
+@media (max-width: 600px) { .site-header.compact .logo { font-size: 36px; } }

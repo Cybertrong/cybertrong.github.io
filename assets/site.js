@@ -59,6 +59,19 @@
   }
   set();
   window.addEventListener('resize', set);
+  // portfolio : la barre du haut rétrécit quand on descend
+  if (!document.querySelector('.filter-bar')) return;
+  var compact = false, ticking = false;
+  function onScroll() {
+    ticking = false;
+    var c = window.pageYOffset > 40;
+    if (c === compact) return;
+    compact = c; h.classList.toggle('compact', c);
+    var t0 = performance.now();
+    (function follow(now) { set(); if (now - t0 < 600) requestAnimationFrame(follow); })(t0);
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
 })();
 
 // ── apparition des titres : lettres une à une ──────────
