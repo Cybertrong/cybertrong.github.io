@@ -54,7 +54,7 @@
   var order = [];
   var groups = {};
   PROJECTS.forEach(function (p) {
-    var key = p.cat + '|' + p.client + '|' + (p.site || '');
+    var key = p.cat + '|' + p.client + '|' + (p.site || '') + '|' + (p.group || '');
     if (!groups[key]) {
       groups[key] = { cat: p.cat, client: clientOf(p), site: p.site, items: [] };
       order.push(key);
