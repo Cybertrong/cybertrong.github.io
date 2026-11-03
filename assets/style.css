@@ -1070,3 +1070,8 @@ html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
 .site-header.compact .burger { transform: scale(.8); }
 .site-header.compact { box-shadow: 0 1px 0 rgba(0, 0, 0, .06); }
 @media (max-width: 600px) { .site-header.compact .logo { font-size: 36px; } }
+
+/* Filtres : la catégorie qu'on est en train de regarder s'allume */
+.filters button { transition: color .4s ease, opacity .4s ease, border-color .4s ease; }
+.filters button.is-here { color: var(--red); opacity: 1; }
+.filters button.is-here sup { opacity: 1; }

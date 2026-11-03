@@ -153,6 +153,23 @@
   });
   if (location.hash) applyFilter(location.hash.slice(1), false);
 
+  // ── en vue « tout » : la catégorie de la section visible s'allume dans la barre ──
+  var spyTick = false;
+  function spy() {
+    spyTick = false;
+    var line = (bar ? bar.getBoundingClientRect().bottom : 0) + window.innerHeight * 0.25, current = null;
+    grid.querySelectorAll('.cat-section:not([hidden])').forEach(function (s) {
+      if (s.getBoundingClientRect().top <= line) current = s.dataset.cat;
+    });
+    var allView = !grid.classList.contains('single');
+    filters.querySelectorAll('button').forEach(function (x) {
+      x.classList.toggle('is-here', allView && x.dataset.cat === current);
+    });
+  }
+  window.addEventListener('scroll', function () { if (!spyTick) { spyTick = true; requestAnimationFrame(spy); } }, { passive: true });
+  filters.addEventListener('click', function () { setTimeout(spy, 300); });
+  spy();
+
 
   // ── apparition des rangées : gauche → droite, puis droite → gauche, en alternance ──
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
