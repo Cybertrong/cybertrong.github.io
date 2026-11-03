@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cybertrong.github.io/index-fr.html</loc>
-    <lastmod>2026-11-03</lastmod>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/index-fr.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://cybertrong.github.io/index-vi.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/index-fr.html"/>
-  </url>
-  <url>
     <loc>https://cybertrong.github.io/</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/index-fr.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/index-en.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://cybertrong.github.io/index-vi.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/index-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/"/>
+  </url>
+  <url>
+    <loc>https://cybertrong.github.io/index-en.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/index-en.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://cybertrong.github.io/index-vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/"/>
   </url>
   <url>
     <loc>https://cybertrong.github.io/index-vi.html</loc>
     <lastmod>2026-11-03</lastmod>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/index-fr.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cybertrong.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cybertrong.github.io/index-en.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://cybertrong.github.io/index-vi.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/index-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cybertrong.github.io/"/>
   </url>
   <url>
     <loc>https://cybertrong.github.io/portfolio-fr.html</loc>
