@@ -26,11 +26,11 @@ const PROJECTS = [
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-fonce.jpg", zoom: 2.8, focus: "26% 40%", bg: "#3F3F3F" },
 
   // ── print ─────────────────────────────────────────────
-  { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2026", img: "images/flyer-invitation.jpg" },
+  { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2018", img: "images/flyer-invitation.jpg" },
   { client: "Consentia", type: { en: "business card", fr: "carte d'affaires" }, field: { en: "Non-profit", fr: "OBNL" }, cat: "print", year: "2026", img: "images/carte-affaires-consentia.jpg" },
-  { client: "EauVie", type: { en: "invitation", fr: "invitation" }, field: { en: "Developer", fr: "Promoteur" }, cat: "print", year: "2026", img: "images/invitation-eauvie-blanc.jpg" },
-  { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "brochure", fr: "brochure" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "print", year: "2026", img: "images/brochure-epicerie.jpg" },
-  { client: "DXP", type: { en: "brochure", fr: "brochure" }, field: { en: "Management", fr: "Gestion" }, cat: "print", year: "2026", img: "images/brochure-dxp.jpg" },
+  { client: "EauVie", type: { en: "invitation", fr: "invitation" }, field: { en: "Developer", fr: "Promoteur" }, cat: "print", year: "2017", img: "images/invitation-eauvie-blanc.jpg" },
+  { client: "Fresh from the farm", clientFr: "En direct de la ferme", type: { en: "brochure", fr: "brochure" }, field: { en: "Distributor", fr: "Distributeur" }, cat: "print", year: "2015", img: "images/brochure-epicerie.jpg" },
+  { client: "DXP", type: { en: "brochure", fr: "brochure" }, field: { en: "Management", fr: "Gestion" }, cat: "print", year: "2019", img: "images/brochure-dxp.jpg" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/existence.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series poster", fr: "affiche de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/killing-jane.jpg?v=2", bg: "#FFFFFF" },
   { client: "Radio-Canada", type: { en: "series flyer", fr: "dépliant de série" }, field: { en: "Television series", fr: "Série télé" }, cat: "print", year: "2023", img: "images/poster/oli-drags.jpg", bg: "#FFFFFF" },
