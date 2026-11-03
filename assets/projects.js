@@ -41,6 +41,7 @@ const PROJECTS = [
   { client: "Québec Amérique", type: { en: "cover illustration", fr: "illustration de couverture" }, field: { en: "Publisher", fr: "Éditeur" }, cat: "editorial", year: "2026", img: "images/illustration-livre-blanc.jpg" },
   { client: "Épicerie les récoltes", type: { en: "poster", fr: "affiche" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "editorial", year: "2021", img: "images/Affiche/affiches-regions.jpg?v=hr3" },
   { client: "Convatec", type: { en: "product catalog", fr: "catalogue de produits" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2025–2026", img: "images/Catalogue/catalogue-convatec.jpg", zoom: 2, focus: "4% 40%" },
+  { client: "Convatec", type: { en: "information sheet", fr: "fiche d'information" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "editorial", year: "2026", img: "images/convatec-wound-hygiene.jpg", zoom: 2.4, focus: "30% 45%" },
 
   // ── web : aperçu du site en direct ────────────────────
   { client: "Fly", type: { en: "website", fr: "site web" }, field: { en: "Application", fr: "Application" }, cat: "web", year: "2017", site: "images/WEB/fly/index.html" },
