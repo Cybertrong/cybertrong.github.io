@@ -98,7 +98,7 @@
       var zoom = ' is-zoom';
       var imgStyle = ' style="--zoom:' + (first.zoom || (isLogo ? 3.4 : 2.6)) + ';--focus:' + esc(first.focus || '50% 50%') + '"';
       media = '<button type="button" class="work-media' + zoom + flat + '" data-g="' + idx + '" aria-label="' + esc(g.client + ', ' + types) + '">' +
-        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type)) + '" loading="lazy"' + imgStyle + '><span class="frame-line" aria-hidden="true"></span>' +
+        '<img src="' + esc(first.img) + '" alt="' + esc(g.client + ' — ' + tr(first.type) + ' (' + tr(first.field) + '), linh b.') + '" loading="lazy"' + imgStyle + '><span class="frame-line" aria-hidden="true"></span>' +
         (n > 1 ? '<span class="count">' + n + ' ' + esc(T.visuals) + '</span>' : '') + '</button>';
     } else {
       media = '<div class="work-media"><div class="placeholder"><strong>' + esc(g.client) + '</strong><span>' + esc(T.soon) + '</span></div></div>';
@@ -245,7 +245,7 @@
     void stage.offsetWidth;
     if (dir) stage.classList.add(dir > 0 ? 'slide-r' : 'slide-l');
     lbImg.src = p.img;
-    lbImg.alt = g.client + ' — ' + tr(p.type);
+    lbImg.alt = g.client + ' — ' + tr(p.type) + ' (' + tr(p.field) + '), linh b.';
     lbTitle.textContent = g.client;
     lbSub.textContent = tr(p.type) + ' · ' + tr(p.field) + ' · ' + p.year;
     var link = p.link || g.items.filter(function (x) { return x.link; }).map(function (x) { return x.link; })[0];
