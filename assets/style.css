@@ -1203,3 +1203,4 @@ html.intro.intro-done .lockup-name { transition: opacity 1.8s cubic-bezier(.4, 0
 .cat-grid .tile-filler .work-media { background: #fff; }
 .cat-grid .tile-filler .work-media { display: grid; place-items: center; }
 .filler-txt { font: 400 clamp(30px, 2.8vw, 42px)/1 var(--script); color: var(--blue); opacity: .45; transform: rotate(-4deg); }
+@media (max-width: 600px) { .cat-grid .tile-filler { display: none !important; } }
