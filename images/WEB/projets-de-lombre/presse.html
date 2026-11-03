@@ -2,12 +2,27 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dossier de presse · Marie-Pascale Bélanger</title>
-<meta name="description" content="Dossier de presse d’A comme Animal : prix, critiques et entretien.">
+<title>Dossier de presse · A comme Animal | Marie-Pascale Bélanger</title>
+<meta name="description" content="Critiques, prix et entretien autour d’A comme Animal, spectacle de marionnettes de Marie-Pascale Bélanger, Coup de cœur du Jury Jeunes au Festival mondial des théâtres de marionnettes 2025.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://mariepascalebelanger.com/presse.html">
+<link rel="alternate" hreflang="fr" href="https://mariepascalebelanger.com/presse.html">
+<link rel="alternate" hreflang="en" href="https://mariepascalebelanger.com/press.html">
+<link rel="alternate" hreflang="x-default" href="https://mariepascalebelanger.com/presse.html">
+<meta name="author" content="Marie-Pascale Bélanger">
+<meta name="theme-color" content="#f3ca20">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marie-Pascale Bélanger">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:locale:alternate" content="en_CA">
+<meta property="og:url" content="https://mariepascalebelanger.com/presse.html">
+<meta property="og:title" content="Dossier de presse · A comme Animal | Marie-Pascale Bélanger">
+<meta property="og:description" content="Critiques, prix et entretien autour d’A comme Animal, spectacle de marionnettes de Marie-Pascale Bélanger, Coup de cœur du Jury Jeunes au Festival mondial des théâtres de marionnettes 2025.">
+<meta property="og:image" content="https://mariepascalebelanger.com/images/a-comme-animal-cage.jpg">
+<meta property="og:image:alt" content="A comme Animal, Marie-Pascale Bélanger">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500&family=League+Gothic&display=swap">
 <style>
@@ -364,6 +379,36 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 @keyframes rise{to{transform:none}}
 @keyframes glow{0%,100%{text-shadow:0 0 0 rgba(255,246,201,0)}45%{text-shadow:0 0 28px rgba(255,246,201,.9),0 0 2px rgba(255,255,255,.8)}}
 @media (prefers-reduced-motion:reduce){.hero>img,.hero h1 .pre{animation:none}.hero h1 .ch{animation:none;transform:none}}
+/* Parallaxe : les photos et le grand titre défilent plus lentement que la page */
+.px-img{scale:1.2;will-change:translate}
+.band-img,.split .photo{overflow:hidden}
+.px-txt{will-change:translate,opacity}
+/* Bandeau cookies discret */
+.cc-open{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
+.cc-open:hover{color:var(--yellow)}
+[hidden]{display:none!important}
+.cc{position:fixed;z-index:45;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(430px,calc(100% - 32px));background:var(--bar);color:var(--bar-ink);padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;font-size:13px;line-height:1.5;font-weight:400;box-shadow:0 10px 30px rgba(0,0,0,.28);animation:cc-in .6s 1.2s cubic-bezier(.16,1,.3,1) both}
+.cc p{margin:0;flex:1 1 230px}
+.cc a{color:inherit;text-underline-offset:3px}
+.cc a:hover{color:var(--yellow)}
+.cc-btns{display:flex;gap:8px;margin-left:auto}
+.cc button{font:inherit;font-family:var(--heavy);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
+.cc button:hover{border-color:var(--bar-ink)}
+.cc #cc-yes{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+.cc #cc-yes:hover{filter:brightness(1.08)}
+@keyframes cc-in{from{opacity:0;transform:translateY(20px)}}
+@media (prefers-reduced-motion:reduce){.cc{animation:none}}
+/* Bouton « haut de page » flottant */
+.totop{position:fixed;z-index:44;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;text-decoration:none;box-shadow:0 0 0 2px var(--ink),0 6px 18px rgba(0,0,0,.25);opacity:0;transform:translateY(16px) scale(.8);pointer-events:none;transition:opacity .3s,transform .35s cubic-bezier(.34,1.56,.64,1),bottom .3s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop.show:hover{transform:translateY(-3px)}
+.totop svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.totop:hover svg{animation:bob .55s ease-in-out infinite alternate}
+.totop:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@keyframes bob{to{transform:translateY(-3px)}}
+@media (max-width:520px){.totop{width:46px;height:46px}.cc:not([hidden]) ~ .totop{bottom:calc(200px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){.totop{transition:opacity .2s}.totop:hover svg{animation:none}}
+.tr-note{margin:0;font-size:13px;font-style:italic;color:var(--muted)}
 /* Tablette */
 @media (max-width:900px){
   .stag{display:flex;flex-direction:column;align-items:flex-start}
@@ -428,7 +473,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="plx.css?v=1">
 </head>
 <body>
 <header class="site">
@@ -454,8 +498,6 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
       <li style="--i:6"><a href="index.html#contact" data-nav="contact">Contact</a></li>
     </ul>
     <ul class="side">
-      <li style="--i:8"><a href="presse.html">Dossier de presse</a></li>
-      <li style="--i:10"><a href="index.html#contact">Nous joindre</a></li>
       <li style="--i:11"><div class="lang" role="group" aria-label="Langue"><a href="presse.html" aria-current="true" lang="fr">FR</a><span aria-hidden="true">/</span><a href="press.html" lang="en" hreflang="en">EN</a></div></li>
     </ul>
   </nav>
@@ -473,13 +515,13 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
   </section>
 
   <section class="split" aria-label="Critique de Petr Broulík">
-    <div class="pad critic first-mobile"><h2 class="bigword">Petr<br>Broulík</h2><p class="meta">Magazine Patriot · Ostrava · 4 octobre 2025</p></div>
+    <div class="pad critic first-mobile"><h2 class="bigword">Petr<br>Broulík</h2><p class="meta">Magazine Patriot · Ostrava · 4 octobre 2025</p><p class="tr-note">Citations traduites de l’anglais</p></div>
     <div class="pad y">
       <div class="quote-list">
-        <blockquote lang="en" class="big">“I was blown away by the craftsmanship of the production.”</blockquote>
-        <blockquote lang="en">“I enjoyed seeing a production that seemed so convincingly dreamlike while I was actually awake.”</blockquote>
-        <blockquote lang="en">“The dream-like performance, full of wit and ingenuity, seemed to be constantly looking for ways to surprise us and remind us that we are in a world of fantasy.”</blockquote>
-        <blockquote lang="en">“A spectacle in which puppeteers skillfully blurred the boundaries between the human body and the puppet.”</blockquote>
+        <blockquote class="big">« J’ai été soufflé par le savoir-faire de cette production. »</blockquote>
+        <blockquote>« J’ai aimé voir une production qui semblait si parfaitement onirique alors que j’étais bien éveillé. »</blockquote>
+        <blockquote>« Ce spectacle onirique, plein d’esprit et d’ingéniosité, semblait sans cesse chercher à nous surprendre et à nous rappeler que nous sommes dans un monde de fantaisie. »</blockquote>
+        <blockquote>« Un spectacle dans lequel les marionnettistes brouillent habilement les frontières entre le corps humain et la marionnette. »</blockquote>
       </div>
     </div>
   </section>
@@ -518,12 +560,27 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
       <span>© 2026 Marie-Pascale Bélanger</span>
       <ul>
         <li><a href="cookies.html">Politique en matière de cookies</a></li>
-        <li><a href="#haut" id="top">Haut de page ↑</a></li>
+        <li><button type="button" class="cc-open" id="cc-open">Préférences cookies</button></li>
       </ul>
     </div>
   </div>
 </footer>
+<div class="cc" id="cc" role="region" aria-label="Cookies" hidden>
+  <p>Ce site n’utilise aucun cookie publicitaire. Seule la vidéo YouTube peut en déposer, si vous la lancez. <a href="cookies.html">En savoir plus</a></p>
+  <div class="cc-btns"><button type="button" id="cc-no">Refuser</button><button type="button" id="cc-yes">Accepter</button></div>
+</div>
+<a class="totop" id="totop" href="#haut" aria-label="Haut de page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 <script>
+(function(){
+  var k='mpb-consent',v=null;try{v=localStorage.getItem(k)}catch(e){}
+  window.mpbConsent=v;var cc=document.getElementById('cc');if(!cc)return;
+  if(!v)cc.hidden=false;
+  function set(x){try{localStorage.setItem(k,x)}catch(e){}window.mpbConsent=x;cc.hidden=true}
+  document.getElementById('cc-yes').addEventListener('click',function(){set('yes')});
+  document.getElementById('cc-no').addEventListener('click',function(){set('no')});
+  var op=document.getElementById('cc-open');
+  if(op)op.addEventListener('click',function(){try{localStorage.removeItem(k)}catch(e){}window.mpbConsent=null;cc.hidden=false;cc.style.animation='none';document.getElementById('cc-yes').focus()});
+})();
 var nav=document.getElementById('nav'),burger=document.getElementById('burger'),closeB=document.getElementById('close');
 function setMenu(o){nav.classList.toggle('open',o);burger.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';if(o)closeB.focus();}
 burger.addEventListener('click',function(){setMenu(true)});
@@ -531,8 +588,39 @@ closeB.addEventListener('click',function(){setMenu(false);burger.focus()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);burger.focus()}});
 nav.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
 document.querySelectorAll('a[href="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault()})});
-document.getElementById('top').addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})});
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var items=[];
+  function add(sel,speed,cls,fade){document.querySelectorAll(sel).forEach(function(el){el.classList.add(cls);items.push({el:el,host:el.closest('section')||el.parentElement,speed:speed,fade:fade})})}
+  add('.hero>img',0.18,'px-img');
+  add('.pagehead>img',0.16,'px-img');
+  add('.band-img img',0.12,'px-img');
+  add('.split .photo img',0.12,'px-img');
+  add('#h-home',0.35,'px-txt',true);
+  add('.pagehead .stack',0.25,'px-txt',true);
+  var ticking=false;
+  function tick(){
+    ticking=false;var vh=window.innerHeight;
+    items.forEach(function(it){
+      var r=it.host.getBoundingClientRect();
+      if(!r.height||r.bottom<-200||r.top>vh+200)return;
+      var c=r.top+r.height/2-vh/2;
+      it.el.style.translate='0 '+(-c*it.speed).toFixed(1)+'px';
+      if(it.fade){var p=Math.max(0,-r.top)/r.height;it.el.style.opacity=Math.max(0,1-p*1.4).toFixed(3)}
+    });
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(tick)}}
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  window.addEventListener('hashchange',function(){setTimeout(req,60)});
+  req();
+})();
+(function(){
+  var b=document.getElementById('totop');if(!b)return;
+  function upd(){b.classList.toggle('show',window.scrollY>400)}
+  window.addEventListener('scroll',upd,{passive:true});upd();
+  b.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+})();
 </script>
-<script src="plx.js?v=1"></script>
 </body>
 </html>
