@@ -1187,3 +1187,14 @@ html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
 /* fondu enchaîné doux entre les carrés et le vrai « Linh » */
 html.intro.intro-done .lockup-name { transition: opacity 1.8s cubic-bezier(.4, 0, .2, 1); }
 .intro-canvas.fade { opacity: 0; filter: blur(3px); transition: opacity 1.8s cubic-bezier(.4, 0, .2, 1) .15s, filter 1.8s ease .15s; }
+
+/* Carte de survol : description qui se déploie en douceur */
+.tc-desc { display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows .8s cubic-bezier(.16, 1, .3, 1), opacity .5s ease, margin .8s cubic-bezier(.16, 1, .3, 1); }
+.tc-desc > div { overflow: hidden; min-height: 0; }
+.tc-desc p { margin: 0; font: 400 14px/1.55 var(--font); color: inherit; opacity: .85; }
+.tile:hover .tc-desc, .tile:focus-within .tc-desc {
+  grid-template-rows: 1fr; opacity: 1; margin: -6px 0 16px;
+  transition: grid-template-rows .9s cubic-bezier(.16, 1, .3, 1) .25s, opacity .6s ease .45s, margin .9s cubic-bezier(.16, 1, .3, 1) .25s;
+}
+@media (hover: none) { .tc-desc { display: none; } }

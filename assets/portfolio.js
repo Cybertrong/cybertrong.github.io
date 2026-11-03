@@ -112,6 +112,7 @@
     return '<article class="work tile">' + media +
       '<div class="tile-card"><h3 class="tc-title">' + esc(g.client) + '</h3>' +
       '<p class="tc-sub">' + esc(sub) + '</p>' +
+      (first.desc ? '<div class="tc-desc"><div><p>' + esc(lang === 'vi' ? (first.desc.vi || first.desc.en) : first.desc[lang]) + '</p></div></div>' : '') +
       '<div class="tc-foot"><span class="tc-year">' + esc(years) + '</span>' + more + '</div></div>' +
       '</article>';
   }
