@@ -21,7 +21,7 @@ const PROJECTS = [
   { client: "Épicerie les récoltes", type: { en: "logo", fr: "logo" }, field: { en: "Grocery", fr: "Épicerie" }, cat: "branding", year: "2026", img: "images/LOGO/recoltes-noir.jpg", zoom: 2.6, focus: "60% 58%", bg: "#000000" },
   { client: "Fly", type: { en: "logo", fr: "logo" }, field: { en: "Application", fr: "Application" }, cat: "branding", year: "2017", img: "images/LOGO/fly-rouge.jpg?v=hd1", zoom: 2.4, focus: "30% 45%", bg: "#ED1B24" },
   { client: "Girouette", type: { en: "logo", fr: "logo" }, field: { en: "Ice cream restaurant", fr: "Crèmerie" }, cat: "branding", year: "2026", img: "images/LOGO/girouette-or.jpg", zoom: 3, focus: "17% 47%", bg: "#C09F40" },
-  { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2023", img: "images/LOGO/ancetre.jpg", zoom: 2.6, focus: "50% 42%", bg: "#FFFFFF" },
+  { client: "Les Ancêtres", type: { en: "logo", fr: "logo" }, field: { en: "Rugby club", fr: "Club de rugby" }, cat: "branding", year: "2023", img: "images/LOGO/ancetres-blason.jpg", zoom: 2.6, focus: "50% 45%", bg: "#0E2340" },
   { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2024", img: "images/LOGO/panza-vert.jpg", zoom: 2.6, focus: "24% 50%", bg: "#D3E7D4" },
   { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-fonce.jpg", zoom: 2.8, focus: "26% 40%", bg: "#3F3F3F" },
 
