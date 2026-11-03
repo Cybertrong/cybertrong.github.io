@@ -3058,3 +3058,8 @@ input {width: 250px;}
 #epi p, #text_gene p, #cours p, #bistro p, #qec .text p, #contact p, #coordonnees p, #tel p { font-size: 1.056em; line-height: 1.55; }
 /* textes blancs aussi : +20 % */
 #text_rachel p, .containerdonnee .texte_expliq p { font-size: 1.056em; line-height: 1.6; }
+
+/* Accueil : photos du diaporama sans zoom, plein écran */
+.slideshow-container { width: 100%; height: 100vh; height: 100svh; left: 0; top: 0; }
+.mySlides { height: 100%; }
+.mySlides img { width: 100% !important; height: 100% !important; object-fit: cover; object-position: center 40%; transform: none !important; }
