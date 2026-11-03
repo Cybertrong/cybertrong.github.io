@@ -1183,3 +1183,4 @@ html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
 .site-header .logo::after { font: 400 34px/1 var(--script); letter-spacing: 0; text-transform: none; }
 .site-header.compact .logo::after { opacity: 1; transform: rotate(-4deg); }
 @media (max-width: 600px) { .site-header.compact .logo::after { font-size: 28px; } }
+.site-header.compact .logo::after { transform: none; }
