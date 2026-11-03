@@ -1055,3 +1055,8 @@ a.tc-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 .lb-wave.go { animation-duration: .5s; }
 .lightbox.open { animation-duration: .5s; }
 .lightbox.open .lightbox-img:not(.slide-r):not(.slide-l) img { animation-delay: .26s; animation-duration: .55s; }
+
+/* Accueil : « Linh » formé par des carrés venus des bords (voir site.js) */
+html.intro .lockup-name { opacity: 0; }
+html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
+.intro-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 5; transition: opacity .6s ease; }

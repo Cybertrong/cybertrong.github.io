@@ -223,3 +223,99 @@ window.LinhParallax = (function () {
     if (['ArrowDown', 'PageDown', ' ', 'End'].indexOf(e.key) >= 0) trigger();
   });
 })();
+
+// ── accueil : des dizaines de carrés arrivent des bords de l'écran et forment « Linh » ──
+(function () {
+  var root = document.documentElement;
+  var name = document.querySelector('.lockup-name');
+  if (!name || !root.classList.contains('intro')) return;
+  var done = false;
+  function finish() { if (done) return; done = true; root.classList.add('intro-done'); }
+  setTimeout(finish, 6000);   // filet de sécurité
+
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+    requestAnimationFrame(start);
+  });
+
+  function start() {
+    var cs = getComputedStyle(name);
+    var fs = parseFloat(cs.fontSize);
+    var text = name.textContent.trim();
+    var r = name.getBoundingClientRect();
+    if (!r.width) { finish(); return; }
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var font = (cs.fontStyle || 'normal') + ' ' + (cs.fontWeight || 400) + ' ' + fs + 'px ' + cs.fontFamily;
+    var angle = -6 * Math.PI / 180;
+    var m = new DOMMatrix(cs.transform === 'none' ? undefined : cs.transform);
+    if (cs.transform && cs.transform !== 'none') angle = Math.atan2(m.b, m.a);
+
+    // 1. le mot dessiné en cachette, puis découpé en petits carrés
+    var off = document.createElement('canvas');
+    off.width = vw; off.height = vh;
+    var o = off.getContext('2d');
+    o.font = font; o.textAlign = 'center'; o.textBaseline = 'alphabetic';
+    var mt = o.measureText(text);
+    var asc = mt.fontBoundingBoxAscent || fs * .8, desc = mt.fontBoundingBoxDescent || fs * .25;
+    o.translate(cx, cy); o.rotate(angle);
+    o.fillStyle = '#000';
+    o.fillText(text, 0, (asc - desc) / 2);
+    var cell = Math.max(5, Math.round(fs / 34));
+    var data = o.getImageData(0, 0, vw, vh).data;
+    var pts = [];
+    for (var y = Math.floor(cell / 2); y < vh; y += cell) {
+      for (var x = Math.floor(cell / 2); x < vw; x += cell) {
+        if (data[(y * vw + x) * 4 + 3] > 110) pts.push({ tx: x - cell / 2, ty: y - cell / 2 });
+      }
+    }
+    if (!pts.length) { finish(); return; }
+
+    // 2. point de départ : un bord de l'écran au hasard
+    pts.forEach(function (p) {
+      var side = Math.floor(Math.random() * 4), pad = 60;
+      if (side === 0) { p.sx = Math.random() * vw; p.sy = -pad - Math.random() * 200; }
+      else if (side === 1) { p.sx = vw + pad + Math.random() * 200; p.sy = Math.random() * vh; }
+      else if (side === 2) { p.sx = Math.random() * vw; p.sy = vh + pad + Math.random() * 200; }
+      else { p.sx = -pad - Math.random() * 200; p.sy = Math.random() * vh; }
+      p.rot = (Math.random() - .5) * Math.PI * 3;
+      p.delay = Math.random() * 650;
+      p.dur = 1100 + Math.random() * 900;
+      p.size = cell * (1.4 + Math.random() * 1.6);
+    });
+
+    var cv = document.createElement('canvas');
+    cv.className = 'intro-canvas'; cv.setAttribute('aria-hidden', 'true');
+    cv.width = vw * dpr; cv.height = vh * dpr;
+    document.body.appendChild(cv);
+    var c = cv.getContext('2d'); c.scale(dpr, dpr);
+    var color = cs.color;
+    var t0 = performance.now(), end = 0;
+    pts.forEach(function (p) { end = Math.max(end, p.delay + p.dur); });
+    function ease(t) { return 1 - Math.pow(1 - t, 4); }
+
+    function frame(now) {
+      var el = now - t0;
+      c.clearRect(0, 0, vw, vh);
+      c.fillStyle = color;
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i], t = Math.min(1, Math.max(0, (el - p.delay) / p.dur));
+        if (t <= 0) continue;
+        var e = ease(t);
+        var x = p.sx + (p.tx - p.sx) * e, y = p.sy + (p.ty - p.sy) * e;
+        var s = p.size + (cell + .6 - p.size) * e;
+        var a = p.rot * (1 - e);
+        c.globalAlpha = Math.min(1, t * 3);
+        c.save(); c.translate(x + cell / 2, y + cell / 2); c.rotate(a + angle * e);
+        c.fillRect(-s / 2, -s / 2, s, s); c.restore();
+      }
+      c.globalAlpha = 1;
+      if (el < end) { requestAnimationFrame(frame); return; }
+      // 3. le vrai mot apparaît, les carrés s'effacent
+      finish();
+      cv.style.opacity = '0';
+      setTimeout(function () { cv.remove(); }, 700);
+    }
+    requestAnimationFrame(frame);
+  }
+})();
