@@ -303,7 +303,7 @@ window.LinhParallax = (function () {
     document.body.appendChild(cv);
     var c = cv.getContext('2d'); c.scale(dpr, dpr);
     var color = cs.color;
-    var t0 = performance.now(), end = 0;
+    var t0 = performance.now(), end = 0, fading = false;
     pts.forEach(function (p) { end = Math.max(end, p.delay + p.dur); });
     function ease(t) { return 1 - Math.pow(1 - t, 4); }
 
@@ -323,11 +323,14 @@ window.LinhParallax = (function () {
         c.fillRect(-s / 2, -s / 2, s, s); c.restore();
       }
       c.globalAlpha = 1;
-      if (el < end) { requestAnimationFrame(frame); return; }
-      // 3. le vrai mot apparaît, les carrés s'effacent
-      finish();
-      cv.style.opacity = '0';
-      setTimeout(function () { cv.remove(); }, 700);
+      // 3. fondu enchaîné : le vrai mot apparaît pendant que les derniers carrés se posent
+      if (!fading && el > end - 700) {
+        fading = true;
+        finish();
+        cv.classList.add('fade');
+        setTimeout(function () { cv.remove(); }, 2400);
+      }
+      if (el < end + 200) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
@@ -357,7 +360,7 @@ window.LinhParallax = (function () {
   var name = document.querySelector('.lockup-name'), title = document.querySelector('.lockup-title');
   if (!name || !title) return;
   function fit() {
-    if (title.classList.contains('is-msg')) return;
+    if (title.classList.contains('is-msg') || title.querySelector('.scr')) return;
     title.style.removeProperty('--fit-size');
     var lw = name.offsetWidth * .96, tw = title.scrollWidth;
     if (tw > lw && lw > 0) title.style.setProperty('--fit-size', (parseFloat(getComputedStyle(title).fontSize) * lw / tw).toFixed(1) + 'px');
@@ -368,5 +371,5 @@ window.LinhParallax = (function () {
   [400, 1200, 3500].forEach(function (t) { setTimeout(fit, t); });
   window.addEventListener('resize', fit);
   new MutationObserver(function () { if (!title.classList.contains('is-msg')) requestAnimationFrame(fit); })
-    .observe(title, { attributes: true, attributeFilter: ['class'] });
+    .observe(title, { attributes: true, attributeFilter: ['class'], childList: true });
 })();

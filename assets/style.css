@@ -1184,3 +1184,6 @@ html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
 .site-header.compact .logo::after { opacity: 1; transform: rotate(-4deg); }
 @media (max-width: 600px) { .site-header.compact .logo::after { font-size: 28px; } }
 .site-header.compact .logo::after { transform: none; }
+/* fondu enchaîné doux entre les carrés et le vrai « Linh » */
+html.intro.intro-done .lockup-name { transition: opacity 1.8s cubic-bezier(.4, 0, .2, 1); }
+.intro-canvas.fade { opacity: 0; filter: blur(3px); transition: opacity 1.8s cubic-bezier(.4, 0, .2, 1) .15s, filter 1.8s ease .15s; }
