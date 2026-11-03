@@ -30,7 +30,8 @@ const PROJECTS = [
     desc: { fr: "Mandat : moderniser le logo existant en intégrant le rugby et les valeurs d'origine française de ce club basé à Montréal.", en: "Brief: modernize the existing logo by bringing in rugby and the French-rooted values of this Montréal-based club.", vi: "Yêu cầu: hiện đại hóa logo hiện có, kết hợp môn bóng bầu dục và những giá trị gốc Pháp của câu lạc bộ có trụ sở tại Montréal này." } },
   { client: "Panza", type: { en: "logo", fr: "logo" }, field: { en: "Software", fr: "Logiciel" }, cat: "branding", year: "2024", img: "images/LOGO/panza-vert.jpg", zoom: 2.6, focus: "24% 50%", bg: "#D3E7D4",
     desc: { fr: "Logiciel de paiement pour petits commerces. Mandat : afficher un côté à la fois complexe et fluide.", en: "Payment software for small businesses. Brief: convey something both complex and fluid.", vi: "Phần mềm thanh toán cho cửa hàng nhỏ. Yêu cầu: thể hiện vừa phức tạp vừa uyển chuyển." } },
-  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-fonce.jpg", zoom: 2.8, focus: "26% 40%", bg: "#3F3F3F" },
+  { client: "Sainte fumée", type: { en: "logo", fr: "logo" }, field: { en: "Designer", fr: "Designer" }, cat: "branding", year: "2026", img: "images/LOGO/sainte-fumee-fonce.jpg", zoom: 2.8, focus: "26% 40%", bg: "#3F3F3F",
+    desc: { fr: "Projet de fumoir en carton. Mandat : créer un logo parlant, à la fois rustique et chaleureux.", en: "Cardboard smoker project. Brief: create a telling logo, both rustic and warm.", vi: "Dự án lò hun khói bằng bìa cứng. Yêu cầu: tạo một logo biết kể chuyện, vừa mộc mạc vừa ấm áp." } },
 
   // ── print ─────────────────────────────────────────────
   { client: "Vinos y Tango", type: { en: "flyer", fr: "dépliant" }, field: { en: "Events", fr: "Événements" }, cat: "print", year: "2018", img: "images/flyer-invitation.jpg" },
