@@ -332,3 +332,22 @@ window.LinhParallax = (function () {
     requestAnimationFrame(frame);
   }
 })();
+
+// ── portfolio et à propos : flèche pour remonter en haut ──
+(function () {
+  if (!document.querySelector('.filter-bar, .about-body')) return;
+  var l = (document.documentElement.lang || 'fr').slice(0, 2);
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'to-top';
+  b.setAttribute('aria-label', { fr: 'Remonter en haut de la page', en: 'Back to top', vi: 'Lên đầu trang' }[l] || 'Back to top');
+  b.innerHTML = '<svg viewBox="0 0 16 40" aria-hidden="true"><path d="M8 39V2M1 9l7-7 7 7"/></svg>';
+  document.body.appendChild(b);
+  var t = false;
+  function upd() { t = false; b.classList.toggle('show', window.pageYOffset > window.innerHeight * .6); }
+  window.addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
+  upd();
+  b.addEventListener('click', function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+})();
