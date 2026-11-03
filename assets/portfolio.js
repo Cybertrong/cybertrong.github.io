@@ -24,13 +24,13 @@
   };
   function tr(o) { return lang === 'vi' ? (VI[o.en] || o.en) : o[lang]; }
   var T = {
-    en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', more: 'view', close: 'close',
+    en: { all: 'all', soon: 'original visual coming soon', visit: 'visit the site', more: 'view', upcoming: 'coming soon', close: 'close',
           prev: 'Previous', next: 'Next', visuals: 'visuals', project: 'project', projects: 'projects',
           cats: { branding: 'branding', print: 'print', editorial: 'editorial', web: 'web', digital: 'digital', design: 'presentation' } },
-    fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', more: 'voir', close: 'fermer',
+    fr: { all: 'tout', soon: 'visuel original à venir', visit: 'voir le site', more: 'voir', upcoming: 'à venir', close: 'fermer',
           prev: 'Précédent', next: 'Suivant', visuals: 'visuels', project: 'projet', projects: 'projets',
           cats: { branding: 'image de marque', print: 'imprimé', editorial: 'édition', web: 'web', digital: 'numérique', design: 'présentation' } },
-    vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', more: 'xem', close: 'đóng',
+    vi: { all: 'tất cả', soon: 'hình ảnh gốc sắp có', visit: 'xem trang web', more: 'xem', upcoming: 'sắp ra mắt', close: 'đóng',
           prev: 'Trước', next: 'Tiếp', visuals: 'hình', project: 'dự án', projects: 'dự án',
           cats: { branding: 'thương hiệu', print: 'in ấn', editorial: 'xuất bản', web: 'web', digital: 'kỹ thuật số', design: 'thuyết trình' } }
   }[lang];
@@ -211,7 +211,7 @@
     for (var i = 0; i < missing; i++) {
       var f = document.createElement('div');
       f.className = 'work tile tile-filler'; f.setAttribute('aria-hidden', 'true');
-      f.innerHTML = '<div class="work-media"><span class="frame-line"></span></div>';
+      f.innerHTML = '<div class="work-media"><span class="filler-txt">' + esc(T.upcoming) + '</span><span class="frame-line"></span></div>';
       g.appendChild(f);
     }
     });
