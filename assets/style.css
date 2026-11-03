@@ -1176,3 +1176,10 @@ html.intro.intro-done .lockup-name { opacity: 1; transition: opacity .6s ease; }
   margin-left: 18px; padding-left: 18px; border-left-color: currentColor;
 }
 @media (max-width: 600px) { .site-header.compact .logo::after { font-size: 11px; margin-left: 12px; padding-left: 12px; } }
+
+/* Accueil : « designer graphique » jamais plus large que « Linh » (taille ajustée dans site.js) */
+.lockup-title:not(.is-msg) { font-size: var(--fit-size, clamp(20px, 3.8vw, 56px)); }
+/* « portfolio » dans la barre compacte : même écriture que le grand titre */
+.site-header .logo::after { font: 400 34px/1 var(--script); letter-spacing: 0; text-transform: none; }
+.site-header.compact .logo::after { opacity: 1; transform: rotate(-4deg); }
+@media (max-width: 600px) { .site-header.compact .logo::after { font-size: 28px; } }

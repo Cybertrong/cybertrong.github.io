@@ -351,3 +351,22 @@ window.LinhParallax = (function () {
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   });
 })();
+
+// ── accueil : « designer graphique » ajusté à la largeur de « Linh » ──
+(function () {
+  var name = document.querySelector('.lockup-name'), title = document.querySelector('.lockup-title');
+  if (!name || !title) return;
+  function fit() {
+    if (title.classList.contains('is-msg')) return;
+    title.style.removeProperty('--fit-size');
+    var lw = name.offsetWidth * .96, tw = title.scrollWidth;
+    if (tw > lw && lw > 0) title.style.setProperty('--fit-size', (parseFloat(getComputedStyle(title).fontSize) * lw / tw).toFixed(1) + 'px');
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', fit);
+  window.addEventListener('load', fit);
+  [400, 1200, 3500].forEach(function (t) { setTimeout(fit, t); });
+  window.addEventListener('resize', fit);
+  new MutationObserver(function () { if (!title.classList.contains('is-msg')) requestAnimationFrame(fit); })
+    .observe(title, { attributes: true, attributeFilter: ['class'] });
+})();
