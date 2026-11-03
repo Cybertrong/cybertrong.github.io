@@ -220,7 +220,7 @@ window.LinhParallax = (function () {
       title.classList.remove('is-msg');
       if (burger) burger.classList.remove('nudge');
       scramble(original);
-    }, 5000);
+    }, 2200);
     if (showing) return;
     showing = true;
     title.classList.add('is-msg');
