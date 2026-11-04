@@ -318,7 +318,11 @@ window.LinhParallax = (function () {
         var x = p.sx + (p.tx - p.sx) * e, y = p.sy + (p.ty - p.sy) * e;
         var s = p.size + (cell + .6 - p.size) * e;
         var a = p.rot * (1 - e);
-        c.globalAlpha = Math.min(1, t * 3);
+        // une fois posé, le carré rapetisse et s'efface doucement : effet fondu
+        var u = Math.min(1, Math.max(0, (el - p.delay - p.dur) / 1100));
+        var us = u * u * (3 - 2 * u);
+        s *= 1 - .7 * us;
+        c.globalAlpha = Math.min(1, t * 3) * (1 - .55 * us);
         c.save(); c.translate(x + cell / 2, y + cell / 2); c.rotate(a + angle * e);
         c.fillRect(-s / 2, -s / 2, s, s); c.restore();
       }
@@ -330,7 +334,7 @@ window.LinhParallax = (function () {
         cv.classList.add('fade');
         setTimeout(function () { cv.remove(); }, 2400);
       }
-      if (el < end + 200) requestAnimationFrame(frame);
+      if (el < end + 1300) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
