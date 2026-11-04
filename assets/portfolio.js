@@ -113,7 +113,7 @@
       '<div class="tile-card"><h3 class="tc-title">' + esc(g.client) + '</h3>' +
       '<p class="tc-sub">' + esc(sub) + '</p>' +
       (first.desc ? '<div class="tc-desc"><div><p>' + esc(lang === 'vi' ? (first.desc.vi || first.desc.en) : first.desc[lang]) + '</p></div></div>' : '') +
-      '<div class="tc-foot"><span class="tc-year">' + esc(years) + '</span>' + more + '</div></div>' +
+      '<div class="tc-foot">' + more + '</div></div>' +
       '</article>';
   }
   grid.innerHTML = cats.map(function (c) {
@@ -282,7 +282,7 @@
     lbImg.src = p.img;
     lbImg.alt = g.client + ' — ' + tr(p.type) + ' (' + tr(p.field) + '), linh b.';
     lbTitle.textContent = g.client;
-    lbSub.textContent = tr(p.type) + ' · ' + tr(p.field) + ' · ' + p.year;
+    lbSub.textContent = tr(p.type) + ' · ' + tr(p.field);
     var link = p.link || g.items.filter(function (x) { return x.link; }).map(function (x) { return x.link; })[0];
     lbLink.hidden = !link;
     if (link) { lbLink.href = link.url; lbLink.textContent = (link.label || T.visit) + ' ↗'; }
