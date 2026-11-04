@@ -297,7 +297,8 @@ window.LinhParallax = (function () {
     o.translate(cx, cy); o.rotate(angle);
     o.fillStyle = '#000';
     o.fillText(text, 0, (asc - desc) / 2);
-    var cell = Math.max(3, Math.round(fs / 68));
+    var cell = Math.max(2, Math.round(fs / 96));
+    var dot = cell * .72;   // carré dessiné un peu plus petit que sa case : effet poussière
     var data = o.getImageData(0, 0, vw, vh).data;
     var pts = [];
     for (var y = Math.floor(cell / 2); y < vh; y += cell) {
@@ -317,7 +318,7 @@ window.LinhParallax = (function () {
       p.rot = (Math.random() - .5) * Math.PI * 3;
       p.delay = Math.random() * 650;
       p.dur = 1100 + Math.random() * 900;
-      p.size = cell * (1.4 + Math.random() * 1.6);
+      p.size = dot * (1.4 + Math.random() * 1.6);
     });
 
     var cv = document.createElement('canvas');
@@ -339,7 +340,7 @@ window.LinhParallax = (function () {
         if (t <= 0) continue;
         var e = ease(t);
         var x = p.sx + (p.tx - p.sx) * e, y = p.sy + (p.ty - p.sy) * e;
-        var s = p.size + (cell + .6 - p.size) * e;
+        var s = p.size + (dot - p.size) * e;
         var a = p.rot * (1 - e);
         // une fois posé, le carré rapetisse et s'efface doucement : effet fondu
         var u = Math.min(1, Math.max(0, (el - p.delay - p.dur) / 1100));
