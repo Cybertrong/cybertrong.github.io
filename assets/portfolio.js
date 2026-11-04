@@ -11,7 +11,7 @@
     'invitation': 'thiệp mời', 'brochure': 'brochure', 'series poster': 'áp phích phim', 'series flyer': 'tờ rơi phim',
     'series artwork': 'hình ảnh phim', 'game cover': 'bìa trò chơi', 'brochure cover': 'bìa brochure',
     'annual report': 'báo cáo thường niên', 'cover illustration': 'minh họa bìa sách', 'poster': 'áp phích',
-    'product catalog': 'catalogue sản phẩm', 'Horticulture': 'Làm vườn', 'information sheet': 'tờ thông tin', 'website': 'trang web', 'illustration': 'minh họa',
+    'product catalog': 'catalogue sản phẩm', 'tri-fold brochure': 'tờ gấp ba', 'Horticulture': 'Làm vườn', 'information sheet': 'tờ thông tin', 'website': 'trang web', 'illustration': 'minh họa',
     'social media': 'mạng xã hội', 'presentation': 'bài thuyết trình',
     'Music': 'Âm nhạc', 'Agriculture': 'Nông nghiệp', 'Pharmaceutical': 'Dược phẩm', 'Software': 'Phần mềm',
     'Designer': 'Nhà thiết kế', 'Application': 'Ứng dụng', 'Grocery': 'Cửa hàng thực phẩm',
