@@ -274,7 +274,7 @@ window.LinhParallax = (function () {
     o.translate(cx, cy); o.rotate(angle);
     o.fillStyle = '#000';
     o.fillText(text, 0, (asc - desc) / 2);
-    var cell = Math.max(5, Math.round(fs / 34));
+    var cell = Math.max(3, Math.round(fs / 68));
     var data = o.getImageData(0, 0, vw, vh).data;
     var pts = [];
     for (var y = Math.floor(cell / 2); y < vh; y += cell) {
