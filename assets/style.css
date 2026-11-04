@@ -1205,3 +1205,10 @@ html.intro.intro-done .lockup-name { transition: opacity 1.8s cubic-bezier(.4, 0
 .filler-txt { font: 400 clamp(30px, 2.8vw, 42px)/1 var(--script); color: var(--blue); opacity: .45; transform: rotate(-4deg); }
 @media (max-width: 600px) { .cat-grid .tile-filler { display: none !important; } }
 .tc-foot { justify-content: flex-end; }
+
+/* Clic sur un lien du menu : la bande de couleur balaie l'écran, puis la page suivante se dévoile */
+.menu.leaving::before { animation: sweep-in .5s cubic-bezier(.77, 0, .18, 1) forwards; }
+@keyframes sweep-in { from { transform: translateX(-101%); } to { transform: translateX(0); } }
+.page-sweep { position: fixed; inset: 0; z-index: 300; pointer-events: none; animation: sweep-out .6s cubic-bezier(.77, 0, .18, 1) .05s forwards; }
+@keyframes sweep-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
+@media (prefers-reduced-motion: reduce) { .page-sweep { display: none; } }

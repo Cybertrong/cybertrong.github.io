@@ -45,8 +45,27 @@
   menu.addEventListener('click', function (e) {
     var a = e.target.closest('a');
     if (!a) return;
-    if (a.getAttribute('aria-current') === 'page') { e.preventDefault(); setMenu(false); burger.focus(); }
+    if (a.getAttribute('aria-current') === 'page') { e.preventDefault(); setMenu(false); burger.focus(); return; }
+    // même balayage de couleur qu'à l'ouverture du menu, puis changement de page
+    var href = a.getAttribute('href');
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href) || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    var col = getComputedStyle(menu).getPropertyValue('--accent').trim() || getComputedStyle(menu).color;
+    try { sessionStorage.setItem('linh-sweep', col); } catch (err) {}
+    menu.classList.add('leaving');
+    setTimeout(function () { location.href = href; }, 520);
   });
+  // arrivée sur la nouvelle page : la bande de couleur termine son passage
+  var sweepCol = null;
+  try { sweepCol = sessionStorage.getItem('linh-sweep'); sessionStorage.removeItem('linh-sweep'); } catch (err) {}
+  if (sweepCol) {
+    var cover = document.createElement('div');
+    cover.className = 'page-sweep'; cover.style.background = sweepCol;
+    document.body.appendChild(cover);
+    cover.addEventListener('animationend', function () { cover.remove(); });
+  }
+  window.addEventListener('pageshow', function (ev) { if (ev.persisted) menu.classList.remove('leaving'); });
 })();
 
 // ── hauteur de l'en-tête (pour coller la barre des filtres dessous) ──
