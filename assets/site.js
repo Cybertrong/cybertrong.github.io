@@ -54,16 +54,20 @@
     var col = getComputedStyle(menu).getPropertyValue('--accent').trim() || getComputedStyle(menu).color;
     try { sessionStorage.setItem('linh-sweep', col); } catch (err) {}
     menu.classList.add('leaving');
-    setTimeout(function () { location.href = href; }, 520);
+    setTimeout(function () { location.href = href; }, 580);
   });
-  // arrivée sur la nouvelle page : la bande de couleur termine son passage
-  var sweepCol = null;
-  try { sweepCol = sessionStorage.getItem('linh-sweep'); sessionStorage.removeItem('linh-sweep'); } catch (err) {}
-  if (sweepCol) {
-    var cover = document.createElement('div');
-    cover.className = 'page-sweep'; cover.style.background = sweepCol;
-    document.body.appendChild(cover);
-    cover.addEventListener('animationend', function () { cover.remove(); });
+  // arrivée sur la nouvelle page : la bande de couleur (posée dès le <head>) attend que la page soit prête, puis s'en va
+  var root = document.documentElement;
+  if (root.classList.contains('sweeping')) {
+    try { sessionStorage.removeItem('linh-sweep'); } catch (err) {}
+    var go = function () {
+      if (root.classList.contains('sweep-out')) return;
+      requestAnimationFrame(function () { root.classList.add('sweep-out'); });
+      setTimeout(function () { root.classList.remove('sweeping', 'sweep-out'); }, 900);
+    };
+    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    ready.then(function () { setTimeout(go, 120); });
+    setTimeout(go, 1500);   // filet de sécurité
   }
   window.addEventListener('pageshow', function (ev) { if (ev.persisted) menu.classList.remove('leaving'); });
 })();

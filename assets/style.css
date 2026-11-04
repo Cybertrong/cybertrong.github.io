@@ -1207,8 +1207,14 @@ html.intro.intro-done .lockup-name { transition: opacity 1.8s cubic-bezier(.4, 0
 .tc-foot { justify-content: flex-end; }
 
 /* Clic sur un lien du menu : la bande de couleur balaie l'écran, puis la page suivante se dévoile */
-.menu.leaving::before { animation: sweep-in .5s cubic-bezier(.77, 0, .18, 1) forwards; }
+.menu.leaving::before { animation: sweep-in .55s cubic-bezier(.77, 0, .18, 1) forwards; }
 @keyframes sweep-in { from { transform: translateX(-101%); } to { transform: translateX(0); } }
-.page-sweep { position: fixed; inset: 0; z-index: 300; pointer-events: none; animation: sweep-out .6s cubic-bezier(.77, 0, .18, 1) .05s forwards; }
-@keyframes sweep-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
-@media (prefers-reduced-motion: reduce) { .page-sweep { display: none; } }
+html.sweeping::after {
+  content: ""; position: fixed; inset: 0; z-index: 300; pointer-events: none;
+  background: var(--sweep, #2A58A8);
+  transform: translateX(0);
+}
+html.sweeping.sweep-out::after { transform: translateX(101%); transition: transform .75s cubic-bezier(.77, 0, .18, 1); }
+@media (prefers-reduced-motion: reduce) { html.sweeping::after { display: none; } }
+/* les titres attendent que la bande soit passée pour s'animer */
+html.sweeping:not(.sweep-out) .split .ch, html.sweeping:not(.sweep-out) .anim-pre { animation-play-state: paused; }
