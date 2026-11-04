@@ -172,9 +172,9 @@ window.LinhParallax = (function () {
   if (!title) return;
   var lang = (document.documentElement.lang || 'en').slice(0, 2);
   var MSG = {
-    fr: 'clique sur le burger, ici tu ne vas nulle\u00a0part\u00a0:)',
-    en: 'click the burger, you’re going nowhere\u00a0here\u00a0:)',
-    vi: 'bấm vào nút menu, ở đây bạn chẳng đi đâu\u00a0cả\u00a0:)'
+    fr: 'clique sur le burger, en bas, tu ne vas nulle\u00a0part\u00a0:)',
+    en: 'click the burger, down there you’re going nowhere\u00a0:)',
+    vi: 'bấm vào nút menu, ở dưới bạn chẳng đi đâu\u00a0cả\u00a0:)'
   };
   var original = title.textContent.trim();
   var message = MSG[lang] || MSG.en;
