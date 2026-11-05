@@ -760,7 +760,7 @@ header.site .bar :focus-visible{outline-color:var(--ink)}
 (function(){
   var k='mpb-consent',v=null;try{v=localStorage.getItem(k)}catch(e){}
   window.mpbConsent=v;var cc=document.getElementById('cc');if(!cc)return;
-  if(!v)cc.hidden=false;
+  if(!v&&window.top===window.self)cc.hidden=false;
   function set(x){try{localStorage.setItem(k,x)}catch(e){}window.mpbConsent=x;cc.hidden=true}
   document.getElementById('cc-yes').addEventListener('click',function(){set('yes')});
   document.getElementById('cc-no').addEventListener('click',function(){set('no')});

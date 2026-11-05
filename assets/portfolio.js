@@ -2,6 +2,7 @@
 // Les visuels d'un même client dans une même catégorie sont regroupés en un seul projet,
 // présenté par catégorie. Un clic ouvre la visionneuse, avec flèches s'il y a plusieurs visuels.
 (function () {
+  var LITE = window.matchMedia && matchMedia('(max-width: 760px), (hover: none), (pointer: coarse)').matches;
   var docLang = document.documentElement.lang;
   var lang = docLang === 'fr' ? 'fr' : docLang === 'vi' ? 'vi' : 'en';
   // traductions vietnamiennes des types de projet et des domaines (à partir de l'anglais)
@@ -89,8 +90,14 @@
     var n = g.items.filter(function (p) { return p.img; }).length;
     var media;
     if (g.site) {
-      media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site + (g.site.indexOf('?') < 0 ? '?apercu=2' : '')) +
-        '" title="' + esc(g.client) + '" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div></div>';
+      // sur téléphone : capture fixe (cinq sites en direct font planter Safari iOS, qui recharge la page)
+      var shot = (g.site.match(/WEB\/([^\/]+)\//) || [])[1];
+      if (LITE && shot) {
+        media = '<div class="work-media is-site"><div class="site-preview"><img src="images/WEB/apercus/' + esc(shot) + '.jpg?v=1" alt="' + esc(g.client) + '" loading="lazy" decoding="async"></div></div>';
+      } else {
+        media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site + (g.site.indexOf('?') < 0 ? '?apercu=2' : '')) +
+          '" title="' + esc(g.client) + '" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div></div>';
+      }
     } else if (first.img) {
       var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
             // tous les projets : gros plan sur un détail ; l'image entière s'ouvre au clic
