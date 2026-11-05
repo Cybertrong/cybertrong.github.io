@@ -135,7 +135,7 @@
   var CLIENTS = [
     ['Analekta', 'analekta', 'https://www.analekta.com/'], ['Convatec', 'convatec', 'https://www.convatec.com/'], ['Développement Signature', 'signature', 'https://developpementsignature.com/en/'],
     ['Éditions de la Bagnole', 'bagnole', 'https://editionslabagnole.groupelivre.com/'], ['Green Mountain', 'green-mountain', 'https://www.greenmountaincoffee.com/'], ['Hussard', 'hussard'],
-    ['Les récoltes', 'recoltes', 'images/WEB/lesrecoltes/index.html'], ['Panza', 'panza', 'https://panza.ca/'], ['Tomaté', 'tomate', 'https://tomate.ca/'], ['Van Houtte', 'van-houtte', 'https://www.vanhoutte.com/']
+    ['Les récoltes', 'recoltes', 'images/WEB/lesrecoltes/index.html'], ['Panza', 'panza', 'https://panza.ca/'], ['Tomaté', 'tomate', 'https://tomate.ca/'], ['Keurig', 'keurig', 'https://www.keurig.ca/']
   ].sort(function (a, b) { return a[0].localeCompare(b[0], lang, { sensitivity: 'base' }); });
   var cTitle = { fr: 'clients', en: 'clients', vi: 'khách hàng' }[lang];
   grid.insertAdjacentHTML('afterend',

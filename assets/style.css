@@ -1319,3 +1319,4 @@ body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !impor
 .grid.is-empty { display: none; }
 body.pf-filtered .page-head { display: none; }
 .client-logos li a { position: absolute; inset: 0; display: block; }
+.client-logos .cl-keurig img { left: 14%; width: 72%; }
