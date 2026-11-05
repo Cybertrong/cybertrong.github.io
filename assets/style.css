@@ -1326,3 +1326,6 @@ body.pf-filtered .page-head { display: none; }
 .cat-section[data-cat="web"] .cat-grid > .work { flex: 0 0 calc((100% - 28px) / 3); min-width: 0; }
 @media (max-width: 1000px) { .cat-section[data-cat="web"] .cat-grid > .work { flex-basis: calc((100% - 14px) / 2); } }
 @media (max-width: 600px) { .cat-section[data-cat="web"] .cat-grid > .work { flex-basis: 100%; } }
+/* page courte (numérique, présentation…) : toujours assez de hauteur pour que la barre compacte ne fasse pas sauter la page */
+.pf-body { min-height: 100vh; }
+html, body { overscroll-behavior-y: none; }

@@ -87,7 +87,9 @@
   var compact = false, ticking = false;
   function onScroll() {
     ticking = false;
-    var c = window.pageYOffset > 40;
+    // marge d'hystérésis : évite que la barre hésite (et fasse tressauter la page) autour du seuil
+    var y = window.pageYOffset;
+    var c = compact ? y > 8 : y > 72;
     if (c === compact) return;
     compact = c; h.classList.toggle('compact', c);
     var t0 = performance.now();
