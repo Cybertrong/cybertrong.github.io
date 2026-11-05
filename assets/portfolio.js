@@ -260,7 +260,8 @@
   lbSub.parentNode.appendChild(lbLink);
   var lbClose = lb.querySelector('.lightbox-close');
   var stage = lb.querySelector('.lightbox-img');
-  lbClose.textContent = T.close;
+  lbClose.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8v8.4"/><path d="M7.2 6.2a8 8 0 1 0 9.6 0"/></svg>';
+  lbClose.setAttribute('aria-label', T.close);
 
   var prev = document.createElement('button');
   prev.type = 'button'; prev.className = 'lb-nav lb-prev'; prev.setAttribute('aria-label', T.prev);

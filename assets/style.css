@@ -1304,3 +1304,9 @@ body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !impor
 .client-logos .cl-signature img { left: 30%; width: 40%; }
 @media (max-width: 900px) { .client-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .client-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .client-logos li { padding: 0; } }
+
+/* Visionneuse : bouton fermer en icône « power », comme le menu */
+.lightbox-close { padding: 4px; align-self: center; line-height: 0; transition: color .15s; }
+.lightbox-close svg { width: 34px; height: 34px; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; fill: none; transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.lightbox-close:hover { color: var(--accent); }
+.lightbox-close:hover svg { transform: scale(1.12); }
