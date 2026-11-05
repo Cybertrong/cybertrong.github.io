@@ -1259,3 +1259,9 @@ body.theme-red .site-header .logo { --extrude: #2A58A8; }
 }
 body.home .lockup-name, .site-header .logo, .menu-brand { font-family: 'Fungky Grunge', 'Rye', serif; letter-spacing: 0; }
 .site-header .logo::after { font-family: var(--script); }
+
+/* Accueil : « Linh » qui éclate en particules au survol */
+.burst-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 5; opacity: 0; }
+.burst-canvas.on { opacity: 1; }
+body.home .lockup-name { cursor: default; }
+body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !important; }

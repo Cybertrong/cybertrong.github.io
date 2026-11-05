@@ -364,6 +364,140 @@ window.LinhParallax = (function () {
   }
 })();
 
+// ── accueil : au survol, « Linh » éclate en particules ; à la sortie de la souris, elles le reforment ──
+(function () {
+  var name = document.querySelector('body.home .lockup-name');
+  if (!name || !window.matchMedia) return;
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var root = document.documentElement;
+  var cv = null, c = null, pts = [], vw = 0, vh = 0, dpr = 1, cell = 3, cols = [];
+  var state = 'idle', raf = 0, cx = 0, cy = 0;
+
+  function ready() { return !root.classList.contains('intro') || root.classList.contains('intro-done'); }
+
+  function build() {
+    var cs = getComputedStyle(name);
+    var fs = parseFloat(cs.fontSize);
+    var r = name.getBoundingClientRect();
+    vw = window.innerWidth; vh = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cx = r.left + r.width / 2; cy = r.top + r.height / 2;
+    var off = document.createElement('canvas'); off.width = vw; off.height = vh;
+    var o = off.getContext('2d');
+    o.font = (cs.fontStyle || 'normal') + ' ' + (cs.fontWeight || 400) + ' ' + fs + 'px ' + cs.fontFamily;
+    o.textAlign = 'center'; o.textBaseline = 'alphabetic';
+    var text = name.textContent.trim();
+    var mt = o.measureText(text);
+    var asc = mt.fontBoundingBoxAscent || fs * .8, desc = mt.fontBoundingBoxDescent || fs * .25;
+    var by = cy + (asc - desc) / 2;
+    // le relief (même décalage que le text-shadow), puis la lettre par-dessus
+    var ex = cs.getPropertyValue('--extrude').trim();
+    var hasShadow = cs.textShadow && cs.textShadow !== 'none';
+    if (hasShadow && ex) {
+      o.fillStyle = ex;
+      for (var k = 12; k >= 1; k--) o.fillText(text, cx - .006 * k * fs, by + .006 * k * fs);
+    }
+    o.fillStyle = cs.color;
+    o.fillText(text, cx, by);
+    cell = Math.max(3, Math.round(fs / 70));
+    var d = o.getImageData(0, 0, vw, vh).data;
+    pts = []; cols = []; var map = {};
+    for (var y = Math.floor(cell / 2); y < vh; y += cell) {
+      for (var x = Math.floor(cell / 2); x < vw; x += cell) {
+        var i = (y * vw + x) * 4;
+        if (d[i + 3] < 120) continue;
+        var key = (d[i] >> 3) + ',' + (d[i + 1] >> 3) + ',' + (d[i + 2] >> 3);
+        if (!(key in map)) { map[key] = cols.length; cols.push({ c: 'rgb(' + d[i] + ',' + d[i + 1] + ',' + d[i + 2] + ')', n: 0 }); }
+        cols[map[key]].n++;
+        pts.push({ hx: x - cell / 2, hy: y - cell / 2, x: x - cell / 2, y: y - cell / 2, vx: 0, vy: 0, c: map[key],
+                   k: .035 + Math.random() * .05, sp: .6 + Math.random() * 1.1, r: 0, vr: 0 });
+      }
+    }
+    // couleurs d'anti-crénelage (rares) ramenées à la couleur la plus proche en nombre
+    if (!cv) {
+      cv = document.createElement('canvas');
+      cv.className = 'burst-canvas'; cv.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(cv);
+    }
+    cv.width = vw * dpr; cv.height = vh * dpr;
+    c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw() {
+    c.clearRect(0, 0, vw, vh);
+    for (var ci = 0; ci < cols.length; ci++) {
+      c.fillStyle = cols[ci].c;
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i]; if (p.c !== ci) continue;
+        var dx = p.x - p.hx, dy = p.y - p.hy;
+        var dist = Math.min(1, Math.sqrt(dx * dx + dy * dy) / 60);
+        var s = cell * (1.02 - .45 * dist);
+        if (p.r) {
+          c.save(); c.translate(p.x + cell / 2, p.y + cell / 2); c.rotate(p.r);
+          c.fillRect(-s / 2, -s / 2, s, s); c.restore();
+        } else c.fillRect(p.x + (cell - s) / 2, p.y + (cell - s) / 2, s, s);
+      }
+    }
+  }
+
+  function tick() {
+    var moving = false;
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (state === 'burst') {
+        p.vx *= .94; p.vy *= .94; p.vr *= .96;
+        p.vy += .02;                      // légère retombée
+        p.vx += (Math.random() - .5) * .08; p.vy += (Math.random() - .5) * .08;
+      } else {
+        p.vx = (p.vx + (p.hx - p.x) * p.k) * .8;
+        p.vy = (p.vy + (p.hy - p.y) * p.k) * .8;
+        p.vr *= .8; p.r *= .86;
+        if (Math.abs(p.hx - p.x) + Math.abs(p.hy - p.y) > .4 || Math.abs(p.vx) + Math.abs(p.vy) > .2) moving = true;
+        else { p.x = p.hx; p.y = p.hy; p.vx = p.vy = 0; p.r = 0; }
+      }
+      p.x += p.vx; p.y += p.vy; p.r += p.vr;
+    }
+    draw();
+    if (state === 'burst' || moving) raf = requestAnimationFrame(tick);
+    else {   // reformé : on rend la main au vrai mot
+      raf = 0; state = 'idle';
+      name.classList.remove('is-burst');
+      cv.classList.remove('on');
+    }
+  }
+
+  function burst() {
+    if (!ready()) return;
+    if (state === 'idle') { build(); }
+    state = 'burst';
+    pts.forEach(function (p) {
+      var dx = p.x + cell / 2 - cx, dy = p.y + cell / 2 - cy;
+      var len = Math.sqrt(dx * dx + dy * dy) || 1;
+      var f = (4 + Math.random() * 8) * p.sp;
+      p.vx += dx / len * f + (Math.random() - .5) * 6;
+      p.vy += dy / len * f + (Math.random() - .5) * 6 - 2;
+      p.vr = (Math.random() - .5) * .35;
+    });
+    cv.classList.add('on');
+    name.classList.add('is-burst');
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  function reform() {
+    if (state !== 'burst') return;
+    state = 'reform';
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  name.addEventListener('mouseenter', burst);
+  name.addEventListener('mouseleave', reform);
+  window.addEventListener('resize', function () {
+    if (state === 'idle') return;
+    cancelAnimationFrame(raf); raf = 0; state = 'idle';
+    name.classList.remove('is-burst'); if (cv) cv.classList.remove('on');
+  });
+})();
+
 // ── portfolio et à propos : flèche pour remonter en haut ──
 (function () {
   if (!document.querySelector('.filter-bar, .about-body')) return;
