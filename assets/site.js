@@ -283,7 +283,7 @@ window.LinhParallax = (function () {
     var vw = window.innerWidth, vh = window.innerHeight;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var font = (cs.fontStyle || 'normal') + ' ' + (cs.fontWeight || 400) + ' ' + fs + 'px ' + cs.fontFamily;
-    var angle = -6 * Math.PI / 180;
+    var angle = 0;
     var m = new DOMMatrix(cs.transform === 'none' ? undefined : cs.transform);
     if (cs.transform && cs.transform !== 'none') angle = Math.atan2(m.b, m.a);
 
