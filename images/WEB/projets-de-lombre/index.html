@@ -808,6 +808,7 @@ function show(){
     if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   setMenu(false);
+  if(window.top!==window.self)return; // en aperçu (iframe) : ne jamais faire défiler la page parente
   if(target){var t=document.getElementById(target);t&&t.scrollIntoView()}else window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',show);show();

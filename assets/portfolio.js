@@ -89,8 +89,8 @@
     var n = g.items.filter(function (p) { return p.img; }).length;
     var media;
     if (g.site) {
-      media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site) +
-        '" title="' + esc(g.client) + '" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div>';
+      media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site + (g.site.indexOf('?') < 0 ? '?apercu=2' : '')) +
+        '" title="' + esc(g.client) + '" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div></div>';
     } else if (first.img) {
       var flat = first.bg ? ' is-flat" style="background:' + esc(first.bg) : '';
             // tous les projets : gros plan sur un détail ; l'image entière s'ouvre au clic
