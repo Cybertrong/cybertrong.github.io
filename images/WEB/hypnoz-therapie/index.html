@@ -719,10 +719,6 @@
     .fk-mm-layer.l2 { transition-delay: .08s, .83s !important; }
     .fk-mm-layer.l1 { transition-delay: .16s, .91s !important; }
     .mobile-menu { overflow: hidden; background: var(--ink) !important; }
-    .mobile-menu::before {
-      content: ""; position: absolute; left: 50%; top: 50%; width: 160vmax; height: 160vmax; translate: -50% -50%;
-      background: repeating-radial-gradient(circle, rgba(255,255,255,.05) 0 2px, transparent 2px 46px);
-      animation: fk-pulse 6s ease-in-out infinite; pointer-events: none; }
     .mobile-menu a { position: relative; font-family: var(--fk-font) !important; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 500 !important;
       opacity: 0; transform: translateY(60px) rotate(-7deg) !important;
       transition: opacity .5s ease, transform .7s cubic-bezier(.34, 1.56, .64, 1), color .3s !important; }
