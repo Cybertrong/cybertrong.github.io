@@ -1329,3 +1329,4 @@ body.pf-filtered .page-head { display: none; }
 /* page courte (numérique, présentation…) : toujours assez de hauteur pour que la barre compacte ne fasse pas sauter la page */
 .pf-body { min-height: 100vh; }
 html, body { overscroll-behavior-y: none; }
+.site-header.is-fixed { position: fixed; left: 0; right: 0; top: 0; }

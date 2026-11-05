@@ -77,19 +77,26 @@
   var h = document.querySelector('.site-header');
   if (!h) return;
   function set() {
-    var sticky = getComputedStyle(h).position === 'sticky';
+    var sticky = /sticky|fixed/.test(getComputedStyle(h).position);
     document.documentElement.style.setProperty('--header-h', (sticky ? h.offsetHeight : 0) + 'px');
   }
   set();
   window.addEventListener('resize', set);
   // portfolio : la barre du haut rétrécit quand on descend
   if (!document.querySelector('.filter-bar')) return;
+  // l'en-tête passe en position fixe, avec une réserve de sa hauteur pleine :
+  // quand il rétrécit, rien ne bouge dans la page (plus de tressautement)
+  h.classList.add('is-fixed');
+  function reserve() { if (!h.classList.contains('compact')) document.body.style.paddingTop = h.offsetHeight + 'px'; }
+  reserve();
+  window.addEventListener('resize', reserve);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { reserve(); set(); });
   var compact = false, ticking = false;
   function onScroll() {
     ticking = false;
     // marge d'hystérésis : évite que la barre hésite (et fasse tressauter la page) autour du seuil
     var y = window.pageYOffset;
-    var c = compact ? y > 8 : y > 72;
+    var c = compact ? y > 8 : y > 40;
     if (c === compact) return;
     compact = c; h.classList.toggle('compact', c);
     var t0 = performance.now();
