@@ -134,7 +134,7 @@
   // ── clients : logos en gris, par ordre alphabétique, à la fin de la page ──
   var CLIENTS = [
     ['Analekta', 'analekta', 'https://www.analekta.com/'], ['Convatec', 'convatec', 'https://www.convatec.com/'], ['Développement Signature', 'signature', 'https://developpementsignature.com/en/'],
-    ['Éditions de la Bagnole', 'bagnole'], ['Green Mountain', 'green-mountain', 'https://www.greenmountaincoffee.com/'], ['Hussard', 'hussard'],
+    ['Éditions de la Bagnole', 'bagnole', 'https://editionslabagnole.groupelivre.com/'], ['Green Mountain', 'green-mountain', 'https://www.greenmountaincoffee.com/'], ['Hussard', 'hussard'],
     ['Les récoltes', 'recoltes', 'images/WEB/lesrecoltes/index.html'], ['Panza', 'panza'], ['Tomaté', 'tomate', 'https://tomate.ca/'], ['Van Houtte', 'van-houtte', 'https://www.vanhoutte.com/']
   ].sort(function (a, b) { return a[0].localeCompare(b[0], lang, { sensitivity: 'base' }); });
   var cTitle = { fr: 'clients', en: 'clients', vi: 'khách hàng' }[lang];
