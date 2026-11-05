@@ -1249,3 +1249,4 @@ body.theme-red .site-header .logo { --extrude: #2A58A8; }
 /* dans le menu : relief dans une teinte plus pâle de la couleur du menu */
 .menu-brand { --extrude: color-mix(in srgb, currentColor 35%, transparent); }
 .site-header .logo, .menu-brand { text-shadow: none; }
+.site-header .logo::after, .display, .display .ch { text-shadow: none !important; }
