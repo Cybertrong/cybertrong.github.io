@@ -1233,3 +1233,18 @@ html.sweeping:not(.sweep-out) .split .ch, html.sweeping:not(.sweep-out) .anim-pr
 html[data-palette="cream-red"] body.home .lockup-name,
 html[data-palette="red-cream"] body.home .lockup-name { --extrude: #2A58A8; }
 html[data-palette="cream-ochre"] body.home .lockup-name { --extrude: #D35035; }
+
+/* « Linh » western partout (en-tête, menu), comme sur l'accueil */
+.site-header .logo, .menu-brand {
+  font-family: 'Rye', 'Damion', serif; letter-spacing: .02em; line-height: 1;
+  --extrude: #D35035;
+  text-shadow: -0.006em 0.006em 0 var(--extrude), -0.012em 0.012em 0 var(--extrude), -0.018em 0.018em 0 var(--extrude), -0.024em 0.024em 0 var(--extrude), -0.03em 0.03em 0 var(--extrude), -0.036em 0.036em 0 var(--extrude), -0.042em 0.042em 0 var(--extrude), -0.048em 0.048em 0 var(--extrude), -0.054em 0.054em 0 var(--extrude), -0.06em 0.06em 0 var(--extrude), -0.066em 0.066em 0 var(--extrude), -0.072em 0.072em 0 var(--extrude);
+}
+.site-header .logo { font-size: 46px; }
+.site-header.compact .logo { font-size: 30px; }
+.menu-brand { font-size: 40px; }
+@media (max-width: 600px) { .site-header .logo { font-size: 36px; } .site-header.compact .logo { font-size: 26px; } .menu-brand { font-size: 32px; } }
+body.theme-red .site-header .logo { --extrude: #2A58A8; }
+.contact-page .site-header .logo { --extrude: #D35035; }
+/* dans le menu : relief dans une teinte plus pâle de la couleur du menu */
+.menu-brand { --extrude: color-mix(in srgb, currentColor 35%, transparent); }
