@@ -1313,3 +1313,7 @@ body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !impor
 /* clients : sans cases, avec de l'air en dessous */
 .client-logos, .client-logos li { border: 0 !important; }
 .clients-section { padding-bottom: clamp(120px, 18vh, 220px); }
+.clients-section[hidden] { display: none; }
+.clients-section.is-alone { margin-top: 0; }
+.clients-section.is-alone .cat-head { display: none; }
+.grid.is-empty { display: none; }

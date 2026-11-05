@@ -144,11 +144,14 @@
     '<ul class="client-logos">' + CLIENTS.map(function (c) {
       return '<li class="cl-' + c[1] + '"><img src="images/CLIENTS/' + c[1] + '.png?v=1" alt="' + esc(c[0]) + '" loading="lazy" decoding="async"></li>';
     }).join('') + '</ul></section>');
+  var clientsSec = grid.nextElementSibling;
+  filters.insertAdjacentHTML('beforeend', '<li><button type="button" data-cat="clients" aria-pressed="false">' +
+    esc(cTitle) + '<sup>' + CLIENTS.length + '</sup></button></li>');
 
   // ── filtrage ──
   var bar = document.querySelector('.filter-bar');
   function applyFilter(cat, scroll) {
-    if (cat !== 'all' && cats.indexOf(cat) < 0) cat = 'all';
+    if (cat !== 'all' && cat !== 'clients' && cats.indexOf(cat) < 0) cat = 'all';
     filters.querySelectorAll('button').forEach(function (x) {
       x.setAttribute('aria-pressed', x.dataset.cat === cat ? 'true' : 'false');
     });
@@ -158,6 +161,9 @@
         s.hidden = !(cat === 'all' || s.dataset.cat === cat);
       });
       grid.classList.toggle('single', cat !== 'all');
+      clientsSec.hidden = !(cat === 'all' || cat === 'clients');
+      clientsSec.classList.toggle('is-alone', cat === 'clients');
+      grid.classList.toggle('is-empty', cat === 'clients');
       if (scroll && bar) {
         var section = bar.closest('.pf-body') || bar.parentElement;
         var top = section.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(bar).top) || 0);
@@ -183,6 +189,7 @@
     grid.querySelectorAll('.cat-section:not([hidden])').forEach(function (s) {
       if (s.getBoundingClientRect().top <= line) current = s.dataset.cat;
     });
+    if (!clientsSec.hidden && clientsSec.getBoundingClientRect().top <= line) current = 'clients';
     var allView = !grid.classList.contains('single');
     filters.querySelectorAll('button').forEach(function (x) {
       x.classList.toggle('is-here', allView && x.dataset.cat === current);
