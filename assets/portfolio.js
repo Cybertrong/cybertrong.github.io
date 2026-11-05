@@ -164,7 +164,12 @@
       clientsSec.hidden = !(cat === 'all' || cat === 'clients');
       clientsSec.classList.toggle('is-alone', cat === 'clients');
       grid.classList.toggle('is-empty', cat === 'clients');
-      if (scroll && bar) {
+      // dès qu'on choisit un filtre, le grand « portfolio » disparaît : la page commence à la barre
+      if (scroll) {
+        document.body.classList.add('pf-filtered');
+        window.scrollTo(0, 0);
+        if (window.LinhParallax) window.LinhParallax.refresh();
+      } else if (scroll && bar) {
         var section = bar.closest('.pf-body') || bar.parentElement;
         var top = section.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(bar).top) || 0);
         if (window.scrollY > top + 1) window.scrollTo({ top: top, behavior: 'smooth' });

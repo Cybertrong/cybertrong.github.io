@@ -1317,3 +1317,4 @@ body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !impor
 .clients-section.is-alone { margin-top: 0; }
 .clients-section.is-alone .cat-head { display: none; }
 .grid.is-empty { display: none; }
+body.pf-filtered .page-head { display: none; }
