@@ -1250,3 +1250,12 @@ body.theme-red .site-header .logo { --extrude: #2A58A8; }
 .menu-brand { --extrude: color-mix(in srgb, currentColor 35%, transparent); }
 .site-header .logo, .menu-brand { text-shadow: none; }
 .site-header .logo::after, .display, .display .ch { text-shadow: none !important; }
+
+/* Essai : « Linh » en Fungky Grunge */
+@font-face {
+  font-family: 'Fungky Grunge';
+  src: url('fonts/fungky-grunge.woff2') format('woff2'), url('fonts/fungky-grunge.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: block;
+}
+body.home .lockup-name, .site-header .logo, .menu-brand { font-family: 'Fungky Grunge', 'Rye', serif; letter-spacing: 0; }
+.site-header .logo::after { font-family: var(--script); }
