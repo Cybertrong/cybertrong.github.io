@@ -1248,3 +1248,4 @@ body.theme-red .site-header .logo { --extrude: #2A58A8; }
 .contact-page .site-header .logo { --extrude: #D35035; }
 /* dans le menu : relief dans une teinte plus pâle de la couleur du menu */
 .menu-brand { --extrude: color-mix(in srgb, currentColor 35%, transparent); }
+.site-header .logo, .menu-brand { text-shadow: none; }
