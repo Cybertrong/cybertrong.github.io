@@ -1320,3 +1320,9 @@ body.home .lockup-name.is-burst { opacity: 0 !important; transition: none !impor
 body.pf-filtered .page-head { display: none; }
 .client-logos li a { position: absolute; inset: 0; display: block; }
 .client-logos .cl-keurig img { left: 14%; width: 72%; }
+
+/* Web : pas de case « à venir », la dernière rangée est centrée */
+.cat-section[data-cat="web"] .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+.cat-section[data-cat="web"] .cat-grid > .work { flex: 0 0 calc((100% - 28px) / 3); min-width: 0; }
+@media (max-width: 1000px) { .cat-section[data-cat="web"] .cat-grid > .work { flex-basis: calc((100% - 14px) / 2); } }
+@media (max-width: 600px) { .cat-section[data-cat="web"] .cat-grid > .work { flex-basis: 100%; } }
