@@ -1342,6 +1342,13 @@
   
     #form-success, #form-error { background: none !important; border: 0 !important; border-left: 2px solid var(--mn-g) !important; border-radius: 0 !important; padding: 6px 0 6px 18px !important; text-align: left !important; color: var(--mn-ink) !important; font-size: 1rem !important; margin-bottom: 26px !important; }
     #form-error { border-left-color: #b5533c !important; color: #8a3f2e !important; }
+  
+    /* barre blanche sous « Hypnoz » dans le formulaire plein écran */
+    .ct-bar { max-width: none !important; margin: 0 !important; padding: 18px max(40px, calc((100% - 1200px) / 2 + 40px)) !important; background: #fff !important; transition: box-shadow .4s ease; }
+    .ct-bar { z-index: 50 !important; }
+    #contact.ct-overlay .section-inner { position: relative; z-index: 1; }
+    .ct-overlay.scrolled .ct-bar { box-shadow: 0 1px 0 #e6e8e4, 0 10px 24px rgba(29,36,32,.04); }
+    @media (max-width: 760px) { .ct-bar { padding: 16px 24px !important; } }
   </style>
 </head>
 <body>
@@ -1868,6 +1875,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
   }
   document.querySelectorAll('a[href="#contact"]').forEach(function (a) { a.addEventListener('click', open); });
   closeBtn.addEventListener('click', close);
+  ov.addEventListener('scroll', function () { ov.classList.toggle('scrolled', ov.scrollTop > 10); }, { passive: true });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
   if (location.hash === '#contact') open();
 })();
