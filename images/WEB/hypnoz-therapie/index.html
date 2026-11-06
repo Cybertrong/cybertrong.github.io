@@ -1312,6 +1312,33 @@
       .mn-arch { display: block !important; right: 24px; width: 46px; height: 32px; border-width: 11px; }
       .mn-vert { display: none !important; }
     }
+  
+    /* ── Contact en pleine page, ouvert par « Prendre rendez-vous » / « Me contacter » ── */
+    #contact.ct-overlay { position: fixed; inset: 0; z-index: 1200; background: #fff; overflow-y: auto; overscroll-behavior: contain; visibility: hidden; opacity: 0; transition: opacity .6s ease, visibility 0s linear .6s; }
+    #contact.ct-overlay.open { visibility: visible; opacity: 1; transition: opacity .6s ease, visibility 0s; }
+    .ct-bar { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 18px 40px; background: rgba(255,255,255,.96); }
+    .ct-logo { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 2.3rem; line-height: 1; color: var(--mn-ink); letter-spacing: -.01em; }
+    .ct-close { background: none; border: 0; cursor: pointer; font-family: 'Jost', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mn-ink); padding: 8px 0; background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 100% 100%; background-size: 0 1px; transition: background-size .6s cubic-bezier(.22, 1, .36, 1); }
+    .ct-close:hover { background-size: 100% 1px; background-position: 0 100%; }
+    #contact.ct-overlay .section-inner { padding-top: 60px !important; padding-bottom: 80px !important; }
+    #contact .ct-title { font-size: clamp(3.2rem, 8vw, 7.4rem) !important; line-height: .95 !important; letter-spacing: -.045em !important; margin-bottom: 10px; opacity: 1 !important; translate: none !important; }
+    #contact .ct-title .mm-mask > span { transform: translateY(105%); transition: transform 1.1s cubic-bezier(.22, 1, .36, 1); }
+    #contact.open .ct-title .mm-mask:nth-child(1) > span { transform: none; transition-delay: .2s; }
+    #contact.open .ct-title .mm-mask:nth-child(2) > span { transform: none; transition-delay: .3s; }
+    #contact .divider { display: none !important; }
+    #contact .contact-info, #contact .contact-form { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1.2s cubic-bezier(.22, 1, .36, 1); translate: none !important; }
+    #contact.open .contact-info { opacity: 1; transform: none; transition-delay: .45s; }
+    #contact.open .contact-form { opacity: 1; transform: none; transition-delay: .55s; }
+    #contact .reveal { opacity: 1 !important; transform: none !important; }
+    #contact .contact-grid { margin-top: 50px !important; }
+    body.ct-lock { overflow: hidden; }
+    .ct-overlay .mn-arch-ct { position: fixed; right: 7%; bottom: 0; width: 72px; height: 50px; border: 18px solid var(--mn-g); border-bottom: 0; border-radius: 72px 72px 0 0; transform: translateY(100%); transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
+    .ct-overlay.open .mn-arch-ct { transform: none; transition-delay: .5s; }
+    @media (max-width: 760px) {
+      .ct-bar { padding: 16px 24px; } .ct-logo { font-size: 1.9rem; }
+      #contact.ct-overlay .section-inner { padding-top: 30px !important; }
+      .ct-overlay .mn-arch-ct { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1536,9 +1563,10 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="ct-overlay" role="dialog" aria-modal="true" aria-labelledby="ct-title" aria-hidden="true">
+    <div class="ct-bar"><span class="ct-logo">Hypnoz</span><button type="button" class="ct-close" aria-label="Fermer le formulaire">Fermer</button></div>
     <div class="section-inner">
-      <h2 class="section-title reveal reveal-delay-1">Prenons <em>contact</em></h2>
+      <h2 id="ct-title" class="section-title ct-title"><span class="mm-mask"><span>Prenons</span></span> <span class="mm-mask"><span><em>contact</em></span></span></h2>
       <div class="divider reveal reveal-delay-2"></div>
       <div class="contact-grid">
         <div class="contact-info reveal">
@@ -1589,6 +1617,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
         </div>
       </div>
     </div>
+    <i class="mn-arch-ct" aria-hidden="true"></i>
   </section>
 
   <footer>
@@ -1709,9 +1738,8 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
   L('.services-intro', .1);
   L('.focus-card', function (i) { return [.05, .02, .07][i % 3]; });
   L('.cta-band-content', -.18);
-  L('.contact-info', .14); L('.contact-form', -.06);
   // entrées : les grands titres glissent depuis la gauche et se dévoilent
-  var titles = Q('.section-title').filter(function (t) { return !t.closest('.mn-hero'); });
+  var titles = Q('.section-title').filter(function (t) { return !t.closest('.mn-hero') && !t.closest('#contact'); });
   titles.forEach(function (t) { t.style.willChange = 'transform, opacity'; });
   var img = document.querySelector('.about-image-wrap img');
   var ticking = false;
@@ -1800,6 +1828,31 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
   }
   window.addEventListener('scroll', upd, { passive: true }); upd();
   b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
+<script>
+/* formulaire de contact en pleine page */
+(function () {
+  var ov = document.getElementById('contact'); if (!ov) return;
+  var closeBtn = ov.querySelector('.ct-close'), last = null;
+  function open(e) {
+    if (e) e.preventDefault();
+    last = document.activeElement;
+    var mm = document.getElementById('mobileMenu'), bg = document.getElementById('burger');
+    if (mm) mm.classList.remove('open'); if (bg) bg.classList.remove('open');
+    ov.scrollTop = 0; ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('ct-lock');
+    setTimeout(function () { var f = ov.querySelector('input:not([type=hidden]):not([name=_gotcha])'); if (f) f.focus({ preventScroll: true }); }, 900);
+  }
+  function close() {
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('ct-lock');
+    if (last && last.focus) last.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('a[href="#contact"]').forEach(function (a) { a.addEventListener('click', open); });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ov.classList.contains('open')) close(); });
+  if (location.hash === '#contact') open();
 })();
 </script>
 </body>
