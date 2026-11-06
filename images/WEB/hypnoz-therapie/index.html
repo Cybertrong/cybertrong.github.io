@@ -771,7 +771,134 @@
     .burger.open::after { opacity: 1; }
     .burger.open:hover::after { color: var(--sage-light); }
   </style>
-<style>footer .logo, footer p, footer a, footer span, footer h4, footer li, footer div { color: #3a332a !important; } footer svg { stroke: #3a332a; }</style></head>
+<style>footer .logo, footer p, footer a, footer span, footer h4, footer li, footer div { color: #3a332a !important; } footer svg { stroke: #3a332a; }</style>  <!-- ═══ Thème « jardin » : dégradé vert-lime, formes organiques, cadres en capsule ═══ -->
+  <style id="jardin">
+    :root {
+      --g-deep: #0e4436; --g-mid: #2a7d4f; --g-lime: #b8e35c; --g-lime2: #8fd14f; --g-ink: #0d3a2e; --g-soft: #eef6e4;
+      --sage: #2a7d4f; --sage-dark: #0e4436; --sage-light: #b8e35c; --cream: #ffffff; --warm: #f2f8ec; --ink: #0d3a2e;
+      --sun: #b8e35c; --coral: #2a7d4f; --lilac: #b8e35c; --fk-font: 'Jost', sans-serif;
+    }
+    body { background: #fff; }
+    .logo::after { display: none !important; }
+    .logo, .hero-title, .section-title, .focus-num, .services-card-overlay h3, .footer-brand .logo, .feature-item h3, .focus-card h3 { font-family: 'Jost', sans-serif !important; font-variation-settings: normal !important; font-style: normal; }
+    .section-title em, .hero-title em { font-style: normal !important; }
+
+    /* accueil : grand dégradé, vague blanche, capsule végétale */
+    #accueil { background: linear-gradient(120deg, #0b3b30 0%, #1f6a47 42%, #6fbf4f 78%, #c3ea62 100%) !important; justify-content: flex-start !important; min-height: 100vh; }
+    #accueil .parallax-bg, #accueil .parallax-overlay { display: none !important; }
+    #accueil::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 22vh; z-index: 1;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cpath d='M0 120 C220 20 420 40 620 110 C860 195 1080 200 1260 120 C1350 80 1400 70 1440 74 L1440 220 L0 220 Z' fill='%23ffffff'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat; }
+    #accueil::before { content: ""; position: absolute; left: -10%; bottom: 8vh; width: 70%; height: 42vh; z-index: 1; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent); }
+    .jd-capsule { position: absolute; z-index: 2; right: max(6vw, calc((100% - 1200px) / 2 + 40px)); top: 12vh; width: min(30vw, 400px); height: 72vh; border-radius: 999px; overflow: hidden;
+      background: linear-gradient(180deg, #2f7d4c, #a6d957); box-shadow: 0 40px 80px rgba(6,40,30,.4), 0 0 0 10px rgba(255,255,255,.08); }
+    .jd-capsule img { width: 100%; height: 100%; object-fit: cover; display: block; scale: 1.08; }
+    .jd-leaf { position: absolute; z-index: 3; width: 70px; aspect-ratio: 100 / 140; background: url('feuille-lime.svg') center / contain no-repeat; pointer-events: none; animation: jd-float 7s ease-in-out infinite alternate; filter: drop-shadow(0 10px 14px rgba(0,40,20,.25)); }
+    .jd-leaf.l1 { left: 44%; top: 56%; rotate: -35deg; }
+    .jd-leaf.l2 { right: 3%; top: 58%; width: 92px; rotate: 55deg; filter: blur(1.5px) drop-shadow(0 10px 14px rgba(0,40,20,.25)); animation-delay: -3s; }
+    .jd-leaf.l3 { left: 6%; top: 78%; width: 120px; rotate: 70deg; filter: blur(5px); opacity: .85; z-index: 2; animation-duration: 9s; }
+    @keyframes jd-float { to { translate: 0 -18px; } }
+    .hero-content { text-align: left !important; max-width: 1200px !important; width: 100%; margin: 0 auto; padding: 0 40px 12vh !important; z-index: 3; }
+    .hero-content > * { max-width: 640px; }
+    .hero-sub { max-width: 470px !important; }
+    .hero-eyebrow { color: rgba(255,255,255,.75) !important; padding-top: 18px; position: relative; }
+    .hero-eyebrow::before { content: ""; position: absolute; left: 0; top: 0; width: 46px; height: 3px; border-radius: 3px; background: var(--g-lime); }
+    .hero-title { color: #fff !important; font-weight: 600 !important; font-size: clamp(2.6rem, 4.8vw, 4.2rem) !important; line-height: 1.05 !important; }
+    .hero-title em { color: var(--g-lime) !important; font-weight: 500 !important; }
+    .hero-sub { margin-left: 0 !important; color: rgba(255,255,255,.82) !important; }
+    .hero-btns { justify-content: flex-start !important; }
+    .scroll-indicator { display: none !important; }
+
+    /* boutons : pastilles lime */
+    .btn-primary, .form-submit, .mobile-menu .nav-cta-mobile, #services .btn-primary, .nav-cta {
+      background: linear-gradient(90deg, #8fd14f, #c8ef6e) !important; color: var(--g-ink) !important; border: 0 !important;
+      box-shadow: 0 10px 26px rgba(80,150,40,.35) !important; font-weight: 600 !important; }
+    .btn-primary:hover, .form-submit:hover, #services .btn-primary:hover, .nav-cta:hover { background: linear-gradient(90deg, #9fdc5c, #d6f584) !important; color: var(--g-ink) !important; transform: translateY(-2px) !important; box-shadow: 0 14px 30px rgba(80,150,40,.45) !important; }
+    .btn-outline { border-color: rgba(255,255,255,.7) !important; color: #fff !important; }
+    .btn-outline:hover { background: #fff !important; color: var(--g-ink) !important; transform: translateY(-2px) !important; }
+    nav.scrolled .nav-cta { color: var(--g-ink) !important; }
+
+    /* atouts : trois cartes blanches qui chevauchent la vague */
+    .features-strip { background: transparent !important; margin-top: -11vh; padding: 0 max(24px, calc((100% - 1120px) / 2)) 40px !important; gap: 22px !important; z-index: 4 !important; }
+    .feature-item { background: #fff !important; border: 0 !important; border-radius: 32px; box-shadow: 0 24px 50px rgba(20,70,40,.12); padding: 40px 34px !important; color: var(--g-ink) !important; transition: transform .4s ease !important; }
+    .feature-item:hover { transform: translateY(-6px) !important; background: #fff !important; }
+    .feature-item:nth-child(2) { background: linear-gradient(150deg, #1d6a47, #8fd14f) !important; }
+    .feature-item:nth-child(2) h3, .feature-item:nth-child(2) p { color: #fff !important; }
+    .feature-icon { width: 58px !important; height: 58px !important; padding: 12px; border-radius: 50%; background: var(--g-soft); }
+    .feature-item:nth-child(2) .feature-icon { background: rgba(255,255,255,.2); }
+    .feature-item:not(:nth-child(2)) .feature-icon path, .feature-item:not(:nth-child(2)) .feature-icon circle { stroke: var(--g-mid) !important; }
+    .feature-item h3 { color: var(--g-ink) !important; font-weight: 600 !important; }
+    .feature-item p { color: #4f6158 !important; }
+
+    /* titres */
+    .section-title { color: var(--g-ink) !important; font-weight: 600 !important; }
+    .section-title em { color: var(--g-mid) !important; font-weight: 500 !important; }
+    .divider { background: var(--g-lime2) !important; height: 3px !important; width: 46px !important; border-radius: 3px; }
+
+    /* qui suis-je : photo en capsule sur forme verte */
+    #qui-sommes-nous { background: #fff; }
+    .about-image-wrap { position: relative; }
+    .about-image-wrap::before { content: ""; position: absolute; left: -26px; top: 40px; width: 78%; height: 86%; border-radius: 999px; background: linear-gradient(160deg, #1d6a47, #b8e35c); z-index: 0; }
+    .about-image-wrap img { position: relative; z-index: 1; border-radius: 999px !important; animation: none !important; box-shadow: 0 30px 60px rgba(20,70,40,.25) !important; aspect-ratio: 3 / 4.4; height: auto !important; object-fit: cover; }
+    .value-item { background: var(--g-soft) !important; border: 0 !important; border-radius: 22px !important; transform: none !important; }
+    .value-dot { background: var(--g-lime2) !important; }
+
+    /* qu'est-ce que l'hypnose : grand bloc dégradé arrondi */
+    #qu-est-ce-hypnose { background: #fff !important; padding: 0 max(16px, calc((100% - 1240px) / 2)) !important; }
+    #qu-est-ce-hypnose > .section-inner { background: linear-gradient(120deg, #0b3b30 0%, #1f6a47 55%, #8fd14f 100%); border-radius: 48px; }
+    #qu-est-ce-hypnose .section-title { color: #fff !important; }
+    #qu-est-ce-hypnose .section-title em { color: var(--g-lime) !important; }
+    #qu-est-ce-hypnose [style*="grid-template-columns"] > .reveal[style*="border-left"] { border: 0 !important; border-radius: 28px !important; background: rgba(255,255,255,.12) !important; backdrop-filter: blur(6px); }
+    #qu-est-ce-hypnose [style*="grid-template-columns"] > .reveal:nth-child(2)[style*="border-left"] { background: #fff !important; color: var(--g-ink) !important; }
+    #qu-est-ce-hypnose [style*="grid-template-columns"] > .reveal:nth-child(2)[style*="border-left"] * { color: var(--g-ink) !important; stroke: var(--g-mid); }
+    #qu-est-ce-hypnose [style*="border-radius: 4px"], #qu-est-ce-hypnose [style*="border-radius:4px"] { border-radius: 28px !important; }
+
+    /* services : cartes en arche */
+    .services-card { border-radius: 200px 200px 32px 32px !important; box-shadow: 0 24px 50px rgba(20,70,40,.18); background: linear-gradient(180deg, #2f7d4c, #a6d957); }
+    .services-card-overlay { background: linear-gradient(to top, rgba(11,59,48,.85), transparent 55%) !important; }
+
+    /* domaines : cartes blanches, pastille lime */
+    .focus-section { background: var(--g-soft) !important; border-radius: 48px !important; padding: 80px 0 !important; }
+    .focus-header .section-tag { color: var(--g-mid) !important; }
+    .focus-header .section-title em { color: var(--g-mid) !important; }
+    .focus-grid { gap: 20px !important; border: 0 !important; }
+    .focus-card { background: #fff !important; border: 0 !important; border-radius: 28px !important; box-shadow: 0 14px 34px rgba(20,70,40,.08) !important; padding: 32px 30px !important; transition: transform .4s ease, box-shadow .4s ease !important; }
+    .focus-grid .focus-card:nth-child(n) { border-right: 0 !important; }
+    .focus-card::after { display: none !important; }
+    .focus-card:hover { transform: translateY(-6px) !important; box-shadow: 0 22px 44px rgba(20,70,40,.16) !important; background: #fff !important; }
+    .focus-num { display: inline-block; padding: 6px 16px; border-radius: 999px; font-size: .85rem !important; font-weight: 600 !important; font-style: normal !important; letter-spacing: .06em; color: var(--g-ink) !important; background: linear-gradient(90deg, #a6dd5a, #d3f28a); margin-bottom: 18px !important; }
+    .focus-num::after { display: none !important; }
+    .focus-card h3 { color: var(--g-ink) !important; font-weight: 600 !important; font-size: 1.12rem !important; }
+
+    /* bande d'appel : bloc dégradé arrondi */
+    #cta-band { margin: 40px max(16px, calc((100% - 1240px) / 2)); border-radius: 48px; overflow: hidden; }
+    #cta-band .parallax-overlay { background: linear-gradient(110deg, rgba(11,59,48,.94), rgba(42,125,79,.82) 60%, rgba(184,227,92,.7)) !important; }
+    .cta-band-content .section-title { color: #fff !important; }
+    .cta-band-content .section-title em { color: var(--g-lime) !important; }
+
+    /* contact */
+    .contact-icon { background: var(--g-soft) !important; color: var(--g-mid) !important; }
+    .contact-form { border-radius: 32px !important; box-shadow: 0 24px 60px rgba(20,70,40,.12) !important; }
+    input, select, textarea { background: var(--g-soft) !important; border-radius: 16px !important; }
+
+    /* pied de page */
+    footer { background: linear-gradient(120deg, #0b3b30, #1f6a47) !important; }
+    footer .logo, footer p, footer a, footer span, footer h4, footer li, footer div { color: rgba(255,255,255,.85) !important; }
+    footer svg { stroke: rgba(255,255,255,.85) !important; }
+    .mobile-menu { background: rgba(11,59,48,.95) !important; }
+
+    @media (max-width: 900px) {
+      .jd-capsule { position: relative; right: auto; top: auto; width: 44vw; height: 34vh; margin: 100px auto 0; flex-shrink: 0; }
+      #accueil { height: auto !important; min-height: 100vh; }
+      #accueil { flex-direction: column; justify-content: flex-start !important; }
+      .hero-content { padding: 30px 24px 16vh !important; }
+      .jd-leaf.l1 { left: 10%; top: 120px; width: 52px; } .jd-leaf.l2 { right: 8%; top: 260px; width: 66px; } .jd-leaf.l3 { display: none; }
+      .features-strip { margin-top: -6vh; }
+      #qu-est-ce-hypnose > .section-inner { border-radius: 32px; }
+      .about-image-wrap::before { left: -10px; }
+    }
+  </style>
+</head>
 <body>
 
   <div class="topbar">
@@ -810,7 +937,8 @@
   <section id="accueil" class="parallax-section">
     <div class="parallax-bg" id="heroBg"></div>
     <div class="parallax-overlay"></div>
-    <div class="fk-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="jd-capsule" aria-hidden="true"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&auto=format&fit=crop" alt=""></div>
+    <i class="jd-leaf l1" aria-hidden="true"></i><i class="jd-leaf l2" aria-hidden="true"></i><i class="jd-leaf l3" aria-hidden="true"></i>
     <div class="hero-content">
       <p class="hero-eyebrow reveal">Bienvenue chez Hypnoz</p>
       <h1 class="hero-title reveal reveal-delay-1">Retrouvez votre<br><em>équilibre intérieur</em></h1>
