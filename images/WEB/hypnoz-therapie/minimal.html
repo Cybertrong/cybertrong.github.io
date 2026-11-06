@@ -1222,6 +1222,9 @@
     .burger { height: 18px !important; }
     .burger span:nth-child(2) { display: block !important; width: 80% !important; }
     .burger:hover span:nth-child(2) { width: 100% !important; }
+  
+    .about-image-wrap { overflow: hidden; }
+    .section-title { transition: none !important; }
   </style>
 </head>
 <body>
@@ -1601,46 +1604,51 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
     });
   </script>
 <script>
-/* Parallax dosé : de petits décalages au défilement, via la propriété « translate » (n'interfère pas avec les animations d'apparition) */
+/* Parallax marqué : chaque section entre en scène avec des couches qui bougent à des vitesses différentes */
 (function () {
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var mob = window.matchMedia && matchMedia('(max-width: 760px)').matches;
-  var k = mob ? .5 : 1;
-  var hero = document.querySelector('#accueil .hero-content');
-  var blobs = document.querySelector('.fk-blobs');
-  var items = [];
-  function add(sel, speed) { document.querySelectorAll(sel).forEach(function (el, i) { items.push({ el: el, s: (typeof speed === 'function' ? speed(i) : speed) * k }); }); }
-  add('.about-image-wrap', -.07);
-  add('.about-text, #qui-sommes-nous .reveal:not(.about-image-wrap)', 0);
-  add('#qu-est-ce-hypnose [style*="grid-template-columns"] > .reveal', function (i) { return [.035, -.03, .05][i % 3]; });
-  add('.services-card', function (i) { return [.04, -.02, .06][i % 3]; });
-  add('.focus-header', .05);
-  add('.cta-band-content', -.08);
-  add('.contact-form, .contact-form-wrap', -.04);
-  items = items.filter(function (it) { return it.s; });
-  var imgs = Array.prototype.slice.call(document.querySelectorAll('.services-card img'));
-  imgs.forEach(function (im) { im.style.scale = '1.12'; });
+  var mob = window.matchMedia && matchMedia('(max-width: 760px)').matches, k = mob ? .55 : 1;
+  var Q = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+  // couches : [éléments, vitesse verticale, vitesse horizontale]
+  var layers = [];
+  function L(sel, vy, vx, fn) { Q(sel).forEach(function (el, i) { layers.push({ el: el, vy: (typeof vy === 'function' ? vy(i) : vy) * k, vx: (vx || 0) * k }); }); }
+  L('.mn-big', .32); L('.mn-title', -.25, -.08); L('.mn-lead', -.1); L('.mn-tag', -.18, .05); L('.mn-vert', .4); L('.mn-arch', .2); L('.mn-mark', -.3);
+  L('.features-strip .feature-item', function (i) { return [.18, .06, .26][i % 3]; });
+  L('.about-image-wrap', -.22); L('.about-text .section-lead', .08); L('.values-list .value-item', function (i) { return .06 + i * .07; });
+  L('.qh-card', function (i) { return [.22, .08, .3][i % 3]; }); L('.qh-panel', .12); L('.qh-example', .06);
+  L('.sv-words li', function (i) { return [.25, .1, .35][i % 3]; }, 0);
+  L('.services-intro', .1);
+  L('.focus-card', function (i) { return [.2, .08, .28][i % 3]; });
+  L('.cta-band-content', -.18);
+  L('.contact-info', .14); L('.contact-form', -.06);
+  // entrées : les grands titres glissent depuis la gauche et se dévoilent
+  var titles = Q('.section-title').filter(function (t) { return !t.closest('.mn-hero'); });
+  titles.forEach(function (t) { t.style.willChange = 'transform, opacity'; });
+  var img = document.querySelector('.about-image-wrap img');
   var ticking = false;
   function frame() {
     ticking = false;
-    var y = window.scrollY, vh = window.innerHeight;
-    if (hero && y < vh * 1.2) {
-      hero.style.translate = '0 ' + (y * .22 * k).toFixed(1) + 'px';
-      hero.style.opacity = Math.max(0, 1 - y / (vh * .85)).toFixed(3);
-    }
-    if (blobs && y < vh * 1.2) blobs.style.translate = '0 ' + (y * -.1 * k).toFixed(1) + 'px';
-    items.forEach(function (it) {
-      var r = it.el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      var d = (r.top + r.height / 2) - vh / 2;
-      it.el.style.translate = '0 ' + (d * it.s).toFixed(1) + 'px';
+    var vh = window.innerHeight;
+    layers.forEach(function (o) {
+      var r = o.el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var d = ((r.top + r.height / 2) - vh / 2);
+      o.el.style.translate = (d * o.vx).toFixed(1) + 'px ' + (d * o.vy).toFixed(1) + 'px';
     });
-    imgs.forEach(function (im) {
-      var r = im.parentNode.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
+    titles.forEach(function (t) {
+      var r = t.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * .55)));   // 0 = sous l'écran, 1 = bien entré
+      var e = 1 - Math.pow(1 - p, 3);
+      t.style.translate = ((1 - e) * -14 * k).toFixed(2) + 'vw 0';
+      t.style.opacity = (.15 + e * .85).toFixed(3);
+      t.style.letterSpacing = '';
+    });
+    if (img) {
+      var r = img.parentNode.getBoundingClientRect();
       var d = ((r.top + r.height / 2) - vh / 2) / vh;
-      im.style.translate = '0 ' + (d * -30 * k).toFixed(1) + 'px';
-    });
+      img.style.scale = (1.12 - Math.max(-.12, Math.min(.12, d * .12))).toFixed(3);
+      img.style.translate = '0 ' + (d * 40 * k).toFixed(1) + 'px';
+    }
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   window.addEventListener('resize', frame);
