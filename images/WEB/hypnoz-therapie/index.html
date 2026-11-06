@@ -763,6 +763,13 @@
     a.fk-tel { color: inherit !important; text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s ease, color .3s; }
     a.fk-tel:hover, a.fk-tel:focus-visible { background-size: 100% 1px; }
     .contact-detail-text a.fk-tel:hover { color: var(--sage-dark) !important; }
+  
+    /* menu ouvert : la croix devient le mot « fermer » */
+    .burger { position: relative; }
+    .burger.open span { opacity: 0 !important; transform: none !important; }
+    .burger::after { content: "fermer"; position: absolute; right: 0; top: 50%; translate: 0 -50%; color: #fff; font-family: 'Jost', sans-serif; font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; opacity: 0; pointer-events: none; transition: opacity .6s ease .2s; white-space: nowrap; }
+    .burger.open::after { opacity: 1; }
+    .burger.open:hover::after { color: var(--sage-light); }
   </style>
 </head>
 <body>
