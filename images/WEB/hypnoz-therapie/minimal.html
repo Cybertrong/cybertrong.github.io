@@ -1164,6 +1164,17 @@
       .mn-tag { position: relative; left: auto; bottom: auto; margin-top: 30px; }
       .mn-tree { position: relative; left: auto; width: 78%; margin: 30px auto 0; }
     }
+  
+    /* burger épuré : deux traits fins */
+    .burger { width: 36px !important; min-width: 0 !important; height: 15px !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: flex-end !important; }
+    .burger::before { content: none !important; }
+    .burger span { display: block !important; height: 2px !important; background: var(--mn-ink) !important; border-radius: 2px; transition: width .6s cubic-bezier(.22, 1, .36, 1), opacity .4s ease !important; transform: none !important; }
+    .burger span:nth-child(1) { width: 100% !important; }
+    .burger span:nth-child(2) { display: none !important; }
+    .burger span:nth-child(3) { width: 60% !important; }
+    .burger:hover span:nth-child(3) { width: 100% !important; }
+    .burger:hover span:nth-child(1) { width: 60% !important; }
+    .burger.open span { opacity: 0 !important; }
   </style>
 </head>
 <body>
