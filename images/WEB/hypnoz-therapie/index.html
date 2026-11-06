@@ -1584,7 +1584,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
           <h3>Envoyez-moi un message</h3>
           <div id="form-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:4px;padding:20px;text-align:center;color:#2e7d32;margin-bottom:20px;"><strong>Message envoyé !</strong><br>Je vous répondrai dans les plus brefs délais.</div>
           <div id="form-error" style="display:none;background:#ffebee;border:1px solid #ef9a9a;border-radius:4px;padding:20px;text-align:center;color:#c62828;margin-bottom:20px;">Une erreur est survenue. Veuillez réessayer ou appeler le (514) 746-8201.</div>
-          <form id="contactForm" action="https://formspree.io/f/xpwzgkrd" method="POST" novalidate>
+          <form id="contactForm" action="https://formspree.io/f/xnppyjzg" method="POST" novalidate>
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <input type="hidden" name="_subject" value="Nouveau message — Hypnoz">
             <div class="form-row">
@@ -1705,6 +1705,16 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
         return;
       }
       document.getElementById('f-email').style.borderColor = '';
+      // champs obligatoires : on signale le premier champ vide
+      var missing = Array.prototype.filter.call(contactForm.querySelectorAll('[required]'), function (f) { return !String(f.value).trim(); });
+      contactForm.querySelectorAll('[required]').forEach(function (f) { f.style.borderBottomColor = ''; });
+      if (missing.length) {
+        missing.forEach(function (f) { f.style.setProperty('border-bottom-color', '#b5533c', 'important'); });
+        missing[0].focus();
+        formError.style.display = 'block';
+        formError.textContent = 'Merci de remplir les champs marqués d\u2019un astérisque.';
+        return;
+      }
       if (contactForm.querySelector('[name="_gotcha"]').value) return;
       formBtn.disabled = true;
       formBtn.textContent = 'Envoi en cours...';
@@ -1716,8 +1726,12 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
           contactForm.reset();
           formSuccess.style.display = 'block';
           formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else { throw new Error('server'); }
-      } catch { formError.style.display = 'block'; }
+        } else {
+          var msg = 'Une erreur est survenue. Réessayez ou appelez le (514) 746-8201.';
+          try { var data = await response.json(); if (data && data.errors && data.errors.length) msg = data.errors.map(function (x) { return x.message; }).join(' '); } catch (_) {}
+          formError.textContent = msg; formError.style.display = 'block';
+        }
+      } catch (_) { formError.textContent = 'Connexion impossible. Réessayez ou appelez le (514) 746-8201.'; formError.style.display = 'block'; }
       finally { formBtn.disabled = false; formBtn.textContent = 'Envoyer le message'; }
     });
   </script>
