@@ -1288,6 +1288,12 @@
     .btn-primary::after, .btn-outline::after, .form-submit::after, .nav-cta::after { transition: width .7s cubic-bezier(.22, 1, .36, 1), opacity .5s ease !important; }
     .btn-primary:hover::after, .btn-outline:hover::after, .form-submit:hover::after, .nav-cta:hover::after { width: 0 !important; opacity: 0; }
     .cta-band-content .btn-primary:hover, .cta-band-content .btn-outline:hover { color: #fff !important; }
+  
+    /* « depuis » au-dessus du grand 2006 */
+    .mn-big { top: 15% !important; font-size: clamp(8rem, 13vw, 12rem) !important; }
+    .mn-since { position: absolute; z-index: 1; left: 61%; top: calc(15% - 30px); font-size: .82rem; letter-spacing: .14em; text-transform: lowercase; color: var(--mn-g); transition: color 1.2s ease; }
+    body.mn-inv .mn-since { color: #8fb08a; }
+    @media (max-width: 900px) { .mn-since { display: none; } .mn-big { top: 54px !important; font-size: 7.5rem !important; } }
   </style>
 </head>
 <body>
@@ -1339,6 +1345,7 @@
       <span class="mn-mark m1">01</span>
       <span class="mn-mark m2">Depuis 2006</span>
       <h1 class="mn-title"><span>Hypno</span><span>–thérapie</span></h1>
+      <span class="mn-since" aria-hidden="true">depuis</span>
       <div class="mn-big" aria-hidden="true">2006</div>
       <div class="mn-lead">
         <h2>Concrètement</h2>
@@ -1675,7 +1682,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
   // couches : [éléments, vitesse verticale, vitesse horizontale]
   var layers = [];
   function L(sel, vy, vx, fn) { Q(sel).forEach(function (el, i) { layers.push({ el: el, vy: (typeof vy === 'function' ? vy(i) : vy) * k, vx: (vx || 0) * k }); }); }
-  L('.mn-big', .32); L('.mn-title', -.25, -.08); L('.mn-lead', -.1); L('.mn-tag', -.18, .05); L('.mn-vert', .4); L('.mn-arch', .2); L('.mn-mark', -.3);
+  L('.mn-big', .32); L('.mn-since', .32); L('.mn-title', -.25, -.08); L('.mn-lead', -.1); L('.mn-tag', -.18, .05); L('.mn-vert', .4); L('.mn-arch', .2); L('.mn-mark', -.3);
   L('.features-strip .feature-item', function (i) { return [.05, .02, .07][i % 3]; });
   L('.about-image-wrap', -.22); L('.about-text .section-lead', .08); L('.values-list .value-item', function (i) { return .02 + i * .02; });
   L('.qh-card', function (i) { return [.06, .02, .08][i % 3]; }); L('.qh-panel', .12); L('.qh-example', .06);
