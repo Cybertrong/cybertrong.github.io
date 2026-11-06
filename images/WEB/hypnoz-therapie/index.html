@@ -1061,6 +1061,15 @@
   
     .about-image-wrap { max-width: 460px; }
     .about-image-wrap img { width: 100% !important; image-rendering: auto; }
+  
+    /* Services : les mots en grand, sans images */
+    .sv-words { list-style: none; margin: 56px 0 90px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    .sv-words li { border-top: 1px solid rgba(14,68,54,.18); padding-top: 26px; font-family: 'Jost', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 3vw, 2.7rem); line-height: 1.12; letter-spacing: -.015em; color: var(--g-ink); }
+    .sv-words li span { display: block; font-size: 1.05rem; font-weight: 600; letter-spacing: .1em; color: var(--g-mid); margin-bottom: 14px; }
+    @media (max-width: 900px) { .sv-words { grid-template-columns: 1fr; gap: 28px; margin: 40px 0 60px; } }
+  
+    #services .section-title { font-size: clamp(2.4rem, 4.4vw, 3.6rem) !important; }
+    #services .section-lead, .services-intro p { font-size: 1.12rem !important; line-height: 1.8 !important; color: #3f5249 !important; font-weight: 400 !important; }
   </style>
 </head>
 <body>
@@ -1234,20 +1243,11 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
           <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:32px;background:var(--sage);color:white;border:none;cursor:pointer;">Commencer mon parcours</a>
         </div>
       </div>
-      <div class="services-cards">
-        <div class="services-card reveal">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop" alt="Thérapie individuelle" />
-          <div class="services-card-overlay"><h3>Thérapie Individuelle</h3></div>
-        </div>
-        <div class="services-card reveal reveal-delay-1">
-          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop" alt="Transformation du quotidien" />
-          <div class="services-card-overlay"><h3>Retour à l'équilibre émotionnel</h3></div>
-        </div>
-        <div class="services-card reveal reveal-delay-2">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop" alt="Apaisement" />
-          <div class="services-card-overlay"><h3>Apaisement</h3></div>
-        </div>
-      </div>
+      <ul class="sv-words">
+        <li class="reveal"><span>01</span>Thérapie individuelle</li>
+        <li class="reveal reveal-delay-1"><span>02</span>Retour à l'équilibre émotionnel</li>
+        <li class="reveal reveal-delay-2"><span>03</span>Apaisement</li>
+      </ul>
       <div class="focus-section" style="margin:0 -40px;padding:80px 0;">
         <div class="focus-inner">
           <div class="focus-header">
