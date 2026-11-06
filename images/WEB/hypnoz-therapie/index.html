@@ -749,6 +749,15 @@
       color: var(--sage-dark) !important; border-color: var(--sage-dark) !important; }
     #services .btn-primary:hover, .form-submit:hover, nav.scrolled .nav-cta:hover {
       background: var(--sage-dark) !important; color: #fff !important; border-color: var(--sage-dark) !important; }
+  
+    /* Indicateur de défilement : souris Mac (Magic Mouse) avec un doigt qui glisse */
+    .scroll-indicator { text-decoration: none; gap: 12px !important; transition: color .4s; }
+    .scroll-indicator:hover { color: #fff; }
+    .fk-mouse { position: relative; width: 24px; height: 40px; border: 1.5px solid currentColor; border-radius: 12px 12px 11px 11px / 15px 15px 13px 13px; }
+    .fk-mouse::before { content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: 11px; background: currentColor; opacity: .35; }
+    .fk-mouse i { position: absolute; left: 50%; top: 8px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; animation: fk-swipe 2.2s cubic-bezier(.45, 0, .2, 1) infinite; }
+    @keyframes fk-swipe { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(14px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .fk-mouse i { animation: none; } }
   </style>
 </head>
 <body>
@@ -799,10 +808,10 @@
         <a href="#services" class="btn-outline">Découvrir mes services</a>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      <span>Défiler</span>
-    </div>
+    <a class="scroll-indicator" href="#qui-sommes-nous" aria-label="Défiler vers le bas">
+      <span class="fk-mouse" aria-hidden="true"><i></i></span>
+      <span>Défiler vers le bas</span>
+    </a>
   </section>
 
   <div class="features-strip">
