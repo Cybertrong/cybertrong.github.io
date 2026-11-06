@@ -748,7 +748,21 @@
     body:has(.mobile-menu.open) nav .logo { color: #fff !important; }
     @keyframes fk-pulse { 50% { transform: scale(1.12); } }
     @media (prefers-reduced-motion: reduce) { .mobile-menu, .fk-mm-layer, .mobile-menu a { transition: none !important; } }
-</style>
+
+    /* ── Tous les boutons au style « Découvrir mes services » : pastille en traits ── */
+    .btn-primary, .btn-outline, .nav-cta, .form-submit, .mobile-menu .nav-cta-mobile {
+      background: transparent !important; color: #fff !important;
+      border: 1.5px solid rgba(255,255,255,.7) !important; box-shadow: none !important;
+      font-weight: 400 !important; border-radius: 999px !important; }
+    .btn-primary:hover, .btn-outline:hover, .nav-cta:hover, .form-submit:hover, .mobile-menu .nav-cta-mobile:hover {
+      background: #fff !important; color: var(--ink) !important; border-color: #fff !important;
+      box-shadow: none !important; transform: rotate(1.5deg) scale(1.04); }
+    /* sur fond clair, les traits passent en vert foncé pour rester visibles */
+    #services .btn-primary, .form-submit, nav.scrolled .nav-cta {
+      color: var(--sage-dark) !important; border-color: var(--sage-dark) !important; }
+    #services .btn-primary:hover, .form-submit:hover, nav.scrolled .nav-cta:hover {
+      background: var(--sage-dark) !important; color: #fff !important; border-color: var(--sage-dark) !important; }
+  </style>
 </head>
 <body>
 
