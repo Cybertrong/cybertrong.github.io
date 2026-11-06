@@ -713,41 +713,28 @@
     }
     @media (prefers-reduced-motion: reduce) { .fk-spiral, .fk-blobs i, .fk-marquee div, .logo::after, .hero-title em::after, .about-image-wrap img, .value-dot { animation: none !important; } }
   
-    /* ── Menu : trois vagues de couleur jaillissent du burger, puis les liens montent un à un ── */
-    .mobile-menu, .fk-mm-layer {
-      display: flex !important; opacity: 1 !important; visibility: hidden;
-      clip-path: circle(0px at var(--bx, calc(100% - 62px)) var(--by, 46px));
-      transition: clip-path .75s cubic-bezier(.77, 0, .18, 1), visibility 0s linear .75s !important; }
-    .fk-mm-layer { position: fixed; inset: 0; z-index: 997; pointer-events: none; }
-    .fk-mm-layer.l1 { background: var(--sun); }
-    .fk-mm-layer.l2 { background: var(--coral); }
-    body:has(.mobile-menu.open) .fk-mm-layer, .mobile-menu.open {
-      visibility: visible; clip-path: circle(150vmax at var(--bx, calc(100% - 62px)) var(--by, 46px));
-      transition: clip-path .85s cubic-bezier(.77, 0, .18, 1), visibility 0s !important; }
-    body:has(.mobile-menu.open) .fk-mm-layer.l2 { transition-delay: .09s !important; }
-    .mobile-menu.open { transition-delay: .18s !important; }
-    /* fermeture dans l'ordre inverse */
-    .mobile-menu { transition-delay: 0s !important; }
-    .fk-mm-layer.l2 { transition-delay: .08s, .83s !important; }
-    .fk-mm-layer.l1 { transition-delay: .16s, .91s !important; }
-    .mobile-menu { overflow: hidden; background: var(--ink) !important; }
-    .mobile-menu a { position: relative; font-family: var(--fk-font) !important; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 500 !important;
-      opacity: 0; transform: translateY(60px) rotate(-7deg) !important;
-      transition: opacity .5s ease, transform .7s cubic-bezier(.34, 1.56, .64, 1), color .3s !important; }
-    .mobile-menu.open a { opacity: 1; transform: none !important; }
-    .mobile-menu.open a:nth-child(1) { transition-delay: .45s, .45s, 0s !important; }
-    .mobile-menu.open a:nth-child(2) { transition-delay: .53s, .53s, 0s !important; }
-    .mobile-menu.open a:nth-child(3) { transition-delay: .61s, .61s, 0s !important; }
-    .mobile-menu.open a:nth-child(4) { transition-delay: .72s, .72s, 0s !important; }
-    .mobile-menu.open a:hover { color: var(--sun) !important; transform: rotate(-3deg) scale(1.06) !important; transition-delay: 0s !important; }
-    .mobile-menu a:not(.nav-cta-mobile):hover::after { content: "✺"; position: absolute; right: -.8em; top: .1em; font-size: .4em; color: var(--coral); animation: fk-spin 3s linear infinite; }
-    .mobile-menu a:not(.nav-cta-mobile) { font-size: clamp(2.3rem, 10vw, 4.16rem) !important; }
-    .mobile-menu .nav-cta-mobile { background: var(--sun) !important; color: var(--ink) !important; border-radius: 999px !important; box-shadow: 4px 4px 0 var(--coral); }
+    /* ── Menu : ouverture douce — un voile vert qui se lève lentement, les liens apparaissent comme une respiration ── */
+    .mobile-menu {
+      display: flex !important; visibility: hidden; opacity: 0 !important;
+      background: rgba(31, 58, 46, .94) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      transition: opacity .9s ease, visibility 0s linear .9s !important; }
+    .mobile-menu.open { visibility: visible; opacity: 1 !important; transition: opacity 1.1s ease, visibility 0s !important; }
+    .mobile-menu a { font-family: var(--fk-font) !important; font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 300 !important; font-style: italic;
+      opacity: 0; transform: translateY(14px) !important; filter: blur(4px);
+      transition: opacity 1.2s ease, transform 1.4s cubic-bezier(.22, 1, .36, 1), filter 1.2s ease, color .4s !important; }
+    .mobile-menu a:not(.nav-cta-mobile) { font-size: clamp(2.2rem, 9vw, 3.8rem) !important; }
+    .mobile-menu.open a { opacity: 1; transform: none !important; filter: none; }
+    .mobile-menu.open a:nth-child(1) { transition-delay: .25s, .25s, .25s, 0s !important; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: .4s, .4s, .4s, 0s !important; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: .55s, .55s, .55s, 0s !important; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: .75s, .75s, .75s, 0s !important; }
+    .mobile-menu.open a:not(.nav-cta-mobile):hover { color: var(--sage-light) !important; letter-spacing: .08em; transition-delay: 0s !important; }
+    .mobile-menu a:not(.nav-cta-mobile) { letter-spacing: .04em; transition-property: opacity, transform, filter, color, letter-spacing !important; }
+    .mobile-menu .nav-cta-mobile { font-style: normal; font-family: 'Jost', sans-serif !important; }
     .burger.open span { background: #fff !important; }
     body:has(.mobile-menu.open) nav { background: transparent !important; box-shadow: none !important; backdrop-filter: none !important; }
     body:has(.mobile-menu.open) nav .logo { color: #fff !important; }
-    @keyframes fk-pulse { 50% { transform: scale(1.12); } }
-    @media (prefers-reduced-motion: reduce) { .mobile-menu, .fk-mm-layer, .mobile-menu a { transition: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .mobile-menu, .mobile-menu a { transition: none !important; } }
 
     /* ── Tous les boutons au style « Découvrir mes services » : pastille en traits ── */
     .btn-primary, .btn-outline, .nav-cta, .form-submit, .mobile-menu .nav-cta-mobile {
@@ -792,7 +779,6 @@
     </div>
   </nav>
 
-  <div class="fk-mm-layer l1" aria-hidden="true"></div><div class="fk-mm-layer l2" aria-hidden="true"></div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#accueil" class="mobile-link">Accueil</a>
     <a href="#qui-sommes-nous" class="mobile-link">Qui suis-je ?</a>
