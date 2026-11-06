@@ -1641,12 +1641,12 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
   var layers = [];
   function L(sel, vy, vx, fn) { Q(sel).forEach(function (el, i) { layers.push({ el: el, vy: (typeof vy === 'function' ? vy(i) : vy) * k, vx: (vx || 0) * k }); }); }
   L('.mn-big', .32); L('.mn-title', -.25, -.08); L('.mn-lead', -.1); L('.mn-tag', -.18, .05); L('.mn-vert', .4); L('.mn-arch', .2); L('.mn-mark', -.3);
-  L('.features-strip .feature-item', function (i) { return [.18, .06, .26][i % 3]; });
-  L('.about-image-wrap', -.22); L('.about-text .section-lead', .08); L('.values-list .value-item', function (i) { return .06 + i * .07; });
-  L('.qh-card', function (i) { return [.22, .08, .3][i % 3]; }); L('.qh-panel', .12); L('.qh-example', .06);
-  L('.sv-words li', function (i) { return [.25, .1, .35][i % 3]; }, 0);
+  L('.features-strip .feature-item', function (i) { return [.05, .02, .07][i % 3]; });
+  L('.about-image-wrap', -.22); L('.about-text .section-lead', .08); L('.values-list .value-item', function (i) { return .02 + i * .02; });
+  L('.qh-card', function (i) { return [.06, .02, .08][i % 3]; }); L('.qh-panel', .12); L('.qh-example', .06);
+  L('.sv-words li', function (i) { return [.06, .02, .09][i % 3]; }, 0);
   L('.services-intro', .1);
-  L('.focus-card', function (i) { return [.2, .08, .28][i % 3]; });
+  L('.focus-card', function (i) { return [.05, .02, .07][i % 3]; });
   L('.cta-band-content', -.18);
   L('.contact-info', .14); L('.contact-form', -.06);
   // entrées : les grands titres glissent depuis la gauche et se dévoilent
