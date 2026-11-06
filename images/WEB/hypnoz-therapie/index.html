@@ -1032,6 +1032,18 @@
     /* domaines */
     .focus-card, .focus-card:hover { background: none !important; box-shadow: none !important; border-radius: 0 !important; transform: none !important; padding: 28px 6px 24px !important; border-top: 1px solid rgba(14,68,54,.14) !important; }
     .focus-grid { column-gap: 48px !important; row-gap: 20px !important; }
+  
+    /* pied de page : blanc, compact, séparé par une ligne */
+    footer { background: #fff !important; border-top: 1px solid rgba(14,68,54,.16); }
+    footer .logo, footer p, footer a, footer span, footer h4, footer li, footer div { color: #4f6158 !important; }
+    footer .logo { color: var(--g-ink) !important; font-size: 1.3rem !important; }
+    footer h4 { color: var(--g-mid) !important; margin-bottom: 10px !important; }
+    footer svg { stroke: var(--g-mid) !important; color: var(--g-mid) !important; }
+    .footer-main { padding: 34px 40px 18px !important; gap: 40px !important; align-items: start; }
+    .footer-brand p { margin-top: 8px !important; }
+    .footer-contact-item { margin-bottom: 8px !important; }
+    .footer-bottom { padding: 14px 40px 20px !important; border-top: 0 !important; }
+    @media (max-width: 760px) { .footer-main { padding: 28px 24px 10px !important; gap: 22px !important; } .footer-bottom { padding: 10px 24px 18px !important; } }
   </style>
 </head>
 <body>
@@ -1321,7 +1333,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
         <p>Votre partenaire de confiance pour un mieux-être profond et durable. Spécialistes en hypnothérapie à Montréal, Québec.</p>
       </div>
       <div class="footer-col">
-        <h4>Coordonnée</h4>
+        <h4>Coordonnées</h4>
         <div class="footer-contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg><span>Montréal, Qc</span></div>
         <div class="footer-contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span><a class="fk-tel" href="tel:+15147468201">(514) 746-8201</a></span></div>
       </div>
