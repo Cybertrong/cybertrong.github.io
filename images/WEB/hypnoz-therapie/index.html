@@ -918,6 +918,53 @@
     /* menu : même police que le titre de l'accueil */
     .mobile-menu a:not(.nav-cta-mobile) { font-family: 'Jost', sans-serif !important; font-variation-settings: normal !important; font-style: normal !important; font-weight: 500 !important; letter-spacing: -.01em !important; }
     .mobile-menu.open a:not(.nav-cta-mobile):hover { letter-spacing: .02em !important; color: var(--g-lime) !important; }
+  
+    /* ── Qu'est-ce que l'hypnose : grand, aéré, lisible ── */
+    #qu-est-ce-hypnose { color: #fff; }
+    #qu-est-ce-hypnose .section-inner { padding-top: 110px !important; padding-bottom: 120px !important; }
+    #qu-est-ce-hypnose .section-title { font-size: clamp(2.4rem, 4.4vw, 3.6rem) !important; }
+    #qu-est-ce-hypnose .divider { background: var(--g-lime) !important; }
+    .qh-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin: 56px 0 34px; }
+    .qh-card { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 30px; padding: 40px 36px 42px; backdrop-filter: blur(8px); }
+    .qh-card--light { background: #fff; color: var(--g-ink); border-color: #fff; box-shadow: 0 24px 50px rgba(0,30,20,.25); }
+    .qh-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,.16); color: var(--g-lime); margin-bottom: 24px; }
+    .qh-card--light .qh-icon { background: var(--g-soft); color: var(--g-mid); }
+    .qh-icon svg { width: 28px; height: 28px; }
+    .qh-card h3, .qh-panel h3, .qh-example h3 { font-family: 'Jost', sans-serif; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; }
+    .qh-card h3 { font-size: clamp(1.5rem, 2vw, 1.85rem); margin-bottom: 16px; color: #fff; }
+    .qh-card--light h3 { color: var(--g-ink); }
+    .qh-card p { font-size: 1.12rem; line-height: 1.75; font-weight: 400; color: rgba(255,255,255,.9); }
+    .qh-card--light p { color: #3f5249; }
+    .qh-panel { display: grid; grid-template-columns: minmax(220px, 1fr) 2fr; gap: 40px; align-items: center; background: rgba(8,40,30,.35); border-radius: 30px; padding: 44px 48px; margin-bottom: 34px; }
+    .qh-panel h3 { font-size: clamp(1.7rem, 2.4vw, 2.2rem); color: var(--g-lime); }
+    .qh-panel p { font-size: 1.18rem; line-height: 1.8; color: rgba(255,255,255,.92); }
+    .qh-panel strong, .qh-example strong { color: #fff; font-weight: 700; }
+    .qh-example { background: #fff; color: var(--g-ink); border-radius: 30px; padding: 52px 56px; box-shadow: 0 24px 60px rgba(0,30,20,.25); }
+    .qh-example h3 { font-size: clamp(1.7rem, 2.4vw, 2.2rem); margin-bottom: 26px; }
+    .qh-example blockquote { position: relative; margin: 0 0 30px; padding: 6px 0 6px 34px; border-left: 4px solid var(--g-lime2); font-size: clamp(1.3rem, 1.9vw, 1.6rem); line-height: 1.55; font-style: italic; font-weight: 400; color: var(--g-mid); }
+    .qh-example-text { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+    .qh-example-text p { font-size: 1.12rem; line-height: 1.8; color: #3f5249; }
+    .qh-example strong { color: var(--g-ink); }
+    @media (max-width: 900px) {
+      .qh-cards { grid-template-columns: 1fr; gap: 18px; }
+      .qh-panel { grid-template-columns: 1fr; gap: 14px; padding: 34px 28px; }
+      .qh-example { padding: 36px 26px; }
+      .qh-example-text { grid-template-columns: 1fr; gap: 6px; }
+      .qh-card { padding: 32px 26px; }
+    }
+  
+    /* ── Domaines d'intervention : grand, aéré, lisible ── */
+    .focus-section { padding: 110px 0 120px !important; }
+    .focus-header { margin-bottom: 60px !important; }
+    .focus-header .section-tag { display: none !important; }
+    .focus-header .section-title { font-size: clamp(2.4rem, 4.4vw, 3.6rem) !important; }
+    .focus-header p { font-size: 1.18rem !important; line-height: 1.75 !important; color: #3f5249 !important; max-width: 640px !important; }
+    .focus-grid { gap: 26px !important; }
+    .focus-card { padding: 40px 36px 42px !important; border-radius: 30px !important; }
+    .focus-num { font-size: 1rem !important; padding: 8px 18px !important; margin-bottom: 22px !important; }
+    .focus-card h3 { font-family: 'Jost', sans-serif !important; font-weight: 700 !important; font-size: clamp(1.45rem, 1.9vw, 1.75rem) !important; line-height: 1.18 !important; letter-spacing: -.01em !important; text-transform: none !important; margin-bottom: 14px !important; }
+    .focus-card p { font-size: 1.1rem !important; line-height: 1.75 !important; color: #3f5249 !important; font-weight: 400 !important; }
+    @media (max-width: 600px) { .focus-card { padding: 32px 26px !important; } .focus-grid { gap: 18px !important; } }
   </style>
 </head>
 <body>
@@ -1042,37 +1089,40 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
     </div>
   </section>
 
-  <section id="qu-est-ce-hypnose" style="background: var(--sage-dark); color: var(--white);">
+  <section id="qu-est-ce-hypnose">
     <div class="section-inner">
-      <h2 class="section-title reveal reveal-delay-1" style="color: var(--white);">Qu'est-ce que <em style="color: var(--white);">l'hypnose</em> ?</h2>
-      <div class="divider reveal reveal-delay-2" style="background: var(--white);"></div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; margin-bottom: 48px;">
-        <div class="reveal" style="background: rgba(255,255,255,0.08); padding: 28px; border-radius: 4px; border-left: 3px solid var(--sage-light); backdrop-filter: blur(10px);">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.5" style="margin-bottom: 12px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <h4 style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; color: var(--sage-light);">Un état familier</h4>
-          <p style="font-size: 0.88rem; line-height: 1.6; opacity: 0.9;">L'hypnose est un état modifié de conscience que l'on expérimente chaque jour sans même s'en rendre compte, un peu comme si vous étiez dans la lune ou dans un doux rêve, sauf que... vous ne dormez pas !</p>
-        </div>
-        <div class="reveal reveal-delay-1" style="background: rgba(255,255,255,0.08); padding: 28px; border-radius: 4px; border-left: 3px solid var(--sage-light); backdrop-filter: blur(10px);">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.5" style="margin-bottom: 12px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
-          <h4 style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; color: var(--sage-light);">Action sur le subconscient</h4>
-          <p style="font-size: 0.88rem; line-height: 1.6; opacity: 0.9;">Pendant la séance hypnotique, on travaille sur vos blocages inconscients pour apporter le changement que vous désirez.</p>
-        </div>
-        <div class="reveal reveal-delay-2" style="background: rgba(255,255,255,0.08); padding: 28px; border-radius: 4px; border-left: 3px solid var(--sage-light); backdrop-filter: blur(10px);">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" stroke-width="1.5" style="margin-bottom: 12px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <h4 style="font-weight: 600; font-size: 0.95rem; margin-bottom: 8px; color: var(--sage-light);">Rien de magique</h4>
-          <p style="font-size: 0.88rem; line-height: 1.6; opacity: 0.9;">J'explore juste votre imaginaire pour y trouver des solutions qui vous conviennent. L'important est que vous soyez bien.</p>
-        </div>
+      <h2 class="section-title reveal">Qu'est-ce que <em>l'hypnose</em> ?</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+
+      <div class="qh-cards">
+        <article class="qh-card reveal">
+          <span class="qh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <h3>Un état familier</h3>
+          <p>L'hypnose est un état modifié de conscience que l'on expérimente chaque jour sans même s'en rendre compte, un peu comme si vous étiez dans la lune ou dans un doux rêve, sauf que… vous ne dormez pas&nbsp;!</p>
+        </article>
+        <article class="qh-card qh-card--light reveal reveal-delay-1">
+          <span class="qh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9.5 2a4.5 4.5 0 0 0-4.4 5.4A4 4 0 0 0 4 14.5 4.5 4.5 0 0 0 9.5 22h.5V2zM14.5 2a4.5 4.5 0 0 1 4.4 5.4 4 4 0 0 1 1.1 7.1A4.5 4.5 0 0 1 14.5 22H14V2z"/></svg></span>
+          <h3>Action sur le subconscient</h3>
+          <p>Pendant la séance hypnotique, on travaille sur vos blocages inconscients pour apporter le changement que vous désirez.</p>
+        </article>
+        <article class="qh-card reveal reveal-delay-2">
+          <span class="qh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <h3>Rien de magique</h3>
+          <p>J'explore juste votre imaginaire pour y trouver des solutions qui vous conviennent. L'important est que vous soyez bien.</p>
+        </article>
       </div>
-      <div class="reveal" style="background: linear-gradient(135deg, rgba(168,197,176,0.15) 0%, rgba(122,158,135,0.1) 100%); padding: 32px; border-radius: 4px; margin-bottom: 48px; border: 1px solid rgba(255,255,255,0.1);">
-        <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 16px; color: var(--sage-light);">Votre vigilance et contrôle</h4>
-        <p style="font-size: 0.9rem; line-height: 1.8; opacity: 0.95;">Sous hypnose, votre état de vigilance est moindre, vous êtes détendu comme en veille. Sachez que <strong>toutes vos fonctions restent actives</strong> : vous pouvez bouger, vous repositionner au besoin. Vous pouvez parler, et à tout moment, ouvrir les yeux si vous le désirez.</p>
+
+      <div class="qh-panel reveal">
+        <h3>Votre vigilance et votre contrôle</h3>
+        <p>Sous hypnose, votre état de vigilance est moindre&nbsp;: vous êtes détendu, comme en veille. Sachez que <strong>toutes vos fonctions restent actives</strong>&nbsp;: vous pouvez bouger, vous repositionner au besoin, parler, et à tout moment ouvrir les yeux si vous le désirez.</p>
       </div>
-      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.2);">
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 24px; color: var(--sage-light);">Exemple concret de l'hypnose</h3>
-        <div style="background: rgba(255,255,255,0.05); padding: 28px; border-radius: 4px; border-left: 4px solid var(--sage-light);">
-          <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; margin-bottom: 16px;"><em>Effectuer un trajet en voiture perdu dans vos pensées, si bien qu'une fois arrivé, impossible de vous souvenir de la route empruntée... Et même être surpris d'être "déjà arrivé"...</em></p>
-          <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; margin-bottom: 16px;">Et bien voilà ! Vous avez expérimenté un très court moment cet état si particulier. <strong>L'hypnothérapeute est là pour accentuer cet état</strong>, autant en durée qu'en profondeur.</p>
-          <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95;">C'est pendant cette phase de détachement que nous pouvons amener des suggestions permettant le changement d'une situation, d'un état ou d'un comportement.</p>
+
+      <div class="qh-example reveal">
+        <h3>Un exemple concret</h3>
+        <blockquote>Effectuer un trajet en voiture perdu dans vos pensées, si bien qu'une fois arrivé, impossible de vous souvenir de la route empruntée… et même être surpris d'être «&nbsp;déjà arrivé&nbsp;».</blockquote>
+        <div class="qh-example-text">
+          <p>Eh bien voilà&nbsp;! Vous avez expérimenté un très court moment cet état si particulier. <strong>L'hypnothérapeute est là pour accentuer cet état</strong>, autant en durée qu'en profondeur.</p>
+          <p>C'est pendant cette phase de détachement que nous pouvons amener des suggestions permettant le changement d'une situation, d'un état ou d'un comportement.</p>
         </div>
       </div>
     </div>
@@ -1111,7 +1161,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
             <p>Chaque problématique mérite une attention particulière. Voici les domaines dans lesquels j'excelle.</p>
           </div>
           <div class="focus-grid">
-            <div class="focus-card reveal"><div class="focus-num">01</div><h3>Troubles de l'humeur - Dépression</h3><p>L'hypnose accompagne votre retour à l'équilibre émotionnel en travaillant sur les blocages inconscients et en renforçant votre ressenti de bien-être.</p></div>
+            <div class="focus-card reveal"><div class="focus-num">01</div><h3>Troubles de l'humeur – Dépression</h3><p>L'hypnose accompagne votre retour à l'équilibre émotionnel en travaillant sur les blocages inconscients et en renforçant votre ressenti de bien-être.</p></div>
             <div class="focus-card reveal reveal-delay-1"><div class="focus-num">02</div><h3>Coaching sportif</h3><p>Optimisez vos performances mentales et physiques grâce à l'hypnose pour reprogrammer votre potentiel athlétique et renforcer votre confiance en compétition.</p></div>
             <div class="focus-card reveal reveal-delay-2"><div class="focus-num">03</div><h3>Gestion de la douleur</h3><p>L'hypnothérapie comme outil puissant pour moduler la perception de la douleur chronique.</p></div>
             <div class="focus-card reveal reveal-delay-1"><div class="focus-num">04</div><h3>Arrêt du tabac</h3><p>Dites adieu à la cigarette avec des techniques hypnotiques efficaces et durables.</p></div>
@@ -1178,7 +1228,7 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
               <label for="f-service">Service souhaité <span style="color:var(--sage)">*</span></label>
               <select id="f-service" name="service" required>
                 <option value="">Sélectionnez un service</option>
-                <option>Troubles de l'humeur - Dépression</option>
+                <option>Troubles de l'humeur – Dépression</option>
                 <option>Coaching sportif</option>
                 <option>Gestion de la douleur</option>
                 <option>Arrêt du tabac</option>
