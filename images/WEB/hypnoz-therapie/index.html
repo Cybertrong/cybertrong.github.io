@@ -1294,6 +1294,24 @@
     .mn-since { position: absolute; z-index: 1; left: 61%; top: calc(15% - 30px); font-size: .82rem; letter-spacing: .14em; text-transform: lowercase; color: var(--mn-g); transition: color 1.2s ease; }
     body.mn-inv .mn-since { color: #8fb08a; }
     @media (max-width: 900px) { .mn-since { display: none; } .mn-big { top: 54px !important; font-size: 7.5rem !important; } }
+  
+    /* ── Accueil téléphone : plein écran ── */
+    @media (max-width: 900px) {
+      .mn-hero-sec { min-height: 100svh !important; }
+      .mn-hero { height: 100svh !important; min-height: 620px !important; padding: 104px 24px 34px !important; display: flex !important; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+      .mn-mark.m1 { display: block; position: absolute; left: 24px; top: 92px; }
+      .mn-title { font-size: clamp(3rem, 14vw, 4.2rem) !important; margin-top: 18px !important; max-width: 78%; }
+      .mn-title span + span { padding-left: .55em; }
+      .mn-since { display: block !important; left: auto; right: 22px; top: auto; bottom: calc(34px + 205px + 246px); font-size: .72rem; }
+      .mn-big { display: block; top: auto !important; bottom: calc(34px + 205px) !important; right: 14px !important; left: auto !important; font-size: clamp(5.4rem, 25vw, 7rem) !important; opacity: 1 !important; color: var(--mn-g); }
+      .mn-bottom-m { display: flex; flex-direction: column; gap: 26px; }
+      .mn-lead { margin-top: 0 !important; width: 62% !important; }
+      .mn-lead p { font-size: .88rem; }
+      .mn-tag { margin-top: 0 !important; }
+      .mn-tag strong { font-size: 2.1rem; }
+      .mn-arch { display: block !important; right: 24px; width: 46px; height: 32px; border-width: 11px; }
+      .mn-vert { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -1346,12 +1364,14 @@
       <h1 class="mn-title"><span>Hypno</span><span>–thérapie</span></h1>
       <span class="mn-since" aria-hidden="true">depuis</span>
       <div class="mn-big" aria-hidden="true">2006</div>
+      <div class="mn-bottom-m">
       <div class="mn-lead">
         <h2>Concrètement</h2>
         <p>L'hypnothérapie douce pour transformer votre quotidien, libérer vos blocages et vivre pleinement.</p>
         <div class="mn-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       </div>
       <a class="mn-tag" href="#contact"><strong>Retrouvez<br>votre équilibre</strong><span>Prendre rendez-vous</span></a>
+      </div>
       <p class="mn-vert">Service d'hypnothérapie douce</p>
       <i class="mn-arch" aria-hidden="true"></i>
     </div>
