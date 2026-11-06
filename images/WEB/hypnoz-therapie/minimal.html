@@ -1275,6 +1275,9 @@
     .cta-band-content .btn-primary:hover, .cta-band-content .btn-outline:hover { color: #fff !important; opacity: .8; }
     .form-submit { margin-top: 10px; }
     .mobile-menu .nav-cta-mobile { border: 0 !important; }
+  
+    .mn-top.done .pct svg { animation: mn-up 1.6s ease-in-out infinite; }
+    @keyframes mn-up { 50% { transform: translateY(-4px); } }
   </style>
 </head>
 <body>
@@ -1755,7 +1758,9 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
     var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
     b.classList.toggle('show', y > window.innerHeight * .8);
     fg.style.strokeDashoffset = (L * (1 - (h > 0 ? y / h : 0))).toFixed(1);
-    pct.textContent = Math.round(h > 0 ? Math.min(1, y / h) * 100 : 0) + '%';
+    var v = Math.round(h > 0 ? Math.min(1, y / h) * 100 : 0);
+    if (v >= 100) { if (!b.classList.contains('done')) { b.classList.add('done'); pct.innerHTML = '<svg viewBox="0 0 14 18" width="14" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17V1M1 7l6-6 6 6"/></svg>'; } }
+    else { b.classList.remove('done'); pct.textContent = v + '%'; }
   }
   window.addEventListener('scroll', upd, { passive: true }); upd();
   b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
