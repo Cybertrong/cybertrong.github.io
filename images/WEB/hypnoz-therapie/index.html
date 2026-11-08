@@ -1349,6 +1349,15 @@
     #contact.ct-overlay .section-inner { position: relative; z-index: 1; }
     .ct-overlay.scrolled .ct-bar { box-shadow: 0 1px 0 #e6e8e4, 0 10px 24px rgba(29,36,32,.04); }
     @media (max-width: 760px) { .ct-bar { padding: 16px 24px !important; } }
+  
+    /* 3e variante au retour : fond vert, texte noir */
+    body.mn-green #accueil.mn-hero-sec { background: var(--mn-g) !important; }
+    body.mn-green .mn-title, body.mn-green .mn-lead h2, body.mn-green .mn-tag, body.mn-green .mn-tag span { color: #141a16 !important; }
+    body.mn-green .mn-lead p, body.mn-green .mn-mark, body.mn-green .mn-vert { color: rgba(20,26,22,.62) !important; }
+    body.mn-green .mn-dots i { background: rgba(20,26,22,.25) !important; } body.mn-green .mn-dots i.on { background: #141a16 !important; }
+    body.mn-green .mn-big, body.mn-green .mn-since { color: #141a16 !important; }
+    body.mn-green .mn-arch { border-color: #141a16 !important; }
+    body.mn-green .mn-since, body.mn-green .mn-dots i { transition: color 1.2s ease, background-color 1.2s ease; }
   </style>
 </head>
 <body>
@@ -1827,7 +1836,12 @@ Infirmier de formation en soins physiques et maladie mentale pendant 10 ans au s
     var r = hero.getBoundingClientRect(), vh = window.innerHeight;
     if (r.bottom < vh * .25) left = true;                       // on a quitté l'accueil
     else if (left && r.bottom > vh * .7) {                        // on y revient
-      left = false; document.body.classList.toggle('mn-inv');
+      left = false;
+      // alternance à chaque retour : clair → sombre → vert → clair…
+      var st = ['', 'mn-inv', 'mn-green'], b = document.body;
+      var cur = b.classList.contains('mn-inv') ? 1 : b.classList.contains('mn-green') ? 2 : 0;
+      b.classList.remove('mn-inv', 'mn-green');
+      var nx = st[(cur + 1) % st.length]; if (nx) b.classList.add(nx);
     }
   }
   window.addEventListener('scroll', check, { passive: true });
