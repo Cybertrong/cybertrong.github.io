@@ -67,6 +67,6 @@ const PROJECTS = [
   { client: "tomaté!", type: { en: "social media", fr: "réseaux sociaux" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "digital", year: "2026", img: "images/rs/reseaux_sociaux_tomate.jpg", link: { url: "https://www.instagram.com/tomate.tomate.tomate/", label: "Instagram" } },
 
   // ── design ────────────────────────────────────────────
-  { client: "Convatec", type: { en: "presentation", fr: "présentation" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "design", year: "2026", img: "images/presentation/presentation-convatec-heal.jpg", zoom: 1.8, focus: "25% 40%" },
+  { client: "Convatec", type: { en: "presentation", fr: "présentation" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "design", year: "2026", img: "images/presentation/presentation-convatec-heal.jpg", zoom: 1.25, focus: "0% 30%" },
   { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation-tomate-slides.jpg" },
 ];
