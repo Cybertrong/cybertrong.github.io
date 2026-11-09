@@ -1338,3 +1338,4 @@ html, body { overscroll-behavior-y: none; }
 @media (max-width: 1000px) { .cat-grid > .work { flex-basis: calc((100% - 14px) / 2); } }
 @media (max-width: 600px) { .cat-grid > .work { flex-basis: 100%; } }
 .cat-grid .work-media img[src*="presentation-convatec-heal"] { object-position: 3% 50%; }
+.cat-grid .work-media img[src*="presentation-tomate-montage"] { object-position: 30% 50%; }

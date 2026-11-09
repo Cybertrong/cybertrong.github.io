@@ -68,5 +68,5 @@ const PROJECTS = [
 
   // ── design ────────────────────────────────────────────
   { client: "Convatec", type: { en: "presentation", fr: "présentation" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "design", year: "2026", img: "images/presentation/presentation-convatec-heal.jpg", zoom: 1.25, focus: "0% 30%" },
-  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation-tomate-slides.jpg" },
+  { client: "tomaté!", type: { en: "presentation", fr: "présentation" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "design", year: "2026", img: "images/presentation/presentation-tomate-montage.jpg", zoom: 1.2, focus: "50% 50%" },
 ];
