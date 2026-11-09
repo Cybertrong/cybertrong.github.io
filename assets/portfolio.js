@@ -240,6 +240,8 @@
   // chaque section : des cases vides complètent la dernière rangée
   function fillGaps() {
     grid.querySelectorAll('.tile-filler').forEach(function (f) { f.remove(); });
+    return;   // plus de cases « à venir » : les rangées incomplètes sont centrées en CSS
+    grid.querySelectorAll('.tile-filler').forEach(function (f) { f.remove(); });
     grid.querySelectorAll('.cat-section:not([hidden]):not([data-cat="web"]) .cat-grid').forEach(function (g) {
     var cols = getComputedStyle(g).gridTemplateColumns.split(' ').filter(Boolean).length;
     var n = g.querySelectorAll('.work:not(.tile-filler)').length, missing = (cols - n % cols) % cols;

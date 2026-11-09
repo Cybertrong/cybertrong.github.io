@@ -1330,3 +1330,10 @@ body.pf-filtered .page-head { display: none; }
 .pf-body { min-height: 100vh; }
 html, body { overscroll-behavior-y: none; }
 .site-header.is-fixed { position: fixed; left: 0; right: 0; top: 0; }
+
+/* Toutes les sections : pas de case « à venir », la dernière rangée incomplète est centrée */
+.cat-grid { display: flex !important; flex-wrap: wrap; justify-content: center; }
+.cat-grid > .work { flex: 0 0 calc((100% - 28px) / 3); min-width: 0; }
+.cat-grid > .tile-filler { display: none !important; }
+@media (max-width: 1000px) { .cat-grid > .work { flex-basis: calc((100% - 14px) / 2); } }
+@media (max-width: 600px) { .cat-grid > .work { flex-basis: 100%; } }
