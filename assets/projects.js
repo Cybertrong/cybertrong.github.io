@@ -14,9 +14,8 @@
 const PROJECTS = [
   // ── branding ──────────────────────────────────────────
   // (masqué pour l'essai) { client: "analekta", type: { en: "marketing item", fr: "article promotionnel" }, field: { en: "Music", fr: "Musique" }, cat: "print", year: "2026", img: "images/SUPPORT/analekta-signet-blanc.jpg?v=2" },
-  { client: "Convatec", type: { en: "tri-fold brochure", fr: "brochure trois volets" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "print", year: "2026", img: "images/convatec-trifold-v3.jpg?v=2", zoom: 2.2, focus: "22% 30%", group: "trifold" },
+  { client: "Convatec", type: { en: "tri-fold brochure", fr: "brochure trois volets" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "print", year: "2026", img: "images/convatec-gatefold.jpg", zoom: 1.5, focus: "50% 45%", group: "trifold" },
   { client: "tomaté!", type: { en: "point-of-sale display", fr: "présentoir" }, field: { en: "Agriculture", fr: "Agriculture" }, cat: "print", year: "2026", img: "images/SUPPORT/tomate-presentoir-blanc.jpg", bg: "#FFFFFF" },
-  { client: "Convatec", type: { en: "gate-fold brochure", fr: "dépliant fenêtre" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "print", year: "2026", img: "images/convatec-gatefold.jpg", zoom: 1.5, focus: "50% 45%", group: "gatefold" },
   { client: "Convatec", type: { en: "trade show booth", fr: "kiosque d'exposition" }, field: { en: "Pharmaceutical", fr: "Pharmaceutique" }, cat: "print", year: "2026", img: "images/Kiosque-blanc.jpg" },
   { client: "Consentia", type: { en: "logo", fr: "logo" }, field: { en: "Non-profit", fr: "OBNL" }, cat: "branding", year: "2013", img: "images/LOGO/consentia-logo.jpg", bg: "#FFFFFF", zoom: 3, focus: "42% 52%",
     desc: { fr: "OBNL dédiée à la défense des enfants dans le monde. Mandat : exprimer la douceur et la joie à travers le logo.", en: "Non-profit dedicated to defending children around the world. Brief: convey gentleness and joy through the logo.", vi: "Tổ chức phi lợi nhuận bảo vệ trẻ em trên khắp thế giới. Yêu cầu: thể hiện sự dịu dàng và niềm vui qua logo." } },
