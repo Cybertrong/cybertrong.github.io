@@ -61,6 +61,7 @@ const PROJECTS = [
   { client: "Mobilier", type: { en: "website", fr: "site web" }, field: { en: "Furniture", fr: "Mobilier" }, cat: "web", year: "2026", site: "images/WEB/mobilier/index.html" },
   { client: "Marie-Pascale Bélanger", type: { en: "website", fr: "site web" }, field: { en: "Theatre company", fr: "Compagnie de théâtre" }, cat: "web", year: "2026", site: "images/WEB/projets-de-lombre/index.html" },
   { client: "Hypnoz", type: { en: "website", fr: "site web" }, field: { en: "Hypnotherapy", fr: "Hypnothérapie" }, cat: "web", year: "2026", site: "images/WEB/hypnoz-therapie/index.html" },
+  { client: "Hussard", type: { en: "website", fr: "site web" }, field: { en: "Online store", fr: "Boutique en ligne" }, cat: "web", year: "2026", site: "https://boutique-tshirts-five.vercel.app/", shot: "boutique-tshirts" },
 
   // ── digital ───────────────────────────────────────────
   { client: "Hussard", type: { en: "illustration", fr: "illustration" }, field: { en: "Online sales", fr: "Vente en ligne" }, cat: "digital", year: "2026", img: "images/illustration/hussard-tshirt.jpg", bg: "#FFFFFF", zoom: 2.8, focus: "47% 25%" },

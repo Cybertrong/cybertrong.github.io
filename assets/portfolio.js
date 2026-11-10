@@ -12,7 +12,7 @@
     'invitation': 'thiệp mời', 'brochure': 'brochure', 'series poster': 'áp phích phim', 'series flyer': 'tờ rơi phim',
     'series artwork': 'hình ảnh phim', 'game cover': 'bìa trò chơi', 'brochure cover': 'bìa brochure',
     'annual report': 'báo cáo thường niên', 'cover illustration': 'minh họa bìa sách', 'poster': 'áp phích',
-    'product catalog': 'catalogue sản phẩm', 'tri-fold brochure': 'tờ gấp ba', 'Horticulture': 'Làm vườn', 'information sheet': 'tờ thông tin', 'website': 'trang web', 'illustration': 'minh họa',
+    'product catalog': 'catalogue sản phẩm', 'tri-fold brochure': 'tờ gấp ba', 'Horticulture': 'Làm vườn', 'information sheet': 'tờ thông tin', 'website': 'trang web', 'Online store': 'Cửa hàng trực tuyến', 'illustration': 'minh họa',
     'social media': 'mạng xã hội', 'presentation': 'bài thuyết trình',
     'Music': 'Âm nhạc', 'Agriculture': 'Nông nghiệp', 'Pharmaceutical': 'Dược phẩm', 'Software': 'Phần mềm',
     'Designer': 'Nhà thiết kế', 'Application': 'Ứng dụng', 'Grocery': 'Cửa hàng thực phẩm',
@@ -57,7 +57,7 @@
   PROJECTS.forEach(function (p) {
     var key = p.cat + '|' + p.client + '|' + (p.site || '') + '|' + (p.group || '');
     if (!groups[key]) {
-      groups[key] = { cat: p.cat, client: clientOf(p), site: p.site, items: [] };
+      groups[key] = { cat: p.cat, client: clientOf(p), site: p.site, shot: p.shot, items: [] };
       order.push(key);
     }
     groups[key].items.push(p);
@@ -91,9 +91,9 @@
     var media;
     if (g.site) {
       // sur téléphone : capture fixe (cinq sites en direct font planter Safari iOS, qui recharge la page)
-      var shot = (g.site.match(/WEB\/([^\/]+)\//) || [])[1];
-      if (LITE && shot) {
-        media = '<div class="work-media is-site"><div class="site-preview"><img src="images/WEB/apercus/' + esc(shot) + '.jpg?v=1" alt="' + esc(g.client) + '" loading="lazy" decoding="async"></div></div>';
+      var shot = g.shot || (g.site.match(/WEB\/([^\/]+)\//) || [])[1];
+      if ((LITE || g.shot) && shot) {
+        media = '<div class="work-media is-site' + (g.shot ? ' is-flat' : '') + '"><div class="site-preview"><img src="images/WEB/apercus/' + esc(shot) + '.jpg?v=1" alt="' + esc(g.client) + '" loading="lazy" decoding="async"></div></div>';
       } else {
         media = '<div class="work-media is-site"><div class="site-preview"><iframe src="' + esc(g.site + (g.site.indexOf('?') < 0 ? '?apercu=2' : '')) +
           '" title="' + esc(g.client) + '" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div></div>';
