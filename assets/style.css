@@ -1339,3 +1339,20 @@ html, body { overscroll-behavior-y: none; }
 @media (max-width: 600px) { .cat-grid > .work { flex-basis: 100%; } }
 .cat-grid .work-media img[src*="presentation-convatec-heal"] { object-position: 3% 50%; }
 .cat-grid .work-media img[src*="presentation-tomate-montage"] { object-position: 30% 50%; }
+
+/* Accueil : lien discret vers le jeu « une pause ? » */
+.home-pause {
+  position: fixed; right: 28px; bottom: 26px; z-index: 40;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--fg); text-decoration: none;
+  font: italic 400 15px/1 var(--font); letter-spacing: .02em;
+  opacity: .72; transition: opacity .3s ease;
+  animation: pause-in .8s ease 2s both;
+}
+.home-pause svg { width: 18px; height: 14px; fill: currentColor; shape-rendering: crispEdges; transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.home-pause:hover, .home-pause:focus-visible { opacity: 1; }
+.home-pause:hover svg { transform: rotate(-12deg) scale(1.15); }
+@keyframes pause-in { from { opacity: 0; } to { opacity: .72; } }
+@media (max-width: 600px) {
+  .home-pause { right: auto; left: 50%; transform: translateX(-50%); bottom: 76px; font-size: 14px; }
+}
