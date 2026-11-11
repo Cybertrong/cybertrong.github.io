@@ -827,6 +827,7 @@ html[lang="vi"] .menu-brand,
 html[lang="vi"] .lockup-name { font-family: 'Damion', cursive; }
 html[lang="vi"] .display { font-size: clamp(64px, 12.5vw, 200px); line-height: 1.15; }
 html[lang="vi"] .lockup-title { font-size: clamp(20px, 3.6vw, 54px); letter-spacing: .1em; }
+html[lang="vi"] .lockup-title:not(.is-msg) { font-size: var(--fit-size, clamp(20px, 3.6vw, 54px)); }
 html[lang="vi"] .menu-list a.on { font-size: clamp(48px, 7.6vw, 116px); line-height: 1.25; }
 html[lang="vi"] .cat-head h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.3; }
 html[lang="vi"] .split .word { padding-top: .35em; margin-top: -.35em; }
